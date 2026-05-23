@@ -8,9 +8,9 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 4 — Minimum conversion landing structure complete
-Last completed phase:   Phase 4 — Minimum conversion landing structure
-Current objective:      Document Phase 4 results. Await Operator approval for Phase 5.
+Current phase:          Phase 4 addendum — Demo video block complete
+Last completed phase:   Phase 4 addendum — Demo video block (temporary placeholder media)
+Current objective:      Await Operator approval for Phase 5. Demo video block available for placeholder use.
 ```
 
 ---
@@ -20,7 +20,7 @@ Current objective:      Document Phase 4 results. Await Operator approval for Ph
 ```
 Theme folder:   theme/sense-clean/
 Git status:     On branch master — working tree clean
-Last commit:    59e9690 fix: simplify Phase 4 benefits and FAQ settings
+Last commit:    8c0ac34 feat: add optional demo video block to product landing
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
@@ -50,6 +50,25 @@ Tests passed (Phase 4 visual QA on DILMIO_DEV):
 - Add to cart: still works after Phase 4 changes
 - Phase 3 cart/variant/sticky behavior: fully preserved
 - Console: no DILMIO JavaScript errors (only Shopify/theme-editor warnings)
+
+Files changed (Phase 4 addendum — demo video):
+- theme/sense-clean/sections/dilmio-product-landing.liquid  [modified — optional demo video block and schema settings added]
+- theme/sense-clean/assets/dilmio-product.css               [modified — demo video styles appended]
+
+Commits (Phase 4 addendum):
+- 8c0ac34 feat: add optional demo video block to product landing
+
+Tests passed (demo video visual QA on DILMIO_DEV):
+- Video visible and plays correctly
+- Video plays on mobile, no fullscreen takeover (playsinline confirmed)
+- No layout break
+- No horizontal overflow
+- Add to cart still works
+- Sticky still works
+- No blocking DILMIO JavaScript errors
+
+Note: Demo video block is for temporary website/placeholder media only.
+Not final ad creative. Not verified UGC or customer proof.
 
 Tests failed:
 - None

@@ -111,3 +111,12 @@ Risk: None — hero, benefits, trust, FAQ, mobile layout, add to cart and sticky
 Expected result: Phase 5 Design and trust can begin once Operator approves.
 Status: completed
 ---
+
+---
+Date: 2026-05-23
+Decision: Added optional demo video block to product landing using flat settings and HTML5 video tag.
+Reason: Temporary placeholder media needed while finishing theme. Supplier and advertiser videos can be pasted as a direct MP4 URL without code changes.
+Risk: Requires a direct HTTPS MP4 URL. YouTube, Vimeo, and social media URLs will not work with the video tag. HTTP URLs will be blocked by browser mixed-content policy.
+Expected result: Operator can toggle the video block on/off and swap URLs per product via the customizer. Block is not final ad creative and not treated as UGC or customer proof.
+Status: completed
+---
