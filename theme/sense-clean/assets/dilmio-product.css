@@ -16,7 +16,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  padding: 1.5rem 1rem 5rem;
+  padding: 1.5rem 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -25,7 +25,7 @@
 @media (min-width: 750px) {
   .dilmio-landing__inner {
     grid-template-columns: 1fr 1fr;
-    padding: 2.5rem 2rem 5rem;
+    padding: 2.5rem 2rem 2rem;
   }
 }
 
@@ -223,7 +223,7 @@
 .dilmio-hero {
   max-width: 700px;
   margin: 0 auto;
-  padding: 2rem 1rem 0;
+  padding: 2rem 1rem 1.5rem;
   text-align: center;
 }
 
@@ -252,6 +252,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  border-top: 1px solid #eee;
 }
 
 .dilmio-benefits__title {
@@ -391,6 +392,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  border-top: 1px solid #eee;
 }
 
 .dilmio-video__heading {
@@ -412,6 +414,88 @@
   font-size: 0.875rem;
   color: #555;
   text-align: center;
+  font-style: italic;
+}
+
+/* ─── How it works ─── */
+
+.dilmio-steps {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  border-top: 1px solid #eee;
+}
+
+.dilmio-steps__heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.dilmio-steps__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  counter-reset: steps-counter;
+}
+
+.dilmio-steps__item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  counter-increment: steps-counter;
+}
+
+.dilmio-steps__item::before {
+  content: counter(steps-counter);
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.dilmio-steps__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dilmio-steps__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.dilmio-steps__text {
+  font-size: 0.875rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+@media (min-width: 750px) {
+  .dilmio-steps__list {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .dilmio-steps__item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+  }
 }
 
 /* ─── Section-level sticky clearance ─── */

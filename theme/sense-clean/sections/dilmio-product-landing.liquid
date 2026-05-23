@@ -147,6 +147,64 @@
       </div>
     </div>
 
+    {%- if section.settings.show_how_it_works -%}
+      {%- assign has_steps = false -%}
+      {%- if section.settings.how_it_works_step_1_title != blank or section.settings.how_it_works_step_1_text != blank -%}
+        {%- assign has_steps = true -%}
+      {%- endif -%}
+      {%- if section.settings.how_it_works_step_2_title != blank or section.settings.how_it_works_step_2_text != blank -%}
+        {%- assign has_steps = true -%}
+      {%- endif -%}
+      {%- if section.settings.how_it_works_step_3_title != blank or section.settings.how_it_works_step_3_text != blank -%}
+        {%- assign has_steps = true -%}
+      {%- endif -%}
+      {%- if has_steps -%}
+        <div class="dilmio-steps">
+          {%- if section.settings.how_it_works_heading != blank -%}
+            <h2 class="dilmio-steps__heading">{{ section.settings.how_it_works_heading }}</h2>
+          {%- endif -%}
+          <ol class="dilmio-steps__list">
+            {%- if section.settings.how_it_works_step_1_title != blank or section.settings.how_it_works_step_1_text != blank -%}
+              <li class="dilmio-steps__item">
+                <div class="dilmio-steps__body">
+                  {%- if section.settings.how_it_works_step_1_title != blank -%}
+                    <span class="dilmio-steps__title">{{ section.settings.how_it_works_step_1_title }}</span>
+                  {%- endif -%}
+                  {%- if section.settings.how_it_works_step_1_text != blank -%}
+                    <span class="dilmio-steps__text">{{ section.settings.how_it_works_step_1_text }}</span>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endif -%}
+            {%- if section.settings.how_it_works_step_2_title != blank or section.settings.how_it_works_step_2_text != blank -%}
+              <li class="dilmio-steps__item">
+                <div class="dilmio-steps__body">
+                  {%- if section.settings.how_it_works_step_2_title != blank -%}
+                    <span class="dilmio-steps__title">{{ section.settings.how_it_works_step_2_title }}</span>
+                  {%- endif -%}
+                  {%- if section.settings.how_it_works_step_2_text != blank -%}
+                    <span class="dilmio-steps__text">{{ section.settings.how_it_works_step_2_text }}</span>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endif -%}
+            {%- if section.settings.how_it_works_step_3_title != blank or section.settings.how_it_works_step_3_text != blank -%}
+              <li class="dilmio-steps__item">
+                <div class="dilmio-steps__body">
+                  {%- if section.settings.how_it_works_step_3_title != blank -%}
+                    <span class="dilmio-steps__title">{{ section.settings.how_it_works_step_3_title }}</span>
+                  {%- endif -%}
+                  {%- if section.settings.how_it_works_step_3_text != blank -%}
+                    <span class="dilmio-steps__text">{{ section.settings.how_it_works_step_3_text }}</span>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endif -%}
+          </ol>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
     {%- if section.settings.show_demo_video and section.settings.demo_video_url != blank -%}
       <div class="dilmio-video">
         {%- if section.settings.demo_video_heading != blank -%}
@@ -503,6 +561,55 @@
       "id": "demo_video_autoplay",
       "label": "Autoplay (muted, loop)",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "How it works"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_how_it_works",
+      "label": "Show how it works",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "how_it_works_heading",
+      "label": "Heading",
+      "placeholder": "e.g. How it works"
+    },
+    {
+      "type": "text",
+      "id": "how_it_works_step_1_title",
+      "label": "Step 1 — title",
+      "placeholder": "e.g. Open the container"
+    },
+    {
+      "type": "textarea",
+      "id": "how_it_works_step_1_text",
+      "label": "Step 1 — description"
+    },
+    {
+      "type": "text",
+      "id": "how_it_works_step_2_title",
+      "label": "Step 2 — title",
+      "placeholder": "e.g. Apply to surface"
+    },
+    {
+      "type": "textarea",
+      "id": "how_it_works_step_2_text",
+      "label": "Step 2 — description"
+    },
+    {
+      "type": "text",
+      "id": "how_it_works_step_3_title",
+      "label": "Step 3 — title",
+      "placeholder": "e.g. Done in seconds"
+    },
+    {
+      "type": "textarea",
+      "id": "how_it_works_step_3_text",
+      "label": "Step 3 — description"
     }
   ],
   "presets": [
