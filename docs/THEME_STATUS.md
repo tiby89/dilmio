@@ -8,9 +8,9 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 1 — Clean base
-Last completed phase:   —
-Current objective:      Set up folder structure, backup, and source documents before touching theme.
+Current phase:          Phase 2 — Claude Code system setup
+Last completed phase:   Phase 1 — Clean base
+Current objective:      Complete Claude Code onboarding/audit before Phase 3.
 ```
 
 ---
@@ -19,8 +19,8 @@ Current objective:      Set up folder structure, backup, and source documents be
 
 ```
 Theme folder:   theme/sense-clean/
-Git status:     Not initialized yet
-Last commit:    —
+Git status:     On branch master — working tree clean
+Last commit:    88e37a9 chore: initial DILMIO clean base
 ```
 
 ---
@@ -29,13 +29,15 @@ Last commit:    —
 
 ```
 Files changed:
-- None yet
+- docs/THEME_STATUS.md only
 
 Tests passed:
-- None yet
+- Phase 1 structure verified (CLAUDE.md, docs/, theme/sense-clean/, backups/ all present)
+- Git initialized and clean
+- Phase 2 audit completed
 
 Tests failed:
-- None yet
+- None
 ```
 
 ---
@@ -44,19 +46,11 @@ Tests failed:
 
 ```
 Blockers:
-- Git not initialized
-- theme/sense-clean/ not confirmed present
-- Old theme ZIP not confirmed inside backups/
-- Initial clean commit not created
+- THEME_STATUS.md update not committed yet
+- Phase 3 not approved yet
 
 Next action:
-- Step 1: Create full folder structure (DILMIO/ with docs/, theme/sense-clean/, backups/)
-- Step 2: Place CLAUDE.md in root, all other .md files inside docs/
-- Step 3: Save old theme ZIP inside backups/
-- Step 4: Place clean Sense theme inside theme/sense-clean/
-- Step 5 (only after all above): git init && git add . && git commit -m "chore: initial DILMIO clean base"
-- Step 6: Open Claude Code inside DILMIO folder
-- Step 7: Run Phase 2 audit command (see CLAUDE.md section 9)
+- Show diff, then wait for Operator approval to commit the status update
 
 Do not start yet:
 - Phase 3 technical landing
