@@ -385,6 +385,35 @@
   margin-bottom: 0;
 }
 
+/* ─── Demo video ─── */
+
+.dilmio-video {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.dilmio-video__heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.dilmio-video__player {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.dilmio-video__caption {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  color: #555;
+  text-align: center;
+}
+
 /* ─── Section-level sticky clearance ─── */
 
 .dilmio-landing {

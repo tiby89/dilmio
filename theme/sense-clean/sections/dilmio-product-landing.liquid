@@ -147,6 +147,28 @@
       </div>
     </div>
 
+    {%- if section.settings.show_demo_video and section.settings.demo_video_url != blank -%}
+      <div class="dilmio-video">
+        {%- if section.settings.demo_video_heading != blank -%}
+          <h2 class="dilmio-video__heading">{{ section.settings.demo_video_heading }}</h2>
+        {%- endif -%}
+        <div class="dilmio-video__wrap">
+          <video
+            class="dilmio-video__player"
+            src="{{ section.settings.demo_video_url | escape }}"
+            {%- if section.settings.demo_video_autoplay -%}
+              autoplay muted loop playsinline
+            {%- else -%}
+              controls playsinline
+            {%- endif -%}
+          ></video>
+        </div>
+        {%- if section.settings.demo_video_caption != blank -%}
+          <p class="dilmio-video__caption">{{ section.settings.demo_video_caption }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
     {%- if section.settings.show_benefits -%}
       {%- if section.settings.benefit_1 != blank or section.settings.benefit_2 != blank or section.settings.benefit_3 != blank or section.settings.benefit_4 != blank -%}
         <div class="dilmio-benefits">
@@ -447,6 +469,40 @@
       "type": "richtext",
       "id": "faq_answer_3",
       "label": "Answer 3"
+    },
+    {
+      "type": "header",
+      "content": "Demo video"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_demo_video",
+      "label": "Show demo video",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "demo_video_heading",
+      "label": "Video heading",
+      "placeholder": "e.g. See it in action"
+    },
+    {
+      "type": "text",
+      "id": "demo_video_url",
+      "label": "Video URL (direct MP4 link)",
+      "placeholder": "https://cdn.example.com/demo.mp4"
+    },
+    {
+      "type": "text",
+      "id": "demo_video_caption",
+      "label": "Caption",
+      "placeholder": "e.g. Vídeo demostrativo del producto en uso"
+    },
+    {
+      "type": "checkbox",
+      "id": "demo_video_autoplay",
+      "label": "Autoplay (muted, loop)",
+      "default": true
     }
   ],
   "presets": [
