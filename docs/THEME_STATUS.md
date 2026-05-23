@@ -8,9 +8,9 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 2 — Claude Code system setup
-Last completed phase:   Phase 1 — Clean base
-Current objective:      Complete Claude Code onboarding/audit before Phase 3.
+Current phase:          Phase 3.1 — Shopify manual testing complete
+Last completed phase:   Phase 3 — Minimum technical landing
+Current objective:      Document Phase 3 results. Await Operator approval for Phase 4.
 ```
 
 ---
@@ -20,7 +20,12 @@ Current objective:      Complete Claude Code onboarding/audit before Phase 3.
 ```
 Theme folder:   theme/sense-clean/
 Git status:     On branch master — working tree clean
-Last commit:    88e37a9 chore: initial DILMIO clean base
+Last commit:    f375c29 feat: add minimum DILMIO product landing
+
+Shopify target: DILMIO_DEV
+Theme ID:       201618030923
+Role:           unpublished
+Live theme:     Sense (#201391046987) — untouched
 ```
 
 ---
@@ -28,13 +33,20 @@ Last commit:    88e37a9 chore: initial DILMIO clean base
 ## Archivos
 
 ```
-Files changed:
-- docs/THEME_STATUS.md only
+Files changed (Phase 3):
+- theme/sense-clean/sections/dilmio-product-landing.liquid  [created]
+- theme/sense-clean/assets/dilmio-product.js                [created]
+- theme/sense-clean/assets/dilmio-product.css               [created]
 
 Tests passed:
-- Phase 1 structure verified (CLAUDE.md, docs/, theme/sense-clean/, backups/ all present)
-- Git initialized and clean
-- Phase 2 audit completed
+- No product selected: placeholder shown, no errors
+- Simple product: correct variant id, quantity 1, redirects to cart
+- Color + Size: exact selected variant in cart, not always first
+- Pack quantity: quantity 3 in /cart/add.js when pack-of-3 selected
+- Sold-out variant: CTA disabled, re-enables on valid selection
+- Sticky sync: variant, price and quantity stay in sync with main block
+- Mobile: single-column layout, buttons tappable, no layout breaks
+- Console and network: zero JS errors, /cart/add.js always receives numeric id and correct quantity
 
 Tests failed:
 - None
@@ -46,14 +58,12 @@ Tests failed:
 
 ```
 Blockers:
-- THEME_STATUS.md update not committed yet
-- Phase 3 not approved yet
+- None. Phase 3 and Phase 3.1 complete.
 
 Next action:
-- Show diff, then wait for Operator approval to commit the status update
+- Await Operator approval to begin Phase 4 — Technical QA
 
 Do not start yet:
-- Phase 3 technical landing
 - Reviews
 - Product automation
 - Any ads or traffic
@@ -63,16 +73,16 @@ Do not start yet:
 
 ## Referencia rápida de fases
 
-| Phase | Name                        | Status      |
-|-------|-----------------------------|-------------|
-| F1    | Clean base                  | In progress |
-| F2    | Claude Code system setup    | Not started |
-| F3    | Minimum technical landing   | Not started |
-| F4    | Technical QA                | Not started |
-| F5    | Design and trust            | Not started |
-| F6    | Conversion infrastructure   | Not started |
-| F7    | First real product          | Not started |
-| F8    | Creatives and traffic test  | Not started |
+| Phase | Name                        | Status    |
+|-------|-----------------------------|-----------|
+| F1    | Clean base                  | Completed |
+| F2    | Claude Code system setup    | Completed |
+| F3    | Minimum technical landing   | Completed |
+| F4    | Technical QA                | Pending   |
+| F5    | Design and trust            | Pending   |
+| F6    | Conversion infrastructure   | Pending   |
+| F7    | First real product          | Pending   |
+| F8    | Creatives and traffic test  | Pending   |
 
 ---
 
