@@ -217,3 +217,176 @@
   padding: 0.75rem 1.5rem;
   white-space: nowrap;
 }
+
+/* ─── Hero ─── */
+
+.dilmio-hero {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem 0;
+  text-align: center;
+}
+
+.dilmio-hero__headline {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+@media (min-width: 750px) {
+  .dilmio-hero__headline {
+    font-size: 2.25rem;
+  }
+}
+
+.dilmio-hero__subheadline {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+}
+
+/* ─── Benefits ─── */
+
+.dilmio-benefits {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.dilmio-benefits__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.dilmio-benefits__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.dilmio-benefits__item {
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.dilmio-benefits__item::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #111;
+  font-weight: 700;
+}
+
+/* ─── Trust bullets ─── */
+
+.dilmio-trust {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  border-top: 1px solid #eee;
+}
+
+.dilmio-trust__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 750px) {
+  .dilmio-trust__list {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+.dilmio-trust__item {
+  font-size: 0.875rem;
+  color: #444;
+}
+
+/* ─── FAQ ─── */
+
+.dilmio-faq {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.dilmio-faq__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.dilmio-faq__item {
+  border-top: 1px solid #eee;
+}
+
+.dilmio-faq__item:last-child {
+  border-bottom: 1px solid #eee;
+}
+
+.dilmio-faq__question {
+  padding: 1rem 1.5rem 1rem 0;
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  list-style: none;
+  position: relative;
+  user-select: none;
+}
+
+.dilmio-faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.dilmio-faq__question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.dilmio-faq__item[open] .dilmio-faq__question::after {
+  content: '\2212';
+}
+
+.dilmio-faq__answer {
+  padding: 0 0 1rem;
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.dilmio-faq__answer p {
+  margin: 0 0 0.5rem;
+}
+
+.dilmio-faq__answer p:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Section-level sticky clearance ─── */
+
+.dilmio-landing {
+  padding-bottom: 5rem;
+}

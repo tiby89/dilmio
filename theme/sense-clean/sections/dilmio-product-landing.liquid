@@ -34,6 +34,17 @@
       ]
     </script>
 
+    {%- if section.settings.hero_headline != blank or section.settings.hero_subheadline != blank -%}
+      <div class="dilmio-hero">
+        {%- if section.settings.hero_headline != blank -%}
+          <div class="dilmio-hero__headline">{{ section.settings.hero_headline | newline_to_br }}</div>
+        {%- endif -%}
+        {%- if section.settings.hero_subheadline != blank -%}
+          <p class="dilmio-hero__subheadline">{{ section.settings.hero_subheadline }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
     <div class="dilmio-landing__inner">
 
       <div class="dilmio-landing__media">
@@ -136,6 +147,73 @@
       </div>
     </div>
 
+    {%- if section.settings.show_benefits -%}
+      {%- assign has_benefits = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'benefit' and block.settings.text != blank -%}
+          {%- assign has_benefits = true -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if has_benefits -%}
+        <div class="dilmio-benefits">
+          {%- if section.settings.benefits_title != blank -%}
+            <h2 class="dilmio-benefits__title">{{ section.settings.benefits_title }}</h2>
+          {%- endif -%}
+          <ul class="dilmio-benefits__list">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'benefit' and block.settings.text != blank -%}
+                <li class="dilmio-benefits__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if section.settings.show_trust -%}
+      {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank -%}
+        <div class="dilmio-trust">
+          <ul class="dilmio-trust__list">
+            {%- if section.settings.trust_1 != blank -%}
+              <li class="dilmio-trust__item">{{ section.settings.trust_1 }}</li>
+            {%- endif -%}
+            {%- if section.settings.trust_2 != blank -%}
+              <li class="dilmio-trust__item">{{ section.settings.trust_2 }}</li>
+            {%- endif -%}
+            {%- if section.settings.trust_3 != blank -%}
+              <li class="dilmio-trust__item">{{ section.settings.trust_3 }}</li>
+            {%- endif -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if section.settings.show_faq -%}
+      {%- assign has_faq = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' and block.settings.question != blank -%}
+          {%- assign has_faq = true -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if has_faq -%}
+        <div class="dilmio-faq">
+          {%- if section.settings.faq_title != blank -%}
+            <h2 class="dilmio-faq__title">{{ section.settings.faq_title }}</h2>
+          {%- endif -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'faq_item' and block.settings.question != blank -%}
+              <details class="dilmio-faq__item" {{ block.shopify_attributes }}>
+                <summary class="dilmio-faq__question">{{ block.settings.question }}</summary>
+                {%- if block.settings.answer != blank -%}
+                  <div class="dilmio-faq__answer">{{ block.settings.answer }}</div>
+                {%- endif -%}
+              </details>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
     <div
       id="dilmio-sticky-{{ section.id }}"
       class="dilmio-sticky"
@@ -227,6 +305,113 @@
       "id": "pack_quantity_3",
       "label": "Pack 3 — quantity",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_headline",
+      "label": "Headline",
+      "placeholder": "e.g. The only tool you need"
+    },
+    {
+      "type": "text",
+      "id": "hero_subheadline",
+      "label": "Subheadline",
+      "placeholder": "e.g. Trusted by 10,000+ customers"
+    },
+    {
+      "type": "header",
+      "content": "Benefits"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Show benefits block",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "benefits_title",
+      "label": "Benefits title",
+      "placeholder": "e.g. Why customers love it"
+    },
+    {
+      "type": "header",
+      "content": "Trust"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust",
+      "label": "Show trust bullets",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "trust_1",
+      "label": "Trust bullet 1",
+      "placeholder": "e.g. Free shipping on orders over €30"
+    },
+    {
+      "type": "text",
+      "id": "trust_2",
+      "label": "Trust bullet 2",
+      "placeholder": "e.g. 30-day returns"
+    },
+    {
+      "type": "text",
+      "id": "trust_3",
+      "label": "Trust bullet 3",
+      "placeholder": "e.g. 100% satisfaction guarantee"
+    },
+    {
+      "type": "header",
+      "content": "FAQ"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faq",
+      "label": "Show FAQ block",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "faq_title",
+      "label": "FAQ title",
+      "placeholder": "e.g. Frequently Asked Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Benefit text",
+          "placeholder": "e.g. Works in seconds, no setup required"
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "placeholder": "e.g. How long does shipping take?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
     }
   ],
   "presets": [
