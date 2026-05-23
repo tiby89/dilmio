@@ -148,23 +148,24 @@
     </div>
 
     {%- if section.settings.show_benefits -%}
-      {%- assign has_benefits = false -%}
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'benefit' and block.settings.text != blank -%}
-          {%- assign has_benefits = true -%}
-        {%- endif -%}
-      {%- endfor -%}
-      {%- if has_benefits -%}
+      {%- if section.settings.benefit_1 != blank or section.settings.benefit_2 != blank or section.settings.benefit_3 != blank or section.settings.benefit_4 != blank -%}
         <div class="dilmio-benefits">
           {%- if section.settings.benefits_title != blank -%}
             <h2 class="dilmio-benefits__title">{{ section.settings.benefits_title }}</h2>
           {%- endif -%}
           <ul class="dilmio-benefits__list">
-            {%- for block in section.blocks -%}
-              {%- if block.type == 'benefit' and block.settings.text != blank -%}
-                <li class="dilmio-benefits__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
-              {%- endif -%}
-            {%- endfor -%}
+            {%- if section.settings.benefit_1 != blank -%}
+              <li class="dilmio-benefits__item">{{ section.settings.benefit_1 }}</li>
+            {%- endif -%}
+            {%- if section.settings.benefit_2 != blank -%}
+              <li class="dilmio-benefits__item">{{ section.settings.benefit_2 }}</li>
+            {%- endif -%}
+            {%- if section.settings.benefit_3 != blank -%}
+              <li class="dilmio-benefits__item">{{ section.settings.benefit_3 }}</li>
+            {%- endif -%}
+            {%- if section.settings.benefit_4 != blank -%}
+              <li class="dilmio-benefits__item">{{ section.settings.benefit_4 }}</li>
+            {%- endif -%}
           </ul>
         </div>
       {%- endif -%}
@@ -189,27 +190,35 @@
     {%- endif -%}
 
     {%- if section.settings.show_faq -%}
-      {%- assign has_faq = false -%}
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'faq_item' and block.settings.question != blank -%}
-          {%- assign has_faq = true -%}
-        {%- endif -%}
-      {%- endfor -%}
-      {%- if has_faq -%}
+      {%- if section.settings.faq_question_1 != blank or section.settings.faq_question_2 != blank or section.settings.faq_question_3 != blank -%}
         <div class="dilmio-faq">
           {%- if section.settings.faq_title != blank -%}
             <h2 class="dilmio-faq__title">{{ section.settings.faq_title }}</h2>
           {%- endif -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'faq_item' and block.settings.question != blank -%}
-              <details class="dilmio-faq__item" {{ block.shopify_attributes }}>
-                <summary class="dilmio-faq__question">{{ block.settings.question }}</summary>
-                {%- if block.settings.answer != blank -%}
-                  <div class="dilmio-faq__answer">{{ block.settings.answer }}</div>
-                {%- endif -%}
-              </details>
-            {%- endif -%}
-          {%- endfor -%}
+          {%- if section.settings.faq_question_1 != blank -%}
+            <details class="dilmio-faq__item">
+              <summary class="dilmio-faq__question">{{ section.settings.faq_question_1 }}</summary>
+              {%- if section.settings.faq_answer_1 != blank -%}
+                <div class="dilmio-faq__answer">{{ section.settings.faq_answer_1 }}</div>
+              {%- endif -%}
+            </details>
+          {%- endif -%}
+          {%- if section.settings.faq_question_2 != blank -%}
+            <details class="dilmio-faq__item">
+              <summary class="dilmio-faq__question">{{ section.settings.faq_question_2 }}</summary>
+              {%- if section.settings.faq_answer_2 != blank -%}
+                <div class="dilmio-faq__answer">{{ section.settings.faq_answer_2 }}</div>
+              {%- endif -%}
+            </details>
+          {%- endif -%}
+          {%- if section.settings.faq_question_3 != blank -%}
+            <details class="dilmio-faq__item">
+              <summary class="dilmio-faq__question">{{ section.settings.faq_question_3 }}</summary>
+              {%- if section.settings.faq_answer_3 != blank -%}
+                <div class="dilmio-faq__answer">{{ section.settings.faq_answer_3 }}</div>
+              {%- endif -%}
+            </details>
+          {%- endif -%}
         </div>
       {%- endif -%}
     {%- endif -%}
@@ -339,6 +348,30 @@
       "placeholder": "e.g. Why customers love it"
     },
     {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "placeholder": "e.g. Works in seconds, no setup required"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "placeholder": "e.g. Backed by a 30-day guarantee"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "placeholder": "e.g. Ships within 24 hours"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4",
+      "label": "Benefit 4",
+      "placeholder": "e.g. Used by 10,000+ customers"
+    },
+    {
       "type": "header",
       "content": "Trust"
     },
@@ -381,37 +414,39 @@
       "id": "faq_title",
       "label": "FAQ title",
       "placeholder": "e.g. Frequently Asked Questions"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "benefit",
-      "name": "Benefit item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Benefit text",
-          "placeholder": "e.g. Works in seconds, no setup required"
-        }
-      ]
     },
     {
-      "type": "faq_item",
-      "name": "FAQ item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "question",
-          "label": "Question",
-          "placeholder": "e.g. How long does shipping take?"
-        },
-        {
-          "type": "richtext",
-          "id": "answer",
-          "label": "Answer"
-        }
-      ]
+      "type": "text",
+      "id": "faq_question_1",
+      "label": "Question 1",
+      "placeholder": "e.g. How long does shipping take?"
+    },
+    {
+      "type": "richtext",
+      "id": "faq_answer_1",
+      "label": "Answer 1"
+    },
+    {
+      "type": "text",
+      "id": "faq_question_2",
+      "label": "Question 2",
+      "placeholder": "e.g. Can I return the product?"
+    },
+    {
+      "type": "richtext",
+      "id": "faq_answer_2",
+      "label": "Answer 2"
+    },
+    {
+      "type": "text",
+      "id": "faq_question_3",
+      "label": "Question 3",
+      "placeholder": "e.g. Is this product safe to use?"
+    },
+    {
+      "type": "richtext",
+      "id": "faq_answer_3",
+      "label": "Answer 3"
     }
   ],
   "presets": [
