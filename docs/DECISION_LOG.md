@@ -93,3 +93,21 @@ Risk: None — all tests passed including sold-out, sticky sync, mobile and netw
 Expected result: Phase 4 Technical QA can begin once Operator approves.
 Status: completed
 ---
+
+---
+Date: 2026-05-23
+Decision: Phase 4 conversion structure built as flat section settings, not Shopify blocks.
+Reason: Shopify blocks were confusing and too slow for DILMIO customizer workflow. Flat settings (benefit_1–4, faq_question/answer_1–3) are faster and simpler for the Operator.
+Risk: Maximum of 4 benefits and 3 FAQ items without adding code. Sufficient for current phase.
+Expected result: Hero, benefits, trust, and FAQ fully editable from section settings panel. No blocks panel required.
+Status: completed
+---
+
+---
+Date: 2026-05-23
+Decision: Phase 4 visual QA passed on DILMIO_DEV. All conversion blocks confirmed working.
+Reason: Mandatory gate before Phase 5.
+Risk: None — hero, benefits, trust, FAQ, mobile layout, add to cart and sticky all confirmed working. No DILMIO JS errors.
+Expected result: Phase 5 Design and trust can begin once Operator approves.
+Status: completed
+---
