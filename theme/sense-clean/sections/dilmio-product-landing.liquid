@@ -1,0 +1,238 @@
+{{ 'dilmio-product.css' | asset_url | stylesheet_tag }}
+
+{%- assign product = section.settings.product -%}
+
+<section
+  id="dilmio-landing-{{ section.id }}"
+  class="dilmio-landing"
+  data-section-id="{{ section.id }}"
+>
+
+  {%- if product == blank -%}
+
+    <div class="dilmio-placeholder">
+      <p>Select a product in the Shopify customizer to activate this section.</p>
+    </div>
+
+  {%- else -%}
+
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+
+    <script id="dilmio-variants-{{ section.id }}" type="application/json">
+      [
+        {%- for variant in product.variants -%}
+          {
+            "id": {{ variant.id }},
+            "title": {{ variant.title | json }},
+            "price_formatted": {{ variant.price | money | json }},
+            "available": {{ variant.available }},
+            "option1": {{ variant.option1 | json }},
+            "option2": {{ variant.option2 | json }},
+            "option3": {{ variant.option3 | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    </script>
+
+    <div class="dilmio-landing__inner">
+
+      <div class="dilmio-landing__media">
+        {%- if product.featured_image -%}
+          <img
+            src="{{ product.featured_image | image_url: width: 800 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="800"
+            height="{{ 800 | divided_by: product.featured_image.aspect_ratio | round }}"
+            loading="eager"
+          >
+        {%- endif -%}
+      </div>
+
+      <div class="dilmio-landing__form">
+
+        <h1 class="dilmio-landing__title">{{ product.title }}</h1>
+
+        <div class="dilmio-landing__price" id="dilmio-price-{{ section.id }}">
+          {{ current_variant.price | money }}
+        </div>
+
+        {%- unless product.has_only_default_variant -%}
+          <div class="dilmio-options" id="dilmio-options-{{ section.id }}">
+            {%- for option in product.options_with_values -%}
+              {%- assign opt_index = forloop.index0 -%}
+              <div class="dilmio-option-group" data-option-index="{{ opt_index }}">
+                <p class="dilmio-option-group__label">{{ option.name }}</p>
+                <div class="dilmio-option-group__values">
+                  {%- for value in option.values -%}
+                    <button
+                      type="button"
+                      class="dilmio-option-btn{% if option.selected_value == value %} is-selected{% endif %}"
+                      data-option-index="{{ opt_index }}"
+                      data-value="{{ value | escape }}"
+                    >
+                      {{ value }}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endunless -%}
+
+        {%- if section.settings.show_pack -%}
+          {%- assign first_pack_rendered = false -%}
+          <div class="dilmio-packs" id="dilmio-packs-{{ section.id }}">
+            <p class="dilmio-packs__label">Pack</p>
+            <div class="dilmio-packs__values">
+
+              {%- if section.settings.pack_label_1 != blank and section.settings.pack_quantity_1 > 0 -%}
+                <button
+                  type="button"
+                  class="dilmio-pack-btn{%- unless first_pack_rendered %} is-selected{%- endunless -%}"
+                  data-quantity="{{ section.settings.pack_quantity_1 }}"
+                >{{ section.settings.pack_label_1 }}</button>
+                {%- assign first_pack_rendered = true -%}
+              {%- endif -%}
+
+              {%- if section.settings.pack_label_2 != blank and section.settings.pack_quantity_2 > 0 -%}
+                <button
+                  type="button"
+                  class="dilmio-pack-btn{%- unless first_pack_rendered %} is-selected{%- endunless -%}"
+                  data-quantity="{{ section.settings.pack_quantity_2 }}"
+                >{{ section.settings.pack_label_2 }}</button>
+                {%- assign first_pack_rendered = true -%}
+              {%- endif -%}
+
+              {%- if section.settings.pack_label_3 != blank and section.settings.pack_quantity_3 > 0 -%}
+                <button
+                  type="button"
+                  class="dilmio-pack-btn{%- unless first_pack_rendered %} is-selected{%- endunless -%}"
+                  data-quantity="{{ section.settings.pack_quantity_3 }}"
+                >{{ section.settings.pack_label_3 }}</button>
+              {%- endif -%}
+
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="dilmio-cta-wrap">
+          <button
+            type="button"
+            id="dilmio-cta-{{ section.id }}"
+            class="dilmio-cta"
+            data-variant-id="{{ current_variant.id }}"
+            {% unless current_variant.available %}disabled{% endunless %}
+          >
+            {%- if current_variant.available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+          </button>
+          <div
+            id="dilmio-error-{{ section.id }}"
+            class="dilmio-error"
+            role="alert"
+            style="display:none;"
+          ></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div
+      id="dilmio-sticky-{{ section.id }}"
+      class="dilmio-sticky"
+      aria-hidden="true"
+    >
+      <div class="dilmio-sticky__inner">
+        <div class="dilmio-sticky__info">
+          <span class="dilmio-sticky__title">{{ product.title }}</span>
+          {%- unless product.has_only_default_variant -%}
+            <span
+              class="dilmio-sticky__variant"
+              id="dilmio-sticky-variant-{{ section.id }}"
+            >{{ current_variant.title }}</span>
+          {%- endunless -%}
+          <span
+            class="dilmio-sticky__price"
+            id="dilmio-sticky-price-{{ section.id }}"
+          >{{ current_variant.price | money }}</span>
+        </div>
+        <button
+          type="button"
+          id="dilmio-sticky-cta-{{ section.id }}"
+          class="dilmio-cta dilmio-sticky__cta"
+          data-variant-id="{{ current_variant.id }}"
+          {% unless current_variant.available %}disabled{% endunless %}
+        >
+          {%- if current_variant.available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+        </button>
+      </div>
+    </div>
+
+  {%- endif -%}
+
+</section>
+
+<script src="{{ 'dilmio-product.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "DILMIO Product Landing",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "header",
+      "content": "Pack selector"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pack",
+      "label": "Show pack selector",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "pack_label_1",
+      "label": "Pack 1 — label",
+      "placeholder": "e.g. 1 unit"
+    },
+    {
+      "type": "number",
+      "id": "pack_quantity_1",
+      "label": "Pack 1 — quantity",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "pack_label_2",
+      "label": "Pack 2 — label",
+      "placeholder": "e.g. 2 units"
+    },
+    {
+      "type": "number",
+      "id": "pack_quantity_2",
+      "label": "Pack 2 — quantity",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "pack_label_3",
+      "label": "Pack 3 — label",
+      "placeholder": "e.g. 3 units"
+    },
+    {
+      "type": "number",
+      "id": "pack_quantity_3",
+      "label": "Pack 3 — quantity",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "DILMIO Product Landing"
+    }
+  ]
+}
+{% endschema %}

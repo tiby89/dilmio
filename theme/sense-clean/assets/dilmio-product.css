@@ -1,0 +1,219 @@
+/* ─── Layout ─── */
+
+.dilmio-landing {
+  position: relative;
+}
+
+.dilmio-placeholder {
+  padding: 2rem;
+  margin: 2rem;
+  text-align: center;
+  color: #666;
+  border: 1px dashed #ccc;
+}
+
+.dilmio-landing__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 1.5rem 1rem 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 750px) {
+  .dilmio-landing__inner {
+    grid-template-columns: 1fr 1fr;
+    padding: 2.5rem 2rem 5rem;
+  }
+}
+
+/* ─── Image ─── */
+
+.dilmio-landing__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* ─── Title & price ─── */
+
+.dilmio-landing__title {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+.dilmio-landing__price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+}
+
+/* ─── Option groups ─── */
+
+.dilmio-options {
+  margin: 0 0 1.5rem;
+}
+
+.dilmio-option-group {
+  margin: 0 0 1rem;
+}
+
+.dilmio-option-group__label,
+.dilmio-packs__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.5rem;
+}
+
+.dilmio-option-group__values,
+.dilmio-packs__values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ─── Option & pack buttons ─── */
+
+.dilmio-option-btn,
+.dilmio-pack-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  line-height: 1.4;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.dilmio-option-btn:hover,
+.dilmio-pack-btn:hover {
+  border-color: #555;
+}
+
+.dilmio-option-btn.is-selected,
+.dilmio-pack-btn.is-selected {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
+/* ─── Pack selector ─── */
+
+.dilmio-packs {
+  margin: 0 0 1.5rem;
+}
+
+/* ─── CTA ─── */
+
+.dilmio-cta-wrap {
+  margin-top: 1.5rem;
+}
+
+.dilmio-cta {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: #111;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.dilmio-cta:hover:not(:disabled):not(.is-loading) {
+  background: #333;
+}
+
+.dilmio-cta:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.dilmio-cta.is-loading {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ─── Error message ─── */
+
+.dilmio-error {
+  margin-top: 0.75rem;
+  color: #c0392b;
+  font-size: 0.875rem;
+}
+
+/* ─── Sticky bar ─── */
+
+.dilmio-sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+  padding: 0.75rem 1rem;
+  z-index: 200;
+  display: none;
+}
+
+.dilmio-sticky.is-visible {
+  display: block;
+}
+
+.dilmio-sticky__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dilmio-sticky__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.dilmio-sticky__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dilmio-sticky__variant {
+  font-size: 0.8rem;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dilmio-sticky__price {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.dilmio-sticky__cta {
+  width: auto;
+  flex-shrink: 0;
+  padding: 0.75rem 1.5rem;
+  white-space: nowrap;
+}
