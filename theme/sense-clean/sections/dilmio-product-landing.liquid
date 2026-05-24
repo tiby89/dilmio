@@ -1,13 +1,23 @@
 {{ 'dilmio-product.css' | asset_url | stylesheet_tag }}
 
 {%- assign product = product | default: section.settings.product -%}
-{%- assign hero_headline    = product.metafields.custom.dilmio_hero_headline    | default: section.settings.hero_headline -%}
-{%- assign hero_subheadline = product.metafields.custom.dilmio_hero_subheadline | default: section.settings.hero_subheadline -%}
-{%- assign demo_video_url   = product.metafields.custom.dilmio_demo_video_url   | default: section.settings.demo_video_url -%}
-{%- assign benefit_1        = product.metafields.custom.dilmio_benefit_1        | default: section.settings.benefit_1 -%}
-{%- assign benefit_2        = product.metafields.custom.dilmio_benefit_2        | default: section.settings.benefit_2 -%}
-{%- assign benefit_3        = product.metafields.custom.dilmio_benefit_3        | default: section.settings.benefit_3 -%}
-{%- assign faq_question_1   = product.metafields.custom.dilmio_faq_question_1   | default: section.settings.faq_question_1 -%}
+{%- if request.page_type == 'product' -%}
+  {%- assign hero_headline    = product.metafields.custom.dilmio_hero_headline.value -%}
+  {%- assign hero_subheadline = product.metafields.custom.dilmio_hero_subheadline.value -%}
+  {%- assign demo_video_url   = product.metafields.custom.dilmio_demo_video_url.value -%}
+  {%- assign benefit_1        = product.metafields.custom.dilmio_benefit_1.value -%}
+  {%- assign benefit_2        = product.metafields.custom.dilmio_benefit_2.value -%}
+  {%- assign benefit_3        = product.metafields.custom.dilmio_benefit_3.value -%}
+  {%- assign faq_question_1   = product.metafields.custom.dilmio_faq_question_1.value -%}
+{%- else -%}
+  {%- assign hero_headline    = section.settings.hero_headline -%}
+  {%- assign hero_subheadline = section.settings.hero_subheadline -%}
+  {%- assign demo_video_url   = section.settings.demo_video_url -%}
+  {%- assign benefit_1        = section.settings.benefit_1 -%}
+  {%- assign benefit_2        = section.settings.benefit_2 -%}
+  {%- assign benefit_3        = section.settings.benefit_3 -%}
+  {%- assign faq_question_1   = section.settings.faq_question_1 -%}
+{%- endif -%}
 
 <section
   id="dilmio-landing-{{ section.id }}"
@@ -285,8 +295,10 @@
           {%- if faq_question_1 != blank -%}
             <details class="dilmio-faq__item">
               <summary class="dilmio-faq__question">{{ faq_question_1 }}</summary>
-              {%- if product.metafields.custom.dilmio_faq_answer_1 != blank -%}
-                <div class="dilmio-faq__answer">{{ product.metafields.custom.dilmio_faq_answer_1 | newline_to_br }}</div>
+              {%- if request.page_type == 'product' -%}
+                {%- if product.metafields.custom.dilmio_faq_answer_1.value != blank -%}
+                  <div class="dilmio-faq__answer">{{ product.metafields.custom.dilmio_faq_answer_1.value | newline_to_br }}</div>
+                {%- endif -%}
               {%- elsif section.settings.faq_answer_1 != blank -%}
                 <div class="dilmio-faq__answer">{{ section.settings.faq_answer_1 }}</div>
               {%- endif -%}
