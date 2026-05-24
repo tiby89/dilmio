@@ -8,9 +8,9 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 4 addendum — Demo video block complete
-Last completed phase:   Phase 4 addendum — Demo video block (temporary placeholder media)
-Current objective:      Await Operator approval for Phase 5. Demo video block available for placeholder use.
+Current phase:          Phase 6A — DILMIO product template (completed)
+Last completed phase:   Phase 6A — DILMIO product template
+Current objective:      Await Operator approval for Phase 6B.
 ```
 
 ---
@@ -20,7 +20,7 @@ Current objective:      Await Operator approval for Phase 5. Demo video block av
 ```
 Theme folder:   theme/sense-clean/
 Git status:     On branch master — working tree clean
-Last commit:    8c0ac34 feat: add optional demo video block to product landing
+Last commit:    923b96a feat: add DILMIO product template
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
@@ -72,6 +72,25 @@ Not final ad creative. Not verified UGC or customer proof.
 
 Tests failed:
 - None
+
+Files changed (Phase 6A — DILMIO product template):
+- theme/sense-clean/templates/product.dilmio.json  [added — product template pointing to dilmio-product-landing section]
+
+Commits (Phase 6A):
+- 923b96a feat: add DILMIO product template
+
+Tests passed (Phase 6A manual QA on DILMIO_DEV):
+- templates/product.dilmio.json exists locally and remotely on DILMIO_DEV (theme ID 201618030923)
+- Template "dilmio" appears in DILMIO_DEV theme editor template picker
+- Product page renders DILMIO Product Landing correctly
+- Product loaded from product URL context (no product picker required for real product pages)
+- Product picker retained as fallback for non-product and demo pages
+- Sense live theme (#201391046987) remains untouched
+
+Known limitation (Phase 6A):
+- product.dilmio.json shares section settings across all products using the template.
+- Unique landing content per product (copy, images, benefits, FAQ) is not yet solved.
+- Future solution: product metafields or dynamic sources to scope settings per product.
 ```
 
 ---
@@ -80,12 +99,13 @@ Tests failed:
 
 ```
 Blockers:
-- None. Phase 4 complete and visual QA passed.
+- None. Phase 6A complete and manual QA passed.
 
 Next action:
-- Await Operator approval to begin Phase 5 — Design and trust
+- Await Operator approval to begin Phase 6B.
 
 Do not start yet:
+- Phase 6B
 - Reviews
 - Product automation
 - Any ads or traffic
@@ -101,8 +121,8 @@ Do not start yet:
 | F2    | Claude Code system setup    | Completed |
 | F3    | Minimum technical landing   | Completed |
 | F4    | Minimum conversion landing  | Completed |
-| F5    | Design and trust            | Pending   |
-| F6    | Conversion infrastructure   | Pending   |
+| F5    | Design and trust            | Completed |
+| F6    | Conversion infrastructure   | In Progress (6A done) |
 | F7    | First real product          | Pending   |
 | F8    | Creatives and traffic test  | Pending   |
 

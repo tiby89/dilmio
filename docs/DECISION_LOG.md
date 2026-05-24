@@ -129,3 +129,21 @@ Risk: If --only is forgotten, the next full push will again wipe customizer sett
 Expected result: Only the files named in --only are uploaded. templates/*.json and config/settings_data.json are never touched unless the Operator explicitly approves. Customizer settings are preserved across all future pushes.
 Status: active
 ---
+
+---
+Date: 2026-05-24
+Decision: Product template product.dilmio.json created. Product is loaded from Shopify URL context on real product pages; product picker retained as fallback for non-product and demo pages.
+Reason: Real product pages already have the product in URL context — forcing a product picker assignment for every product would be unnecessary and fragile. Fallback via product picker keeps demo and non-product pages functional.
+Risk: Shopify Admin product template dropdown shows templates from the live theme only. Template "dilmio" will not appear in Admin for products until it is present in the live theme. Testing must be done via DILMIO_DEV theme editor.
+Expected result: Any product URL viewed through DILMIO_DEV renders the DILMIO Product Landing without requiring manual product picker configuration per product.
+Status: completed
+---
+
+---
+Date: 2026-05-24
+Decision: Phase 6A manual QA passed. Known limitation: product.dilmio.json shares section settings (copy, benefits, FAQ) across all products using the template. Unique per-product landing content is not yet solved.
+Reason: Shopify JSON templates use section settings that are global to the template unless scoped with metafields or dynamic sources. No solution was built in Phase 6A — it was out of scope.
+Risk: If two products use the dilmio template, they will show identical copy unless metafields are implemented. Not a blocker for single-product testing but will become one at scale.
+Expected result: Future phase (to be defined by Operator) will implement product metafields or Shopify dynamic sources to allow unique landing content per product without code changes.
+Status: active
+---
