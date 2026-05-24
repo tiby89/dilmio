@@ -8,9 +8,9 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 6A — DILMIO product template (completed)
-Last completed phase:   Phase 6A — DILMIO product template
-Current objective:      Await Operator approval for Phase 6B.
+Current phase:          Phase 6B MVP — product metafields (completed)
+Last completed phase:   Phase 6B MVP — product metafields
+Current objective:      Await Operator approval for next phase.
 ```
 
 ---
@@ -20,7 +20,7 @@ Current objective:      Await Operator approval for Phase 6B.
 ```
 Theme folder:   theme/sense-clean/
 Git status:     On branch master — working tree clean
-Last commit:    923b96a feat: add DILMIO product template
+Last commit:    e2221b0 fix: prevent product template content fallback bleed-through
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
@@ -91,6 +91,39 @@ Known limitation (Phase 6A):
 - product.dilmio.json shares section settings across all products using the template.
 - Unique landing content per product (copy, images, benefits, FAQ) is not yet solved.
 - Future solution: product metafields or dynamic sources to scope settings per product.
+
+Files changed (Phase 6B MVP — product metafields):
+- theme/sense-clean/sections/dilmio-product-landing.liquid  [modified — metafield-first content resolution with request.page_type branching]
+
+Commits (Phase 6B MVP):
+- 8eb5e8d feat: add Phase 6B MVP product metafield fallbacks
+- e2221b0 fix: prevent product template content fallback bleed-through
+
+Metafields implemented (Phase 6B MVP):
+- custom.dilmio_hero_headline       (single line text)
+- custom.dilmio_hero_subheadline    (single line text)
+- custom.dilmio_demo_video_url      (single line text)
+- custom.dilmio_benefit_1           (single line text)
+- custom.dilmio_benefit_2           (single line text)
+- custom.dilmio_benefit_3           (single line text)
+- custom.dilmio_faq_question_1      (single line text)
+- custom.dilmio_faq_answer_1        (multi-line text)
+
+Tests passed (Phase 6B MVP manual QA on DILMIO_DEV):
+- Product with metafields displays product-specific metafield content
+- Product without metafields does not inherit shared product template fallback content
+- Product picker fallback retained for non-product/demo contexts
+- Add to cart works
+- Variants work
+- Sticky appears when main Add to Cart is out of view
+- Sticky shows correct product and works
+- Mobile layout does not break
+- Console: only Shopify Theme Editor / Polaris / WebPixelManager / postMessage / Apollo warnings — no blocking DILMIO JavaScript errors
+
+Known limitation (Phase 6B MVP):
+- MVP covers: hero headline/subheadline, demo video URL, benefits 1-3, FAQ question/answer 1.
+- Not yet covered: benefit 4, how-it-works steps, trust bullets, FAQ 2-3, video heading/caption.
+- Future expansion can add remaining fields without structural changes.
 ```
 
 ---
@@ -99,13 +132,12 @@ Known limitation (Phase 6A):
 
 ```
 Blockers:
-- None. Phase 6A complete and manual QA passed.
+- None. Phase 6B MVP complete and manual QA passed.
 
 Next action:
-- Await Operator approval to begin Phase 6B.
+- Await Operator approval for next phase.
 
 Do not start yet:
-- Phase 6B
 - Reviews
 - Product automation
 - Any ads or traffic
@@ -122,7 +154,7 @@ Do not start yet:
 | F3    | Minimum technical landing   | Completed |
 | F4    | Minimum conversion landing  | Completed |
 | F5    | Design and trust            | Completed |
-| F6    | Conversion infrastructure   | In Progress (6A done) |
+| F6    | Conversion infrastructure   | In Progress (6A + 6B MVP done) |
 | F7    | First real product          | Pending   |
 | F8    | Creatives and traffic test  | Pending   |
 

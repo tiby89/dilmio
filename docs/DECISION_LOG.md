@@ -145,5 +145,23 @@ Decision: Phase 6A manual QA passed. Known limitation: product.dilmio.json share
 Reason: Shopify JSON templates use section settings that are global to the template unless scoped with metafields or dynamic sources. No solution was built in Phase 6A — it was out of scope.
 Risk: If two products use the dilmio template, they will show identical copy unless metafields are implemented. Not a blocker for single-product testing but will become one at scale.
 Expected result: Future phase (to be defined by Operator) will implement product metafields or Shopify dynamic sources to allow unique landing content per product without code changes.
-Status: active
+Status: resolved — solved in Phase 6B MVP
+---
+
+---
+Date: 2026-05-24
+Decision: Phase 6B MVP implemented. On real product pages (request.page_type == 'product'), all MVP content fields read from product metafields only. Section settings are fallback only for non-product/demo contexts. The default filter was removed to prevent bleed-through.
+Reason: Multiple products using product.dilmio.json were inheriting shared section settings content, making every product appear to have the same landing text. Metafields must be the sole source of truth for product-specific content on product pages.
+Risk: If a product has no metafields set, the MVP content fields render as blank on its product page. The Operator must populate metafields per product in Shopify Admin before the landing is meaningful. This is intentional behavior, not a bug.
+Expected result: Each product URL shows only its own metafield content. No content bleed-through between products. Section settings remain the design tool for non-product contexts such as homepage or demo.
+Status: completed
+---
+
+---
+Date: 2026-05-24
+Decision: Phase 6B MVP QA passed. Sticky behavior must be tested via the real product preview URL, not from inside the Shopify theme editor.
+Reason: The theme editor renders the storefront inside an iframe where IntersectionObserver scroll behavior differs from a real storefront page. Sticky appeared broken in the editor but worked correctly at the real preview URL.
+Risk: Future developers may incorrectly declare sticky broken when testing from the theme editor. Sticky must always be validated at the real preview URL.
+Expected result: Sticky confirmed functional on real product URL with DILMIO_DEV preview (theme ID 201618030923).
+Status: completed
 ---
