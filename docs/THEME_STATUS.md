@@ -108,6 +108,53 @@ Do not start yet:
 
 ---
 
+## Shopify Push Workflow
+
+```
+INCIDENT (2026-05-24):
+A full `shopify theme push` to DILMIO_DEV overwrote the remote
+templates and config, losing all manually configured customizer
+settings (homepage, product assignment, video block, text blocks).
+
+RULE FROM NOW ON:
+Never run a full theme push.
+Always use --only and --nodelete to push only the changed files.
+Never push templates/*.json or config/settings_data.json
+unless explicitly approved by the Operator.
+
+TARGET (always explicit):
+  Theme name:  DILMIO_DEV
+  Theme ID:    201618030923
+  Role:        unpublished
+
+WORKING DIRECTORY FOR ALL PUSH COMMANDS:
+  D:\DILMIO\theme\sense-clean\
+
+SAFE COMMANDS:
+
+  Liquid + CSS only:
+  shopify theme push \
+    --only sections/dilmio-product-landing.liquid \
+    --only assets/dilmio-product.css \
+    --theme 201618030923 \
+    --nodelete
+
+  Liquid + CSS + JS:
+  shopify theme push \
+    --only sections/dilmio-product-landing.liquid \
+    --only assets/dilmio-product.css \
+    --only assets/dilmio-product.js \
+    --theme 201618030923 \
+    --nodelete
+
+FLAGS EXPLAINED:
+  --only      whitelist — only named files are uploaded, nothing else
+  --theme     explicit target — no interactive prompt, no wrong-theme risk
+  --nodelete  remote files absent locally are not deleted
+```
+
+---
+
 ## Cómo actualizar este archivo
 
 Después de cada fase, actualizar manualmente:

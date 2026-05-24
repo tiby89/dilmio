@@ -120,3 +120,12 @@ Risk: Requires a direct HTTPS MP4 URL. YouTube, Vimeo, and social media URLs wil
 Expected result: Operator can toggle the video block on/off and swap URLs per product via the customizer. Block is not final ad creative and not treated as UGC or customer proof.
 Status: completed
 ---
+
+---
+Date: 2026-05-24
+Decision: All future Shopify theme pushes must use --only and --nodelete. Full pushes are banned unless explicitly approved by the Operator.
+Reason: A full `shopify theme push` to DILMIO_DEV overwrote templates/*.json and config/settings_data.json, destroying all manually configured customizer settings (homepage layout, product assignment, video block, text blocks). Settings cannot be recovered from git — they live only in the remote Shopify theme.
+Risk: If --only is forgotten, the next full push will again wipe customizer settings silently.
+Expected result: Only the files named in --only are uploaded. templates/*.json and config/settings_data.json are never touched unless the Operator explicitly approves. Customizer settings are preserved across all future pushes.
+Status: active
+---
