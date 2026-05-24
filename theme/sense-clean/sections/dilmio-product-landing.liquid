@@ -1,6 +1,13 @@
 {{ 'dilmio-product.css' | asset_url | stylesheet_tag }}
 
 {%- assign product = product | default: section.settings.product -%}
+{%- assign hero_headline    = product.metafields.custom.dilmio_hero_headline    | default: section.settings.hero_headline -%}
+{%- assign hero_subheadline = product.metafields.custom.dilmio_hero_subheadline | default: section.settings.hero_subheadline -%}
+{%- assign demo_video_url   = product.metafields.custom.dilmio_demo_video_url   | default: section.settings.demo_video_url -%}
+{%- assign benefit_1        = product.metafields.custom.dilmio_benefit_1        | default: section.settings.benefit_1 -%}
+{%- assign benefit_2        = product.metafields.custom.dilmio_benefit_2        | default: section.settings.benefit_2 -%}
+{%- assign benefit_3        = product.metafields.custom.dilmio_benefit_3        | default: section.settings.benefit_3 -%}
+{%- assign faq_question_1   = product.metafields.custom.dilmio_faq_question_1   | default: section.settings.faq_question_1 -%}
 
 <section
   id="dilmio-landing-{{ section.id }}"
@@ -34,13 +41,13 @@
       ]
     </script>
 
-    {%- if section.settings.hero_headline != blank or section.settings.hero_subheadline != blank -%}
+    {%- if hero_headline != blank or hero_subheadline != blank -%}
       <div class="dilmio-hero">
-        {%- if section.settings.hero_headline != blank -%}
-          <div class="dilmio-hero__headline">{{ section.settings.hero_headline | newline_to_br }}</div>
+        {%- if hero_headline != blank -%}
+          <div class="dilmio-hero__headline">{{ hero_headline | newline_to_br }}</div>
         {%- endif -%}
-        {%- if section.settings.hero_subheadline != blank -%}
-          <p class="dilmio-hero__subheadline">{{ section.settings.hero_subheadline }}</p>
+        {%- if hero_subheadline != blank -%}
+          <p class="dilmio-hero__subheadline">{{ hero_subheadline }}</p>
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -205,7 +212,7 @@
       {%- endif -%}
     {%- endif -%}
 
-    {%- if section.settings.show_demo_video and section.settings.demo_video_url != blank -%}
+    {%- if section.settings.show_demo_video and demo_video_url != blank -%}
       <div class="dilmio-video">
         {%- if section.settings.demo_video_heading != blank -%}
           <h2 class="dilmio-video__heading">{{ section.settings.demo_video_heading }}</h2>
@@ -213,7 +220,7 @@
         <div class="dilmio-video__wrap">
           <video
             class="dilmio-video__player"
-            src="{{ section.settings.demo_video_url | escape }}"
+            src="{{ demo_video_url | escape }}"
             {%- if section.settings.demo_video_autoplay -%}
               autoplay muted loop playsinline
             {%- else -%}
@@ -228,20 +235,20 @@
     {%- endif -%}
 
     {%- if section.settings.show_benefits -%}
-      {%- if section.settings.benefit_1 != blank or section.settings.benefit_2 != blank or section.settings.benefit_3 != blank or section.settings.benefit_4 != blank -%}
+      {%- if benefit_1 != blank or benefit_2 != blank or benefit_3 != blank or section.settings.benefit_4 != blank -%}
         <div class="dilmio-benefits">
           {%- if section.settings.benefits_title != blank -%}
             <h2 class="dilmio-benefits__title">{{ section.settings.benefits_title }}</h2>
           {%- endif -%}
           <ul class="dilmio-benefits__list">
-            {%- if section.settings.benefit_1 != blank -%}
-              <li class="dilmio-benefits__item">{{ section.settings.benefit_1 }}</li>
+            {%- if benefit_1 != blank -%}
+              <li class="dilmio-benefits__item">{{ benefit_1 }}</li>
             {%- endif -%}
-            {%- if section.settings.benefit_2 != blank -%}
-              <li class="dilmio-benefits__item">{{ section.settings.benefit_2 }}</li>
+            {%- if benefit_2 != blank -%}
+              <li class="dilmio-benefits__item">{{ benefit_2 }}</li>
             {%- endif -%}
-            {%- if section.settings.benefit_3 != blank -%}
-              <li class="dilmio-benefits__item">{{ section.settings.benefit_3 }}</li>
+            {%- if benefit_3 != blank -%}
+              <li class="dilmio-benefits__item">{{ benefit_3 }}</li>
             {%- endif -%}
             {%- if section.settings.benefit_4 != blank -%}
               <li class="dilmio-benefits__item">{{ section.settings.benefit_4 }}</li>
@@ -270,15 +277,17 @@
     {%- endif -%}
 
     {%- if section.settings.show_faq -%}
-      {%- if section.settings.faq_question_1 != blank or section.settings.faq_question_2 != blank or section.settings.faq_question_3 != blank -%}
+      {%- if faq_question_1 != blank or section.settings.faq_question_2 != blank or section.settings.faq_question_3 != blank -%}
         <div class="dilmio-faq">
           {%- if section.settings.faq_title != blank -%}
             <h2 class="dilmio-faq__title">{{ section.settings.faq_title }}</h2>
           {%- endif -%}
-          {%- if section.settings.faq_question_1 != blank -%}
+          {%- if faq_question_1 != blank -%}
             <details class="dilmio-faq__item">
-              <summary class="dilmio-faq__question">{{ section.settings.faq_question_1 }}</summary>
-              {%- if section.settings.faq_answer_1 != blank -%}
+              <summary class="dilmio-faq__question">{{ faq_question_1 }}</summary>
+              {%- if product.metafields.custom.dilmio_faq_answer_1 != blank -%}
+                <div class="dilmio-faq__answer">{{ product.metafields.custom.dilmio_faq_answer_1 | newline_to_br }}</div>
+              {%- elsif section.settings.faq_answer_1 != blank -%}
                 <div class="dilmio-faq__answer">{{ section.settings.faq_answer_1 }}</div>
               {%- endif -%}
             </details>
