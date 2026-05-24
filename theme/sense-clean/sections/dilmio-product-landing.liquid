@@ -1,6 +1,6 @@
 {{ 'dilmio-product.css' | asset_url | stylesheet_tag }}
 
-{%- assign product = section.settings.product -%}
+{%- assign product = product | default: section.settings.product -%}
 
 <section
   id="dilmio-landing-{{ section.id }}"

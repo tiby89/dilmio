@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "dilmio-landing": {
+      "type": "dilmio-product-landing",
+      "settings": {}
+    }
+  },
+  "order": ["dilmio-landing"]
+}
