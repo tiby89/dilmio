@@ -165,3 +165,21 @@ Risk: Future developers may incorrectly declare sticky broken when testing from 
 Expected result: Sticky confirmed functional on real product URL with DILMIO_DEV preview (theme ID 201618030923).
 Status: completed
 ---
+
+---
+Date: 2026-05-25
+Decision: Phase 7 (Home + catalog basic ecommerce structure) completed entirely in Shopify Admin / customizer. No theme files changed. No push performed.
+Reason: Homepage layout, navigation menus, collections, and legal pages are Shopify Admin configuration — not theme code. Pushing templates/*.json or config/settings_data.json would overwrite these settings silently (precedent: incident 2026-05-24).
+Risk: If a full theme push is run in the future, all Admin-configured settings (menus, homepage featured collection, page assignments) will be overwritten silently. The --only + --nodelete rule is mandatory.
+Expected result: Store has a functional homepage, curated Catálogo collection, header/footer navigation, Tracking page, Contact page, and all legal policy pages. /collections/all is not linked publicly. Product page renders DILMIO landing via DILMIO_DEV.
+Status: completed
+---
+
+---
+Date: 2026-05-25
+Decision: templates/*.json and config/settings_data.json must never be pushed unless the Operator explicitly approves each file by name.
+Reason: These files contain the Shopify customizer state (menus, homepage sections, product assignments). They are managed remotely in Shopify Admin, not in git. Pushing them overwrites the remote state with whatever the local copy says, which may be stale or empty.
+Risk: Silent data loss of all customizer configuration with every full push.
+Expected result: All future push commands use --only targeting only liquid/CSS/JS files. templates/*.json and config/settings_data.json are treated as read-only from Claude Code's perspective.
+Status: active
+---
