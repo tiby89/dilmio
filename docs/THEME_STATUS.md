@@ -8,9 +8,9 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 7 — Home + catalog basic ecommerce structure (completed)
-Last completed phase:   Phase 7 — Home + catalog basic ecommerce structure
-Current objective:      Await Operator approval for next phase.
+Current phase:          Phase 6C — Home + catalog basic ecommerce structure (completed)
+Last completed phase:   Phase 6C — Home + catalog basic ecommerce structure
+Current objective:      Await Operator approval to begin Phase 7 — First real product.
 ```
 
 ---
@@ -125,11 +125,11 @@ Known limitation (Phase 6B MVP):
 - Not yet covered: benefit 4, how-it-works steps, trust bullets, FAQ 2-3, video heading/caption.
 - Future expansion can add remaining fields without structural changes.
 
-Files changed (Phase 7 — Home + catalog basic ecommerce structure):
+Files changed (Phase 6C — Home + catalog basic ecommerce structure):
 - NO theme files changed.
 - All work done in Shopify Admin / customizer only.
 
-Shopify Admin actions completed (Phase 7):
+Shopify Admin actions completed (Phase 6C):
 - Manual collection created: Catálogo (handle: catalogo)
 - Homepage configured in DILMIO_DEV (featured collection set to Catálogo)
 - Header menu configured: Inicio, Catálogo, Tracking, Contacto
@@ -140,12 +140,12 @@ Shopify Admin actions completed (Phase 7):
 - Legal policies reviewed/created in Shopify Admin
 - /collections/all not linked publicly
 
-No commits for Phase 7:
+No commits for Phase 6C:
 - No theme files were changed.
 - templates/*.json and config/settings_data.json must not be pushed.
 - Shopify Admin settings live remotely and must not be overwritten by theme push.
 
-Tests passed (Phase 7 QA on DILMIO_DEV):
+Tests passed (Phase 6C QA on DILMIO_DEV):
 - Homepage loads
 - Catalog link works
 - Catalog shows curated products only
@@ -164,13 +164,14 @@ Tests passed (Phase 7 QA on DILMIO_DEV):
 
 ```
 Blockers:
-- None. Phase 7 complete and manual QA passed.
+- None. Phase 6C complete and manual QA passed.
 
 Next action:
-- Await Operator approval for next phase.
+- Await Operator approval to begin Phase 7 — First real product.
 
 Do not start yet:
-- Creatives and traffic (Phase 8)
+- Phase 7 — First real product (not started)
+- Phase 8 — Creatives and traffic (blocked until Phase 7 complete)
 - Any paid ads
 ```
 
@@ -185,9 +186,9 @@ Do not start yet:
 | F3    | Minimum technical landing   | Completed |
 | F4    | Minimum conversion landing  | Completed |
 | F5    | Design and trust            | Completed |
-| F6    | Conversion infrastructure   | Completed (6A + 6B MVP)        |
-| F7    | First real product          | Completed                      |
-| F8    | Creatives and traffic test  | Pending                        |
+| F6    | Conversion infrastructure   | Completed (6A + 6B MVP + 6C)   |
+| F7    | First real product          | Pending                        |
+| F8    | Creatives and traffic test  | Blocked until F7 complete      |
 
 ---
 
