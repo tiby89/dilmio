@@ -1,0 +1,521 @@
+/* =============================================
+   DILMIO Brand Home — dilmio-brand-home.css
+   Isolated: all classes prefixed with dbh-
+   No global overrides.
+   ============================================= */
+
+.dilmio-brand-home {
+  --dbh-olive: #3E4A2D;
+  --dbh-olive-hover: #4F5E3A;
+  --dbh-cream: #FAF9F6;
+  --dbh-white: #FFFFFF;
+  --dbh-text: #1C1C1C;
+  --dbh-text-muted: #6B6B6B;
+  --dbh-border: #E8E4DC;
+  --dbh-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  --dbh-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.14);
+  --dbh-radius: 1.2rem;
+  --dbh-radius-lg: 2rem;
+  font-family: inherit;
+  background-color: var(--dbh-cream);
+}
+
+/* =============================================
+   WRAPPER
+   ============================================= */
+
+.dbh-wrapper {
+  max-width: 144rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}
+
+/* =============================================
+   SECTION HEADING
+   ============================================= */
+
+.dbh-section-heading {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--dbh-text);
+  margin: 0 0 3.2rem;
+  letter-spacing: -0.02em;
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+
+.dbh-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 2.8rem;
+  border-radius: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+  border: 2px solid transparent;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+
+.dbh-btn--primary {
+  background-color: var(--dbh-olive);
+  color: var(--dbh-white);
+  border-color: var(--dbh-olive);
+}
+
+.dbh-btn--primary:hover {
+  background-color: var(--dbh-olive-hover);
+  border-color: var(--dbh-olive-hover);
+}
+
+.dbh-btn--outline {
+  background-color: transparent;
+  color: var(--dbh-white);
+  border-color: var(--dbh-white);
+}
+
+.dbh-btn--outline:hover {
+  background-color: var(--dbh-white);
+  color: var(--dbh-olive);
+}
+
+/* =============================================
+   ZONE 1 — HERO
+   ============================================= */
+
+.dbh-hero {
+  background-color: var(--dbh-cream);
+  padding: 7.2rem 0 6rem;
+}
+
+.dbh-hero__grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.dbh-hero__grid--no-image {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+
+.dbh-hero__grid--no-image .dbh-hero__content {
+  align-items: center;
+  max-width: 60rem;
+}
+
+.dbh-hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.dbh-hero__heading {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--dbh-text);
+  margin: 0;
+}
+
+.dbh-hero__subtext {
+  font-size: 1.6rem;
+  line-height: 1.65;
+  color: var(--dbh-text-muted);
+  margin: 0;
+  max-width: 44rem;
+}
+
+.dbh-hero__image-wrap {
+  border-radius: var(--dbh-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--dbh-shadow-hover);
+  aspect-ratio: 4 / 5;
+  position: relative;
+}
+
+.dbh-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =============================================
+   ZONE 2 — TRUST CARDS
+   ============================================= */
+
+.dbh-trust {
+  background-color: var(--dbh-white);
+  border-top: 1px solid var(--dbh-border);
+  border-bottom: 1px solid var(--dbh-border);
+  padding: 2.8rem 0;
+}
+
+.dbh-trust__grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.4rem;
+}
+
+.dbh-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.dbh-trust__icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.dbh-trust__text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.dbh-trust__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--dbh-text);
+  display: block;
+}
+
+.dbh-trust__subtitle {
+  font-size: 1.1rem;
+  color: var(--dbh-text-muted);
+  display: block;
+}
+
+/* =============================================
+   ZONE 3 — CATEGORY CARDS
+   ============================================= */
+
+.dbh-categories {
+  background-color: var(--dbh-cream);
+  padding: 6rem 0;
+}
+
+.dbh-categories__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
+}
+
+.dbh-category__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--dbh-white);
+  border-radius: var(--dbh-radius);
+  overflow: visible;
+  box-shadow: var(--dbh-shadow);
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.dbh-category__card:hover {
+  box-shadow: var(--dbh-shadow-hover);
+  transform: translateY(-3px);
+}
+
+.dbh-category__image-wrap {
+  border-radius: var(--dbh-radius) var(--dbh-radius) 0 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  position: relative;
+  background-color: var(--dbh-border);
+}
+
+.dbh-category__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dbh-category__badge {
+  position: absolute;
+  bottom: -1.4rem;
+  left: 1.4rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: var(--dbh-olive);
+  color: var(--dbh-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  z-index: 1;
+}
+
+.dbh-category__body {
+  padding: 2.2rem 1.4rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.dbh-category__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dbh-category__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--dbh-text);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dbh-category__subtitle {
+  font-size: 1.1rem;
+  color: var(--dbh-text-muted);
+  margin: 0.2rem 0 0;
+}
+
+.dbh-category__arrow {
+  font-size: 1.4rem;
+  color: var(--dbh-olive);
+  flex-shrink: 0;
+  font-style: normal;
+}
+
+/* =============================================
+   ZONE 4 — FEATURED PRODUCTS
+   ============================================= */
+
+.dbh-products {
+  background-color: var(--dbh-white);
+  padding: 6rem 0;
+  border-top: 1px solid var(--dbh-border);
+}
+
+.dbh-products__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* =============================================
+   ZONE 5 — BRAND CRITERIA
+   ============================================= */
+
+.dbh-criteria {
+  background-color: var(--dbh-cream);
+  padding: 6rem 0;
+  border-top: 1px solid var(--dbh-border);
+}
+
+.dbh-criteria__heading {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--dbh-text);
+  letter-spacing: -0.02em;
+  margin: 0 0 4rem;
+  text-align: center;
+}
+
+.dbh-criteria__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.2rem;
+}
+
+.dbh-criteria__item {
+  text-align: center;
+  padding: 3.2rem 2.4rem;
+  background: var(--dbh-white);
+  border-radius: var(--dbh-radius);
+  border: 1px solid var(--dbh-border);
+}
+
+.dbh-criteria__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--dbh-olive);
+  margin: 0 0 0.8rem;
+}
+
+.dbh-criteria__text {
+  font-size: 1.3rem;
+  color: var(--dbh-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* =============================================
+   ZONE 6 — BOTTOM BANNER
+   ============================================= */
+
+.dbh-banner {
+  background-color: var(--dbh-olive);
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dbh-banner__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.dbh-banner--has-image .dbh-banner__overlay {
+  background-color: rgba(28, 36, 18, 0.65);
+}
+
+.dbh-banner__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2.4rem;
+}
+
+.dbh-banner__heading {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--dbh-white);
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 64rem;
+  line-height: 1.2;
+}
+
+/* =============================================
+   RESPONSIVE — TABLET (750–989px)
+   ============================================= */
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .dbh-hero__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .dbh-hero__heading {
+    font-size: 3.2rem;
+  }
+
+  .dbh-products__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =============================================
+   RESPONSIVE — MOBILE (max 749px)
+   ============================================= */
+
+@media screen and (max-width: 749px) {
+  .dbh-wrapper {
+    padding: 0 1.6rem;
+  }
+
+  /* Hero */
+  .dbh-hero {
+    padding: 4rem 0 3.2rem;
+  }
+
+  .dbh-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+
+  .dbh-hero__heading {
+    font-size: 2.8rem;
+  }
+
+  .dbh-hero__subtext {
+    font-size: 1.5rem;
+  }
+
+  .dbh-hero__image-wrap {
+    aspect-ratio: 16 / 9;
+    border-radius: var(--dbh-radius);
+  }
+
+  /* Trust cards */
+  .dbh-trust__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem;
+  }
+
+  /* Category cards */
+  .dbh-categories {
+    padding: 4rem 0;
+  }
+
+  .dbh-categories__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  /* Products */
+  .dbh-products {
+    padding: 4rem 0;
+  }
+
+  .dbh-products__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+
+  /* Criteria */
+  .dbh-criteria {
+    padding: 4rem 0;
+  }
+
+  .dbh-criteria__grid {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+
+  .dbh-criteria__item {
+    padding: 2.4rem 1.6rem;
+    text-align: left;
+  }
+
+  .dbh-criteria__heading {
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  /* Banner */
+  .dbh-banner {
+    padding: 4rem 0;
+  }
+
+  .dbh-banner__heading {
+    font-size: 2rem;
+  }
+
+  .dbh-section-heading {
+    font-size: 1.8rem;
+    margin-bottom: 2.4rem;
+  }
+}
