@@ -1,0 +1,153 @@
+{%- style -%}
+  .dilmio-trust-bar {
+    background-color: #3E4A2D;
+    width: 100%;
+  }
+
+  .dilmio-trust-bar__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 0.75rem 2rem;
+    max-width: 144rem;
+    margin: 0 auto;
+  }
+
+  .dilmio-trust-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #F4EFE4;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  .dilmio-trust-bar__link,
+  .dilmio-trust-bar__link:visited {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #F4EFE4;
+    text-decoration: none;
+  }
+
+  .dilmio-trust-bar__link:hover {
+    opacity: 0.8;
+  }
+
+  .dilmio-trust-bar__icon {
+    font-size: 1.3rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .dilmio-trust-bar__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 1rem;
+      padding: 0.8rem 1.6rem;
+    }
+
+    .dilmio-trust-bar__item {
+      font-size: 1.1rem;
+      white-space: normal;
+    }
+  }
+{%- endstyle -%}
+
+<div class="dilmio-trust-bar">
+  <div class="dilmio-trust-bar__inner">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.text != blank -%}
+        <div class="dilmio-trust-bar__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="dilmio-trust-bar__link">
+          {%- endif -%}
+          {%- if block.settings.icon != blank -%}
+            <span class="dilmio-trust-bar__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+          {%- endif -%}
+          <span class="dilmio-trust-bar__text">{{ block.settings.text | escape }}</span>
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DILMIO Trust Bar",
+  "class": "dilmio-trust-bar-section",
+  "max_blocks": 4,
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon or emoji",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Trust message"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DILMIO Trust Bar",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🚚",
+            "text": "Envío con seguimiento a toda España"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "↩",
+            "text": "Devoluciones fáciles 30 días"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "✉",
+            "text": "Atención al cliente: hola@dilmio.com"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🔒",
+            "text": "Pago 100% seguro"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
