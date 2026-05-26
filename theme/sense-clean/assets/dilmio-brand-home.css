@@ -360,14 +360,15 @@
 }
 
 .dbh-criteria__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3.2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
 }
 
 .dbh-criteria__item {
-  text-align: center;
-  padding: 3.2rem 2.4rem;
+  flex: 1;
+  text-align: left;
+  padding: 2.4rem 2rem;
   background: var(--dbh-white);
   border-radius: var(--dbh-radius);
   border: 1px solid var(--dbh-border);
@@ -416,8 +417,8 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   gap: 2.4rem;
 }
 
@@ -560,7 +561,7 @@
   }
 
   .dbh-criteria__grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 1.6rem;
   }
 

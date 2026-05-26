@@ -77,6 +77,28 @@
   overflow: hidden;
 }
 
+/* DILMIO — remove Sense SVG gradient, apply cream palette */
+.email-signup-banner-background,
+.email-signup-banner-background-mobile {
+  display: none;
+}
+
+.email-signup-banner {
+  background-color: #FAF9F6;
+  --color-background: 250, 249, 246;
+  --color-foreground: 28, 28, 28;
+  --color-button: 62, 74, 45;
+  --color-button-text: 255, 255, 255;
+}
+
+@media screen and (max-width: 749px) {
+  .email-signup-banner:not(.banner--mobile-bottom) .banner__box:not(.email-signup-banner__box--no-image) {
+    background-color: #FAF9F6;
+    --color-foreground: 28, 28, 28;
+    --color-button: 62, 74, 45;
+  }
+}
+
 @media screen and (max-width: 749px) {
   .banner--mobile-content-align-left .newsletter-form__message {
     justify-content: flex-start;
