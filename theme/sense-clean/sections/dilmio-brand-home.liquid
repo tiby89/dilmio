@@ -13,7 +13,24 @@
   {% comment %} ===================== ZONE 1 — HERO ===================== {% endcomment %}
   <div class="dbh-hero{% if section.settings.hero_image != blank %} dbh-hero--has-image{% endif %}">
 
-    <div class="dbh-hero__text-panel">
+    {%- if section.settings.hero_image != blank -%}
+      <div class="dbh-hero__bg">
+        {{
+          section.settings.hero_image
+          | image_url: width: 2000
+          | image_tag:
+            loading: 'eager',
+            class: 'dbh-hero__bg-img',
+            widths: '750, 1000, 1400, 1800, 2000',
+            sizes: '100vw',
+            alt: section.settings.hero_image.alt | escape
+        }}
+      </div>
+    {%- endif -%}
+
+    <div class="dbh-hero__overlay"></div>
+
+    <div class="dbh-wrapper dbh-hero__inner">
       <div class="dbh-hero__content">
         {%- if section.settings.hero_heading != blank -%}
           <h1 class="dbh-hero__heading">{{ section.settings.hero_heading | escape }}</h1>
@@ -31,21 +48,6 @@
         {%- endif -%}
       </div>
     </div>
-
-    {%- if section.settings.hero_image != blank -%}
-      <div class="dbh-hero__image-panel">
-        {{
-          section.settings.hero_image
-          | image_url: width: 1400
-          | image_tag:
-            loading: 'eager',
-            class: 'dbh-hero__image',
-            widths: '600, 800, 1000, 1200, 1400',
-            sizes: '(min-width: 990px) 55vw, 100vw',
-            alt: section.settings.hero_image.alt | escape
-        }}
-      </div>
-    {%- endif -%}
 
   </div>
 
