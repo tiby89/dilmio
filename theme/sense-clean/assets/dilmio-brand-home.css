@@ -89,7 +89,7 @@
 
 .dbh-hero {
   position: relative;
-  min-height: 56rem;
+  min-height: 64rem;
   overflow: hidden;
   background: var(--dbh-cream);
 }
@@ -130,7 +130,7 @@
   z-index: 2;
   display: flex;
   align-items: center;
-  min-height: 56rem;
+  min-height: 64rem;
   padding-top: 5.6rem;
   padding-bottom: 5.6rem;
 }
@@ -140,6 +140,12 @@
   flex-direction: column;
   gap: 2rem;
   max-width: 52rem;
+  background: rgba(250, 249, 246, 0.80);
+  border-radius: 2.4rem;
+  padding: 2.8rem 3.2rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
 }
 
 .dbh-hero__heading {
@@ -431,11 +437,11 @@
 
 @media screen and (min-width: 750px) and (max-width: 989px) {
   .dbh-hero {
-    min-height: 44rem;
+    min-height: 48rem;
   }
 
   .dbh-hero__inner {
-    min-height: 44rem;
+    min-height: 48rem;
   }
 
   .dbh-hero__heading {
@@ -458,50 +464,60 @@
 
   /* Hero */
   .dbh-hero {
-    min-height: 0;
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
+    min-height: 80vw;
+    overflow: hidden;
+    display: block;
   }
 
   .dbh-hero__bg {
-    position: static;
-    order: 2;
-    width: 100%;
-    height: 56vw;
-    min-height: 18rem;
-    overflow: hidden;
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    overflow: visible;
   }
 
   .dbh-hero__bg-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    object-position: center center;
   }
 
   .dbh-hero__overlay {
-    display: none;
+    display: block;
+    background: linear-gradient(
+      to top,
+      rgba(250, 249, 246, 0.97) 0%,
+      rgba(250, 249, 246, 0.80) 35%,
+      rgba(250, 249, 246, 0.10) 65%,
+      rgba(250, 249, 246, 0.00) 85%
+    );
   }
 
   .dbh-hero__inner {
-    order: 1;
-    min-height: 0;
-    padding: 3.6rem 2rem 2.8rem;
-    background: var(--dbh-cream);
+    min-height: 80vw;
+    align-items: flex-end;
+    padding: 3.2rem 2rem;
+    background: none;
     width: 100%;
     box-sizing: border-box;
   }
 
   .dbh-hero__content {
     max-width: 100%;
+    width: 100%;
+    padding: 2rem;
   }
 
   .dbh-hero__heading {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
   }
 
   .dbh-hero__subtext {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .dbh-hero__content .dbh-btn {
+    align-self: center;
+    font-size: 1.3rem;
+    padding: 1rem 2.2rem;
   }
 
   /* Trust cards */
