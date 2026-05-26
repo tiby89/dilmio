@@ -139,6 +139,10 @@
   max-width: 44rem;
 }
 
+.dbh-hero__content .dbh-btn {
+  align-self: flex-start;
+}
+
 .dbh-hero__image-panel {
   flex: 1;
   position: relative;
