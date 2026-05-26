@@ -38,7 +38,7 @@
   font-size: 2.2rem;
   font-weight: 700;
   color: var(--dbh-text);
-  margin: 0 0 3.2rem;
+  margin: 0 0 2.8rem;
   letter-spacing: -0.02em;
 }
 
@@ -89,7 +89,7 @@
 
 .dbh-hero {
   background-color: var(--dbh-cream);
-  padding: 7.2rem 0 6rem;
+  padding: 5.2rem 0 5.2rem;
 }
 
 .dbh-hero__grid {
@@ -206,7 +206,7 @@
 
 .dbh-categories {
   background-color: var(--dbh-cream);
-  padding: 6rem 0;
+  padding: 5.2rem 0;
 }
 
 .dbh-categories__grid {
@@ -235,7 +235,7 @@
 .dbh-category__image-wrap {
   border-radius: var(--dbh-radius) var(--dbh-radius) 0 0;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   position: relative;
   background-color: var(--dbh-border);
 }
@@ -249,23 +249,23 @@
 
 .dbh-category__badge {
   position: absolute;
-  bottom: -1.4rem;
-  left: 1.4rem;
-  width: 2.8rem;
-  height: 2.8rem;
+  top: 1rem;
+  left: 1rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   background: var(--dbh-olive);
   color: var(--dbh-white);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  font-size: 1.3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
   z-index: 1;
 }
 
 .dbh-category__body {
-  padding: 2.2rem 1.4rem 1.4rem;
+  padding: 1.6rem 1.4rem 1.4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -278,7 +278,7 @@
 }
 
 .dbh-category__title {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: var(--dbh-text);
   margin: 0;
@@ -306,7 +306,7 @@
 
 .dbh-products {
   background-color: var(--dbh-white);
-  padding: 6rem 0;
+  padding: 5.2rem 0;
   border-top: 1px solid var(--dbh-border);
 }
 
@@ -322,7 +322,7 @@
 
 .dbh-criteria {
   background-color: var(--dbh-cream);
-  padding: 6rem 0;
+  padding: 5.2rem 0;
   border-top: 1px solid var(--dbh-border);
 }
 
@@ -369,7 +369,7 @@
 
 .dbh-banner {
   background-color: var(--dbh-olive);
-  padding: 6rem 0;
+  padding: 5.2rem 0;
   position: relative;
   overflow: hidden;
   background-size: cover;
@@ -432,12 +432,12 @@
 
 @media screen and (max-width: 749px) {
   .dbh-wrapper {
-    padding: 0 1.6rem;
+    padding: 0 2rem;
   }
 
   /* Hero */
   .dbh-hero {
-    padding: 4rem 0 3.2rem;
+    padding: 4rem 0 3.6rem;
   }
 
   .dbh-hero__grid {
@@ -462,7 +462,7 @@
   .dbh-trust__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.6rem;
+    gap: 1.8rem;
   }
 
   /* Category cards */
@@ -472,7 +472,7 @@
 
   .dbh-categories__grid {
     grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
+    gap: 1.4rem;
   }
 
   /* Products */
@@ -482,7 +482,7 @@
 
   .dbh-products__grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
+    gap: 1.4rem;
   }
 
   /* Criteria */

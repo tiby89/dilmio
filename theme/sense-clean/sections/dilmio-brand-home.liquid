@@ -106,10 +106,10 @@
                         alt: block.settings.title | escape
                     }}
                   {%- endif -%}
-                  {%- if block.settings.badge_icon != blank -%}
-                    <span class="dbh-category__badge" aria-hidden="true">{{ block.settings.badge_icon }}</span>
-                  {%- endif -%}
                 </div>
+                {%- if block.settings.badge_icon != blank -%}
+                  <span class="dbh-category__badge" aria-hidden="true">{{ block.settings.badge_icon }}</span>
+                {%- endif -%}
                 <div class="dbh-category__body">
                   <div class="dbh-category__info">
                     {%- if block.settings.title != blank -%}
