@@ -503,6 +503,12 @@
     gap: 1.4rem;
   }
 
+  .dbh-category__title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+
   /* Products */
   .dbh-products {
     padding: 4rem 0;
