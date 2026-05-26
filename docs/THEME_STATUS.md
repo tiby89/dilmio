@@ -24,8 +24,8 @@ Last commit:    e2221b0 fix: prevent product template content fallback bleed-thr
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
-Role:           unpublished
-Live theme:     Sense (#201391046987) — untouched
+Role:           live (published — intentional as of 2026-05-26)
+Previous live:  Sense (#201391046987) — now unpublished
 ```
 
 ---

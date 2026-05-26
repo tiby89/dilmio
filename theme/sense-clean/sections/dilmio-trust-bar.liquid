@@ -43,6 +43,15 @@
     font-size: 1.3rem;
     line-height: 1;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .dilmio-trust-bar__icon svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    fill: currentColor;
+    display: block;
   }
 
   @media screen and (max-width: 749px) {
@@ -68,7 +77,18 @@
           {%- if block.settings.link != blank -%}
             <a href="{{ block.settings.link }}" class="dilmio-trust-bar__link">
           {%- endif -%}
-          {%- if block.settings.icon != blank -%}
+          {%- if block.settings.icon_svg != blank -%}
+            <span class="dilmio-trust-bar__icon" aria-hidden="true">
+              {%- case block.settings.icon_svg -%}
+                {%- when 'icon-lock' -%}{{ 'icon-lock.svg' | inline_asset_content }}
+                {%- when 'icon-truck' -%}{{ 'icon-truck.svg' | inline_asset_content }}
+                {%- when 'icon-return' -%}{{ 'icon-return.svg' | inline_asset_content }}
+                {%- when 'icon-chat-bubble' -%}{{ 'icon-chat-bubble.svg' | inline_asset_content }}
+                {%- when 'icon-box' -%}{{ 'icon-box.svg' | inline_asset_content }}
+                {%- when 'icon-padlock' -%}{{ 'icon-padlock.svg' | inline_asset_content }}
+              {%- endcase -%}
+            </span>
+          {%- elsif block.settings.icon != blank -%}
             <span class="dilmio-trust-bar__icon" aria-hidden="true">{{ block.settings.icon }}</span>
           {%- endif -%}
           <span class="dilmio-trust-bar__text">{{ block.settings.text | escape }}</span>
@@ -95,9 +115,24 @@
       "name": "Trust item",
       "settings": [
         {
+          "type": "select",
+          "id": "icon_svg",
+          "label": "SVG icon",
+          "options": [
+            { "value": "", "label": "Ninguno" },
+            { "value": "icon-lock", "label": "Candado (pago seguro)" },
+            { "value": "icon-truck", "label": "Camión (envío)" },
+            { "value": "icon-return", "label": "Flecha circular (devoluciones)" },
+            { "value": "icon-chat-bubble", "label": "Burbuja (atención)" },
+            { "value": "icon-box", "label": "Caja (paquete)" },
+            { "value": "icon-padlock", "label": "Candado alt" }
+          ],
+          "default": ""
+        },
+        {
           "type": "text",
           "id": "icon",
-          "label": "Icon or emoji",
+          "label": "Emoji (fallback si no hay SVG)",
           "default": "✓"
         },
         {
@@ -121,6 +156,7 @@
         {
           "type": "trust_item",
           "settings": {
+            "icon_svg": "icon-truck",
             "icon": "🚚",
             "text": "Envío con seguimiento a toda España"
           }
@@ -128,6 +164,7 @@
         {
           "type": "trust_item",
           "settings": {
+            "icon_svg": "icon-return",
             "icon": "↩",
             "text": "Devoluciones fáciles 30 días"
           }
@@ -135,6 +172,7 @@
         {
           "type": "trust_item",
           "settings": {
+            "icon_svg": "icon-chat-bubble",
             "icon": "✉",
             "text": "Atención al cliente: hola@dilmio.com"
           }
@@ -142,6 +180,7 @@
         {
           "type": "trust_item",
           "settings": {
+            "icon_svg": "icon-lock",
             "icon": "🔒",
             "text": "Pago 100% seguro"
           }

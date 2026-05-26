@@ -59,7 +59,18 @@
           {%- for block in trust_cards -%}
             {%- if block.settings.title != blank -%}
               <div class="dbh-trust__item" {{ block.shopify_attributes }}>
-                {%- if block.settings.icon != blank -%}
+                {%- if block.settings.icon_svg != blank -%}
+                  <span class="dbh-trust__icon" aria-hidden="true">
+                    {%- case block.settings.icon_svg -%}
+                      {%- when 'icon-lock' -%}{{ 'icon-lock.svg' | inline_asset_content }}
+                      {%- when 'icon-truck' -%}{{ 'icon-truck.svg' | inline_asset_content }}
+                      {%- when 'icon-return' -%}{{ 'icon-return.svg' | inline_asset_content }}
+                      {%- when 'icon-chat-bubble' -%}{{ 'icon-chat-bubble.svg' | inline_asset_content }}
+                      {%- when 'icon-box' -%}{{ 'icon-box.svg' | inline_asset_content }}
+                      {%- when 'icon-padlock' -%}{{ 'icon-padlock.svg' | inline_asset_content }}
+                    {%- endcase -%}
+                  </span>
+                {%- elsif block.settings.icon != blank -%}
                   <span class="dbh-trust__icon" aria-hidden="true">{{ block.settings.icon }}</span>
                 {%- endif -%}
                 <div class="dbh-trust__text-wrap">
@@ -176,23 +187,76 @@
   {%- if featured_collection != blank and featured_collection.all_products_count > 0 -%}
     <div class="dbh-products">
       <div class="dbh-wrapper">
-        {%- if section.settings.featured_heading != blank -%}
-          <h2 class="dbh-section-heading">{{ section.settings.featured_heading | escape }}</h2>
-        {%- endif -%}
-        <div class="dbh-products__grid">
-          {%- for product in featured_collection.products limit: section.settings.featured_products_count -%}
-            {%- render 'card-product',
-              card_product: product,
-              media_aspect_ratio: 'square',
-              show_secondary_image: false,
-              show_vendor: false,
-              show_rating: false,
-              lazy_load: true,
-              skip_styles: forloop.index > 1,
-              quick_add: false,
-              section_id: section.id
-            -%}
-          {%- endfor -%}
+        <div class="dbh-products__header">
+          <div class="dbh-products__header-left">
+            {%- if section.settings.featured_heading != blank -%}
+              <h2 class="dbh-section-heading dbh-products__heading">{{ section.settings.featured_heading | escape }}</h2>
+            {%- endif -%}
+            {%- if section.settings.featured_subtitle != blank -%}
+              <p class="dbh-products__subtitle">{{ section.settings.featured_subtitle | escape }}</p>
+            {%- endif -%}
+          </div>
+          {%- if section.settings.featured_view_all_label != blank -%}
+            <a href="{{ featured_collection.url }}" class="dbh-products__view-all">
+              {{- section.settings.featured_view_all_label | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
+        <div class="dbh-products__carousel-wrap">
+          <div class="dbh-products__carousel" id="dbh-carousel-{{ section.id }}">
+            {%- for product in featured_collection.products limit: section.settings.featured_products_count -%}
+              {%- assign badge_text = nil -%}
+              {%- for tag in product.tags -%}
+                {%- if tag contains 'badge:' -%}
+                  {%- assign badge_text = tag | remove: 'badge:' | strip -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+              <div class="dbh-pcard">
+                <a href="{{ product.url }}" class="dbh-pcard__image-link">
+                  <div class="dbh-pcard__image-wrap">
+                    {%- if badge_text != blank -%}
+                      <span class="dbh-pcard__badge">{{ badge_text | escape }}</span>
+                    {%- endif -%}
+                    {%- if product.featured_image != blank -%}
+                      {{
+                        product.featured_image
+                        | image_url: width: 600
+                        | image_tag:
+                          loading: 'lazy',
+                          class: 'dbh-pcard__img',
+                          widths: '200, 300, 400, 600',
+                          sizes: '(min-width: 990px) 25vw, 72vw',
+                          alt: product.featured_image.alt | default: product.title | escape
+                      }}
+                    {%- else -%}
+                      <div class="dbh-pcard__img-placeholder"></div>
+                    {%- endif -%}
+                  </div>
+                </a>
+                <div class="dbh-pcard__body">
+                  <p class="dbh-pcard__name">{{ product.title | escape }}</p>
+                  <div class="dbh-pcard__price">
+                    {%- if product.compare_at_price > product.price -%}
+                      <s class="dbh-pcard__price-was">{{ product.compare_at_price | money }}</s>
+                    {%- endif -%}
+                    <span class="dbh-pcard__price-now">{{ product.price | money }}</span>
+                  </div>
+                  <a href="{{ product.url }}" class="dbh-pcard__btn">Ver producto &rarr;</a>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+          <button
+            class="dbh-products__arrow dbh-products__arrow--prev"
+            aria-label="Anterior"
+            onclick="(function(c){c.scrollBy({left:-c.offsetWidth/4,behavior:'smooth'})})(document.getElementById('dbh-carousel-{{ section.id }}'))"
+          >&#8592;</button>
+          <button
+            class="dbh-products__arrow dbh-products__arrow--next"
+            aria-label="Siguiente"
+            onclick="(function(c){c.scrollBy({left:c.offsetWidth/4,behavior:'smooth'})})(document.getElementById('dbh-carousel-{{ section.id }}'))"
+          >&#8594;</button>
         </div>
       </div>
     </div>
@@ -282,7 +346,18 @@
       "type": "text",
       "id": "featured_heading",
       "label": "Section heading",
-      "default": "Productos destacados"
+      "default": "Selección destacada"
+    },
+    {
+      "type": "text",
+      "id": "featured_subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "featured_view_all_label",
+      "label": "View all link label",
+      "default": "Ver catálogo completo →"
     },
     {
       "type": "collection",
@@ -378,9 +453,24 @@
       "limit": 4,
       "settings": [
         {
+          "type": "select",
+          "id": "icon_svg",
+          "label": "SVG icon",
+          "options": [
+            { "value": "", "label": "Ninguno" },
+            { "value": "icon-lock", "label": "Candado (pago seguro)" },
+            { "value": "icon-truck", "label": "Camión (envío)" },
+            { "value": "icon-return", "label": "Flecha circular (devoluciones)" },
+            { "value": "icon-chat-bubble", "label": "Burbuja (atención)" },
+            { "value": "icon-box", "label": "Caja (paquete)" },
+            { "value": "icon-padlock", "label": "Candado alt" }
+          ],
+          "default": ""
+        },
+        {
           "type": "text",
           "id": "icon",
-          "label": "Icon or emoji",
+          "label": "Emoji (fallback si no hay SVG)",
           "default": "✓"
         },
         {
