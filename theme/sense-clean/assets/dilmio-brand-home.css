@@ -89,14 +89,16 @@
 
 .dbh-hero {
   background-color: var(--dbh-cream);
-  padding: 5.2rem 0 5.2rem;
+  padding: 0;
+  overflow: hidden;
+  min-height: 48rem;
 }
 
 .dbh-hero__grid {
   display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: 6rem;
-  align-items: center;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 0;
+  align-items: stretch;
 }
 
 .dbh-hero__grid--no-image {
@@ -115,6 +117,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 2rem;
+  padding: 5.2rem 4rem 5.2rem 0;
 }
 
 .dbh-hero__heading {
@@ -135,11 +138,12 @@
 }
 
 .dbh-hero__image-wrap {
-  border-radius: var(--dbh-radius-lg);
+  border-radius: 1.4rem 0 0 1.4rem;
   overflow: hidden;
-  box-shadow: var(--dbh-shadow-hover);
-  aspect-ratio: 4 / 5;
+  box-shadow: none;
+  aspect-ratio: auto;
   position: relative;
+  margin-right: -3.2rem;
 }
 
 .dbh-hero__image {
@@ -154,10 +158,10 @@
    ============================================= */
 
 .dbh-trust {
-  background-color: var(--dbh-white);
-  border-top: 1px solid var(--dbh-border);
-  border-bottom: 1px solid var(--dbh-border);
-  padding: 2.8rem 0;
+  background-color: var(--dbh-cream);
+  border-top: none;
+  border-bottom: none;
+  padding: 1.6rem 0 3.2rem;
 }
 
 .dbh-trust__grid {
@@ -165,6 +169,10 @@
   justify-content: center;
   align-items: flex-start;
   gap: 2.4rem;
+  background: var(--dbh-white);
+  border-radius: var(--dbh-radius);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+  padding: 2rem 2.8rem;
 }
 
 .dbh-trust__item {
@@ -412,9 +420,21 @@
    ============================================= */
 
 @media screen and (min-width: 750px) and (max-width: 989px) {
+  .dbh-hero {
+    min-height: 42rem;
+  }
+
   .dbh-hero__grid {
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 2.4rem;
+  }
+
+  .dbh-hero__content {
+    padding: 4rem 2.4rem 4rem 0;
+  }
+
+  .dbh-hero__image-wrap {
+    margin-right: -3.2rem;
   }
 
   .dbh-hero__heading {
@@ -438,11 +458,16 @@
   /* Hero */
   .dbh-hero {
     padding: 4rem 0 3.6rem;
+    min-height: 0;
   }
 
   .dbh-hero__grid {
     grid-template-columns: 1fr;
     gap: 2.4rem;
+  }
+
+  .dbh-hero__content {
+    padding: 0;
   }
 
   .dbh-hero__heading {
@@ -456,6 +481,8 @@
   .dbh-hero__image-wrap {
     aspect-ratio: 16 / 9;
     border-radius: var(--dbh-radius);
+    margin-right: 0;
+    box-shadow: var(--dbh-shadow);
   }
 
   /* Trust cards */
@@ -463,6 +490,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.8rem;
+    padding: 1.6rem 1.4rem;
   }
 
   /* Category cards */
