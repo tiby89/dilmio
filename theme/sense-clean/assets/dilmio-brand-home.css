@@ -88,49 +88,38 @@
    ============================================= */
 
 .dbh-hero {
-  background-color: var(--dbh-cream);
-  padding: 0;
+  background: var(--dbh-cream);
+  display: flex;
+  min-height: 52rem;
   overflow: hidden;
-  min-height: 48rem;
-  position: relative;
 }
 
-.dbh-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 65%;
-  height: 100%;
-  background: linear-gradient(to right, var(--dbh-cream) 55%, transparent 100%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.dbh-hero__grid {
-  display: block;
-  position: relative;
-  z-index: 2;
-}
-
-.dbh-hero__grid--no-image {
-  grid-template-columns: 1fr;
-  justify-items: center;
-  text-align: center;
-}
-
-.dbh-hero__grid--no-image .dbh-hero__content {
+.dbh-hero__text-panel {
+  flex: 0 0 44%;
+  background: var(--dbh-cream);
+  display: flex;
   align-items: center;
+  padding: 5.6rem 5.2rem 5.6rem 3.2rem;
+}
+
+.dbh-hero:not(.dbh-hero--has-image) .dbh-hero__text-panel {
+  flex: 1;
+  justify-content: center;
+  padding: 5.6rem 3.2rem;
+}
+
+.dbh-hero:not(.dbh-hero--has-image) .dbh-hero__content {
+  align-items: center;
+  text-align: center;
   max-width: 60rem;
 }
 
 .dbh-hero__content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 2rem;
-  padding: 5.2rem 0 5.2rem;
-  max-width: 50rem;
+  max-width: 52rem;
+  width: 100%;
 }
 
 .dbh-hero__heading {
@@ -150,20 +139,15 @@
   max-width: 44rem;
 }
 
-.dbh-hero__image-wrap {
-  position: absolute;
-  inset: 0;
+.dbh-hero__image-panel {
+  flex: 1;
+  position: relative;
   overflow: hidden;
-  border-radius: 0;
-  box-shadow: none;
-  aspect-ratio: auto;
-  margin-right: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .dbh-hero__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -438,22 +422,12 @@
 
 @media screen and (min-width: 750px) and (max-width: 989px) {
   .dbh-hero {
-    min-height: 40rem;
+    min-height: 44rem;
   }
 
-  .dbh-hero__grid {
-    display: block;
-  }
-
-  .dbh-hero__content {
-    max-width: 38rem;
-    padding: 4rem 0;
-  }
-
-  .dbh-hero__image-wrap {
-    position: absolute;
-    inset: 0;
-    margin-right: 0;
+  .dbh-hero__text-panel {
+    flex: 0 0 46%;
+    padding: 4.4rem 4rem 4.4rem 2.4rem;
   }
 
   .dbh-hero__heading {
@@ -476,23 +450,18 @@
 
   /* Hero */
   .dbh-hero {
-    padding: 4rem 0 3.6rem;
+    flex-direction: column;
     min-height: 0;
   }
 
-  .dbh-hero::before {
-    display: none;
-  }
-
-  .dbh-hero__grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2.4rem;
+  .dbh-hero__text-panel {
+    flex: none;
+    padding: 3.6rem 2rem 2.8rem;
+    align-items: flex-start;
   }
 
   .dbh-hero__content {
     max-width: 100%;
-    padding: 0;
   }
 
   .dbh-hero__heading {
@@ -503,15 +472,11 @@
     font-size: 1.5rem;
   }
 
-  .dbh-hero__image-wrap {
-    position: static;
-    inset: auto;
+  .dbh-hero__image-panel {
+    flex: none;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    border-radius: var(--dbh-radius);
-    margin-right: 0;
-    box-shadow: var(--dbh-shadow);
+    height: 56vw;
+    min-height: 18rem;
   }
 
   /* Trust cards */
