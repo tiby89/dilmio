@@ -698,27 +698,6 @@
 }
 
 /* =============================================
-   HOMEPAGE — HEADER OVERRIDES
-   ============================================= */
-
-.header-wrapper--border-bottom {
-  border-bottom: none;
-}
-
-.header-wrapper.gradient {
-  background: #FFFFFF;
-}
-
-.header__inline-menu .header__menu-item {
-  font-weight: 600;
-}
-
-.header__heading-link {
-  display: flex;
-  align-items: center;
-}
-
-/* =============================================
    RESPONSIVE — TABLET (750–989px)
    ============================================= */
 
