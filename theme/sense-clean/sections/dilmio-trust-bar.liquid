@@ -66,11 +66,74 @@
       font-size: 1.1rem;
       white-space: normal;
     }
+
+    .dilmio-trust-bar__item {
+      display: none;
+    }
+
+    .dilmio-trust-bar__countdown {
+      grid-column: 1 / -1;
+      justify-content: center;
+      border-right: none;
+      padding-right: 0;
+      margin-right: 0;
+    }
   }
+
+  .dilmio-trust-bar__countdown {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #F4EFE4;
+    font-size: 1.2rem;
+    font-weight: 600;
+    white-space: nowrap;
+    border-right: none;
+    padding-right: 0;
+    margin-right: 1.5rem;
+  }
+
+  .dilmio-trust-bar__countdown-label {
+    font-weight: 500;
+  }
+
+  .dilmio-trust-bar__countdown-timer {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+  }
+
 {%- endstyle -%}
 
 <div class="dilmio-trust-bar">
   <div class="dilmio-trust-bar__inner">
+    {%- assign show_timer = false -%}
+    {%- if section.settings.show_countdown and section.settings.countdown_deadline != blank -%}
+      {%- assign show_timer = true -%}
+    {%- endif -%}
+
+    {%- assign show_bar = false -%}
+    {%- if section.settings.countdown_label != blank -%}
+      {%- assign show_bar = true -%}
+    {%- endif -%}
+    {%- if show_timer -%}
+      {%- assign show_bar = true -%}
+    {%- endif -%}
+
+    {%- if show_bar -%}
+      <div class="dilmio-trust-bar__countdown" id="dilmio-countdown">
+        {%- if section.settings.countdown_label != blank -%}
+          <span class="dilmio-trust-bar__countdown-label">
+            {{ section.settings.countdown_label | escape }}
+          </span>
+        {%- endif -%}
+        {%- if show_timer -%}
+          <span class="dilmio-trust-bar__countdown-timer"
+                data-deadline="{{ section.settings.countdown_deadline }}">
+            --:--:--
+          </span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
     {%- for block in section.blocks -%}
       {%- if block.settings.text != blank -%}
         <div class="dilmio-trust-bar__item" {{ block.shopify_attributes }}>
@@ -101,6 +164,36 @@
   </div>
 </div>
 
+{%- if section.settings.show_countdown and section.settings.countdown_deadline != blank -%}
+<script>
+(function() {
+  var timerEl = document.querySelector(
+    '.dilmio-trust-bar__countdown-timer'
+  );
+  if (!timerEl) return;
+  var deadline = new Date(timerEl.dataset.deadline).getTime();
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    var now = Date.now();
+    var diff = deadline - now;
+    if (diff <= 0) {
+      timerEl.textContent = 'Oferta finalizada';
+      timerEl.closest('.dilmio-trust-bar__countdown')
+        .style.borderRight = 'none';
+      return;
+    }
+    var days = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    timerEl.textContent = pad(days) + 'd · ' + pad(h) + 'h · ' + pad(m) + 'm · ' + pad(s) + 's';
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
+</script>
+{%- endif -%}
+
 {% schema %}
 {
   "name": "DILMIO Trust Bar",
@@ -109,6 +202,26 @@
   "enabled_on": {
     "groups": ["header"]
   },
+  "settings": [
+    {
+      "type": "text",
+      "id": "countdown_label",
+      "label": "Mensaje de la barra",
+      "placeholder": "Oferta especial hasta"
+    },
+    {
+      "type": "text",
+      "id": "countdown_deadline",
+      "label": "Fecha límite (formato: YYYY-MM-DDTHH:MM)",
+      "placeholder": "2026-06-01T23:59"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Mostrar countdown",
+      "default": false
+    }
+  ],
   "blocks": [
     {
       "type": "trust_item",
