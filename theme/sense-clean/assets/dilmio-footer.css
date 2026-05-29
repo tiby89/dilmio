@@ -1,0 +1,172 @@
+/* DILMIO Footer — 3-column layout */
+
+
+.dilmio-footer__top {
+  padding-bottom: 0;
+}
+
+.dilmio-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .dilmio-footer__grid {
+    grid-template-columns: 1.2fr 1.8fr 1.6fr;
+    gap: 3.2rem;
+    align-items: start;
+  }
+}
+
+/* Mobile order: brand → newsletter → links */
+@media screen and (max-width: 749px) {
+  .dilmio-footer__col--brand      { order: 1; }
+  .dilmio-footer__col--links      { order: 2; }
+  .dilmio-footer__col--newsletter {
+    order: 3;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(var(--color-foreground), 0.08);
+  }
+
+  .dilmio-footer__grid .dilmio-footer__col--links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 1.6rem;
+    flex-direction: unset;
+  }
+
+  .dilmio-footer__link-heading {
+    margin: 0 0 0.8rem;
+  }
+
+  .dilmio-footer__link-list {
+    gap: 0.6rem;
+  }
+}
+
+/* Column 1 — Brand */
+.dilmio-footer__logo {
+  display: block;
+  margin-bottom: 1.6rem;
+}
+
+.dilmio-footer__logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dilmio-footer__shop-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 1.6rem;
+}
+
+.dilmio-footer__tagline {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: rgba(var(--color-foreground), 0.65);
+  margin-bottom: 2rem;
+}
+
+.dilmio-footer__tagline p {
+  margin: 0;
+}
+
+.dilmio-footer__col--brand .footer__list-social {
+  margin-top: 2rem;
+  /* 2. RR.SS. alineadas a la izquierda */
+  justify-content: flex-start;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.dilmio-footer__col--brand .footer__list-social .list-social__item a {
+  padding-left: 0;
+}
+
+/* Column 2 — Links */
+.dilmio-footer__col--links {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* 3. Grupos de links en fila horizontal en desktop */
+@media screen and (min-width: 750px) {
+  .dilmio-footer__col--links {
+    flex-direction: row;
+    gap: 2.4rem;
+    align-items: flex-start;
+  }
+}
+
+.dilmio-footer__link-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 1.2rem;
+  color: rgba(var(--color-foreground), 1);
+}
+
+.dilmio-footer__link-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.dilmio-footer__link {
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.82);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.dilmio-footer__link:hover,
+.dilmio-footer__link--active {
+  color: rgba(var(--color-foreground), 1);
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+/* Column 3 — Newsletter */
+.dilmio-footer__col--newsletter .dilmio-footer__link-heading {
+  margin-bottom: 0.8rem;
+}
+
+.dilmio-footer__newsletter-subtext {
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.65);
+  line-height: 1.5;
+  margin: 0 0 1.6rem;
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-footer__col--newsletter .newsletter-form {
+    margin-bottom: 1.2rem;
+  }
+
+  .newsletter-form__field-wrapper .field__input {
+    font-size: 1.2rem;
+    height: 3.6rem;
+    padding: 0 1rem;
+  }
+  .newsletter-form__button {
+    height: 3.6rem;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.copyright__content {
+  font-size: 0.95rem;
+}

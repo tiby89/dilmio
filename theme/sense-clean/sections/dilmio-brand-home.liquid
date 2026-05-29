@@ -68,6 +68,10 @@
                       {%- when 'icon-chat-bubble' -%}{{ 'icon-chat-bubble.svg' | inline_asset_content }}
                       {%- when 'icon-box' -%}{{ 'icon-box.svg' | inline_asset_content }}
                       {%- when 'icon-padlock' -%}{{ 'icon-padlock.svg' | inline_asset_content }}
+                      {%- when 'dilmio-icon-shield' -%}{{ 'dilmio-icon-shield.svg' | inline_asset_content }}
+                      {%- when 'dilmio-icon-box' -%}{{ 'dilmio-icon-box.svg' | inline_asset_content }}
+                      {%- when 'dilmio-icon-return' -%}{{ 'dilmio-icon-return.svg' | inline_asset_content }}
+                      {%- when 'dilmio-icon-headset' -%}{{ 'dilmio-icon-headset.svg' | inline_asset_content }}
                     {%- endcase -%}
                   </span>
                 {%- elsif block.settings.icon != blank -%}
@@ -187,10 +191,10 @@
   {%- if featured_collection != blank and featured_collection.all_products_count > 0 -%}
     <div class="dbh-products">
       <div class="dbh-wrapper">
-        <div class="dbh-products__header">
+        <div class="dbh-products__header" style="text-align:left; align-items:flex-start">
           <div class="dbh-products__header-left">
             {%- if section.settings.featured_heading != blank -%}
-              <h2 class="dbh-section-heading dbh-products__heading">{{ section.settings.featured_heading | escape }}</h2>
+              <h2 class="dbh-section-heading dbh-products__heading" style="text-align:left">{{ section.settings.featured_heading | escape }}</h2>
             {%- endif -%}
             {%- if section.settings.featured_subtitle != blank -%}
               <p class="dbh-products__subtitle">{{ section.settings.featured_subtitle | escape }}</p>
@@ -202,63 +206,66 @@
             </a>
           {%- endif -%}
         </div>
-        <div class="dbh-products__carousel-wrap">
-          <div class="dbh-products__carousel" id="dbh-carousel-{{ section.id }}">
-            {%- for product in featured_collection.products limit: section.settings.featured_products_count -%}
-              {%- assign badge_text = nil -%}
-              {%- for tag in product.tags -%}
-                {%- if tag contains 'badge:' -%}
-                  {%- assign badge_text = tag | remove: 'badge:' | strip -%}
-                  {%- break -%}
-                {%- endif -%}
-              {%- endfor -%}
-              <div class="dbh-pcard">
-                <a href="{{ product.url }}" class="dbh-pcard__image-link">
-                  <div class="dbh-pcard__image-wrap">
-                    {%- if badge_text != blank -%}
-                      <span class="dbh-pcard__badge">{{ badge_text | escape }}</span>
-                    {%- endif -%}
-                    {%- if product.featured_image != blank -%}
-                      {{
-                        product.featured_image
-                        | image_url: width: 600
-                        | image_tag:
-                          loading: 'lazy',
-                          class: 'dbh-pcard__img',
-                          widths: '200, 300, 400, 600',
-                          sizes: '(min-width: 990px) 25vw, 72vw',
-                          alt: product.featured_image.alt | default: product.title | escape
-                      }}
-                    {%- else -%}
-                      <div class="dbh-pcard__img-placeholder"></div>
-                    {%- endif -%}
-                  </div>
-                </a>
-                <div class="dbh-pcard__body">
-                  <p class="dbh-pcard__name">{{ product.title | escape }}</p>
-                  <div class="dbh-pcard__price">
-                    {%- if product.compare_at_price > product.price -%}
-                      <s class="dbh-pcard__price-was">{{ product.compare_at_price | money }}</s>
-                    {%- endif -%}
-                    <span class="dbh-pcard__price-now">{{ product.price | money }}</span>
-                  </div>
-                  <a href="{{ product.url }}" class="dbh-pcard__btn">Ver producto &rarr;</a>
-                </div>
-              </div>
-            {%- endfor -%}
-          </div>
-          <button
-            class="dbh-products__arrow dbh-products__arrow--prev"
-            aria-label="Anterior"
-            onclick="(function(c){c.scrollBy({left:-c.offsetWidth/4,behavior:'smooth'})})(document.getElementById('dbh-carousel-{{ section.id }}'))"
-          >&#8592;</button>
-          <button
-            class="dbh-products__arrow dbh-products__arrow--next"
-            aria-label="Siguiente"
-            onclick="(function(c){c.scrollBy({left:c.offsetWidth/4,behavior:'smooth'})})(document.getElementById('dbh-carousel-{{ section.id }}'))"
-          >&#8594;</button>
-        </div>
       </div>
+      <div class="dbh-products__carousel-wrap">
+        <div class="dbh-products__carousel" id="dbh-carousel-{{ section.id }}">
+          {%- for product in featured_collection.products limit: section.settings.featured_products_count -%}
+            {%- assign badge_text = nil -%}
+            {%- for tag in product.tags -%}
+              {%- if tag contains 'badge:' -%}
+                {%- assign badge_text = tag | remove: 'badge:' | strip -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+            <div class="dbh-pcard">
+              <a href="{{ product.url }}" class="dbh-pcard__image-link">
+                <div class="dbh-pcard__image-wrap">
+                  {%- if badge_text != blank -%}
+                    <span class="dbh-pcard__badge">{{ badge_text | escape }}</span>
+                  {%- endif -%}
+                  {%- if product.featured_image != blank -%}
+                    {{
+                      product.featured_image
+                      | image_url: width: 600
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'dbh-pcard__img',
+                        widths: '200, 300, 400, 600',
+                        sizes: '(min-width: 990px) 25vw, 72vw',
+                        alt: product.featured_image.alt | default: product.title | escape
+                    }}
+                  {%- else -%}
+                    <div class="dbh-pcard__img-placeholder"></div>
+                  {%- endif -%}
+                </div>
+              </a>
+              <div class="dbh-pcard__body">
+                <p class="dbh-pcard__name">{{ product.title | escape }}</p>
+                <div class="dbh-pcard__price">
+                  {%- if product.compare_at_price > product.price -%}
+                    <s class="dbh-pcard__price-was">{{ product.compare_at_price | money }}</s>
+                  {%- endif -%}
+                  <span class="dbh-pcard__price-now">{{ product.price | money }}</span>
+                </div>
+                <a href="{{ product.url }}" class="dbh-pcard__btn">Ver producto &rarr;</a>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+        <button
+          class="dbh-products__arrow dbh-products__arrow--prev"
+          aria-label="Anterior"
+          onclick="(function(c){c.scrollBy({left:-c.offsetWidth/4,behavior:'smooth'})})(document.getElementById('dbh-carousel-{{ section.id }}'))"
+        >&#8592;</button>
+        <button
+          class="dbh-products__arrow dbh-products__arrow--next"
+          aria-label="Siguiente"
+          onclick="(function(c){c.scrollBy({left:c.offsetWidth/4,behavior:'smooth'})})(document.getElementById('dbh-carousel-{{ section.id }}'))"
+        >&#8594;</button>
+      </div>
+      <a href="/collections/catalogo" class="dbh-products__view-all-mobile">
+        Ver catálogo →
+      </a>
     </div>
   {%- endif -%}
 
@@ -463,7 +470,11 @@
             { "value": "icon-return", "label": "Flecha circular (devoluciones)" },
             { "value": "icon-chat-bubble", "label": "Burbuja (atención)" },
             { "value": "icon-box", "label": "Caja (paquete)" },
-            { "value": "icon-padlock", "label": "Candado alt" }
+            { "value": "icon-padlock", "label": "Candado alt" },
+            { "value": "dilmio-icon-shield", "label": "Escudo (pago seguro)" },
+            { "value": "dilmio-icon-box", "label": "Caja (seguimiento)" },
+            { "value": "dilmio-icon-return", "label": "Flechas (devoluciones)" },
+            { "value": "dilmio-icon-headset", "label": "Auricular (atención)" }
           ],
           "default": ""
         },
