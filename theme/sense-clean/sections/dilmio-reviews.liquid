@@ -1,9 +1,10 @@
 {{ 'dilmio-reviews.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign selected_product = section.settings.product
-  if selected_product == blank and product != blank
+  if request.page_type == 'product' and product != blank
     assign selected_product = product
+  else
+    assign selected_product = section.settings.product
   endif
 
   assign reviews_list = nil
