@@ -253,10 +253,6 @@
           font-size: 1.6rem;
         }
       }
-
-      body.page--tracking {
-        grid-template-rows: auto auto auto auto;
-      }
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
@@ -302,7 +298,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}{% assign path_lower = request.path | downcase %}{% if path_lower contains '/apps/17track' %} page--tracking{% endif %}">
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
