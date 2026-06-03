@@ -2,6 +2,8 @@
   'use strict';
 
   document.querySelectorAll('[id^="dilmio-landing-"]').forEach(function (section) {
+    if (section.dataset.dilmioInitialized === 'true') return;
+    section.dataset.dilmioInitialized = 'true';
     var sectionId = section.dataset.sectionId;
     var variantsEl = document.getElementById('dilmio-variants-' + sectionId);
 
@@ -50,15 +52,15 @@
       if (!el) return;
       if (!variant) {
         el.disabled = true;
-        el.textContent = 'Unavailable';
+        el.textContent = 'No disponible';
         el.dataset.variantId = '';
       } else if (!variant.available) {
         el.disabled = true;
-        el.textContent = 'Sold out';
+        el.textContent = 'Agotado';
         el.dataset.variantId = variant.id;
       } else {
         el.disabled = false;
-        el.textContent = 'Add to cart';
+        el.textContent = 'Añadir al carrito';
         el.dataset.variantId = variant.id;
       }
     }

@@ -151,7 +151,7 @@
             data-variant-id="{{ current_variant.id }}"
             {% unless current_variant.available %}disabled{% endunless %}
           >
-            {%- if current_variant.available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+            {%- if current_variant.available -%}Añadir al carrito{%- else -%}Agotado{%- endif -%}
           </button>
           <div
             id="dilmio-error-{{ section.id }}"
@@ -350,7 +350,7 @@
           data-variant-id="{{ current_variant.id }}"
           {% unless current_variant.available %}disabled{% endunless %}
         >
-          {%- if current_variant.available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+          {%- if current_variant.available -%}Añadir al carrito{%- else -%}Agotado{%- endif -%}
         </button>
       </div>
     </div>

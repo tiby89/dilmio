@@ -254,3 +254,12 @@ Risk: Una sesión futura se reubica con datos falsos y repite trabajo o se salta
 Expected result: THEME_STATUS.md refleja HEAD, fase y archivos reales. Se aplica la regla 10 de CLAUDE.md: actualizar THEME_STATUS.md en el MISMO commit que el código.
 Status: active
 ---
+
+---
+Date: 2026-06-03
+Decision: Registrar formalmente que DILMIO_DEV (#201618030923) es el theme LIVE/publicado desde 2026-05-29. Sense (#201391046987) queda unpublished. Toda referencia previa a "live theme: Sense — untouched" o "DILMIO_DEV unpublished" queda obsoleta.
+Reason: El cambio a live ocurrió el 2026-05-29 pero solo vivía como entrada sin commitear en el working tree. CLAUDE.md y entradas previas del log siguen describiendo el estado invertido, lo que engaña a futuras sesiones.
+Risk: Cada push va ahora directo a producción. --only --nodelete deja de ser prudencia y pasa a ser crítico. Un push erróneo rompe la tienda en vivo, no un theme de pruebas. Sin backup fiable no hay vía de restauración.
+Expected result: El estado live/unpublished queda registrado y consolidado. Pendiente (no en esta entrada): actualizar CLAUDE.md y los bloques de THEME_STATUS.md que aún digan "live = Sense".
+Status: active
+---

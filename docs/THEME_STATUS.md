@@ -21,9 +21,10 @@ Last commit:            36f0888 fix: reviews section reads URL product on produc
 
 ```
 Theme folder:   theme/sense-clean/
-Git status:     On branch master — uncommitted changes remain (dilmio-product.css, .js,
-                dilmio-product-landing.liquid, CLAUDE.md, docs/; SVG icons untracked)
-Last commit:    36f0888 fix: reviews section reads URL product on product pages to prevent bleed-through
+Git status:     On branch master — uncommitted changes remain: CLAUDE.md, docs/DILMIO_OS.md;
+                untracked: backups/theme_export__dilmio-com-dilmio_dev__03JUN2026-0612pm.zip,
+                PROGRESS.md, .obsidian/
+Last commit:    311fd9a feat: CTA español, z-index sticky, SVG trust icons + status sync
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
@@ -256,6 +257,11 @@ Tests: QA PENDIENTE — ver Blockers
 ## Situación
 
 ```
+Código commiteado (sesión 2026-06-03):
+- CTA español ("Añadir al carrito" / "Agotado" / "No disponible"), z-index sticky 200→999,
+  protección doble inicialización JS, 4 SVG trust icons → commit 311fd9a
+- Grupos B+C ya no tienen código sin commitear para estos archivos.
+
 Blockers:
 - QA PENDIENTE — Reviews (Grupo E): dilmio-reviews.liquid / dilmio-reviews.css sin QA
   registrado en esta sesión. Ejecutar antes de declarar Phase 6 cerrada.
