@@ -192,3 +192,65 @@ Risk: git commit c26a9d0 still says "docs: close Phase 7 ecommerce structure" �
 Expected result: THEME_STATUS.md and DECISION_LOG.md consistently name the phase 6C. Phase 7 shows as Pending. Phase 8 shows as blocked until Phase 7 is complete. No false sense of progress on product validation.
 Status: active
 ---
+---
+Date: 2026-05-29
+Decision: DILMIO_DEV (theme ID 201618030923) es ahora el tema LIVE/publicado de la tienda. Sustituye al estado anterior donde el live era Sense (#201391046987) y DILMIO_DEV era unpublished.
+Reason: El Operator publicó DILMIO_DEV intencionalmente. La tienda real ahora sirve el theme de desarrollo DILMIO.
+Risk: Los push a un tema live requieren confirmación TTY interactiva — Claude Code no puede ejecutarlos de forma no interactiva. Todos los push a DILMIO_DEV deben hacerse manualmente desde la terminal del Operator (PowerShell), confirmando con Y. La regla --only + --nodelete sigue siendo obligatoria para no sobreescribir templates/*.json ni config/settings_data.json.
+Expected result: Cambios visibles directamente en la tienda live tras cada push manual. Sense (#201391046987) queda como borrador de respaldo.
+Status: active
+---
+
+---
+Date: 2026-05-29
+Decision: Reformulada la política de reviews y social proof (DILMIO_OS sección 12 y CLAUDE.md Phase 6). Se permite construir infraestructura de reviews/etiquetas en cualquier fase y mostrar reviews importadas (ej. AliExpress vía app tipo Loox/Judge.me) siempre que se marque el origen de forma visible.
+Reason: La regla anterior bloqueaba trabajo legítimo (construir el sistema, etiquetas editoriales honestas) al mezclar "construir infraestructura" con "mostrar datos falsos". Sin prueba social la conversión sufre. Importar reviews con origen marcado es práctica legal y estándar del sector.
+Risk: Directiva Omnibus (España/UE): las reviews importadas deben marcarse como valoración del producto/fabricante, nunca presentarse como experiencia de compra en DILMIO. Mostrarlas como propias sin marcar origen es práctica comercial engañosa y sancionable. La regla nueva conserva esta condición como obligatoria.
+Expected result: DILMIO puede mostrar prueba social desde el primer producto, de forma legal, sin frenar el desarrollo del theme. Reviews propias se añaden cuando haya ventas reales.
+Status: active
+---
+
+---
+Date: 2026-05-29
+Decision: Añadida sección 0 "Contexto estratégico maestro" a DILMIO_OS, con prioridad sobre el resto del documento. El theme es una plantilla maestra reutilizable; la fase actual prioriza dejarlo todo 10/10 (diseño, reviews, tracking, medición) antes de buscar producto o lanzar tráfico.
+Reason: El theme se reutilizará en múltiples proyectos/nichos. La inversión en pulir la plantilla se amortiza en cada proyecto futuro. Evita que el sistema o los agentes presionen para vender antes de tiempo.
+Risk: Riesgo de perfeccionismo prolongado. Mitigado porque el salto a producto lo decide el Operator explícitamente.
+Expected result: Plantilla maestra completa y reutilizable antes de salir al mercado. Chats futuros entienden el contexto sin repetición.
+Status: active
+---
+
+---
+Date: 2026-06-01
+Decision: Integrar el seguimiento de envíos del cliente con la app 17TRACK (descartada Track123). La página de tracking vive en /apps/17track, generada por la app, no como página del theme.
+Reason: 17TRACK ofrece 200 envíos/mes en plan gratuito (vs 50 de Track123), mayor base de datos de carriers chinos, portal de devoluciones incluido y modo "ocultar origen China" — mejor encaje para dropshipping en fase de test. Usar /apps/17track evita crear y mantener una sección de theme propia y aprovecha la personalización del panel de la app.
+Risk: La página /apps/17track es externa al theme: no hereda el degradado de fondo ni se puede estilar con el CSS global del theme de forma fiable. El estilo se controla desde el panel de 17TRACK (Estilo + CSS personalizado). Si se desinstala la app, los enlaces del menú a /apps/17track quedan rotos y hay que repuntarlos.
+Expected result: Cliente puede rastrear su pedido en español, con estilo coherente DILMIO (verde #3E4A2D, Poppins, crema), desde los menús de header y footer. Sin tocar archivos del theme ni git.
+Status: active
+---
+
+---
+Date: 2026-06-01
+Decision: Intento de fix del espacio vacío en /apps/17track (desktop) revertido. El espacio venía del CSS Grid del body en layout/theme.liquid (grid-template-rows con 1fr en <main>, que estira el contenido en páginas cortas). Se aplicó una clase condicional body.page--tracking que cambiaba el grid a "auto auto auto auto" solo en esa página (commit 58f4131), pero el Operator no aprobó el resultado y se revirtió.
+Reason: El fix funcionaba técnicamente (espacio eliminado, footer pegado al widget), pero el resultado visual no convenció al Operator. Se priorizó no dejar un cambio no deseado en una plantilla maestra reutilizable.
+Risk: El espacio vacío en desktop persiste en /apps/17track. Es cosmético, solo desktop, página de baja visita (post-compra). Causa raíz identificada: el 1fr del grid del body. Cualquier fix futuro debe ser scoped a esa página para no afectar otras páginas cortas.
+Expected result: layout/theme.liquid queda en su estado original. Espacio vacío aceptado como deuda cosmética menor.
+Status: reversed
+---
+
+---
+Date: 2026-06-01
+Decision: Sistema nativo de reviews curadas implementado con Shopify Metaobjects (no metafields planos). Metaobject dilmio_review + metafield de producto custom.dilmio_reviews (tipo list.metaobject_reference). Nueva sección sections/dilmio-reviews.liquid + assets/dilmio-reviews.css. Sin JavaScript, sin apps externas.
+Reason: El componente se reutilizará en futuros proyectos/nichos. Metaobjects escalan mejor que 12+ metafields planos por producto, mantienen datos separados del diseño y son más limpios en Admin. En páginas de producto la sección lee SIEMPRE el product de la URL (request.page_type == 'product'); el product picker queda solo como fallback para demos/no-producto — mismo patrón anti-bleed-through de Phase 6B.
+Risk: El metafield debe crearse como Lista (list.metaobject_reference), no como referencia única — una referencia única no es iterable y rompe el render (incidente resuelto en esta sesión). La clave debe ser exactamente custom.dilmio_reviews (plural). source_note existe en el metaobject pero NO se renderiza (nota interna). review_video_url se renderiza solo como enlace de texto, sin embeds. Compliance: solo reviews reales/verificables, sin badge 'compra verificada', sin puntuación global inventada (DILMIO_OS sección 12 + Directiva Omnibus).
+Expected result: Cada producto muestra solo sus propias reviews (máx 3). Producto sin reviews oculta la sección por completo en web publicada (aviso de ayuda solo en editor). Móvil: scroll horizontal con scroll-snap. Desktop: grid de 3 columnas. Commits: 80faf02 (sección+css), 36f0888 (fix bleed-through URL product).
+Status: completed
+---
+
+---
+Date: 2026-06-03
+Decision: Resincronizar THEME_STATUS.md con git. Fase real Phase 6 (6B MVP, 6C home, 6D marca, reviews), HEAD 36f0888 — no "Phase 7 completada / e2221b0".
+Reason: El status quedó congelado en e2221b0 mientras git avanzó 22 commits. El commit 3224d5e ya reclasificó el home como 6C, contradiciendo el "Phase 7 completada".
+Risk: Una sesión futura se reubica con datos falsos y repite trabajo o se salta QA. Agravado porque Claude Desktop no ve las sesiones de Claude Code.
+Expected result: THEME_STATUS.md refleja HEAD, fase y archivos reales. Se aplica la regla 10 de CLAUDE.md: actualizar THEME_STATUS.md en el MISMO commit que el código.
+Status: active
+---

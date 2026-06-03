@@ -8,9 +8,11 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 6C — Home + catalog basic ecommerce structure (completed)
-Last completed phase:   Phase 6C — Home + catalog basic ecommerce structure
-Current objective:      Await Operator approval to begin Phase 7 — First real product.
+Current phase:          Phase 6 en curso (6B MVP ✓, 6C home/catálogo, 6D marca, reviews nativas)
+Last completed phase:   6B MVP — product metafields (2026-05-24)
+Current objective:      Confirmar QA de 6C/6D/reviews y decidir cierre de Phase 6
+Last commit:            36f0888 fix: reviews section reads URL product on product pages to prevent bleed-through
+                        (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
 ---
@@ -19,13 +21,16 @@ Current objective:      Await Operator approval to begin Phase 7 — First real 
 
 ```
 Theme folder:   theme/sense-clean/
-Git status:     On branch master — working tree clean
-Last commit:    e2221b0 fix: prevent product template content fallback bleed-through
+Git status:     On branch master — uncommitted changes remain (dilmio-product.css, .js,
+                dilmio-product-landing.liquid, CLAUDE.md, docs/; SVG icons untracked)
+Last commit:    36f0888 fix: reviews section reads URL product on product pages to prevent bleed-through
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
-Role:           live (published — intentional as of 2026-05-26)
+Role:           LIVE (published — DILMIO_DEV is now the live theme as of 2026-05-29)
 Previous live:  Sense (#201391046987) — now unpublished
+
+IMPORTANT: Pushes to live require manual TTY confirmation from Operator terminal.
 ```
 
 ---
@@ -61,17 +66,12 @@ Commits (Phase 4 addendum):
 Tests passed (demo video visual QA on DILMIO_DEV):
 - Video visible and plays correctly
 - Video plays on mobile, no fullscreen takeover (playsinline confirmed)
-- No layout break
-- No horizontal overflow
-- Add to cart still works
-- Sticky still works
+- No layout break / no horizontal overflow
+- Add to cart and sticky still work
 - No blocking DILMIO JavaScript errors
 
 Note: Demo video block is for temporary website/placeholder media only.
 Not final ad creative. Not verified UGC or customer proof.
-
-Tests failed:
-- None
 
 Files changed (Phase 6A — DILMIO product template):
 - theme/sense-clean/templates/product.dilmio.json  [added — product template pointing to dilmio-product-landing section]
@@ -89,8 +89,7 @@ Tests passed (Phase 6A manual QA on DILMIO_DEV):
 
 Known limitation (Phase 6A):
 - product.dilmio.json shares section settings across all products using the template.
-- Unique landing content per product (copy, images, benefits, FAQ) is not yet solved.
-- Future solution: product metafields or dynamic sources to scope settings per product.
+- Resolved in Phase 6B MVP via product metafields.
 
 Files changed (Phase 6B MVP — product metafields):
 - theme/sense-clean/sections/dilmio-product-landing.liquid  [modified — metafield-first content resolution with request.page_type branching]
@@ -113,12 +112,10 @@ Tests passed (Phase 6B MVP manual QA on DILMIO_DEV):
 - Product with metafields displays product-specific metafield content
 - Product without metafields does not inherit shared product template fallback content
 - Product picker fallback retained for non-product/demo contexts
-- Add to cart works
-- Variants work
-- Sticky appears when main Add to Cart is out of view
-- Sticky shows correct product and works
+- Add to cart works / variants work
+- Sticky appears when main Add to Cart is out of view; shows correct product and works
 - Mobile layout does not break
-- Console: only Shopify Theme Editor / Polaris / WebPixelManager / postMessage / Apollo warnings — no blocking DILMIO JavaScript errors
+- Console: only Shopify/Polaris/WebPixelManager warnings — no blocking DILMIO JavaScript errors
 
 Known limitation (Phase 6B MVP):
 - MVP covers: hero headline/subheadline, demo video URL, benefits 1-3, FAQ question/answer 1.
@@ -126,8 +123,7 @@ Known limitation (Phase 6B MVP):
 - Future expansion can add remaining fields without structural changes.
 
 Files changed (Phase 6C — Home + catalog basic ecommerce structure):
-- NO theme files changed.
-- All work done in Shopify Admin / customizer only.
+- NO theme files changed. All work done in Shopify Admin / customizer only.
 
 Shopify Admin actions completed (Phase 6C):
 - Manual collection created: Catálogo (handle: catalogo)
@@ -145,17 +141,114 @@ No commits for Phase 6C:
 - templates/*.json and config/settings_data.json must not be pushed.
 - Shopify Admin settings live remotely and must not be overwritten by theme push.
 
-Tests passed (Phase 6C QA on DILMIO_DEV):
-- Homepage loads
-- Catalog link works
-- Catalog shows curated products only
-- Product card links to product page
-- Product page renders DILMIO landing in DILMIO_DEV preview
-- Tracking page works
-- Contact page works
-- Footer legal links work
-- Mobile layout works
-- No blocking DILMIO JavaScript errors
+Tests passed (Phase 6C QA on DILMIO_DEV — navigation and pages only):
+- Homepage loads / Catalog link works / Catalog shows curated products only
+- Product card links to product page / Product page renders DILMIO landing
+- Tracking page works / Contact page works / Footer legal links work
+- Mobile layout works / No blocking DILMIO JavaScript errors
+```
+
+---
+
+```
+Files changed (Grupo B — Home/marca 6C/6D visual, commits 630af09..256d4fa):
+- theme/sense-clean/assets/dilmio-brand-home.css      [NEW — home brand styles: hero, trust cards, categories, carousel, criteria]
+- theme/sense-clean/sections/dilmio-brand-home.liquid [NEW — home brand section: hero, categories, products, criteria, newsletter]
+- theme/sense-clean/sections/dilmio-trust-bar.liquid  [NEW — trust bar section: countdown configurable + text-only mode]
+- theme/sense-clean/assets/section-email-signup-banner.css [modified — newsletter banner styles]
+
+Untracked (not yet committed — related to this group):
+- theme/sense-clean/assets/dilmio-icon-shield.svg
+- theme/sense-clean/assets/dilmio-icon-box.svg
+- theme/sense-clean/assets/dilmio-icon-return.svg
+- theme/sense-clean/assets/dilmio-icon-headset.svg
+
+Commits (Grupo B):
+- 630af09 feat: add DILMIO trust bar section
+- d2fc03e feat: add DILMIO brand home section
+- 84d76d4 fix: improve DILMIO brand home visual spacing
+- b8a4080 fix: refine DILMIO hero and trust card layout
+- 903592f fix: improve DILMIO home mobile categories and hierarchy
+- ee9ee63 fix: integrate DILMIO hero image with cream gradient
+- 0315c19 fix: redesign DILMIO hero structure
+- cd46944 fix: compact DILMIO hero CTA
+- 4bf4eb0 fix: rebuild DILMIO hero as full-bleed composition
+- 9104309 fix: improve DILMIO hero readability and mobile CTA
+- acfd082 fix: align DILMIO newsletter and home sections
+- 256d4fa feat: refine DILMIO brand home phase 6D
+
+Tests: QA PENDIENTE — ver Blockers
+
+Files changed (Grupo C — Header + footer, commits 5925c40 / beeb643 / 0794c05):
+- theme/sense-clean/sections/header.liquid           [modified — global header styles in {% style %}; logo selector expanded to .header__heading-link for internal pages]
+- theme/sense-clean/sections/footer.liquid           [modified — copyright text, powered_by_link commented]
+- theme/sense-clean/assets/dilmio-footer.css         [NEW — footer desktop/mobile layout, contrast, input, copyright]
+
+Fix técnico documentado (header):
+- El logo va en <h1 class="header__heading"> solo en la home (SEO). En páginas internas
+  queda solo <a class="header__heading-link">. El grid .header--middle-left apuntaba a
+  .header__heading (inexistente en internas), por eso el logo caía mal.
+  Solución: el selector del grid ahora incluye .header__heading-link.
+
+Commits (Grupo C):
+- 5925c40 fix: global header styles + logo position on internal pages, removed home-only scope
+- beeb643 feat: premium polish - card hover, criteria shadow, trust bar text-only mode
+- 0794c05 feat: mobile hero, footer desktop/mobile polish, carousel mobile rework, criteria compact, copyright
+
+Tests: QA PENDIENTE — ver Blockers
+
+Files changed (Grupo D — Tracking/17TRACK — NETO CERO):
+- Ningún archivo del theme cambió en el rango e2221b0..36f0888 para este grupo.
+- commit 58f4131 (fix: empty space below 17TRACK widget) fue revertido por a25919c.
+- layout/theme.liquid queda en su estado de e2221b0. Espacio vacío desktop aceptado como
+  deuda cosmética menor (solo post-compra, baja visita). Causa raíz: 1fr grid del body.
+
+Commits (Grupo D):
+- 58f4131 fix: remove empty space below 17TRACK widget on tracking page (desktop) — REVERTIDO
+- a25919c Revert "fix: remove empty space below 17TRACK widget on tracking page (desktop)"
+
+Context — integración 17TRACK (NOT in git, trabajo en Shopify Admin / app panel):
+- App 17TRACK instalada (descartada Track123: 200 envíos/mes vs 50, más carriers chinos,
+  portal de devoluciones incluido).
+- Tracking page: /apps/17track (generada por la app, NO es página del theme).
+- Menús reapuntados a /apps/17track (header: "Seguimiento", footer: "Tracking de pedido").
+- Estilo: Poppins, #3E4A2D, cream inputs, "Powered by 17TRACK" oculto.
+- Trust bar fix: per-section CSS del bloque trust bar en customizer (no en git).
+  (* { color: #FDFBF7 !important; } — theme-level CSS no afecta páginas de app de forma fiable)
+- Background: crema sólido #F0F4EC (degradado del theme no heredable por páginas de app).
+  Ver DECISION_LOG.md entrada 2026-06-01.
+
+Files changed (Grupo E — Reviews nativas, commits 80faf02 / 36f0888):
+- theme/sense-clean/sections/dilmio-reviews.liquid   [NEW — curated reviews section, metaobject-driven]
+- theme/sense-clean/assets/dilmio-reviews.css        [NEW — card styles, mobile scroll-snap, desktop 3-col grid]
+
+Commits (Grupo E):
+- 80faf02 feat: add native reviews section with metaobject support
+- 36f0888 fix: reviews section reads URL product on product pages to prevent bleed-through
+
+Arquitectura reviews (Shopify Admin — NOT in git):
+- Metaobject: dilmio_review (campos: reviewer_name, rating, review_text, review_image,
+  review_date, review_video_url, source_note)
+- Product metafield: custom.dilmio_reviews — tipo list.metaobject_reference → dilmio_review
+  CRÍTICO: debe ser Lista (list), NO referencia única — single ref no es iterable y rompe el render
+  La clave debe ser exactamente custom.dilmio_reviews (plural)
+- Patrón anti-bleed-through: en product pages (request.page_type == 'product') la sección lee
+  el product de la URL; product picker solo como fallback en demos/no-producto (mismo patrón 6B)
+- Móvil: scroll horizontal con scroll-snap
+- Desktop: grid de 3 columnas
+- Sin reviews: sección completamente oculta en web publicada
+- Empty-state (mensaje de ayuda al Operator): solo visible en request.design_mode (editor)
+- source_note: existe en el metaobject pero NO se renderiza (campo de nota interna)
+- review_video_url: renderiza solo como enlace de texto, sin embeds
+
+Limitaciones conocidas (reviews):
+- Iteración global Liquid capada a 50 metaobject_references por producto
+- Pregunta abierta: ¿Shopify Flow puede hacer append a un campo list.metaobject_reference?
+  Sin confirmar. Investigar si se necesita automatizar la asignación de reviews a productos.
+- Orphan metaobject/metafield en singular (dilmio_review singular) pendiente de borrar
+  en Admin — no bloquea, solo cleanup.
+
+Tests: QA PENDIENTE — ver Blockers
 ```
 
 ---
@@ -164,15 +257,23 @@ Tests passed (Phase 6C QA on DILMIO_DEV):
 
 ```
 Blockers:
-- None. Phase 6C complete and manual QA passed.
+- QA PENDIENTE — Reviews (Grupo E): dilmio-reviews.liquid / dilmio-reviews.css sin QA
+  registrado en esta sesión. Ejecutar antes de declarar Phase 6 cerrada.
+- QA PENDIENTE — Home/header (6C/6D) (Grupos B + C): dilmio-brand-home, dilmio-trust-bar,
+  header.liquid, footer.liquid, dilmio-footer.css sin QA formal registrado.
 
 Next action:
-- Await Operator approval to begin Phase 7 — First real product.
+1. Ejecutar QA de Grupos B, C y E en DILMIO_DEV (real storefront URL, no editor)
+2. Registrar resultados en THEME_STATUS.md (reemplazar "QA PENDIENTE" con resultados reales)
+3. Decidir cierre formal de Phase 6 con Operator
 
 Do not start yet:
-- Phase 7 — First real product (not started)
-- Phase 8 — Creatives and traffic (blocked until Phase 7 complete)
-- Any paid ads
+- Phase 7 — First real product (bloqueada hasta cerrar QA de Phase 6)
+- Phase 8 — Creatives and traffic (bloqueada hasta cerrar Phase 7)
+
+Do not touch:
+- templates/*.json
+- config/settings_data.json
 ```
 
 ---
@@ -186,9 +287,9 @@ Do not start yet:
 | F3    | Minimum technical landing   | Completed |
 | F4    | Minimum conversion landing  | Completed |
 | F5    | Design and trust            | Completed |
-| F6    | Conversion infrastructure   | Completed (6A + 6B MVP + 6C)   |
-| F7    | First real product          | Pending                        |
-| F8    | Creatives and traffic test  | Blocked until F7 complete      |
+| F6    | Conversion infrastructure   | En curso (6A+6B MVP ✓, 6C/6D/reviews — QA pendiente) |
+| F7    | First real product          | Pending   |
+| F8    | Creatives and traffic test  | Blocked until F6 QA + F7 complete |
 
 ---
 
@@ -209,7 +310,7 @@ unless explicitly approved by the Operator.
 TARGET (always explicit):
   Theme name:  DILMIO_DEV
   Theme ID:    201618030923
-  Role:        unpublished
+  Role:        LIVE (published as of 2026-05-29)
 
 WORKING DIRECTORY FOR ALL PUSH COMMANDS:
   D:\DILMIO\theme\sense-clean\
