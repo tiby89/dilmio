@@ -21,11 +21,8 @@ Last commit:            ca390d8 feat: CTA español, z-index sticky, SVG trust ic
 
 ```
 Theme folder:   theme/sense-clean/
-Git status:     On branch master — uncommitted changes remain: CLAUDE.md, docs/DILMIO_OS.md,
-                docs/THEME_STATUS.md (Phase 6 close);
-                untracked: backups/theme_export__dilmio-com-dilmio_dev__03JUN2026-0612pm.zip,
-                PROGRESS.md, .obsidian/
-Last commit:    ca390d8 feat: CTA español, z-index sticky, SVG trust icons + status sync
+Git status:     On branch master — working tree clean
+Last commit:    [hash pending commit]
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
@@ -281,6 +278,11 @@ Código commiteado (sesión 2026-06-03):
 
 Blockers:
 - None. QA de Grupos B, C y E completado 2026-06-04.
+
+Nota (2026-06-04):
+- CLAUDE.md y DILMIO_OS.md commiteados.
+- .gitignore creado. Orphan metaobject singular borrado en Admin por Operator.
+- Working tree limpio. Listo para Phase 7.
 
 Next action:
 - Operator decide inicio de Phase 7 — First real product

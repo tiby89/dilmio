@@ -7,6 +7,24 @@ Plataforma: Shopify
 Theme base: Sense modificado  
 
 \---
+## 0. Contexto estratégico maestro (prioritario)
+
+DILMIO no es solo una tienda. El theme actual es una PLANTILLA MAESTRA 
+reutilizable, diseñada para clonarse en múltiples proyectos y nichos futuros.
+
+Por esta razón, la fase actual prioriza dejar el theme y la infraestructura 
+en estado 10/10 (diseño, coherencia, reviews, tracking, medición) ANTES de 
+buscar producto o lanzar tráfico.
+
+Esto NO contradice la filosofía de ejecución rápida: la inversión en pulir 
+la plantilla se amortiza en cada proyecto futuro que la reutilice.
+
+Regla operativa: no presionar para pasar a producto/ads mientras el Operator 
+esté trabajando en dejar la plantilla perfecta. El salto a producto lo decide 
+el Operator explícitamente, no la inercia del sistema.
+
+Las secciones siguientes (filosofía, regla de oro, fases) se interpretan 
+bajo este contexto. Cuando haya conflicto, esta sección 0 manda.
 
 \#\# 1\. Objetivo del proyecto
 
@@ -238,17 +256,25 @@ Reglas generales:
 
 \#\# 12\. Reviews y social proof
 
-Objetivo:  
-Crear sistema nativo de reseñas sin depender inicialmente de Loox/Judge.me.
+Objetivo:
+Mostrar prueba social que aumente la conversión, de forma legal y sin engaño.
 
-Reglas:  
-\- permitir reviews reales con texto, estrellas, foto y vídeo;  
-\- permitir que clientes envíen reseñas por WhatsApp/email;  
-\- evitar reseñas falsas;  
-\- si hay incentivo, comunicarlo de forma legal y transparente cuando proceda;  
-\- no importar reviews dudosas.
+Permitido en cualquier fase:
+- Construir la infraestructura técnica (estrellas, badges, bloques de review).
+- Etiquetas editoriales honestas ("Selección DILMIO", "Nuevo", "Para cocina").
 
-\---
+Reviews importadas (ej. del fabricante/AliExpress vía app tipo Loox/Judge.me):
+- Permitidas SIEMPRE que se marque el origen de forma visible.
+- Deben presentarse como valoración del producto, no como reseña de compra en DILMIO.
+- Nunca presentarse como experiencia con el servicio/envío de DILMIO.
+
+Reviews propias:
+- De clientes reales que compraron en DILMIO, una vez haya ventas.
+
+Prohibido en toda fase:
+- Reviews 100% inventadas sin ninguna fuente real.
+- Contadores de ventas ficticios ("miles de clientes") sin respaldo.
+- Presentar reviews importadas como si fueran de clientes de DILMIO.
 
 \#\# 13\. Registro de decisiones
 

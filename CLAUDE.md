@@ -211,9 +211,12 @@ Work in this phase:
 - simple reviews/social proof system, preferably native, supporting real text, stars, photo/video when technically reasonable — no fake reviews
 - privacy policy and cookies
 - analytics dashboard
+- simple reviews/social proof system, native or via app, supporting real text, 
+  stars, photo/video. Imported reviews allowed only with visible origin marking 
+  (shown as product valuation, never as DILMIO purchase experience). No fake reviews.
 
-Reviews come here, not before.
-Do not advance if measurement is not confirmed working.
+Review infrastructure may be built in any phase. Only real or properly-sourced 
+data may be shown publicly.
 
 ---
 
@@ -360,7 +363,32 @@ Audit the project structure and tell me:
 
 STOP after the audit. Do not propose code changes yet.
 ```
+## 10. Regla de estado sincronizado (sources of truth en git)
 
+`THEME_STATUS.md` no se actualiza a mano después del trabajo. Se actualiza
+COMO PARTE del trabajo, en el mismo commit que el código.
+
+Regla:
+- Ninguna fase se considera terminada hasta que `docs/THEME_STATUS.md` refleje
+  el estado real Y esté incluido en el mismo commit que los cambios de código
+  de esa fase.
+- El mensaje de commit debe nombrar la fase (ej: `feat(F8): ...`).
+- Si se tomó una decisión relevante, `docs/DECISION_LOG.md` se actualiza en ese
+  mismo commit (entrada nueva — nunca se borran entradas anteriores).
+- `DECISION_LOG.md` es historial inmutable. `THEME_STATUS.md` es estado actual
+  (se sobrescribe). No se fusionan.
+
+Por qué:
+Claude Desktop no ve las sesiones de Claude Code. Solo ve archivos + git log.
+Si el estado va en un commit separado (o se actualiza a mano más tarde), Claude
+Desktop no puede saber si el `THEME_STATUS.md` que lee es real o quedó viejo.
+Estado y código en el mismo commit = el git log confirma que ambos son de la
+misma foto.
+
+Prohibido:
+- Cerrar una fase sin actualizar `THEME_STATUS.md`.
+- Actualizar `THEME_STATUS.md` en un commit aparte "para luego".
+- Dejar el estado declarado y el código en commits distintos.
 ---
 
 *This file is the contract between the Operator and Claude Code.
