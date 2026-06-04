@@ -263,3 +263,30 @@ Risk: Cada push va ahora directo a producción. --only --nodelete deja de ser pr
 Expected result: El estado live/unpublished queda registrado y consolidado. Pendiente (no en esta entrada): actualizar CLAUDE.md y los bloques de THEME_STATUS.md que aún digan "live = Sense".
 Status: active
 ---
+
+---
+Date: 2026-06-04
+Decision: Product card rating via manual metafields (custom.dilmio_rating_avg decimal + custom.dilmio_rating_count integer), rendered with proportional star fill (no rounding), in ALL product cards site-wide (catalog, home, search, related). Not calculated from dilmio_review metaobjects.
+Reason: Iterating metaobjects per product in collection loops is expensive and capped at 50 in Liquid. Manual metafields are simple, fast, and independent of the review system.
+Risk: Rating numbers must be maintained manually per product. Must reflect real/justifiable data before sending traffic — no fake numbers.
+Expected result: Any product with both metafields shows proportional stars + score + count. Products without metafields degrade silently.
+Status: completed
+---
+
+---
+Date: 2026-06-04
+Decision: Video demo block redesigned as two-column split layout (video left + benefits card right on desktop, stacked on mobile). Video toggle condition follows Phase 6B pattern: on product pages metafield URL renders without needing editor toggle; toggle only controls non-product/demo pages.
+Reason: Vertical 9:16 video at full width broke desktop layout. Two-column split is the standard premium theme pattern for vertical video.
+Risk: Video must be MP4 hosted on Shopify CDN. YouTube/Vimeo URLs do not work with the <video> tag. Vertical video still requires max-height containment.
+Expected result: Demo section looks intentional on desktop, video + benefits read as a single conversion unit.
+Status: completed
+---
+
+---
+Date: 2026-06-04
+Decision: All product-specific content migrated to metafields. Schema cleaned to show only toggles, global titles (benefits_title, faq_title, demo_video_heading), and trust bullets. Section settings are fallback only for non-product/demo contexts.
+Reason: Duplicate content fields in both product metafields and theme editor caused operational confusion about where to edit. Single source of truth per product eliminates this.
+Risk: Products without metafields show empty sections (intentional degradation). Naming inconsistency exists: original metafields use custom.dilmio_* while FAQ 2/3, benefit 4 use custom.custom_dilmio_* — documented as technical debt.
+Expected result: Theme editor shows only layout controls. All product content managed in product Admin. Scalable to multiple products without shared-content collisions.
+Status: completed
+---
