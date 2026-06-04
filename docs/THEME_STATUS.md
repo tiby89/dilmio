@@ -11,7 +11,7 @@
 Current phase:          Phase 6 — Conversion infrastructure (COMPLETED)
 Last completed phase:   Phase 6 — Conversion infrastructure (6A + 6B MVP + 6C + 6D + reviews)
 Current objective:      Phase 6 cerrada. Await Operator approval para Phase 7.
-Last commit:            72bf877 fix: clamp card rating to max 5 to prevent star overflow
+Last commit:            [hash pending commit]
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -22,7 +22,7 @@ Last commit:            72bf877 fix: clamp card rating to max 5 to prevent star 
 ```
 Theme folder:   theme/sense-clean/
 Git status:     On branch master — working tree clean
-Last commit:    36f97fa docs: commit governance files, add .gitignore, clean working tree
+Last commit:    [hash pending commit]
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
@@ -304,7 +304,40 @@ Rating en product cards (2026-06-04):
   Display: "4,3 (428)" — coma decimal, Liquid puro, sin JS.
 - assets/dilmio-card-rating.css: nuevo — estilos scopeados solo a .dilmio-card-rating*.
 - Aplica a todas las cards del sitio (home, colección, búsqueda, relacionados).
-- QA pendiente: Operator verifica en DILMIO_DEV.
+- QA: catálogo + home desktop + móvil ✓
+
+Arquitectura de datos migrada a metafields (2026-06-04):
+- sections/dilmio-product-landing.liquid: contenido de producto migrado de section.settings a metafields.
+- assets/dilmio-product.css: bloque .dilmio-demo-section + .dilmio-demo-split (video + benefits two-column).
+
+Metafields activos por producto (namespace: custom):
+  hero_headline, hero_subheadline, demo_video_url    → custom.dilmio_*
+  benefit_1, benefit_2, benefit_3                    → custom.dilmio_benefit_*
+  benefit_4                                          → custom.custom_dilmio_benefit_4
+  faq_question_1, faq_answer_1                       → custom.dilmio_faq_*
+  faq_question_2, faq_answer_2                       → custom.custom_dilmio_faq_question_2 / faq_answer_2
+  faq_question_3, faq_answer_3                       → custom.custom_dilmio_faq_question_3 / faq_answer_3
+  how_it_works_heading, how_step_1/2/3_title/text    → custom.dilmio_how_*
+
+Schema limpio — Theme Editor solo expone:
+  Toggles: show_benefits, show_trust, show_faq, show_demo_video, show_how_it_works, show_pack
+  Títulos globales: benefits_title, faq_title, demo_video_heading
+  Trust bullets: trust_1, trust_2, trust_3 (globales, no por producto)
+  Pack settings: pack_label_1/2/3, pack_quantity_1/2/3
+
+Deuda técnica — naming inconsistente en metafield keys:
+  benefit_1/2/3 y FAQ 1 usan prefijo: custom.dilmio_*
+  benefit_4, FAQ 2/3 usan prefijo doble: custom.custom_dilmio_*
+  Causa: Shopify auto-generó keys con prefijo "custom_" para los campos creados después.
+  Impacto: ninguno funcional, pero naming no uniforme.
+  Resolución futura: recrear los campos afectados con keys manuales (dilmio_benefit_4, etc.)
+  o migrar datos y actualizar keys en Liquid cuando escale a múltiples productos.
+
+QA pasado (Operator, DILMIO_DEV, 2026-06-04):
+- Benefit 1-4, FAQ 1-3, demo video, how it works: leen de metafields en product pages ✓
+- Pack: no aparece si show_pack=true pero sin packs configurados ✓
+- Benefits title en card del split ✓
+- Schema limpio: sin campos de contenido de producto en Theme Editor ✓
 
 Next action:
 - Operator decide inicio de Phase 7 — First real product
