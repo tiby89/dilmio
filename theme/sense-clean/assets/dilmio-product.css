@@ -406,7 +406,16 @@
   display: block;
   width: 100%;
   height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  margin: 0 auto;
   border-radius: 4px;
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-video__player {
+    max-height: none;
+  }
 }
 
 .dilmio-video__caption {
@@ -415,6 +424,133 @@
   color: #555;
   text-align: center;
   font-style: italic;
+}
+
+/* ─── Demo section (wrapper) ─── */
+
+.dilmio-demo-section {
+  background: #faf8f5;
+  max-width: 1180px;
+  margin: 48px auto 56px;
+  padding: 48px 56px;
+  border-radius: 20px;
+}
+
+/* ─── Demo header (title above split) ─── */
+
+.dilmio-demo-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 32px;
+}
+
+.dilmio-demo-header__title {
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+/* ─── Demo split (two-column) ─── */
+
+.dilmio-demo-split {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+
+.dilmio-demo-split__video {
+  flex: 0 0 clamp(320px, 30vw, 420px);
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.dilmio-demo-split__player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dilmio-demo-split__content {
+  flex: 1;
+  max-width: 460px;
+  align-self: center;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  padding: 2.5rem;
+}
+
+.dilmio-demo-split__benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.dilmio-demo-split__benefit {
+  padding-left: 2.25rem;
+  position: relative;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: #2a2a2a;
+}
+
+.dilmio-demo-split__benefit::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  color: #3e4a2d;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-demo-section {
+    margin: 32px 1rem 40px;
+    padding: 32px 1.25rem;
+    border-radius: 16px;
+  }
+
+  .dilmio-demo-header {
+    margin-bottom: 24px;
+  }
+
+  .dilmio-demo-header__title {
+    font-size: 1.4rem;
+  }
+
+  .dilmio-demo-split {
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .dilmio-demo-split__video {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    flex: none;
+  }
+
+  .dilmio-demo-split__content {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+  }
+
+  .dilmio-demo-split__benefit {
+    font-size: 1rem;
+  }
 }
 
 /* ─── How it works ─── */
