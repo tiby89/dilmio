@@ -11,7 +11,7 @@
 Current phase:          Phase 6 — Conversion infrastructure (COMPLETED)
 Last completed phase:   Phase 6 — Conversion infrastructure (6A + 6B MVP + 6C + 6D + reviews)
 Current objective:      Phase 6 cerrada. Await Operator approval para Phase 7.
-Last commit:            ca390d8 feat: CTA español, z-index sticky, SVG trust icons + status sync
+Last commit:            [hash pending commit]
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -264,6 +264,17 @@ Tests passed (QA manual DILMIO_DEV, Operator, 2026-06-04):
 - Desktop: grid 3 columnas OK
 - Producto sin reviews: sección completamente oculta
 - Móvil: scroll horizontal con scroll-snap funcional
+
+Files changed (Rating en product cards — 2026-06-04):
+- theme/sense-clean/snippets/card-product.liquid  [modified — .dilmio-card-rating block + CSS load]
+- theme/sense-clean/assets/dilmio-card-rating.css [NEW — scoped card rating styles]
+
+Tests passed (QA manual DILMIO_DEV, Operator, 2026-06-04):
+- Catálogo desktop + móvil: estrellas proporcionales, nota con coma decimal, count OK
+- Home "Selección destacada" desktop + móvil: rating visible y correcto
+- Alineación: centrado en catálogo (hereda text-align del contexto vía inline-flex),
+  izquierda en home — ambos consistentes con títulos y precios de cada card
+- Producto sin metafields: sin rating visible (degradación silenciosa confirmada)
 ```
 
 ---
@@ -283,6 +294,16 @@ Nota (2026-06-04):
 - CLAUDE.md y DILMIO_OS.md commiteados.
 - .gitignore creado. Orphan metaobject singular borrado en Admin por Operator.
 - Working tree limpio. Listo para Phase 7.
+
+Rating en product cards (2026-06-04):
+- snippets/card-product.liquid: bloque .dilmio-card-rating añadido entre show_rating y price.
+  Lee custom.dilmio_rating_avg (decimal) + custom.dilmio_rating_count (integer).
+  Render condicional: solo si avg != blank AND count > 0.
+  Estrellas: capa vacía gris + capa dorada width:{{ dilmio_pct }}% inline (avg × 20 | round).
+  Display: "4,3 (428)" — coma decimal, Liquid puro, sin JS.
+- assets/dilmio-card-rating.css: nuevo — estilos scopeados solo a .dilmio-card-rating*.
+- Aplica a todas las cards del sitio (home, colección, búsqueda, relacionados).
+- QA pendiente: Operator verifica en DILMIO_DEV.
 
 Next action:
 - Operator decide inicio de Phase 7 — First real product

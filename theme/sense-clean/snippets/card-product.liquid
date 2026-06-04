@@ -27,6 +27,7 @@
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+  {{ 'dilmio-card-rating.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
 {%- if card_product and card_product != empty -%}
   {%- liquid
@@ -202,6 +203,21 @@
                   {{ 'accessibility.total_reviews' | t -}}
                 </span>
               </p>
+            {%- endif -%}
+
+            {%- assign dilmio_avg = card_product.metafields.custom.dilmio_rating_avg -%}
+            {%- assign dilmio_count = card_product.metafields.custom.dilmio_rating_count -%}
+            {%- if dilmio_avg != blank and dilmio_count != blank and dilmio_count > 0 -%}
+              {%- assign dilmio_pct = dilmio_avg | times: 20 | round -%}
+              {%- assign dilmio_display = dilmio_avg | round: 1 | append: '' | replace: '.', ',' -%}
+              <div class="dilmio-card-rating">
+                <span class="dilmio-card-rating__stars" role="img" aria-label="{{ dilmio_avg }} de 5 estrellas">
+                  <span class="dilmio-card-rating__stars-empty" aria-hidden="true">★★★★★</span>
+                  <span class="dilmio-card-rating__stars-full" aria-hidden="true" style="width:{{ dilmio_pct }}%">★★★★★</span>
+                </span>
+                <span class="dilmio-card-rating__avg" aria-hidden="true">{{ dilmio_display }}</span>
+                <span class="dilmio-card-rating__count" aria-hidden="true">({{ dilmio_count }})</span>
+              </div>
             {%- endif -%}
 
             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}

@@ -1,0 +1,42 @@
+.dilmio-card-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  margin: 0.25em 0;
+}
+
+.dilmio-card-rating__stars {
+  position: relative;
+  display: inline-block;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.dilmio-card-rating__stars-empty {
+  display: block;
+  color: #d0cdc8;
+}
+
+.dilmio-card-rating__stars-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #e8a020;
+}
+
+.dilmio-card-rating__avg {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #3e4a2d;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.dilmio-card-rating__count {
+  font-size: 0.95rem;
+  color: #6b6b6b;
+  white-space: nowrap;
+  line-height: 1;
+}
