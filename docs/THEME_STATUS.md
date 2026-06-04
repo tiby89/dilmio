@@ -22,7 +22,7 @@ Last commit:            ca390d8 feat: CTA español, z-index sticky, SVG trust ic
 ```
 Theme folder:   theme/sense-clean/
 Git status:     On branch master — working tree clean
-Last commit:    [hash pending commit]
+Last commit:    36f97fa docs: commit governance files, add .gitignore, clean working tree
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
