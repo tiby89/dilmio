@@ -8,10 +8,10 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 6 en curso (6B MVP ✓, 6C home/catálogo, 6D marca, reviews nativas)
-Last completed phase:   6B MVP — product metafields (2026-05-24)
-Current objective:      Confirmar QA de 6C/6D/reviews y decidir cierre de Phase 6
-Last commit:            36f0888 fix: reviews section reads URL product on product pages to prevent bleed-through
+Current phase:          Phase 6 — Conversion infrastructure (COMPLETED)
+Last completed phase:   Phase 6 — Conversion infrastructure (6A + 6B MVP + 6C + 6D + reviews)
+Current objective:      Phase 6 cerrada. Await Operator approval para Phase 7.
+Last commit:            ca390d8 feat: CTA español, z-index sticky, SVG trust icons + status sync
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -21,10 +21,11 @@ Last commit:            36f0888 fix: reviews section reads URL product on produc
 
 ```
 Theme folder:   theme/sense-clean/
-Git status:     On branch master — uncommitted changes remain: CLAUDE.md, docs/DILMIO_OS.md;
+Git status:     On branch master — uncommitted changes remain: CLAUDE.md, docs/DILMIO_OS.md,
+                docs/THEME_STATUS.md (Phase 6 close);
                 untracked: backups/theme_export__dilmio-com-dilmio_dev__03JUN2026-0612pm.zip,
                 PROGRESS.md, .obsidian/
-Last commit:    311fd9a feat: CTA español, z-index sticky, SVG trust icons + status sync
+Last commit:    ca390d8 feat: CTA español, z-index sticky, SVG trust icons + status sync
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
@@ -178,7 +179,13 @@ Commits (Grupo B):
 - acfd082 fix: align DILMIO newsletter and home sections
 - 256d4fa feat: refine DILMIO brand home phase 6D
 
-Tests: QA PENDIENTE — ver Blockers
+Tests passed (QA manual DILMIO_DEV, Operator, 2026-06-04):
+- Desktop: hero completo (imagen, título, subtítulo, CTA), trust bar 4 items legibles,
+  categorías con imagen y texto, carrusel navegable, tarjetas criterio OK, newsletter OK
+- Móvil: hero adaptado sin corte, CTA visible sin scroll, trust bar visible,
+  categorías sin desbordamiento, carrusel swipeable, tarjetas criterio OK,
+  newsletter usable, sin desbordamiento horizontal
+- Console: sin errores JS (solo warnings Shopify/Polaris)
 
 Files changed (Grupo C — Header + footer, commits 5925c40 / beeb643 / 0794c05):
 - theme/sense-clean/sections/header.liquid           [modified — global header styles in {% style %}; logo selector expanded to .header__heading-link for internal pages]
@@ -196,7 +203,12 @@ Commits (Grupo C):
 - beeb643 feat: premium polish - card hover, criteria shadow, trust bar text-only mode
 - 0794c05 feat: mobile hero, footer desktop/mobile polish, carousel mobile rework, criteria compact, copyright
 
-Tests: QA PENDIENTE — ver Blockers
+Tests passed (QA manual DILMIO_DEV, Operator, 2026-06-04):
+- Desktop: logo bien posicionado en home, catálogo, producto, contacto, tracking
+- Menú desktop centrado (logo izq, nav centro, iconos derecha)
+- Footer: copyright visible, sin "Powered by Shopify", links legales funcionan
+- Móvil: logo OK en home y páginas internas, hamburguesa funciona, footer completo
+  y links pulsables
 
 Files changed (Grupo D — Tracking/17TRACK — NETO CERO):
 - Ningún archivo del theme cambió en el rango e2221b0..36f0888 para este grupo.
@@ -249,7 +261,12 @@ Limitaciones conocidas (reviews):
 - Orphan metaobject/metafield en singular (dilmio_review singular) pendiente de borrar
   en Admin — no bloquea, solo cleanup.
 
-Tests: QA PENDIENTE — ver Blockers
+Tests passed (QA manual DILMIO_DEV, Operator, 2026-06-04):
+- Producto con reviews: sección visible, muestra solo reviews del producto correcto
+- Estrellas, nombre, texto, fecha e imagen visibles
+- Desktop: grid 3 columnas OK
+- Producto sin reviews: sección completamente oculta
+- Móvil: scroll horizontal con scroll-snap funcional
 ```
 
 ---
@@ -263,19 +280,14 @@ Código commiteado (sesión 2026-06-03):
 - Grupos B+C ya no tienen código sin commitear para estos archivos.
 
 Blockers:
-- QA PENDIENTE — Reviews (Grupo E): dilmio-reviews.liquid / dilmio-reviews.css sin QA
-  registrado en esta sesión. Ejecutar antes de declarar Phase 6 cerrada.
-- QA PENDIENTE — Home/header (6C/6D) (Grupos B + C): dilmio-brand-home, dilmio-trust-bar,
-  header.liquid, footer.liquid, dilmio-footer.css sin QA formal registrado.
+- None. QA de Grupos B, C y E completado 2026-06-04.
 
 Next action:
-1. Ejecutar QA de Grupos B, C y E en DILMIO_DEV (real storefront URL, no editor)
-2. Registrar resultados en THEME_STATUS.md (reemplazar "QA PENDIENTE" con resultados reales)
-3. Decidir cierre formal de Phase 6 con Operator
+- Operator decide inicio de Phase 7 — First real product
 
 Do not start yet:
-- Phase 7 — First real product (bloqueada hasta cerrar QA de Phase 6)
-- Phase 8 — Creatives and traffic (bloqueada hasta cerrar Phase 7)
+- Phase 7 — First real product (pending Operator go-ahead)
+- Phase 8 — Creatives and traffic (pending Phase 7)
 
 Do not touch:
 - templates/*.json
@@ -293,7 +305,7 @@ Do not touch:
 | F3    | Minimum technical landing   | Completed |
 | F4    | Minimum conversion landing  | Completed |
 | F5    | Design and trust            | Completed |
-| F6    | Conversion infrastructure   | En curso (6A+6B MVP ✓, 6C/6D/reviews — QA pendiente) |
+| F6    | Conversion infrastructure   | Completed (6A + 6B MVP + 6C + 6D + reviews)           |
 | F7    | First real product          | Pending   |
 | F8    | Creatives and traffic test  | Blocked until F6 QA + F7 complete |
 
