@@ -290,3 +290,19 @@ Risk: Products without metafields show empty sections (intentional degradation).
 Expected result: Theme editor shows only layout controls. All product content managed in product Admin. Scalable to multiple products without shared-content collisions.
 Status: completed
 ---
+
+---
+Date: 2026-06-04
+Decision: DILMIO theme evolves from MVP landing structure to multi-level
+GOD theme architecture (Base / Premium / Flagship), reusable across niches
+(physical / digital / service), with strict separation: metafield = product
+content, schema = structure/style/generic copy, schema+override where useful,
+fixed theme structure = universal patterns. No product content hardcoded.
+Reason: Theme is the reusable foundation for multiple future stores, not a
+single-product landing. Polishing is justified because cost amortizes across N sites.
+Risk: Per-product configuration cost can balloon if levels are not respected;
+base level must stay niche-agnostic and operable in fast-test mode.
+Expected result: Theme runs in fast mode (~8-12 fields) for quick tests and
+scales to flagship (30+) for winners without code changes.
+Status: pending — awaiting architecture report approval
+---
