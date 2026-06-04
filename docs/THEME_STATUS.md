@@ -11,7 +11,7 @@
 Current phase:          Phase 6 — Conversion infrastructure (COMPLETED)
 Last completed phase:   Phase 6 — Conversion infrastructure (6A + 6B MVP + 6C + 6D + reviews)
 Current objective:      Phase 6 cerrada. Await Operator approval para Phase 7.
-Last commit:            [hash pending commit]
+Last commit:            633577a docs: add 3 decisions from 2026-06-04 session
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -22,7 +22,7 @@ Last commit:            [hash pending commit]
 ```
 Theme folder:   theme/sense-clean/
 Git status:     On branch master — working tree clean
-Last commit:    [hash pending commit]
+Last commit:    633577a docs: add 3 decisions from 2026-06-04 session
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
@@ -266,8 +266,13 @@ Tests passed (QA manual DILMIO_DEV, Operator, 2026-06-04):
 - Móvil: scroll horizontal con scroll-snap funcional
 
 Files changed (Rating en product cards — 2026-06-04):
-- theme/sense-clean/snippets/card-product.liquid  [modified — .dilmio-card-rating block + CSS load]
-- theme/sense-clean/assets/dilmio-card-rating.css [NEW — scoped card rating styles]
+- theme/sense-clean/snippets/card-product.liquid      [modified — .dilmio-card-rating block + CSS load]
+- theme/sense-clean/sections/dilmio-brand-home.liquid [modified — .dilmio-card-rating block added to home product cards]
+- theme/sense-clean/assets/dilmio-card-rating.css     [NEW — scoped card rating styles]
+
+Commits (Rating en product cards):
+- 5cf58c8 feat: add proportional star rating to product cards via metafields
+- 72bf877 fix: clamp card rating to max 5 to prevent star overflow
 
 Tests passed (QA manual DILMIO_DEV, Operator, 2026-06-04):
 - Catálogo desktop + móvil: estrellas proporcionales, nota con coma decimal, count OK
@@ -276,6 +281,54 @@ Tests passed (QA manual DILMIO_DEV, Operator, 2026-06-04):
   izquierda en home — ambos consistentes con títulos y precios de cada card
 - Producto sin metafields: sin rating visible (degradación silenciosa confirmada)
 - Clamp avg [0–5]: avg=7 → muestra "5,0" + 5 estrellas llenas; avg=4,7 → sin cambio
+
+Files changed (Phase 6 completion — CTA español + trust icons, 2026-06-04):
+- theme/sense-clean/sections/dilmio-product-landing.liquid [modified — CTA labels español]
+- theme/sense-clean/assets/dilmio-product.js               [modified — z-index sticky 200→999, double-init protection]
+- theme/sense-clean/assets/dilmio-product.css              [modified — sticky z-index fix]
+- theme/sense-clean/assets/dilmio-icon-shield.svg          [NEW]
+- theme/sense-clean/assets/dilmio-icon-box.svg             [NEW]
+- theme/sense-clean/assets/dilmio-icon-return.svg          [NEW]
+- theme/sense-clean/assets/dilmio-icon-headset.svg         [NEW]
+
+Commit (Phase 6 completion):
+- ca390d8 feat: CTA español, z-index sticky, SVG trust icons + status sync
+
+Files changed (Demo split layout + FALLBACK schema labels, 2026-06-04):
+- theme/sense-clean/sections/dilmio-product-landing.liquid [modified — video block redesigned as .dilmio-demo-section/.dilmio-demo-split two-column; heading moved to .dilmio-demo-header above split; autoplay fixed to 4 static attrs (autoplay muted loop playsinline); schema content fields marked FALLBACK with info notes]
+- theme/sense-clean/assets/dilmio-product.css              [modified — .dilmio-demo-section (bg crema, border-radius 20px, padding centrado); .dilmio-demo-split (flex 2-col, gap 56px); .dilmio-demo-split__video (aspect-ratio 9/16, border-radius 18px, shadow); .dilmio-demo-split__content (card blanca, border); mobile stack ≤749px]
+
+Commit (Demo layout):
+- a810ca6 Refine product demo layout and clarify fallback schema labels
+
+Files changed (Metafield migration + schema cleanup, 2026-06-04):
+- theme/sense-clean/sections/dilmio-product-landing.liquid [modified — benefit_4/FAQ 2-3/how_it_works migrados a metafields (patrón 6B); schema limpiado a toggles + títulos globales + trust bullets; pack has_packs guard; keys corregidas para benefit_4 y FAQ 2/3 (custom.custom_dilmio_*)]
+
+Commit (Metafield migration):
+- f319a2c refactor: migrate product content to metafields, clean schema, fix keys
+
+Metafields activos por producto — estado final (namespace: custom):
+- hero_headline, hero_subheadline, demo_video_url → custom.dilmio_*
+- benefit_1, benefit_2, benefit_3                → custom.dilmio_benefit_*
+- benefit_4                                      → custom.custom_dilmio_benefit_4  ← prefijo doble (deuda técnica)
+- faq_question_1, faq_answer_1                   → custom.dilmio_faq_*
+- faq_question_2, faq_answer_2                   → custom.custom_dilmio_faq_question_2 / faq_answer_2  ← prefijo doble
+- faq_question_3, faq_answer_3                   → custom.custom_dilmio_faq_question_3 / faq_answer_3  ← prefijo doble
+- how_it_works_heading, how_step_1/2/3_title/text → custom.dilmio_how_*
+- dilmio_reviews                                 → list.metaobject_reference → dilmio_review
+- dilmio_rating_avg (decimal), dilmio_rating_count (integer) → card rating
+
+Schema limpio — Theme Editor solo expone:
+- Toggles: show_benefits, show_trust, show_faq, show_demo_video, show_how_it_works, show_pack
+- Títulos globales: benefits_title, faq_title, demo_video_heading
+- Trust bullets: trust_1/2/3 (globales, no por producto)
+- Pack: pack_label_1/2/3, pack_quantity_1/2/3
+
+Tests passed (metafield migration, DILMIO_DEV, 2026-06-04):
+- Benefit 1-4, FAQ 1-3, demo video, how it works leen de metafields ✓
+- Pack: label "PACK" no aparece sin packs configurados ✓
+- Benefits title en card del split ✓
+- Schema limpio: sin campos de contenido de producto en Theme Editor ✓
 ```
 
 ---
