@@ -304,5 +304,30 @@ Risk: Per-product configuration cost can balloon if levels are not respected;
 base level must stay niche-agnostic and operable in fast-test mode.
 Expected result: Theme runs in fast mode (~8-12 fields) for quick tests and
 scales to flagship (30+) for winners without code changes.
-Status: pending — awaiting architecture report approval
+Status: active — architecture report + phased plan (8B-8H) approved; implementation in progress
+---
+
+---
+Date: 2026-06-04
+Decision: Fragment the monolithic product landing (sections/dilmio-product-landing.liquid)
+into native Online Store 2.0 sections. The buy core (hero + image + price +
+variants + optional pack + CTA + trust + sticky) stays as a single tested
+section; narrative blocks (problem/solution, video+benefits, how-it-works,
+before/after, details, FAQ, final CTA) are extracted into independent OS2.0
+sections, reorderable via Shopify drag-and-drop. No custom schema index system.
+Each section uses the landing_product contract (section.settings.product, else
+product if request.page_type=='product', else no render) and never overwrites
+the global product object. Sticky syncs only with the buy core.
+Reason: OS2.0 native reordering is Shopify-standard, easier to operate without
+code, and avoids building a fragile in-house ordering layer. A monolith is hard
+to maintain at GOD-theme scale across niches.
+Risk: Each extraction is a new bleed-through surface and touches the core file
+(sticky/cart). Mitigated by per-section anti-bleed-through QA, sticky verified
+on the real preview URL after every monolith change, and one extraction per
+phase with STOP between phases. product.dilmio.json must be edited to add/order
+sections — requires explicit per-file approval, against the standing rule that
+templates/*.json are not pushed.
+Expected result: Monolith reduced to ~160-170 lines (pure core); narrative
+sections reorderable natively; bleed-through controlled by a uniform contract.
+Status: active — implemented progressively across phases 8D-8G
 ---
