@@ -11,7 +11,7 @@
 Current phase:          Phase 6 — Conversion infrastructure (COMPLETED)
 Last completed phase:   Phase 6 — Conversion infrastructure (6A + 6B MVP + 6C + 6D + reviews)
 Current objective:      Phase 6 cerrada. Await Operator approval para Phase 7.
-Last commit:            5cf58c8 feat: add proportional star rating to product cards via metafields
+Last commit:            [hash pending commit]
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -275,6 +275,7 @@ Tests passed (QA manual DILMIO_DEV, Operator, 2026-06-04):
 - Alineación: centrado en catálogo (hereda text-align del contexto vía inline-flex),
   izquierda en home — ambos consistentes con títulos y precios de cada card
 - Producto sin metafields: sin rating visible (degradación silenciosa confirmada)
+- Clamp avg [0–5]: avg=7 → muestra "5,0" + 5 estrellas llenas; avg=4,7 → sin cambio
 ```
 
 ---

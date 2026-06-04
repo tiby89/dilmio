@@ -208,8 +208,11 @@
             {%- assign dilmio_avg = card_product.metafields.custom.dilmio_rating_avg -%}
             {%- assign dilmio_count = card_product.metafields.custom.dilmio_rating_count -%}
             {%- if dilmio_avg != blank and dilmio_count != blank and dilmio_count > 0 -%}
-              {%- assign dilmio_pct = dilmio_avg | times: 20 | round -%}
-              {%- assign dilmio_display = dilmio_avg | round: 1 | append: '' | replace: '.', ',' -%}
+              {%- assign dilmio_avg_clamped = dilmio_avg -%}
+              {%- if dilmio_avg > 5 -%}{%- assign dilmio_avg_clamped = 5 -%}{%- endif -%}
+              {%- if dilmio_avg < 0 -%}{%- assign dilmio_avg_clamped = 0 -%}{%- endif -%}
+              {%- assign dilmio_pct = dilmio_avg_clamped | times: 20 | round -%}
+              {%- assign dilmio_display = dilmio_avg_clamped | round: 1 | append: '' | replace: '.', ',' -%}
               <div class="dilmio-card-rating">
                 <span class="dilmio-card-rating__stars" role="img" aria-label="{{ dilmio_avg }} de 5 estrellas">
                   <span class="dilmio-card-rating__stars-empty" aria-hidden="true">★★★★★</span>
