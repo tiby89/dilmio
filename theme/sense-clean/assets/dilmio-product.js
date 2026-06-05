@@ -50,17 +50,20 @@
     // Set CTA state on a single button element
     function applyCTAState(el, variant) {
       if (!el) return;
+      var addLabel = el.dataset.addLabel || 'Añadir al carrito';
+      var soldOutLabel = el.dataset.soldOutLabel || 'Agotado';
+      var unavailableLabel = el.dataset.unavailableLabel || 'No disponible';
       if (!variant) {
         el.disabled = true;
-        el.textContent = 'No disponible';
+        el.textContent = unavailableLabel;
         el.dataset.variantId = '';
       } else if (!variant.available) {
         el.disabled = true;
-        el.textContent = 'Agotado';
+        el.textContent = soldOutLabel;
         el.dataset.variantId = variant.id;
       } else {
         el.disabled = false;
-        el.textContent = 'Añadir al carrito';
+        el.textContent = addLabel;
         el.dataset.variantId = variant.id;
       }
     }

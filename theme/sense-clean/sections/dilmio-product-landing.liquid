@@ -1,26 +1,33 @@
 {{ 'dilmio-product.css' | asset_url | stylesheet_tag }}
 
-{%- assign product = product | default: section.settings.product -%}
+{%- liquid
+  assign landing_product = nil
+  if section.settings.product != blank
+    assign landing_product = section.settings.product
+  elsif request.page_type == 'product'
+    assign landing_product = product
+  endif
+-%}
 {%- if request.page_type == 'product' -%}
-  {%- assign hero_headline        = product.metafields.custom.dilmio_hero_headline.value -%}
-  {%- assign hero_subheadline     = product.metafields.custom.dilmio_hero_subheadline.value -%}
-  {%- assign demo_video_url       = product.metafields.custom.dilmio_demo_video_url.value -%}
-  {%- assign benefit_1            = product.metafields.custom.dilmio_benefit_1.value -%}
-  {%- assign benefit_2            = product.metafields.custom.dilmio_benefit_2.value -%}
-  {%- assign benefit_3            = product.metafields.custom.dilmio_benefit_3.value -%}
-  {%- assign benefit_4            = product.metafields.custom.custom_dilmio_benefit_4.value -%}
-  {%- assign faq_question_1       = product.metafields.custom.dilmio_faq_question_1.value -%}
-  {%- assign faq_question_2       = product.metafields.custom.custom_dilmio_faq_question_2.value -%}
-  {%- assign faq_answer_2         = product.metafields.custom.custom_dilmio_faq_answer_2.value -%}
-  {%- assign faq_question_3       = product.metafields.custom.custom_dilmio_faq_question_3.value -%}
-  {%- assign faq_answer_3         = product.metafields.custom.custom_dilmio_faq_answer_3.value -%}
-  {%- assign how_it_works_heading = product.metafields.custom.dilmio_how_it_works_heading.value -%}
-  {%- assign how_step_1_title     = product.metafields.custom.dilmio_how_step_1_title.value -%}
-  {%- assign how_step_1_text      = product.metafields.custom.dilmio_how_step_1_text.value -%}
-  {%- assign how_step_2_title     = product.metafields.custom.dilmio_how_step_2_title.value -%}
-  {%- assign how_step_2_text      = product.metafields.custom.dilmio_how_step_2_text.value -%}
-  {%- assign how_step_3_title     = product.metafields.custom.dilmio_how_step_3_title.value -%}
-  {%- assign how_step_3_text      = product.metafields.custom.dilmio_how_step_3_text.value -%}
+  {%- assign hero_headline        = landing_product.metafields.custom.dilmio_hero_headline.value -%}
+  {%- assign hero_subheadline     = landing_product.metafields.custom.dilmio_hero_subheadline.value -%}
+  {%- assign demo_video_url       = landing_product.metafields.custom.dilmio_demo_video_url.value -%}
+  {%- assign benefit_1            = landing_product.metafields.custom.dilmio_benefit_1.value -%}
+  {%- assign benefit_2            = landing_product.metafields.custom.dilmio_benefit_2.value -%}
+  {%- assign benefit_3            = landing_product.metafields.custom.dilmio_benefit_3.value -%}
+  {%- assign benefit_4            = landing_product.metafields.custom.custom_dilmio_benefit_4.value -%}
+  {%- assign faq_question_1       = landing_product.metafields.custom.dilmio_faq_question_1.value -%}
+  {%- assign faq_question_2       = landing_product.metafields.custom.custom_dilmio_faq_question_2.value -%}
+  {%- assign faq_answer_2         = landing_product.metafields.custom.custom_dilmio_faq_answer_2.value -%}
+  {%- assign faq_question_3       = landing_product.metafields.custom.custom_dilmio_faq_question_3.value -%}
+  {%- assign faq_answer_3         = landing_product.metafields.custom.custom_dilmio_faq_answer_3.value -%}
+  {%- assign how_it_works_heading = landing_product.metafields.custom.dilmio_how_it_works_heading.value -%}
+  {%- assign how_step_1_title     = landing_product.metafields.custom.dilmio_how_step_1_title.value -%}
+  {%- assign how_step_1_text      = landing_product.metafields.custom.dilmio_how_step_1_text.value -%}
+  {%- assign how_step_2_title     = landing_product.metafields.custom.dilmio_how_step_2_title.value -%}
+  {%- assign how_step_2_text      = landing_product.metafields.custom.dilmio_how_step_2_text.value -%}
+  {%- assign how_step_3_title     = landing_product.metafields.custom.dilmio_how_step_3_title.value -%}
+  {%- assign how_step_3_text      = landing_product.metafields.custom.dilmio_how_step_3_text.value -%}
 {%- else -%}
   {%- assign hero_headline        = section.settings.hero_headline -%}
   {%- assign hero_subheadline     = section.settings.hero_subheadline -%}
@@ -49,19 +56,21 @@
   data-section-id="{{ section.id }}"
 >
 
-  {%- if product == blank -%}
+  {%- if landing_product == blank -%}
 
-    <div class="dilmio-placeholder">
-      <p>Select a product in the Shopify customizer to activate this section.</p>
-    </div>
+    {%- if request.design_mode -%}
+      <div class="dilmio-placeholder">
+        <p>Select a product in the Shopify customizer to activate this section.</p>
+      </div>
+    {%- endif -%}
 
   {%- else -%}
 
-    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign current_variant = landing_product.selected_or_first_available_variant -%}
 
     <script id="dilmio-variants-{{ section.id }}" type="application/json">
       [
-        {%- for variant in product.variants -%}
+        {%- for variant in landing_product.variants -%}
           {
             "id": {{ variant.id }},
             "title": {{ variant.title | json }},
@@ -75,26 +84,23 @@
       ]
     </script>
 
-    {%- if hero_headline != blank or hero_subheadline != blank -%}
-      <div class="dilmio-hero">
-        {%- if hero_headline != blank -%}
-          <div class="dilmio-hero__headline">{{ hero_headline | newline_to_br }}</div>
-        {%- endif -%}
-        {%- if hero_subheadline != blank -%}
-          <p class="dilmio-hero__subheadline">{{ hero_subheadline }}</p>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
+    <div class="dilmio-hero">
+      {%- assign resolved_headline = hero_headline | default: landing_product.title -%}
+      <div class="dilmio-hero__headline">{{ resolved_headline | newline_to_br }}</div>
+      {%- if hero_subheadline != blank -%}
+        <p class="dilmio-hero__subheadline">{{ hero_subheadline }}</p>
+      {%- endif -%}
+    </div>
 
-    <div class="dilmio-landing__inner">
+    <div id="dilmio-buy-core" class="dilmio-landing__inner">
 
       <div class="dilmio-landing__media">
-        {%- if product.featured_image -%}
+        {%- if landing_product.featured_image -%}
           <img
-            src="{{ product.featured_image | image_url: width: 800 }}"
-            alt="{{ product.featured_image.alt | escape }}"
+            src="{{ landing_product.featured_image | image_url: width: 800 }}"
+            alt="{{ landing_product.featured_image.alt | escape }}"
             width="800"
-            height="{{ 800 | divided_by: product.featured_image.aspect_ratio | round }}"
+            height="{{ 800 | divided_by: landing_product.featured_image.aspect_ratio | round }}"
             loading="eager"
           >
         {%- endif -%}
@@ -102,15 +108,15 @@
 
       <div class="dilmio-landing__form">
 
-        <h1 class="dilmio-landing__title">{{ product.title }}</h1>
+        <h1 class="dilmio-landing__title">{{ landing_product.title }}</h1>
 
         <div class="dilmio-landing__price" id="dilmio-price-{{ section.id }}">
           {{ current_variant.price | money }}
         </div>
 
-        {%- unless product.has_only_default_variant -%}
+        {%- unless landing_product.has_only_default_variant -%}
           <div class="dilmio-options" id="dilmio-options-{{ section.id }}">
-            {%- for option in product.options_with_values -%}
+            {%- for option in landing_product.options_with_values -%}
               {%- assign opt_index = forloop.index0 -%}
               <div class="dilmio-option-group" data-option-index="{{ opt_index }}">
                 <p class="dilmio-option-group__label">{{ option.name }}</p>
@@ -139,7 +145,7 @@
           {%- if has_packs -%}
           {%- assign first_pack_rendered = false -%}
           <div class="dilmio-packs" id="dilmio-packs-{{ section.id }}">
-            <p class="dilmio-packs__label">Pack</p>
+            <p class="dilmio-packs__label">{{ section.settings.pack_section_label }}</p>
             <div class="dilmio-packs__values">
 
               {%- if section.settings.pack_label_1 != blank and section.settings.pack_quantity_1 > 0 -%}
@@ -179,9 +185,12 @@
             id="dilmio-cta-{{ section.id }}"
             class="dilmio-cta"
             data-variant-id="{{ current_variant.id }}"
+            data-add-label="{{ section.settings.cta_add_to_cart_label | escape }}"
+            data-sold-out-label="{{ section.settings.cta_sold_out_label | escape }}"
+            data-unavailable-label="No disponible"
             {% unless current_variant.available %}disabled{% endunless %}
           >
-            {%- if current_variant.available -%}Añadir al carrito{%- else -%}Agotado{%- endif -%}
+            {%- if current_variant.available -%}{{ section.settings.cta_add_to_cart_label }}{%- else -%}{{ section.settings.cta_sold_out_label }}{%- endif -%}
           </button>
           <div
             id="dilmio-error-{{ section.id }}"
@@ -355,8 +364,8 @@
             <details class="dilmio-faq__item">
               <summary class="dilmio-faq__question">{{ faq_question_1 }}</summary>
               {%- if request.page_type == 'product' -%}
-                {%- if product.metafields.custom.dilmio_faq_answer_1.value != blank -%}
-                  <div class="dilmio-faq__answer">{{ product.metafields.custom.dilmio_faq_answer_1.value | newline_to_br }}</div>
+                {%- if landing_product.metafields.custom.dilmio_faq_answer_1.value != blank -%}
+                  <div class="dilmio-faq__answer">{{ landing_product.metafields.custom.dilmio_faq_answer_1.value | newline_to_br }}</div>
                 {%- endif -%}
               {%- elsif section.settings.faq_answer_1 != blank -%}
                 <div class="dilmio-faq__answer">{{ section.settings.faq_answer_1 }}</div>
@@ -390,8 +399,8 @@
     >
       <div class="dilmio-sticky__inner">
         <div class="dilmio-sticky__info">
-          <span class="dilmio-sticky__title">{{ product.title }}</span>
-          {%- unless product.has_only_default_variant -%}
+          <span class="dilmio-sticky__title">{{ landing_product.title }}</span>
+          {%- unless landing_product.has_only_default_variant -%}
             <span
               class="dilmio-sticky__variant"
               id="dilmio-sticky-variant-{{ section.id }}"
@@ -407,9 +416,12 @@
           id="dilmio-sticky-cta-{{ section.id }}"
           class="dilmio-cta dilmio-sticky__cta"
           data-variant-id="{{ current_variant.id }}"
+          data-add-label="{{ section.settings.cta_add_to_cart_label | escape }}"
+          data-sold-out-label="{{ section.settings.cta_sold_out_label | escape }}"
+          data-unavailable-label="No disponible"
           {% unless current_variant.available %}disabled{% endunless %}
         >
-          {%- if current_variant.available -%}Añadir al carrito{%- else -%}Agotado{%- endif -%}
+          {%- if current_variant.available -%}{{ section.settings.cta_add_to_cart_label }}{%- else -%}{{ section.settings.cta_sold_out_label }}{%- endif -%}
         </button>
       </div>
     </div>
@@ -560,6 +572,35 @@
       "id": "show_how_it_works",
       "label": "Show how it works",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    {
+      "type": "text",
+      "id": "cta_add_to_cart_label",
+      "label": "CTA — Add to cart",
+      "default": "Añadir al carrito"
+    },
+    {
+      "type": "text",
+      "id": "cta_sold_out_label",
+      "label": "CTA — Sold out",
+      "default": "Agotado"
+    },
+    {
+      "type": "select",
+      "id": "pack_section_label",
+      "label": "Pack section label",
+      "default": "Pack",
+      "options": [
+        {"value": "Pack", "label": "Pack"},
+        {"value": "Plan", "label": "Plan"},
+        {"value": "Licencia", "label": "Licencia"},
+        {"value": "Sesiones", "label": "Sesiones"},
+        {"value": "Cantidad", "label": "Cantidad"}
+      ]
     }
   ],
   "presets": [
