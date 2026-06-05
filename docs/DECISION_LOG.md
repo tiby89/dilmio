@@ -331,3 +331,89 @@ Expected result: Monolith reduced to ~160-170 lines (pure core); narrative
 sections reorderable natively; bleed-through controlled by a uniform contract.
 Status: active — implemented progressively across phases 8D-8G
 ---
+
+---
+Date: 2026-06-05
+Decision: Migrate repeated product content from numbered metafields to Shopify
+Metaobjects, starting with Detalles (dilmio_product_detail) as a pilot, then
+evaluate migration of benefits, how-it-works, FAQ, and before/after bullets
+in subsequent phases.
+Reason: Numbered metafields (detail_1_title..6, benefit_1..4, faq_question_1..3,
+etc.) generate dozens of flat definitions in Shopify Admin per product — difficult
+to manage, non-reorderable, and not scalable across niches. Metaobjects are
+already proven in DILMIO (dilmio_review pattern) and allow Operators to add,
+remove, and reorder items without code changes. GOD theme reusability requires
+Admin to be operable without knowing which numbered slot is which.
+Risk: Each migration reopens a section that already works and is QA-validated,
+introducing a new regression surface. Benefits and FAQ touch the nucleus
+(dilmio-product-landing.liquid) or the OS2.0 extractions planned for 8F/8G —
+migrating them before those phases introduces ordering conflicts. Cost of migrating
+already-entered product content (detail cards loaded for the test product) must
+be accounted for in migration order. Pilot must pass QA before pattern is applied
+to other content types.
+Expected result: Detalles section reads from an iterable list of metaobject
+references instead of 13 numbered metafields; Admin shows one tidy list per
+product. Pattern validated and documented for replication to other content types.
+Status: pending — pilot dilmio_product_detail must validate the pattern before
+migrating remaining content types
+---
+
+---
+Date: 2026-06-05
+Decision: Matar tres secciones narrativas como parte de la landing: Problema/Solución,
+Detalles y CTA Final. Las secciones (archivos .liquid) pueden conservarse en el repo
+pero NO se usan en la landing del cucharón.
+Reason: Problema/Solución es redundante con Antes/Después (mismo trabajo psicológico
+dolor→alivio, pero Antes/Después lo hace visualmente, que convierte mejor). Detalles
+se sustituye por una foto de especificaciones tipo Amazon (más visual, cero metacampos).
+CTA Final es redundante porque el sticky add-to-cart ya acompaña todo el scroll.
+Risk: Si un producto futuro necesitara educar más el problema o specs técnicas extensas,
+reconsiderar. No es el caso del cucharón.
+Expected result: Landing más concisa, visual y sin redundancia. Menos metacampos.
+Status: active
+---
+
+---
+Date: 2026-06-05
+Decision: Posponer la rearquitectura de contenido a bloques OS2.0 / metaobjects.
+Mantener metafields planos, solo podados y reordenados.
+Reason: Se evaluó a fondo el modelo de themes premium (bloques OS2.0 + dynamic sources
+como híbrido). Es la dirección técnicamente correcta para escalar a muchos productos,
+PERO el coste (varias sesiones, riesgo de romper lo que funciona, sin vender mientras)
+no se justifica con un solo producto sin ventas validadas. Coherente con DILMIO_OS:
+no construir infraestructura antes de necesitarla.
+Risk: A escala de muchos productos la edición por metafields será incómoda. Revisar
+cuando haya catálogo validado que lo requiera.
+Expected result: Recursos enfocados en vender el primer producto, no en infraestructura
+prematura. La rearquitectura queda lista para activar cuando el negocio la pida.
+Status: pending — reactivar cuando haya varios productos validados
+---
+
+---
+Date: 2026-06-05
+Decision: Landing premium redefinida a estas secciones en orden: 1) Trust bar,
+2) Hero (carrusel + foto specs + compra + estrellas de reviews), 3) Vídeo demo + FAQ,
+4) Beneficios, 5) Cómo funciona, 6) Antes/Después, 7) Reviews. Criterio rector:
+"inteligencia, no cantidad" — cada sección debe ganarse su sitio; lo visual prima
+porque el público lee poco y ve mucho.
+Reason: Evitar landing inflada de secciones redundantes. Priorizar impacto visual.
+Risk: El bloque Vídeo+FAQ (y ubicación de Beneficios) debe validarse en diseño para
+no saturar.
+Expected result: Landing premium por diseño y concisión, no por acumulación.
+Status: active — pendiente de ejecutar en fase de diseño
+---
+
+---
+Date: 2026-06-05
+Decision: Poda y reordenación de metacampos de producto. Borrados: dilmio_specs_table,
+Detalles DILMIO (+ metaobject dilmio_product_detail y sus entradas + nota),
+dilmio_problem_statement, dilmio_solution_statement. Resto reordenado siguiendo el
+flujo visual de la landing (Hero → Vídeo → Beneficios → Cómo funciona → Antes/Después
+→ Rating/Reviews → FAQ).
+Reason: La ficha de producto tenía ~38 metacampos en orden arbitrario, ingestionable.
+Tras matar secciones y reordenar por flujo visual, queda manejable para un editor inexperto.
+Risk: Borrados irreversibles ya ejecutados en Admin (live). Verificado que las secciones
+muertas no estaban en el template del live, sin huecos en la web pública.
+Expected result: Ficha de producto ordenada y agrupada, sin migrar a metaobjects.
+Status: active
+---
