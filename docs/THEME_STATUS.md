@@ -8,10 +8,10 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 6 — Conversion infrastructure (COMPLETED)
-Last completed phase:   Phase 6 — Conversion infrastructure (6A + 6B MVP + 6C + 6D + reviews)
-Current objective:      Phase 6 cerrada. Await Operator approval para Phase 7.
-Last commit:            633577a docs: add 3 decisions from 2026-06-04 session
+Current phase:          Phase 8B — GOD theme nucleus hardening (COMPLETED)
+Last completed phase:   Phase 8B — hardened labels, landing_product contract, hero fallback
+Current objective:      Pending Operator approval para Phase 8C — SVG icon infrastructure.
+Last commit:            17993bd refactor: harden product landing core labels and product resolution
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -22,7 +22,7 @@ Last commit:            633577a docs: add 3 decisions from 2026-06-04 session
 ```
 Theme folder:   theme/sense-clean/
 Git status:     On branch master — working tree clean
-Last commit:    633577a docs: add 3 decisions from 2026-06-04 session
+Last commit:    17993bd refactor: harden product landing core labels and product resolution
 
 Shopify target: DILMIO_DEV
 Theme ID:       201618030923
@@ -329,6 +329,31 @@ Tests passed (metafield migration, DILMIO_DEV, 2026-06-04):
 - Pack: label "PACK" no aparece sin packs configurados ✓
 - Benefits title en card del split ✓
 - Schema limpio: sin campos de contenido de producto en Theme Editor ✓
+
+Files changed (Phase 8B — GOD theme nucleus hardening, 2026-06-05):
+- theme/sense-clean/sections/dilmio-product-landing.liquid [modified — landing_product contract
+  (no pisa product global); hero fallback a product.title; placeholder seguro con request.design_mode;
+  id="dilmio-buy-core" añadido; data-add-label/data-sold-out-label/data-unavailable-label en CTAs;
+  pack_section_label desde schema; 3 nuevos schema settings (cta_add_to_cart_label,
+  cta_sold_out_label, pack_section_label con select)]
+- theme/sense-clean/assets/dilmio-product.js [modified — applyCTAState lee labels desde
+  el.dataset en vez de strings hardcodeados; fallback a strings originales si dataset vacío]
+
+Commit (Phase 8B):
+- 17993bd refactor: harden product landing core labels and product resolution
+
+Schema changes (Phase 8B):
+- cta_add_to_cart_label (text, default "Añadir al carrito") → label del CTA principal y sticky
+- cta_sold_out_label (text, default "Agotado") → label de agotado en CTA principal y sticky
+- pack_section_label (select: Pack/Plan/Licencia/Sesiones/Cantidad, default "Pack")
+- show_pack default=false confirmado
+
+Tests passed (Phase 8B QA, DILMIO_DEV, Operator, 2026-06-05):
+- Hero fallback: producto sin dilmio_hero_headline → muestra product.title ✓
+- Labels dinámicos: cambiar cta_add_to_cart_label en customizer → CTA y sticky actualizados ✓
+- Variante agotada: cta_sold_out_label configurado → texto correcto + CTA se re-activa ✓
+- Sticky en URL real de preview — sincronizado correctamente ✓
+- Dos productos distintos con template dilmio: cada uno muestra SU contenido sin bleed-through ✓
 ```
 
 ---
@@ -392,12 +417,20 @@ QA pasado (Operator, DILMIO_DEV, 2026-06-04):
 - Benefits title en card del split ✓
 - Schema limpio: sin campos de contenido de producto en Theme Editor ✓
 
+Phase 8B completada (2026-06-05):
+- landing_product contract: product global nunca se pisa. landing_product resuelve por sección.
+- Hero siempre renderiza; fallback a product.title si metafield vacío.
+- Labels CTA/pack configurables desde schema, leídos por JS desde data attributes del DOM.
+- id="dilmio-buy-core" añadido al contenedor del núcleo (CTA final futuro lo usará para scroll).
+- Placeholder seguro: visible solo en editor (request.design_mode); frontend sin producto → nada.
+- QA: dos productos distintos sin bleed-through ✓
+
 Next action:
-- Operator decide inicio de Phase 7 — First real product
+- Proceed to Phase 8C — SVG icon infrastructure, pending Operator approval.
 
 Do not start yet:
-- Phase 7 — First real product (pending Operator go-ahead)
-- Phase 8 — Creatives and traffic (pending Phase 7)
+- Phase 8C — SVG icons (pending Operator go-ahead)
+- Phase 8D → 8H (pending phases anteriores)
 
 Do not touch:
 - templates/*.json
@@ -418,6 +451,10 @@ Do not touch:
 | F6    | Conversion infrastructure   | Completed (6A + 6B MVP + 6C + 6D + reviews)           |
 | F7    | First real product          | Pending   |
 | F8    | Creatives and traffic test  | Blocked until F6 QA + F7 complete |
+| 8B    | GOD nucleus hardening       | Completed (2026-06-05) |
+| 8C    | SVG icon infrastructure     | Pending Operator approval |
+| 8D-8G | OS2.0 section extraction   | Blocked until 8C complete |
+| 8H    | Key normalization           | Blocked until 8G complete |
 
 ---
 
