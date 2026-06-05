@@ -15,27 +15,80 @@
     {%- assign after_image = landing_product.metafields.custom.dilmio_after_image.value -%}
     {%- assign before_label = landing_product.metafields.custom.dilmio_before_label.value -%}
     {%- assign after_label = landing_product.metafields.custom.dilmio_after_label.value -%}
+    {%- assign before_bullet_1 = landing_product.metafields.custom.dilmio_before_bullet_1.value -%}
+    {%- assign before_bullet_2 = landing_product.metafields.custom.dilmio_before_bullet_2.value -%}
+    {%- assign before_bullet_3 = landing_product.metafields.custom.dilmio_before_bullet_3.value -%}
+    {%- assign after_bullet_1 = landing_product.metafields.custom.dilmio_after_bullet_1.value -%}
+    {%- assign after_bullet_2 = landing_product.metafields.custom.dilmio_after_bullet_2.value -%}
+    {%- assign after_bullet_3 = landing_product.metafields.custom.dilmio_after_bullet_3.value -%}
     {%- if before_image != blank or after_image != blank -%}
       <div class="dilmio-before-after">
         <div class="dilmio-before-after__grid">
+
           {%- if before_image != blank -%}
             {%- assign before_alt = before_label | default: landing_product.title -%}
-            <div class="dilmio-before-after__item">
+            <div class="dilmio-before-after__item dilmio-before-after__item--before">
               {{ before_image | image_url: width: 800 | image_tag: class: 'dilmio-before-after__image', alt: before_alt, loading: 'lazy' }}
               {%- if before_label != blank -%}
                 <p class="dilmio-before-after__label">{{ before_label }}</p>
               {%- endif -%}
+              {%- if before_bullet_1 != blank or before_bullet_2 != blank or before_bullet_3 != blank -%}
+                <ul class="dilmio-ba-bullets">
+                  {%- if before_bullet_1 != blank -%}
+                    <li class="dilmio-ba-bullet">
+                      <span class="dilmio-ba-bullet__icon">{% render 'dilmio-trust-icon', icon: 'x' %}</span>
+                      <span class="dilmio-ba-bullet__text">{{ before_bullet_1 }}</span>
+                    </li>
+                  {%- endif -%}
+                  {%- if before_bullet_2 != blank -%}
+                    <li class="dilmio-ba-bullet">
+                      <span class="dilmio-ba-bullet__icon">{% render 'dilmio-trust-icon', icon: 'x' %}</span>
+                      <span class="dilmio-ba-bullet__text">{{ before_bullet_2 }}</span>
+                    </li>
+                  {%- endif -%}
+                  {%- if before_bullet_3 != blank -%}
+                    <li class="dilmio-ba-bullet">
+                      <span class="dilmio-ba-bullet__icon">{% render 'dilmio-trust-icon', icon: 'x' %}</span>
+                      <span class="dilmio-ba-bullet__text">{{ before_bullet_3 }}</span>
+                    </li>
+                  {%- endif -%}
+                </ul>
+              {%- endif -%}
             </div>
           {%- endif -%}
+
           {%- if after_image != blank -%}
             {%- assign after_alt = after_label | default: landing_product.title -%}
-            <div class="dilmio-before-after__item">
+            <div class="dilmio-before-after__item dilmio-before-after__item--after">
               {{ after_image | image_url: width: 800 | image_tag: class: 'dilmio-before-after__image', alt: after_alt, loading: 'lazy' }}
               {%- if after_label != blank -%}
                 <p class="dilmio-before-after__label">{{ after_label }}</p>
               {%- endif -%}
+              {%- if after_bullet_1 != blank or after_bullet_2 != blank or after_bullet_3 != blank -%}
+                <ul class="dilmio-ba-bullets">
+                  {%- if after_bullet_1 != blank -%}
+                    <li class="dilmio-ba-bullet">
+                      <span class="dilmio-ba-bullet__icon">{% render 'dilmio-trust-icon', icon: 'check' %}</span>
+                      <span class="dilmio-ba-bullet__text">{{ after_bullet_1 }}</span>
+                    </li>
+                  {%- endif -%}
+                  {%- if after_bullet_2 != blank -%}
+                    <li class="dilmio-ba-bullet">
+                      <span class="dilmio-ba-bullet__icon">{% render 'dilmio-trust-icon', icon: 'check' %}</span>
+                      <span class="dilmio-ba-bullet__text">{{ after_bullet_2 }}</span>
+                    </li>
+                  {%- endif -%}
+                  {%- if after_bullet_3 != blank -%}
+                    <li class="dilmio-ba-bullet">
+                      <span class="dilmio-ba-bullet__icon">{% render 'dilmio-trust-icon', icon: 'check' %}</span>
+                      <span class="dilmio-ba-bullet__text">{{ after_bullet_3 }}</span>
+                    </li>
+                  {%- endif -%}
+                </ul>
+              {%- endif -%}
             </div>
           {%- endif -%}
+
         </div>
       </div>
     {%- endif -%}
@@ -44,13 +97,13 @@
 
 {% schema %}
 {
-  "name": "DILMIO Before / After",
+  "name": "DILMIO Antes/Después",
   "settings": [
     {
       "type": "checkbox",
       "id": "show_before_after",
       "label": "Show before / after block",
-      "default": false
+      "default": true
     },
     {
       "type": "product",
@@ -60,7 +113,7 @@
   ],
   "presets": [
     {
-      "name": "DILMIO Before / After"
+      "name": "DILMIO — Antes/Después"
     }
   ]
 }

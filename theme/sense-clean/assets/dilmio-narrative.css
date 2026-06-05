@@ -158,11 +158,113 @@
   color: #FDFBF7;
 }
 
+/* ─── Before/After bullets ─── */
+
+.dilmio-ba-bullets {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.dilmio-ba-bullet {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: #444;
+}
+
+.dilmio-ba-bullet__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  color: inherit;
+}
+
+.dilmio-ba-bullet__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dilmio-before-after__item--before .dilmio-ba-bullet__icon {
+  color: #c0392b;
+}
+
+.dilmio-before-after__item--after .dilmio-ba-bullet__icon {
+  color: #2e7d32;
+}
+
+/* ─── Details cards ─── */
+
+.dilmio-details__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.dilmio-details__card {
+  background: #f0f4ec;
+  border: 1px solid #d8e4c8;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.dilmio-details__card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #3E4A2D;
+}
+
+.dilmio-details__card-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+}
+
+.dilmio-details__card-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dilmio-details__card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: inherit;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.dilmio-details__card-text {
+  font-size: 0.875rem;
+  color: #444;
+  line-height: 1.55;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.dilmio-details__note {
+  font-size: 0.8rem;
+  color: #777;
+  margin: 1rem 0 0;
+  text-align: center;
+}
+
 /* ─── Mobile ─── */
 
 @media (max-width: 749px) {
   .dilmio-problem-solution__grid,
-  .dilmio-before-after__grid {
+  .dilmio-before-after__grid,
+  .dilmio-details__grid {
     grid-template-columns: 1fr;
   }
 

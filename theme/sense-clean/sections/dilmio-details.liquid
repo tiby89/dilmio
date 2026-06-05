@@ -11,27 +11,141 @@
 
 {%- unless landing_product == blank -%}
   {%- if section.settings.show_details -%}
-    {%- assign specs_table = landing_product.metafields.custom.dilmio_specs_table.value -%}
-    {%- if specs_table != blank -%}
+
+    {%- assign d1_title = landing_product.metafields.custom.dilmio_detail_1_title.value -%}
+    {%- assign d1_text  = landing_product.metafields.custom.dilmio_detail_1_text.value -%}
+    {%- assign d1_icon  = landing_product.metafields.custom.dilmio_detail_1_icon.value -%}
+    {%- assign d2_title = landing_product.metafields.custom.dilmio_detail_2_title.value -%}
+    {%- assign d2_text  = landing_product.metafields.custom.dilmio_detail_2_text.value -%}
+    {%- assign d2_icon  = landing_product.metafields.custom.dilmio_detail_2_icon.value -%}
+    {%- assign d3_title = landing_product.metafields.custom.dilmio_detail_3_title.value -%}
+    {%- assign d3_text  = landing_product.metafields.custom.dilmio_detail_3_text.value -%}
+    {%- assign d3_icon  = landing_product.metafields.custom.dilmio_detail_3_icon.value -%}
+    {%- assign d4_title = landing_product.metafields.custom.dilmio_detail_4_title.value -%}
+    {%- assign d4_text  = landing_product.metafields.custom.dilmio_detail_4_text.value -%}
+    {%- assign d4_icon  = landing_product.metafields.custom.dilmio_detail_4_icon.value -%}
+    {%- assign d5_title = landing_product.metafields.custom.dilmio_detail_5_title.value -%}
+    {%- assign d5_text  = landing_product.metafields.custom.dilmio_detail_5_text.value -%}
+    {%- assign d5_icon  = landing_product.metafields.custom.dilmio_detail_5_icon.value -%}
+    {%- assign d6_title = landing_product.metafields.custom.dilmio_detail_6_title.value -%}
+    {%- assign d6_text  = landing_product.metafields.custom.dilmio_detail_6_text.value -%}
+    {%- assign d6_icon  = landing_product.metafields.custom.dilmio_detail_6_icon.value -%}
+
+    {%- assign has_cards = false -%}
+    {%- if d1_title != blank or d1_text != blank
+        or d2_title != blank or d2_text != blank
+        or d3_title != blank or d3_text != blank
+        or d4_title != blank or d4_text != blank
+        or d5_title != blank or d5_text != blank
+        or d6_title != blank or d6_text != blank -%}
+      {%- assign has_cards = true -%}
+    {%- endif -%}
+
+    {%- if has_cards -%}
+      {%- assign detail_note = landing_product.metafields.custom.dilmio_detail_note.value -%}
+      {%- if detail_note == blank -%}
+        {%- assign detail_note = section.settings.details_note -%}
+      {%- endif -%}
+
       <div class="dilmio-details">
         {%- if section.settings.details_section_title != blank -%}
           <h2 class="dilmio-details__title">{{ section.settings.details_section_title }}</h2>
         {%- endif -%}
-        <div class="dilmio-details__content">{{ specs_table }}</div>
+
+        <div class="dilmio-details__grid">
+
+          {%- if d1_title != blank or d1_text != blank -%}
+            <div class="dilmio-details__card">
+              <div class="dilmio-details__card-header">
+                {%- if d1_icon != blank -%}
+                  <span class="dilmio-details__card-icon">{% render 'dilmio-trust-icon', icon: d1_icon %}</span>
+                {%- endif -%}
+                {%- if d1_title != blank -%}<h3 class="dilmio-details__card-title">{{ d1_title }}</h3>{%- endif -%}
+              </div>
+              {%- if d1_text != blank -%}<p class="dilmio-details__card-text">{{ d1_text }}</p>{%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if d2_title != blank or d2_text != blank -%}
+            <div class="dilmio-details__card">
+              <div class="dilmio-details__card-header">
+                {%- if d2_icon != blank -%}
+                  <span class="dilmio-details__card-icon">{% render 'dilmio-trust-icon', icon: d2_icon %}</span>
+                {%- endif -%}
+                {%- if d2_title != blank -%}<h3 class="dilmio-details__card-title">{{ d2_title }}</h3>{%- endif -%}
+              </div>
+              {%- if d2_text != blank -%}<p class="dilmio-details__card-text">{{ d2_text }}</p>{%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if d3_title != blank or d3_text != blank -%}
+            <div class="dilmio-details__card">
+              <div class="dilmio-details__card-header">
+                {%- if d3_icon != blank -%}
+                  <span class="dilmio-details__card-icon">{% render 'dilmio-trust-icon', icon: d3_icon %}</span>
+                {%- endif -%}
+                {%- if d3_title != blank -%}<h3 class="dilmio-details__card-title">{{ d3_title }}</h3>{%- endif -%}
+              </div>
+              {%- if d3_text != blank -%}<p class="dilmio-details__card-text">{{ d3_text }}</p>{%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if d4_title != blank or d4_text != blank -%}
+            <div class="dilmio-details__card">
+              <div class="dilmio-details__card-header">
+                {%- if d4_icon != blank -%}
+                  <span class="dilmio-details__card-icon">{% render 'dilmio-trust-icon', icon: d4_icon %}</span>
+                {%- endif -%}
+                {%- if d4_title != blank -%}<h3 class="dilmio-details__card-title">{{ d4_title }}</h3>{%- endif -%}
+              </div>
+              {%- if d4_text != blank -%}<p class="dilmio-details__card-text">{{ d4_text }}</p>{%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if d5_title != blank or d5_text != blank -%}
+            <div class="dilmio-details__card">
+              <div class="dilmio-details__card-header">
+                {%- if d5_icon != blank -%}
+                  <span class="dilmio-details__card-icon">{% render 'dilmio-trust-icon', icon: d5_icon %}</span>
+                {%- endif -%}
+                {%- if d5_title != blank -%}<h3 class="dilmio-details__card-title">{{ d5_title }}</h3>{%- endif -%}
+              </div>
+              {%- if d5_text != blank -%}<p class="dilmio-details__card-text">{{ d5_text }}</p>{%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if d6_title != blank or d6_text != blank -%}
+            <div class="dilmio-details__card">
+              <div class="dilmio-details__card-header">
+                {%- if d6_icon != blank -%}
+                  <span class="dilmio-details__card-icon">{% render 'dilmio-trust-icon', icon: d6_icon %}</span>
+                {%- endif -%}
+                {%- if d6_title != blank -%}<h3 class="dilmio-details__card-title">{{ d6_title }}</h3>{%- endif -%}
+              </div>
+              {%- if d6_text != blank -%}<p class="dilmio-details__card-text">{{ d6_text }}</p>{%- endif -%}
+            </div>
+          {%- endif -%}
+
+        </div>
+
+        {%- if detail_note != blank -%}
+          <p class="dilmio-details__note">{{ detail_note }}</p>
+        {%- endif -%}
       </div>
     {%- endif -%}
+
   {%- endif -%}
 {%- endunless -%}
 
 {% schema %}
 {
-  "name": "DILMIO Details",
+  "name": "DILMIO Detalles",
   "settings": [
     {
       "type": "checkbox",
       "id": "show_details",
       "label": "Show details block",
-      "default": false
+      "default": true
     },
     {
       "type": "product",
@@ -43,11 +157,17 @@
       "id": "details_section_title",
       "label": "Section title",
       "default": "Detalles"
+    },
+    {
+      "type": "text",
+      "id": "details_note",
+      "label": "Bottom note (schema fallback)",
+      "placeholder": "e.g. Las medidas pueden variar ligeramente."
     }
   ],
   "presets": [
     {
-      "name": "DILMIO Details"
+      "name": "DILMIO — Detalles"
     }
   ]
 }
