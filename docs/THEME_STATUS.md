@@ -8,9 +8,9 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 8C — SVG icon infrastructure (COMPLETED)
-Last completed phase:   Phase 8C — SVG trust icon set, snippet render, schema selects
-Current objective:      Pending Operator approval para Phase 8D-0 — Create Safe Dev Clone.
+Current phase:          Phase 8D-0 — Create Safe Dev Clone (COMPLETED)
+Last completed phase:   Phase 8D-0 — safe dev clone created; live theme unchanged
+Current objective:      Pending Operator approval para Phase 8D-1 — OS2.0 narrative sections.
 Last commit:            47c48e7 feat: add SVG trust icon infrastructure
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
@@ -22,14 +22,23 @@ Last commit:            47c48e7 feat: add SVG trust icon infrastructure
 ```
 Theme folder:   theme/sense-clean/
 Git status:     On branch master — working tree clean
-Last commit:    17993bd refactor: harden product landing core labels and product resolution
+Last commit:    47c48e7 feat: add SVG trust icon infrastructure
 
-Shopify target: DILMIO_DEV
-Theme ID:       201618030923
-Role:           LIVE (published — DILMIO_DEV is now the live theme as of 2026-05-29)
-Previous live:  Sense (#201391046987) — now unpublished
+LIVE theme (dilmio.com):
+  Name:   DILMIO_DEV
+  ID:     201618030923
+  Role:   LIVE (published as of 2026-05-29) — serves dilmio.com
 
-IMPORTANT: Pushes to live require manual TTY confirmation from Operator terminal.
+WORKING theme for Phase 8D+ (structural OS2.0 work):
+  Name:   DILMIO_SAFE_DEV_8D
+  ID:     202268836171
+  Role:   unpublished — safe clone created 2026-06-05
+
+Previous live: Sense (#201391046987) — unpublished
+
+RULE (8D+): All pushes for phases 8D-8G go to --theme 202268836171.
+  NEVER push structural 8D+ work to 201618030923 directly.
+  Publish to live (201618030923) only after full QA, via Admin > Themes > Publish.
 ```
 
 ---
@@ -455,10 +464,15 @@ Commit (Phase 8C):
 - 47c48e7 feat: add SVG trust icon infrastructure
 
 Architecture note (Phase 8C):
-- inline_asset_content filter does not reliably resolve dynamic section.settings variables.
-  Render uses {% render 'dilmio-trust-icon', icon: value %} with a case/when snippet instead.
-- schema select default must be a non-blank string ("none") — empty string default ("") causes
-  Shopify to not persist user selections correctly.
+- Root cause of icons not rendering: NOT isolated. Two changes were applied simultaneously
+  and QA passed after both. Do NOT assume either alone was the fix:
+  (1) Schema select default changed from "" to "none". Hypothesis: Shopify may not persist
+      customizer selections when the schema default is an empty string. UNVERIFIED.
+  (2) Render switched from `inline_asset_content` filter to `{% render %}` snippet.
+      Claim that inline_asset_content cannot resolve dynamic section.settings variables
+      is UNVERIFIED and probably incorrect. Snippet approach adopted as cleaner architecture.
+- Lesson: always use a non-blank string as default for select settings in Shopify schema.
+- Lesson: {% render 'snippet', param: value %} with a case/when is reliable for dynamic icons.
 - 4 existing SVG assets (shield, box, return, headset) retained; covered by snippet.
 
 Tests passed (Phase 8C QA, DILMIO_DEV, Operator, 2026-06-05):
@@ -470,20 +484,21 @@ Tests passed (Phase 8C QA, DILMIO_DEV, Operator, 2026-06-05):
 
 Phase 8C completada (2026-06-05).
 
-Next action:
-- Phase 8D-0 — Create Safe Dev Clone (pending Operator go-ahead).
+Phase 8D-0 completada (2026-06-05):
+- DILMIO_SAFE_DEV_8D (#202268836171) created as unpublished duplicate of DILMIO_DEV.
+- Live theme (201618030923) unchanged and still serving dilmio.com.
+- All 8D+ structural pushes target 202268836171.
 
-GATE — do not start Phase 8D without completing Phase 8D-0:
-- Duplicate current DILMIO_DEV theme in Shopify Admin.
-- Confirm new dev theme ID.
-- Confirm DILMIO_DEV remains live; new clone is the working target.
-- All structural OS2.0 / template work goes on the clone, not on live.
+Next action:
+- Phase 8D-1 — crear secciones narrativas OS2.0 nuevas en el safe dev clone,
+  SIN añadirlas todavía a product.dilmio.json (pending Operator go-ahead).
 
 Do not start yet:
-- Phase 8D → 8H (blocked until Phase 8D-0 complete)
+- Phase 8D-1 (pending Operator go-ahead)
+- Phase 8D → 8H structural changes to live theme (201618030923)
 
 Do not touch:
-- templates/*.json
+- templates/*.json on live (201618030923)
 - config/settings_data.json
 ```
 
@@ -503,8 +518,8 @@ Do not touch:
 | F8    | Creatives and traffic test  | Blocked until F6 QA + F7 complete |
 | 8B    | GOD nucleus hardening       | Completed (2026-06-05) |
 | 8C    | SVG icon infrastructure     | Completed (2026-06-05) |
-| 8D-0  | Create Safe Dev Clone       | Pending Operator go-ahead |
-| 8D-8G | OS2.0 section extraction   | Blocked until 8D-0 complete |
+| 8D-0  | Create Safe Dev Clone       | Completed (2026-06-05) |
+| 8D-1+ | OS2.0 section extraction   | Pending Operator go-ahead for 8D-1 |
 | 8H    | Key normalization           | Blocked until 8G complete |
 
 ---
@@ -523,21 +538,33 @@ Always use --only and --nodelete to push only the changed files.
 Never push templates/*.json or config/settings_data.json
 unless explicitly approved by the Operator.
 
-TARGET (always explicit):
-  Theme name:  DILMIO_DEV
-  Theme ID:    201618030923
-  Role:        LIVE (published as of 2026-05-29)
+TARGETS (as of Phase 8D-0):
+
+  LIVE theme (dilmio.com) — do NOT push structural 8D+ work here:
+    Theme name:  DILMIO_DEV
+    Theme ID:    201618030923
+    Role:        LIVE (published as of 2026-05-29)
+
+  WORKING theme for Phase 8D+ — push all structural work here:
+    Theme name:  DILMIO_SAFE_DEV_8D
+    Theme ID:    202268836171
+    Role:        unpublished (safe dev clone)
+
+  8D+ structural work goes to the duplicate (202268836171).
+  Publish to live (201618030923) only after full QA,
+  via Admin > Themes > Publish.
+  Live theme is never pushed to directly during phases 8D-8G.
 
 WORKING DIRECTORY FOR ALL PUSH COMMANDS:
   D:\DILMIO\theme\sense-clean\
 
-SAFE COMMANDS:
+SAFE COMMANDS (Phase 8D+, target = safe dev clone):
 
   Liquid + CSS only:
   shopify theme push \
     --only sections/dilmio-product-landing.liquid \
     --only assets/dilmio-product.css \
-    --theme 201618030923 \
+    --theme 202268836171 \
     --nodelete
 
   Liquid + CSS + JS:
@@ -545,19 +572,19 @@ SAFE COMMANDS:
     --only sections/dilmio-product-landing.liquid \
     --only assets/dilmio-product.css \
     --only assets/dilmio-product.js \
-    --theme 201618030923 \
+    --theme 202268836171 \
     --nodelete
 
 FLAGS EXPLAINED:
   --only      whitelist — only named files are uploaded, nothing else
   --theme     explicit target — no interactive prompt
+  --nodelete  remote files absent locally are not deleted
 
 RISK — DILMIO_DEV IS LIVE:
   Before any structural phase touching templates/*.json, section architecture,
   cart, sticky, or product core, verify the target theme ID and whether it is
   live. If the current target is live, duplicate the theme and work on a safe
   dev copy before implementation.
-  --nodelete  remote files absent locally are not deleted
 ```
 
 ---
