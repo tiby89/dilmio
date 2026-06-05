@@ -8,10 +8,11 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 8D-0 — Create Safe Dev Clone (COMPLETED)
-Last completed phase:   Phase 8D-0 — safe dev clone created; live theme unchanged
-Current objective:      Pending Operator approval para Phase 8D-1 — OS2.0 narrative sections.
-Last commit:            47c48e7 feat: add SVG trust icon infrastructure
+Current phase:          Phase 8D-1 + session cleanup — COMPLETED 2026-06-05
+Last completed phase:   Phase 8D-1 — 4 OS2.0 narrative sections created; 3 killed from landing;
+                        metafield cleanup + reordering in Admin; strategic decisions logged.
+Current objective:      DESIGN PHASE (landing premium 7 secciones) — pendiente de plan en próxima sesión
+Last commit:            2fd5b08 docs: log session decisions — killed sections, postponed OS2.0, redefined landing, metafield cleanup
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -489,13 +490,61 @@ Phase 8D-0 completada (2026-06-05):
 - Live theme (201618030923) unchanged and still serving dilmio.com.
 - All 8D+ structural pushes target 202268836171.
 
+Phase 8D-1 completada (2026-06-05):
+- 4 secciones narrativas OS2.0 creadas: dilmio-problem-solution.liquid,
+  dilmio-before-after.liquid, dilmio-details.liquid, dilmio-cta-final.liquid
+  + snippet dilmio-section-icon.liquid + dilmio-icon-x.svg
+  + assets/dilmio-section-icon.css
+- Commit: 20ddb97 feat: Phase 8D-1 narrative OS2.0 sections
+
+Decisiones estratégicas sesión 2026-06-05 (ver DECISION_LOG.md para detalle):
+1. Secciones muertas de la landing: Problema/Solución, Detalles, CTA Final.
+   Archivos .liquid conservados en repo — inertes, no en product.dilmio.json.
+   Problema/Solución redundante con Antes/Después (mismo trabajo, más visual).
+   Detalles → foto de specs tipo Amazon. CTA Final → sticky ya cubre el scroll.
+2. Rearquitectura a OS2.0 / metaobjects: POSPUESTA.
+   Metafields planos mantenidos, solo podados y reordenados.
+   Reactivar cuando haya catálogo validado que lo requiera.
+3. Landing premium redefinida — 7 secciones en orden:
+   1) Trust bar  2) Hero (carrusel + foto specs + compra + estrellas)
+   3) Vídeo demo + FAQ  4) Beneficios  5) Cómo funciona
+   6) Antes/Después  7) Reviews
+   Criterio: "inteligencia, no cantidad" — lo visual prima.
+4. Poda metacampos en Admin (irreversible):
+   BORRADOS: dilmio_specs_table, Detalles DILMIO + metaobject dilmio_product_detail
+   + entradas + nota, dilmio_problem_statement, dilmio_solution_statement.
+   RENOMBRADOS (solo labels visibles, claves intactas): etiquetas legibles
+   (Hero · Titular, Beneficio 1, Cómo funciona · Paso 1 título, etc.)
+   reordenadas por flujo visual de la landing.
+- Commit decisiones: 2fd5b08
+
+Secciones de la landing — estado actual:
+  ACTIVAS (en uso o planificadas):
+  - dilmio-product-landing.liquid   → Buy Core (hero, variantes, CTA, sticky) [núcleo]
+  - dilmio-trust-bar.liquid         → Trust bar [ya en template]
+  - dilmio-before-after.liquid      → Antes/Después [OS2.0, pendiente añadir a template]
+  - dilmio-reviews.liquid           → Reviews [ya en template, metaobject-driven]
+  - Vídeo demo + FAQ, Beneficios, Cómo funciona: integrados en el núcleo (pendiente separar en diseño)
+
+  INERTES (archivo en repo, NO en ningún template):
+  - dilmio-problem-solution.liquid  → matada; redundante con Antes/Después
+  - dilmio-details.liquid           → matada; sustituida por foto de specs
+  - dilmio-cta-final.liquid         → matada; sticky cubre todo el scroll
+
+Problema conocido abierto (desktop):
+  Bloque vídeo+beneficios vacío en desktop si no hay URL de vídeo.
+  Propuesta pendiente de validar en diseño: FAQ al lado del vídeo
+  (split vídeo izq + FAQ der) para rellenar el layout sin depender del vídeo.
+
 Next action:
-- Phase 8D-1 — crear secciones narrativas OS2.0 nuevas en el safe dev clone,
-  SIN añadirlas todavía a product.dilmio.json (pending Operator go-ahead).
+  PHASE DE DISEÑO — pulido visual de la landing premium (7 secciones).
+  Planificar en próxima sesión fresco con plan escrito antes de tocar archivos.
+  Usar safe dev clone (202268836171). No improvisar — toca el núcleo.
 
 Do not start yet:
-- Phase 8D-1 (pending Operator go-ahead)
-- Phase 8D → 8H structural changes to live theme (201618030923)
+  - Fase de diseño: requiere plan aprobado antes de editar. No improvisación.
+  - Rearquitectura a metaobjects: sigue PENDING. No reactivar hasta catálogo validado.
+  - Añadir secciones a product.dilmio.json: requiere aprobación explícita por archivo.
 
 Do not touch:
 - templates/*.json on live (201618030923)
@@ -519,8 +568,9 @@ Do not touch:
 | 8B    | GOD nucleus hardening       | Completed (2026-06-05) |
 | 8C    | SVG icon infrastructure     | Completed (2026-06-05) |
 | 8D-0  | Create Safe Dev Clone       | Completed (2026-06-05) |
-| 8D-1+ | OS2.0 section extraction   | Pending Operator go-ahead for 8D-1 |
-| 8H    | Key normalization           | Blocked until 8G complete |
+| 8D-1  | OS2.0 narrative sections   | Completed (2026-06-05) — 4 created; 3 killed from landing |
+| 8E    | Design phase (landing)     | Pending — plan required before touching core |
+| 8H    | Key normalization          | Blocked until 8G complete |
 
 ---
 
