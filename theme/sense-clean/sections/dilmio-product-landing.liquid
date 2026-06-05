@@ -341,13 +341,28 @@
         <div class="dilmio-trust">
           <ul class="dilmio-trust__list">
             {%- if section.settings.trust_1 != blank -%}
-              <li class="dilmio-trust__item">{{ section.settings.trust_1 }}</li>
+              <li class="dilmio-trust__item">
+                {%- if section.settings.trust_icon_1 != blank and section.settings.trust_icon_1 != 'none' -%}
+                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_1 %}</span>
+                {%- endif -%}
+                {{ section.settings.trust_1 }}
+              </li>
             {%- endif -%}
             {%- if section.settings.trust_2 != blank -%}
-              <li class="dilmio-trust__item">{{ section.settings.trust_2 }}</li>
+              <li class="dilmio-trust__item">
+                {%- if section.settings.trust_icon_2 != blank and section.settings.trust_icon_2 != 'none' -%}
+                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_2 %}</span>
+                {%- endif -%}
+                {{ section.settings.trust_2 }}
+              </li>
             {%- endif -%}
             {%- if section.settings.trust_3 != blank -%}
-              <li class="dilmio-trust__item">{{ section.settings.trust_3 }}</li>
+              <li class="dilmio-trust__item">
+                {%- if section.settings.trust_icon_3 != blank and section.settings.trust_icon_3 != 'none' -%}
+                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_3 %}</span>
+                {%- endif -%}
+                {{ section.settings.trust_3 }}
+              </li>
             {%- endif -%}
           </ul>
         </div>
@@ -530,6 +545,90 @@
       "id": "trust_3",
       "label": "Trust bullet 3",
       "placeholder": "e.g. 100% satisfaction guarantee"
+    },
+    {
+      "type": "select",
+      "id": "trust_icon_1",
+      "label": "Trust icon 1",
+      "default": "none",
+      "options": [
+        {"value": "none", "label": "None"},
+        {"value": "check", "label": "Check"},
+        {"value": "shield", "label": "Shield"},
+        {"value": "lock", "label": "Lock"},
+        {"value": "star", "label": "Star"},
+        {"value": "heart", "label": "Heart"},
+        {"value": "truck", "label": "Truck"},
+        {"value": "box", "label": "Box"},
+        {"value": "return", "label": "Return"},
+        {"value": "headset", "label": "Headset"},
+        {"value": "leaf", "label": "Leaf"},
+        {"value": "globe", "label": "Globe"},
+        {"value": "award", "label": "Award"},
+        {"value": "lightning", "label": "Lightning"},
+        {"value": "clock", "label": "Clock"},
+        {"value": "phone", "label": "Phone"},
+        {"value": "users", "label": "Users"},
+        {"value": "chart", "label": "Chart"},
+        {"value": "download", "label": "Download"},
+        {"value": "key", "label": "Key"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "trust_icon_2",
+      "label": "Trust icon 2",
+      "default": "none",
+      "options": [
+        {"value": "none", "label": "None"},
+        {"value": "check", "label": "Check"},
+        {"value": "shield", "label": "Shield"},
+        {"value": "lock", "label": "Lock"},
+        {"value": "star", "label": "Star"},
+        {"value": "heart", "label": "Heart"},
+        {"value": "truck", "label": "Truck"},
+        {"value": "box", "label": "Box"},
+        {"value": "return", "label": "Return"},
+        {"value": "headset", "label": "Headset"},
+        {"value": "leaf", "label": "Leaf"},
+        {"value": "globe", "label": "Globe"},
+        {"value": "award", "label": "Award"},
+        {"value": "lightning", "label": "Lightning"},
+        {"value": "clock", "label": "Clock"},
+        {"value": "phone", "label": "Phone"},
+        {"value": "users", "label": "Users"},
+        {"value": "chart", "label": "Chart"},
+        {"value": "download", "label": "Download"},
+        {"value": "key", "label": "Key"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "trust_icon_3",
+      "label": "Trust icon 3",
+      "default": "none",
+      "options": [
+        {"value": "none", "label": "None"},
+        {"value": "check", "label": "Check"},
+        {"value": "shield", "label": "Shield"},
+        {"value": "lock", "label": "Lock"},
+        {"value": "star", "label": "Star"},
+        {"value": "heart", "label": "Heart"},
+        {"value": "truck", "label": "Truck"},
+        {"value": "box", "label": "Box"},
+        {"value": "return", "label": "Return"},
+        {"value": "headset", "label": "Headset"},
+        {"value": "leaf", "label": "Leaf"},
+        {"value": "globe", "label": "Globe"},
+        {"value": "award", "label": "Award"},
+        {"value": "lightning", "label": "Lightning"},
+        {"value": "clock", "label": "Clock"},
+        {"value": "phone", "label": "Phone"},
+        {"value": "users", "label": "Users"},
+        {"value": "chart", "label": "Chart"},
+        {"value": "download", "label": "Download"},
+        {"value": "key", "label": "Key"}
+      ]
     },
     {
       "type": "header",

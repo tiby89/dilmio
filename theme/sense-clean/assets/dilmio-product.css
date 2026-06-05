@@ -317,6 +317,23 @@
 .dilmio-trust__item {
   font-size: 0.875rem;
   color: #444;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dilmio-trust__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  color: inherit;
+}
+
+.dilmio-trust__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* ─── FAQ ─── */
