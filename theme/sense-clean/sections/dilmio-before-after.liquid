@@ -1,0 +1,67 @@
+{{ 'dilmio-narrative.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign landing_product = nil
+  if section.settings.product != blank
+    assign landing_product = section.settings.product
+  elsif request.page_type == 'product'
+    assign landing_product = product
+  endif
+-%}
+
+{%- unless landing_product == blank -%}
+  {%- if section.settings.show_before_after -%}
+    {%- assign before_image = landing_product.metafields.custom.dilmio_before_image.value -%}
+    {%- assign after_image = landing_product.metafields.custom.dilmio_after_image.value -%}
+    {%- assign before_label = landing_product.metafields.custom.dilmio_before_label.value -%}
+    {%- assign after_label = landing_product.metafields.custom.dilmio_after_label.value -%}
+    {%- if before_image != blank or after_image != blank -%}
+      <div class="dilmio-before-after">
+        <div class="dilmio-before-after__grid">
+          {%- if before_image != blank -%}
+            {%- assign before_alt = before_label | default: landing_product.title -%}
+            <div class="dilmio-before-after__item">
+              {{ before_image | image_url: width: 800 | image_tag: class: 'dilmio-before-after__image', alt: before_alt, loading: 'lazy' }}
+              {%- if before_label != blank -%}
+                <p class="dilmio-before-after__label">{{ before_label }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          {%- if after_image != blank -%}
+            {%- assign after_alt = after_label | default: landing_product.title -%}
+            <div class="dilmio-before-after__item">
+              {{ after_image | image_url: width: 800 | image_tag: class: 'dilmio-before-after__image', alt: after_alt, loading: 'lazy' }}
+              {%- if after_label != blank -%}
+                <p class="dilmio-before-after__label">{{ after_label }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "DILMIO Before / After",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_before_after",
+      "label": "Show before / after block",
+      "default": false
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product (fallback for non-product pages)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "DILMIO Before / After"
+    }
+  ]
+}
+{% endschema %}

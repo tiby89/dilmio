@@ -1,0 +1,54 @@
+{{ 'dilmio-narrative.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign landing_product = nil
+  if section.settings.product != blank
+    assign landing_product = section.settings.product
+  elsif request.page_type == 'product'
+    assign landing_product = product
+  endif
+-%}
+
+{%- unless landing_product == blank -%}
+  {%- if section.settings.show_details -%}
+    {%- assign specs_table = landing_product.metafields.custom.dilmio_specs_table.value -%}
+    {%- if specs_table != blank -%}
+      <div class="dilmio-details">
+        {%- if section.settings.details_section_title != blank -%}
+          <h2 class="dilmio-details__title">{{ section.settings.details_section_title }}</h2>
+        {%- endif -%}
+        <div class="dilmio-details__content">{{ specs_table }}</div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "DILMIO Details",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_details",
+      "label": "Show details block",
+      "default": false
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product (fallback for non-product pages)"
+    },
+    {
+      "type": "text",
+      "id": "details_section_title",
+      "label": "Section title",
+      "default": "Detalles"
+    }
+  ],
+  "presets": [
+    {
+      "name": "DILMIO Details"
+    }
+  ]
+}
+{% endschema %}

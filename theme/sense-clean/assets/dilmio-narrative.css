@@ -1,0 +1,179 @@
+/* ─────────────────────────────────────────────
+   DILMIO Narrative Sections — dilmio-narrative.css
+   Shared styles for: problem-solution, before-after, details, cta-final
+   ───────────────────────────────────────────── */
+
+/* ─── Problem / Solution ─── */
+
+.dilmio-problem-solution {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid #e8ede0;
+}
+
+.dilmio-problem-solution__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.dilmio-problem-solution__column {
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.dilmio-problem-solution__column--problem {
+  background: #fdf2f2;
+  border: 1px solid #f5c6c6;
+}
+
+.dilmio-problem-solution__column--solution {
+  background: #f0f4ec;
+  border: 1px solid #c5d6b2;
+}
+
+.dilmio-problem-solution__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3E4A2D;
+  margin: 0 0 0.75rem;
+}
+
+.dilmio-problem-solution__text {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* ─── Before / After ─── */
+
+.dilmio-before-after {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid #e8ede0;
+}
+
+.dilmio-before-after__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.dilmio-before-after__item {
+  text-align: center;
+}
+
+.dilmio-before-after__image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+}
+
+.dilmio-before-after__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #3E4A2D;
+  margin: 0.5rem 0 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Details ─── */
+
+.dilmio-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid #e8ede0;
+}
+
+.dilmio-details__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3E4A2D;
+  margin: 0 0 1.25rem;
+}
+
+.dilmio-details__content {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+.dilmio-details__content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dilmio-details__content td,
+.dilmio-details__content th {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e8ede0;
+  text-align: left;
+  vertical-align: top;
+}
+
+.dilmio-details__content tr:last-child td,
+.dilmio-details__content tr:last-child th {
+  border-bottom: none;
+}
+
+/* ─── CTA Final ─── */
+
+.dilmio-cta-final {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  text-align: center;
+  border-top: 1px solid #e8ede0;
+}
+
+.dilmio-cta-final__headline {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3E4A2D;
+  margin: 0 0 1.5rem;
+  line-height: 1.3;
+}
+
+.dilmio-cta-final__button {
+  display: inline-block;
+  background: #3E4A2D;
+  color: #FDFBF7;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.875rem 2.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.dilmio-cta-final__button:hover {
+  background: #2c3520;
+  color: #FDFBF7;
+}
+
+/* ─── Mobile ─── */
+
+@media (max-width: 749px) {
+  .dilmio-problem-solution__grid,
+  .dilmio-before-after__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dilmio-cta-final__headline {
+    font-size: 1.25rem;
+  }
+
+  .dilmio-cta-final__button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}

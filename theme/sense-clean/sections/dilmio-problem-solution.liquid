@@ -1,0 +1,75 @@
+{{ 'dilmio-narrative.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign landing_product = nil
+  if section.settings.product != blank
+    assign landing_product = section.settings.product
+  elsif request.page_type == 'product'
+    assign landing_product = product
+  endif
+-%}
+
+{%- unless landing_product == blank -%}
+  {%- if section.settings.show_problem_solution -%}
+    {%- assign problem_statement = landing_product.metafields.custom.dilmio_problem_statement.value -%}
+    {%- assign solution_statement = landing_product.metafields.custom.dilmio_solution_statement.value -%}
+    {%- if problem_statement != blank or solution_statement != blank -%}
+      <div class="dilmio-problem-solution">
+        <div class="dilmio-problem-solution__grid">
+          {%- if problem_statement != blank -%}
+            <div class="dilmio-problem-solution__column dilmio-problem-solution__column--problem">
+              {%- if section.settings.problem_column_title != blank -%}
+                <h3 class="dilmio-problem-solution__title">{{ section.settings.problem_column_title }}</h3>
+              {%- endif -%}
+              <div class="dilmio-problem-solution__text">{{ problem_statement }}</div>
+            </div>
+          {%- endif -%}
+          {%- if solution_statement != blank -%}
+            <div class="dilmio-problem-solution__column dilmio-problem-solution__column--solution">
+              {%- if section.settings.solution_column_title != blank -%}
+                <h3 class="dilmio-problem-solution__title">{{ section.settings.solution_column_title }}</h3>
+              {%- endif -%}
+              <div class="dilmio-problem-solution__text">{{ solution_statement }}</div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "DILMIO Problem / Solution",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_problem_solution",
+      "label": "Show problem / solution block",
+      "default": false
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product (fallback for non-product pages)"
+    },
+    {
+      "type": "text",
+      "id": "problem_column_title",
+      "label": "Problem column title",
+      "default": "El problema"
+    },
+    {
+      "type": "text",
+      "id": "solution_column_title",
+      "label": "Solution column title",
+      "default": "La solución"
+    }
+  ],
+  "presets": [
+    {
+      "name": "DILMIO Problem / Solution"
+    }
+  ]
+}
+{% endschema %}
