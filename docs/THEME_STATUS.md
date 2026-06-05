@@ -406,7 +406,11 @@ Schema limpio — Theme Editor solo expone:
 Deuda técnica — naming inconsistente en metafield keys:
   benefit_1/2/3 y FAQ 1 usan prefijo: custom.dilmio_*
   benefit_4, FAQ 2/3 usan prefijo doble: custom.custom_dilmio_*
-  Causa: Shopify auto-generó keys con prefijo "custom_" para los campos creados después.
+  Causa probable (NO verificada): posible error humano al crear el key como
+  custom_dilmio_* cuando el namespace custom ya estaba aplicado, produciendo
+  custom.custom_dilmio_*. NO asumir esta causa como cierta. Antes de Phase 8H,
+  verificar en Shopify Admin el namespace/key real de los 5 campos afectados
+  (benefit_4, faq_question_2/3, faq_answer_2/3) y solo entonces escribir código.
   Impacto: ninguno funcional, pero naming no uniforme.
   Resolución futura: recrear los campos afectados con keys manuales (dilmio_benefit_4, etc.)
   o migrar datos y actualizar keys en Liquid cuando escale a múltiples productos.
@@ -427,10 +431,14 @@ Phase 8B completada (2026-06-05):
 
 Next action:
 - Proceed to Phase 8C — SVG icon infrastructure, pending Operator approval.
+- Do not start Phase 8D until Phase 8D-0 — Create Safe Dev Clone is completed.
+- Phase 8D-0 objective: duplicate current theme, confirm safe dev theme ID,
+  and use that copy for all structural OS2.0/template work.
 
 Do not start yet:
 - Phase 8C — SVG icons (pending Operator go-ahead)
 - Phase 8D → 8H (pending phases anteriores)
+- Phase 8D without completing Phase 8D-0 — Create Safe Dev Clone first
 
 Do not touch:
 - templates/*.json
@@ -499,7 +507,13 @@ SAFE COMMANDS:
 
 FLAGS EXPLAINED:
   --only      whitelist — only named files are uploaded, nothing else
-  --theme     explicit target — no interactive prompt, no wrong-theme risk
+  --theme     explicit target — no interactive prompt
+
+RISK — DILMIO_DEV IS LIVE:
+  Before any structural phase touching templates/*.json, section architecture,
+  cart, sticky, or product core, verify the target theme ID and whether it is
+  live. If the current target is live, duplicate the theme and work on a safe
+  dev copy before implementation.
   --nodelete  remote files absent locally are not deleted
 ```
 
