@@ -8,10 +8,10 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 8B — GOD theme nucleus hardening (COMPLETED)
-Last completed phase:   Phase 8B — hardened labels, landing_product contract, hero fallback
-Current objective:      Pending Operator approval para Phase 8C — SVG icon infrastructure.
-Last commit:            17993bd refactor: harden product landing core labels and product resolution
+Current phase:          Phase 8C — SVG icon infrastructure (COMPLETED)
+Last completed phase:   Phase 8C — SVG trust icon set, snippet render, schema selects
+Current objective:      Pending Operator approval para Phase 8D-0 — Create Safe Dev Clone.
+Last commit:            47c48e7 feat: add SVG trust icon infrastructure
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -429,16 +429,58 @@ Phase 8B completada (2026-06-05):
 - Placeholder seguro: visible solo en editor (request.design_mode); frontend sin producto → nada.
 - QA: dos productos distintos sin bleed-through ✓
 
+Files changed (Phase 8C — SVG icon infrastructure, 2026-06-05):
+- theme/sense-clean/assets/dilmio-icon-check.svg    [NEW]
+- theme/sense-clean/assets/dilmio-icon-lightning.svg [NEW]
+- theme/sense-clean/assets/dilmio-icon-lock.svg      [NEW]
+- theme/sense-clean/assets/dilmio-icon-star.svg      [NEW]
+- theme/sense-clean/assets/dilmio-icon-heart.svg     [NEW]
+- theme/sense-clean/assets/dilmio-icon-truck.svg     [NEW]
+- theme/sense-clean/assets/dilmio-icon-leaf.svg      [NEW]
+- theme/sense-clean/assets/dilmio-icon-globe.svg     [NEW]
+- theme/sense-clean/assets/dilmio-icon-award.svg     [NEW]
+- theme/sense-clean/assets/dilmio-icon-chart.svg     [NEW]
+- theme/sense-clean/assets/dilmio-icon-download.svg  [NEW]
+- theme/sense-clean/assets/dilmio-icon-key.svg       [NEW]
+- theme/sense-clean/assets/dilmio-icon-clock.svg     [NEW]
+- theme/sense-clean/assets/dilmio-icon-users.svg     [NEW]
+- theme/sense-clean/assets/dilmio-icon-phone.svg     [NEW]
+- theme/sense-clean/snippets/dilmio-trust-icon.liquid [NEW — case/when render for all 19 icons]
+- theme/sense-clean/sections/dilmio-product-landing.liquid [modified — trust render uses snippet;
+  schema adds trust_icon_1/2/3 select (default: none); check != blank and != 'none']
+- theme/sense-clean/assets/dilmio-product.css [modified — .dilmio-trust__item flex;
+  .dilmio-trust__icon 14px; .dilmio-trust__icon svg display:block]
+
+Commit (Phase 8C):
+- 47c48e7 feat: add SVG trust icon infrastructure
+
+Architecture note (Phase 8C):
+- inline_asset_content filter does not reliably resolve dynamic section.settings variables.
+  Render uses {% render 'dilmio-trust-icon', icon: value %} with a case/when snippet instead.
+- schema select default must be a non-blank string ("none") — empty string default ("") causes
+  Shopify to not persist user selections correctly.
+- 4 existing SVG assets (shield, box, return, headset) retained; covered by snippet.
+
+Tests passed (Phase 8C QA, DILMIO_DEV, Operator, 2026-06-05):
+- Trust bullets with icons (Truck / Shield / Return): SVG visible, aligned left of text ✓
+- Trust bullets without icon (none selected): text only, no layout break ✓
+- Mobile layout: no horizontal overflow ✓
+- CTA principal and sticky: untouched, still working ✓
+- cart, sticky, variants, product.dilmio.json: not touched ✓
+
+Phase 8C completada (2026-06-05).
+
 Next action:
-- Proceed to Phase 8C — SVG icon infrastructure, pending Operator approval.
-- Do not start Phase 8D until Phase 8D-0 — Create Safe Dev Clone is completed.
-- Phase 8D-0 objective: duplicate current theme, confirm safe dev theme ID,
-  and use that copy for all structural OS2.0/template work.
+- Phase 8D-0 — Create Safe Dev Clone (pending Operator go-ahead).
+
+GATE — do not start Phase 8D without completing Phase 8D-0:
+- Duplicate current DILMIO_DEV theme in Shopify Admin.
+- Confirm new dev theme ID.
+- Confirm DILMIO_DEV remains live; new clone is the working target.
+- All structural OS2.0 / template work goes on the clone, not on live.
 
 Do not start yet:
-- Phase 8C — SVG icons (pending Operator go-ahead)
-- Phase 8D → 8H (pending phases anteriores)
-- Phase 8D without completing Phase 8D-0 — Create Safe Dev Clone first
+- Phase 8D → 8H (blocked until Phase 8D-0 complete)
 
 Do not touch:
 - templates/*.json
@@ -460,8 +502,9 @@ Do not touch:
 | F7    | First real product          | Pending   |
 | F8    | Creatives and traffic test  | Blocked until F6 QA + F7 complete |
 | 8B    | GOD nucleus hardening       | Completed (2026-06-05) |
-| 8C    | SVG icon infrastructure     | Pending Operator approval |
-| 8D-8G | OS2.0 section extraction   | Blocked until 8C complete |
+| 8C    | SVG icon infrastructure     | Completed (2026-06-05) |
+| 8D-0  | Create Safe Dev Clone       | Pending Operator go-ahead |
+| 8D-8G | OS2.0 section extraction   | Blocked until 8D-0 complete |
 | 8H    | Key normalization           | Blocked until 8G complete |
 
 ---
