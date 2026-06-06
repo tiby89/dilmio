@@ -95,20 +95,74 @@
     <div id="dilmio-buy-core" class="dilmio-landing__inner">
 
       <div class="dilmio-landing__media">
-        {%- if landing_product.featured_image -%}
-          <img
-            src="{{ landing_product.featured_image | image_url: width: 800 }}"
-            alt="{{ landing_product.featured_image.alt | escape }}"
-            width="800"
-            height="{{ 800 | divided_by: landing_product.featured_image.aspect_ratio | round }}"
-            loading="eager"
-          >
+        {%- assign first_img = landing_product.images.first -%}
+        {%- if first_img -%}
+          <div class="dilmio-gallery">
+            <div class="dilmio-gallery__main-wrap">
+              <img
+                id="dilmio-gallery-main-{{ section.id }}"
+                src="{{ first_img | image_url: width: 800 }}"
+                alt="{{ first_img.alt | escape }}"
+                width="800"
+                loading="eager"
+              >
+            </div>
+            {%- if landing_product.images.size > 1 -%}
+              <div class="dilmio-gallery__thumbs">
+                {%- for img in landing_product.images -%}
+                  <button
+                    type="button"
+                    class="dilmio-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+                    data-src="{{ img | image_url: width: 800 }}"
+                    data-alt="{{ img.alt | escape }}"
+                  >
+                    <img
+                      src="{{ img | image_url: width: 150 }}"
+                      alt="{{ img.alt | escape }}"
+                      width="150"
+                      loading="lazy"
+                    >
+                  </button>
+                {%- endfor -%}
+              </div>
+              <script>
+                (function(){
+                  var mainImg = document.getElementById('dilmio-gallery-main-{{ section.id }}');
+                  if (!mainImg) return;
+                  document.querySelectorAll('#dilmio-landing-{{ section.id }} .dilmio-gallery__thumb').forEach(function(btn){
+                    btn.addEventListener('click', function(){
+                      mainImg.src = btn.dataset.src;
+                      mainImg.alt = btn.dataset.alt || '';
+                      document.querySelectorAll('#dilmio-landing-{{ section.id }} .dilmio-gallery__thumb').forEach(function(b){
+                        b.classList.remove('is-active');
+                      });
+                      btn.classList.add('is-active');
+                    });
+                  });
+                })();
+              </script>
+            {%- endif -%}
+          </div>
         {%- endif -%}
       </div>
 
       <div class="dilmio-landing__form">
 
         <h1 class="dilmio-landing__title">{{ landing_product.title }}</h1>
+
+        {%- assign rating_avg   = landing_product.metafields.custom.dilmio_rating_avg.value -%}
+        {%- assign rating_count = landing_product.metafields.custom.dilmio_rating_count.value -%}
+        {%- if rating_avg != blank and rating_count != blank -%}
+          {%- assign star_pct = rating_avg | divided_by: 5.0 | times: 100 | round -%}
+          <div class="dilmio-rating">
+            <span class="dilmio-rating__stars" aria-label="{{ rating_avg }} de 5 estrellas">
+              <span class="dilmio-rating__stars-bg">★★★★★</span>
+              <span class="dilmio-rating__stars-fg" style="width:{{ star_pct }}%">★★★★★</span>
+            </span>
+            <span class="dilmio-rating__avg">{{ rating_avg }}</span>
+            <span class="dilmio-rating__count">({{ rating_count }})</span>
+          </div>
+        {%- endif -%}
 
         <div class="dilmio-landing__price" id="dilmio-price-{{ section.id }}">
           {{ current_variant.price | money }}
@@ -199,6 +253,35 @@
             style="display:none;"
           ></div>
         </div>
+
+        {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank -%}
+          <div class="dilmio-trust-inline">
+            {%- if section.settings.trust_1 != blank -%}
+              <span class="dilmio-trust-inline__item">
+                {%- if section.settings.trust_icon_1 != blank and section.settings.trust_icon_1 != 'none' -%}
+                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_1 %}</span>
+                {%- endif -%}
+                {{ section.settings.trust_1 }}
+              </span>
+            {%- endif -%}
+            {%- if section.settings.trust_2 != blank -%}
+              <span class="dilmio-trust-inline__item">
+                {%- if section.settings.trust_icon_2 != blank and section.settings.trust_icon_2 != 'none' -%}
+                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_2 %}</span>
+                {%- endif -%}
+                {{ section.settings.trust_2 }}
+              </span>
+            {%- endif -%}
+            {%- if section.settings.trust_3 != blank -%}
+              <span class="dilmio-trust-inline__item">
+                {%- if section.settings.trust_icon_3 != blank and section.settings.trust_icon_3 != 'none' -%}
+                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_3 %}</span>
+                {%- endif -%}
+                {{ section.settings.trust_3 }}
+              </span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
 
       </div>
     </div>

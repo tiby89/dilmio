@@ -8,11 +8,10 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 8D-1 + session cleanup — COMPLETED 2026-06-05
-Last completed phase:   Phase 8D-1 — 4 OS2.0 narrative sections created; 3 killed from landing;
-                        metafield cleanup + reordering in Admin; strategic decisions logged.
-Current objective:      DESIGN PHASE (landing premium 7 secciones) — pendiente de plan en próxima sesión
-Last commit:            2fd5b08 docs: log session decisions — killed sections, postponed OS2.0, redefined landing, metafield cleanup
+Current phase:          Phase 8E step 1 — Hero redesign (gallery + rating + trust inline) — COMPLETED 2026-06-06
+Last completed phase:   Phase 8E step 1 — gallery from product.images, CSS star rating, trust-inline below CTA; QA passed desktop+mobile.
+Current objective:      Phase 8E step 2 — Video + FAQ section (next step, requires new approval)
+Last commit:            feat: redesign product hero (gallery, rating, trust inline) — Phase 8E step 1
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -536,15 +535,33 @@ Problema conocido abierto (desktop):
   Propuesta pendiente de validar en diseño: FAQ al lado del vídeo
   (split vídeo izq + FAQ der) para rellenar el layout sin depender del vídeo.
 
+Files changed (Phase 8E step 1 — Hero redesign, 2026-06-06):
+- theme/sense-clean/sections/dilmio-product-landing.liquid [modified — gallery from product.images
+  (main img + thumbnails + inline JS switcher; degrades to 1 img if solo 1 imagen);
+  rating block (custom.dilmio_rating_avg + custom.dilmio_rating_count; CSS overlay stars;
+  degrades silently if metafields blank); trust-inline row below CTA (reuses trust_1/2/3 + icons)]
+- theme/sense-clean/assets/dilmio-product.css [modified — .dilmio-gallery, .dilmio-rating,
+  .dilmio-trust-inline styles appended]
+
+Commit (Phase 8E step 1):
+- feat: redesign product hero (gallery, rating, trust inline) — Phase 8E step 1
+
+Tests passed (Phase 8E step 1 QA, DILMIO_SAFE_DEV_8D #202268836171, Operator, 2026-06-06):
+- Galería 1 imagen: sin thumbnails, layout OK ✓
+- Galería varias imágenes: thumbnails + switcher funcional ✓
+- Rating con metafields: estrellas proporcionales, avg, count OK ✓
+- Rating sin metafields: degradación silenciosa ✓
+- Trust inline: aparece con trust_1/2/3 rellenos; invisible si vacíos ✓
+- Variantes, carrito, sticky: sin cambios — plenamente funcional ✓
+- Desktop + móvil: OK ✓
+
 Next action:
-  PHASE DE DISEÑO — pulido visual de la landing premium (7 secciones).
-  Planificar en próxima sesión fresco con plan escrito antes de tocar archivos.
-  Usar safe dev clone (202268836171). No improvisar — toca el núcleo.
+  Phase 8E step 2 — Video + FAQ section. Requiere plan aprobado antes de editar.
 
 Do not start yet:
-  - Fase de diseño: requiere plan aprobado antes de editar. No improvisación.
   - Rearquitectura a metaobjects: sigue PENDING. No reactivar hasta catálogo validado.
   - Añadir secciones a product.dilmio.json: requiere aprobación explícita por archivo.
+  - Deuda custom_dilmio_*: pendiente de verificar en Admin antes de tocar keys.
 
 Do not touch:
 - templates/*.json on live (201618030923)
@@ -569,7 +586,7 @@ Do not touch:
 | 8C    | SVG icon infrastructure     | Completed (2026-06-05) |
 | 8D-0  | Create Safe Dev Clone       | Completed (2026-06-05) |
 | 8D-1  | OS2.0 narrative sections   | Completed (2026-06-05) — 4 created; 3 killed from landing |
-| 8E    | Design phase (landing)     | Pending — plan required before touching core |
+| 8E    | Design phase (landing)     | In Progress — step 1 hero DONE (2026-06-06) |
 | 8H    | Key normalization          | Blocked until 8G complete |
 
 ---

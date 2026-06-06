@@ -656,3 +656,108 @@
 .dilmio-landing {
   padding-bottom: 5rem;
 }
+
+/* ─── Rating ─── */
+
+.dilmio-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.75rem;
+}
+
+.dilmio-rating__stars {
+  position: relative;
+  display: inline-block;
+  font-size: 1.1rem;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.dilmio-rating__stars-bg {
+  color: #ddd;
+  display: block;
+}
+
+.dilmio-rating__stars-fg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #f4a81d;
+}
+
+.dilmio-rating__avg {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.dilmio-rating__count {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* ─── Gallery ─── */
+
+.dilmio-gallery__main-wrap {
+  margin: 0 0 0.75rem;
+}
+
+.dilmio-gallery__main-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.dilmio-gallery__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dilmio-gallery__thumb {
+  padding: 0;
+  border: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  flex: 0 0 auto;
+  transition: border-color 0.15s ease;
+}
+
+.dilmio-gallery__thumb img {
+  display: block;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.dilmio-gallery__thumb.is-active {
+  border-color: #111;
+}
+
+.dilmio-gallery__thumb:hover:not(.is-active) {
+  border-color: #aaa;
+}
+
+/* ─── Trust inline (below CTA in form) ─── */
+
+.dilmio-trust-inline {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+}
+
+.dilmio-trust-inline__item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: #555;
+}
