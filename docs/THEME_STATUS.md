@@ -8,10 +8,10 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 8E step 1 — Hero redesign (gallery + rating + trust inline) — COMPLETED 2026-06-06
-Last completed phase:   Phase 8E step 1 — gallery from product.images, CSS star rating, trust-inline below CTA; QA passed desktop+mobile.
-Current objective:      Phase 8E step 2 — Video + FAQ section (next step, requires new approval)
-Last commit:            feat: redesign product hero (gallery, rating, trust inline) — Phase 8E step 1
+Current phase:          Phase 8E step 2 — Video + benefits + FAQ two-card layout — COMPLETED 2026-06-06
+Last completed phase:   Phase 8E step 2 — video left, right col = two white cards (Benefits card + FAQ card); standalone FAQ section removed; QA passed desktop+mobile.
+Current objective:      Phase 8E step 3 — next step, requires new approval
+Last commit:            feat: video section with separate benefits + FAQ cards — Phase 8E step 2
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
 
@@ -555,8 +555,27 @@ Tests passed (Phase 8E step 1 QA, DILMIO_SAFE_DEV_8D #202268836171, Operator, 20
 - Variantes, carrito, sticky: sin cambios — plenamente funcional ✓
 - Desktop + móvil: OK ✓
 
+Files changed (Phase 8E step 2 — Video + benefits + FAQ two-card layout, 2026-06-06):
+- theme/sense-clean/sections/dilmio-product-landing.liquid [modified — has_right_col restored to
+  has_benefits or has_faq; split right col has two separate card divs (.dilmio-demo-split__benefits-card
+  + .dilmio-demo-split__faq-card); same two-card pattern in dilmio-demo-fallback;
+  standalone dilmio-faq section removed]
+- theme/sense-clean/assets/dilmio-product.css [modified — __right converted to transparent flex-column
+  container; dead __faq/__faq-title CSS removed; new __benefits-card + __faq-card with white card
+  styling (background, border, radius, padding, gap); mobile: each card transparent, no border]
+
+Commit (Phase 8E step 2):
+- feat: video section with separate benefits + FAQ cards — Phase 8E step 2
+
+Tests passed (Phase 8E step 2 QA, DILMIO_SAFE_DEV_8D #202268836171, Operator, 2026-06-06):
+- Vídeo + benefits + FAQ: columna derecha muestra dos cards blancas apiladas ✓
+- FAQ no duplicada (sección standalone eliminada) ✓
+- show_faq toggle controla visibilidad de FAQ card ✓
+- Variantes, carrito, sticky: sin cambios — plenamente funcional ✓
+- Desktop + móvil: OK ✓
+
 Next action:
-  Phase 8E step 2 — Video + FAQ section. Requiere plan aprobado antes de editar.
+  Phase 8E step 3 — Requiere plan aprobado antes de editar.
 
 Do not start yet:
   - Rearquitectura a metaobjects: sigue PENDING. No reactivar hasta catálogo validado.
@@ -586,7 +605,7 @@ Do not touch:
 | 8C    | SVG icon infrastructure     | Completed (2026-06-05) |
 | 8D-0  | Create Safe Dev Clone       | Completed (2026-06-05) |
 | 8D-1  | OS2.0 narrative sections   | Completed (2026-06-05) — 4 created; 3 killed from landing |
-| 8E    | Design phase (landing)     | In Progress — step 1 hero DONE (2026-06-06) |
+| 8E    | Design phase (landing)     | In Progress — step 1 hero DONE, step 2 video+cards DONE (2026-06-06) |
 | 8H    | Key normalization          | Blocked until 8G complete |
 
 ---
