@@ -8,9 +8,9 @@
 ## Estado actual
 
 ```
-Current phase:          Phase 8E step 2 — Video + benefits + FAQ two-card layout — COMPLETED 2026-06-06
+Current phase:          Phase 8E step 3 — Instrucciones de uso + Antes/Después montadas en remoto — COMPLETED 2026-06-08
 Last completed phase:   Phase 8E step 2 — video left, right col = two white cards (Benefits card + FAQ card); standalone FAQ section removed; QA passed desktop+mobile.
-Current objective:      Phase 8E step 3 — next step, requires new approval
+Current objective:      Phase 8E step 4 (sticky) ya implementado dentro del núcleo; revisar cola pre-publicación (rename theme, auditoría Omnibus/reviews, limpieza labels variantes en Admin)
 Last commit:            feat: video section with separate benefits + FAQ cards — Phase 8E step 2
                         (NOTE: 17TRACK work lives in Shopify Admin / 17TRACK app config — not in git)
 ```
@@ -585,6 +585,46 @@ Do not start yet:
 Do not touch:
 - templates/*.json on live (201618030923)
 - config/settings_data.json
+```
+
+---
+
+## Montaje real de la landing (SAFE_DEV_8D · remoto · 2026-06-08)
+
+```
+Template "dilmio" asignado a 6 productos en SAFE_DEV_8D.
+
+ADVERTENCIA: el montaje de secciones de la página de producto vive SOLO en
+el product.dilmio.json del tema remoto 202268836171 (editado vía Shopify
+Admin customizer). El product.dilmio.json LOCAL está congelado en Phase 6A
+(una sola sección: dilmio-product-landing) y NO refleja esto. Por la regla
+de no pushear templates/*.json, ambos nunca se sincronizan.
+
+RIESGO: si se pierde el estado remoto o se pushea el .json local, el montaje
+completo (orden + secciones) desaparece y NO hay copia en git. Recuperación
+sería manual desde este registro.
+
+Orden de secciones montado en el remoto — cuerpo de la plantilla de producto
+(de arriba a abajo, confirmado desde customizer Admin 2026-06-08):
+  1. dilmio-product-landing  (núcleo: hero+galería+rating+variantes+CTA+
+     instrucciones de uso + vídeo/beneficios/FAQ + sticky)
+  2. dilmio-before-after     (El problema / La solución + fotos + listas check)
+  3. dilmio-reviews          (Opiniones de clientes, metaobject-driven)
+
+dilmio-trust-bar — CONFIRMADA como montada en el grupo "Encabezado" del
+  customizer (no en el cuerpo de la plantilla de producto). Aparece en todas
+  las páginas como parte del header global del theme. 4 trust items activos,
+  countdown desactivado.
+
+Secciones que EXISTEN en git pero NO están montadas en el cuerpo del producto:
+  - dilmio-cta-final        (RETIRADA del montaje 2026-06-08; sticky es el
+    único cierre — coherente con DECISION_LOG. Sigue como archivo inerte en repo.)
+  - dilmio-problem-solution (inerte, matada — redundante con before-after)
+  - dilmio-details          (inerte, matada)
+  - dilmio-brand-home       (home, no aplica a producto)
+
+NOTA: este montaje NO está en ningún commit. Vive solo en Shopify Admin.
+Si Claude Code o el Operator necesitan reconstruirlo, este es el registro.
 ```
 
 ---
