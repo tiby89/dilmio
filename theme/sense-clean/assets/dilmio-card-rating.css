@@ -14,7 +14,7 @@
 
 .dilmio-card-rating__stars-empty {
   display: block;
-  color: #d0cdc8;
+  color: var(--dilmio-star-empty);
 }
 
 .dilmio-card-rating__stars-full {
@@ -23,20 +23,20 @@
   left: 0;
   overflow: hidden;
   white-space: nowrap;
-  color: #e8a020;
+  color: var(--dilmio-star);
 }
 
 .dilmio-card-rating__avg {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #3e4a2d;
+  color: var(--dilmio-green);
   white-space: nowrap;
   line-height: 1;
 }
 
 .dilmio-card-rating__count {
   font-size: 0.95rem;
-  color: #6b6b6b;
+  color: var(--dilmio-text-muted);
   white-space: nowrap;
   line-height: 1;
 }

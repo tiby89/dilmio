@@ -31,7 +31,8 @@
   --dilmio-disabled:       #AAAAAA;  /* CTA desactivado, estados off */
 
   /* ── Estrellas ─────────────────────────────────── */
-  --dilmio-star:           #E8A020;  /* color unificado estrellas rating */
+  --dilmio-star:           #E8A020;  /* estrellas llenas */
+  --dilmio-star-empty:     #d0cdc8;  /* estrellas vacías — gris cálido */
 
   /* ── Semánticos ────────────────────────────────── */
   --dilmio-error:          #C0392B;  /* error / estado "antes" (problema) */
