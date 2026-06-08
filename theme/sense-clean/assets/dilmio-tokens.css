@@ -1,0 +1,41 @@
+/* ─────────────────────────────────────────────────────
+   DILMIO Design Tokens — dilmio-tokens.css
+   Fuente única de verdad para todos los colores DILMIO.
+   Cambiar aquí afecta toda la web.
+   Cargado en layout/theme.liquid antes que cualquier
+   otro CSS de DILMIO.
+   ───────────────────────────────────────────────────── */
+
+:root {
+  /* ── Verde marca ───────────────────────────────── */
+  --dilmio-green:          #3d4a2e;  /* principal — botones, checkmarks, links */
+  --dilmio-green-hover:    #4F5E3A;  /* hover sobre verde */
+  --dilmio-green-dark:     #2C3520;  /* pressed / hover CTA oscuro */
+  --dilmio-green-ink:      #1C2412;  /* casi-negro verde — títulos fuertes, iconos */
+  --dilmio-green-tint:     #F0F4EC;  /* fondo verde tenue — solución, details */
+  --dilmio-green-border:   #E8EDE0;  /* borde verde tenue — separadores */
+
+  /* ── Texto ─────────────────────────────────────── */
+  --dilmio-text:           #111111;  /* primario — títulos, CTAs, precios */
+  --dilmio-text-secondary: #444444;  /* cuerpo — párrafos, respuestas FAQ */
+  --dilmio-text-muted:     #666666;  /* hints — fechas, captions, counts */
+
+  /* ── Cremas / fondos ───────────────────────────── */
+  --dilmio-cream:          #FDFBF7;  /* crema DILMIO — cards review, texto sobre verde */
+  --dilmio-cream-bg:       #FAF9F6;  /* fondo de página / hero */
+  --dilmio-cream-section:  #FAF8F5;  /* fondo secciones internas (demo split) */
+
+  /* ── Grises / bordes ───────────────────────────── */
+  --dilmio-border:         #DDDDDD;  /* borde estándar — sticky, inputs, thumbs */
+  --dilmio-border-light:   #EEEEEE;  /* divisores de sección */
+  --dilmio-disabled:       #AAAAAA;  /* CTA desactivado, estados off */
+
+  /* ── Estrellas ─────────────────────────────────── */
+  --dilmio-star:           #E8A020;  /* color unificado estrellas rating */
+
+  /* ── Semánticos ────────────────────────────────── */
+  --dilmio-error:          #C0392B;  /* error / estado "antes" (problema) */
+  --dilmio-before-bg:      #FDF2F2;  /* fondo columna problema */
+  --dilmio-before-border:  #F5C6C6;  /* borde columna problema */
+  --dilmio-after:          #2E7D32;  /* estado "después" (solución) */
+}
