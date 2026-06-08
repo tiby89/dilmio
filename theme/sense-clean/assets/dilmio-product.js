@@ -50,9 +50,9 @@
     // Set CTA state on a single button element
     function applyCTAState(el, variant) {
       if (!el) return;
-      var addLabel = el.dataset.addLabel || 'Añadir al carrito';
-      var soldOutLabel = el.dataset.soldOutLabel || 'Agotado';
-      var unavailableLabel = el.dataset.unavailableLabel || 'No disponible';
+      var addLabel = el.dataset.addLabel || '';
+      var soldOutLabel = el.dataset.soldOutLabel || '';
+      var unavailableLabel = el.dataset.unavailableLabel || '';
       if (!variant) {
         el.disabled = true;
         el.textContent = unavailableLabel;
@@ -129,7 +129,7 @@
         .then(function (res) {
           if (!res.ok) {
             return res.json().then(function (data) {
-              throw new Error(data.description || 'Could not add to cart.');
+              throw new Error(data.description || (errorEl && errorEl.dataset.errorAdd) || '');
             });
           }
           window.location.href = '/cart';
@@ -145,7 +145,7 @@
           });
 
           if (errorEl) {
-            errorEl.textContent = err.message || 'Something went wrong. Please try again.';
+            errorEl.textContent = err.message || errorEl.dataset.errorGeneric || '';
             errorEl.style.display = 'block';
           }
         });

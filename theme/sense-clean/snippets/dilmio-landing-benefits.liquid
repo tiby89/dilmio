@@ -1,0 +1,21 @@
+{%- comment -%}
+  Params: benefit_1, benefit_2, benefit_3, benefit_4
+{%- endcomment -%}
+{%- assign has_benefits = false -%}
+{%- if benefit_1 != blank or benefit_2 != blank or benefit_3 != blank or benefit_4 != blank -%}
+  {%- assign has_benefits = true -%}
+{%- endif -%}
+
+{%- if has_benefits -%}
+  <div class="dilmio-demo-split__benefits-card">
+    {%- if section.settings.benefits_title != blank -%}
+      <h3 class="dilmio-demo-split__benefits-title">{{ section.settings.benefits_title }}</h3>
+    {%- endif -%}
+    <ul class="dilmio-demo-split__benefits">
+      {%- if benefit_1 != blank -%}<li class="dilmio-demo-split__benefit">{{ benefit_1 }}</li>{%- endif -%}
+      {%- if benefit_2 != blank -%}<li class="dilmio-demo-split__benefit">{{ benefit_2 }}</li>{%- endif -%}
+      {%- if benefit_3 != blank -%}<li class="dilmio-demo-split__benefit">{{ benefit_3 }}</li>{%- endif -%}
+      {%- if benefit_4 != blank -%}<li class="dilmio-demo-split__benefit">{{ benefit_4 }}</li>{%- endif -%}
+    </ul>
+  </div>
+{%- endif -%}

@@ -1,0 +1,42 @@
+{%- comment -%}
+  Params: show_video, demo_video_url, has_benefits, benefit_1/2/3/4,
+          has_faq, faq_question_1/2/3, faq_answer_1/2/3
+{%- endcomment -%}
+{%- assign has_right_col = false -%}
+{%- if has_benefits or has_faq -%}{%- assign has_right_col = true -%}{%- endif -%}
+
+{%- if show_video or has_right_col -%}
+  <div class="dilmio-demo-section">
+    {%- if section.settings.demo_video_heading != blank -%}
+      <div class="dilmio-demo-header">
+        <h2 class="dilmio-demo-header__title">{{ section.settings.demo_video_heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- if show_video -%}
+      <div class="dilmio-demo-split">
+        <div class="dilmio-demo-split__video">
+          <video
+            class="dilmio-demo-split__player"
+            src="{{ demo_video_url | escape }}"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+        {%- if has_right_col -%}
+          <div class="dilmio-demo-split__right">
+            {%- render 'dilmio-landing-benefits', benefit_1: benefit_1, benefit_2: benefit_2, benefit_3: benefit_3, benefit_4: benefit_4 -%}
+            {%- render 'dilmio-landing-faq', has_faq: has_faq, faq_question_1: faq_question_1, faq_answer_1: faq_answer_1, faq_question_2: faq_question_2, faq_answer_2: faq_answer_2, faq_question_3: faq_question_3, faq_answer_3: faq_answer_3 -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- elsif has_right_col -%}
+      <div class="dilmio-demo-fallback">
+        {%- render 'dilmio-landing-benefits', benefit_1: benefit_1, benefit_2: benefit_2, benefit_3: benefit_3, benefit_4: benefit_4 -%}
+        {%- render 'dilmio-landing-faq', has_faq: has_faq, faq_question_1: faq_question_1, faq_answer_1: faq_answer_1, faq_question_2: faq_question_2, faq_answer_2: faq_answer_2, faq_question_3: faq_question_3, faq_answer_3: faq_answer_3 -%}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

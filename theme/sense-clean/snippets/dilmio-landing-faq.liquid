@@ -1,0 +1,34 @@
+{%- comment -%}
+  Params: has_faq, faq_question_1/2/3, faq_answer_1/2/3
+{%- endcomment -%}
+{%- if has_faq -%}
+  <div class="dilmio-demo-split__faq-card">
+    {%- if section.settings.faq_title != blank -%}
+      <h3 class="dilmio-demo-split__benefits-title">{{ section.settings.faq_title }}</h3>
+    {%- endif -%}
+    {%- if faq_question_1 != blank -%}
+      <details class="dilmio-faq__item">
+        <summary class="dilmio-faq__question">{{ faq_question_1 }}</summary>
+        {%- if faq_answer_1 != blank -%}
+          <div class="dilmio-faq__answer">{{ faq_answer_1 | newline_to_br }}</div>
+        {%- endif -%}
+      </details>
+    {%- endif -%}
+    {%- if faq_question_2 != blank -%}
+      <details class="dilmio-faq__item">
+        <summary class="dilmio-faq__question">{{ faq_question_2 }}</summary>
+        {%- if faq_answer_2 != blank -%}
+          <div class="dilmio-faq__answer">{{ faq_answer_2 | newline_to_br }}</div>
+        {%- endif -%}
+      </details>
+    {%- endif -%}
+    {%- if faq_question_3 != blank -%}
+      <details class="dilmio-faq__item">
+        <summary class="dilmio-faq__question">{{ faq_question_3 }}</summary>
+        {%- if faq_answer_3 != blank -%}
+          <div class="dilmio-faq__answer">{{ faq_answer_3 | newline_to_br }}</div>
+        {%- endif -%}
+      </details>
+    {%- endif -%}
+  </div>
+{%- endif -%}

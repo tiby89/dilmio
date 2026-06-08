@@ -1,0 +1,52 @@
+{%- comment -%}
+  Params: product
+{%- endcomment -%}
+{%- assign first_img = product.images.first -%}
+{%- if first_img -%}
+  <div class="dilmio-gallery">
+    <div class="dilmio-gallery__main-wrap">
+      <img
+        id="dilmio-gallery-main-{{ section.id }}"
+        src="{{ first_img | image_url: width: 800 }}"
+        alt="{{ first_img.alt | escape }}"
+        width="800"
+        loading="eager"
+      >
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="dilmio-gallery__thumbs">
+        {%- for img in product.images -%}
+          <button
+            type="button"
+            class="dilmio-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+            data-src="{{ img | image_url: width: 800 }}"
+            data-alt="{{ img.alt | escape }}"
+          >
+            <img
+              src="{{ img | image_url: width: 150 }}"
+              alt="{{ img.alt | escape }}"
+              width="150"
+              loading="lazy"
+            >
+          </button>
+        {%- endfor -%}
+      </div>
+      <script>
+        (function(){
+          var mainImg = document.getElementById('dilmio-gallery-main-{{ section.id }}');
+          if (!mainImg) return;
+          document.querySelectorAll('#dilmio-landing-{{ section.id }} .dilmio-gallery__thumb').forEach(function(btn){
+            btn.addEventListener('click', function(){
+              mainImg.src = btn.dataset.src;
+              mainImg.alt = btn.dataset.alt || '';
+              document.querySelectorAll('#dilmio-landing-{{ section.id }} .dilmio-gallery__thumb').forEach(function(b){
+                b.classList.remove('is-active');
+              });
+              btn.classList.add('is-active');
+            });
+          });
+        })();
+      </script>
+    {%- endif -%}
+  </div>
+{%- endif -%}

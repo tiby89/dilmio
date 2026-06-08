@@ -1,0 +1,41 @@
+{%- comment -%}
+  Params: heading, step_1_title, step_1_text, step_2_title, step_2_text, step_3_title, step_3_text
+{%- endcomment -%}
+{%- assign has_steps = false -%}
+{%- if step_1_title != blank or step_1_text != blank -%}{%- assign has_steps = true -%}{%- endif -%}
+{%- if step_2_title != blank or step_2_text != blank -%}{%- assign has_steps = true -%}{%- endif -%}
+{%- if step_3_title != blank or step_3_text != blank -%}{%- assign has_steps = true -%}{%- endif -%}
+
+{%- if has_steps -%}
+  <div class="dilmio-steps">
+    {%- if heading != blank -%}
+      <h2 class="dilmio-steps__heading">{{ heading }}</h2>
+    {%- endif -%}
+    <ol class="dilmio-steps__list">
+      {%- if step_1_title != blank or step_1_text != blank -%}
+        <li class="dilmio-steps__item">
+          <div class="dilmio-steps__body">
+            {%- if step_1_title != blank -%}<span class="dilmio-steps__title">{{ step_1_title }}</span>{%- endif -%}
+            {%- if step_1_text != blank -%}<span class="dilmio-steps__text">{{ step_1_text }}</span>{%- endif -%}
+          </div>
+        </li>
+      {%- endif -%}
+      {%- if step_2_title != blank or step_2_text != blank -%}
+        <li class="dilmio-steps__item">
+          <div class="dilmio-steps__body">
+            {%- if step_2_title != blank -%}<span class="dilmio-steps__title">{{ step_2_title }}</span>{%- endif -%}
+            {%- if step_2_text != blank -%}<span class="dilmio-steps__text">{{ step_2_text }}</span>{%- endif -%}
+          </div>
+        </li>
+      {%- endif -%}
+      {%- if step_3_title != blank or step_3_text != blank -%}
+        <li class="dilmio-steps__item">
+          <div class="dilmio-steps__body">
+            {%- if step_3_title != blank -%}<span class="dilmio-steps__title">{{ step_3_title }}</span>{%- endif -%}
+            {%- if step_3_text != blank -%}<span class="dilmio-steps__text">{{ step_3_text }}</span>{%- endif -%}
+          </div>
+        </li>
+      {%- endif -%}
+    </ol>
+  </div>
+{%- endif -%}

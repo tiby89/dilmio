@@ -1,0 +1,30 @@
+{%- comment -%}
+  Params: product, current_variant
+{%- endcomment -%}
+<div
+  id="dilmio-sticky-{{ section.id }}"
+  class="dilmio-sticky"
+  aria-hidden="true"
+>
+  <div class="dilmio-sticky__inner">
+    <div class="dilmio-sticky__info">
+      <span class="dilmio-sticky__title">{{ product.title }}</span>
+      {%- unless product.has_only_default_variant -%}
+        <span class="dilmio-sticky__variant" id="dilmio-sticky-variant-{{ section.id }}">{{ current_variant.title }}</span>
+      {%- endunless -%}
+      <span class="dilmio-sticky__price" id="dilmio-sticky-price-{{ section.id }}">{{ current_variant.price | money }}</span>
+    </div>
+    <button
+      type="button"
+      id="dilmio-sticky-cta-{{ section.id }}"
+      class="dilmio-cta dilmio-sticky__cta"
+      data-variant-id="{{ current_variant.id }}"
+      data-add-label="{{ section.settings.cta_add_to_cart_label | escape }}"
+      data-sold-out-label="{{ section.settings.cta_sold_out_label | escape }}"
+      data-unavailable-label="{{ section.settings.cta_unavailable_label | escape }}"
+      {% unless current_variant.available %}disabled{% endunless %}
+    >
+      {%- if current_variant.available -%}{{ section.settings.cta_add_to_cart_label }}{%- else -%}{{ section.settings.cta_sold_out_label }}{%- endif -%}
+    </button>
+  </div>
+</div>

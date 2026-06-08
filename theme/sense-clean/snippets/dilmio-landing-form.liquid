@@ -1,0 +1,127 @@
+{%- comment -%}
+  Params: product, current_variant, benefit_1, benefit_2, benefit_3, benefit_4
+{%- endcomment -%}
+<div class="dilmio-landing__form">
+
+  <h1 class="dilmio-landing__title">{{ product.title }}</h1>
+
+  {%- assign rating_avg   = product.metafields.custom.dilmio_rating_avg.value -%}
+  {%- assign rating_count = product.metafields.custom.dilmio_rating_count.value -%}
+  {%- if rating_avg != blank and rating_count != blank -%}
+    {%- assign star_pct = rating_avg | divided_by: 5.0 | times: 100 | round -%}
+    <div class="dilmio-rating">
+      <span class="dilmio-rating__stars" aria-label="{{ rating_avg }} de 5 estrellas">
+        <span class="dilmio-rating__stars-bg">★★★★★</span>
+        <span class="dilmio-rating__stars-fg" style="width:{{ star_pct }}%">★★★★★</span>
+      </span>
+      <span class="dilmio-rating__avg">{{ rating_avg }}</span>
+      <span class="dilmio-rating__count">({{ rating_count }})</span>
+    </div>
+  {%- endif -%}
+
+  <div class="dilmio-landing__price" id="dilmio-price-{{ section.id }}">
+    {{ current_variant.price | money }}
+  </div>
+
+  {%- unless product.has_only_default_variant -%}
+    <div class="dilmio-options" id="dilmio-options-{{ section.id }}">
+      {%- for option in product.options_with_values -%}
+        {%- assign opt_index = forloop.index0 -%}
+        <div class="dilmio-option-group" data-option-index="{{ opt_index }}">
+          <p class="dilmio-option-group__label">{{ option.name }}</p>
+          <div class="dilmio-option-group__values">
+            {%- for value in option.values -%}
+              <button
+                type="button"
+                class="dilmio-option-btn{% if option.selected_value == value %} is-selected{% endif %}"
+                data-option-index="{{ opt_index }}"
+                data-value="{{ value | escape }}"
+              >
+                {{ value }}
+              </button>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endunless -%}
+
+  {%- if section.settings.show_pack -%}
+    {%- assign has_packs = false -%}
+    {%- if section.settings.pack_label_1 != blank and section.settings.pack_quantity_1 > 0 -%}{%- assign has_packs = true -%}{%- endif -%}
+    {%- if section.settings.pack_label_2 != blank and section.settings.pack_quantity_2 > 0 -%}{%- assign has_packs = true -%}{%- endif -%}
+    {%- if section.settings.pack_label_3 != blank and section.settings.pack_quantity_3 > 0 -%}{%- assign has_packs = true -%}{%- endif -%}
+    {%- if has_packs -%}
+      {%- assign first_pack_rendered = false -%}
+      <div class="dilmio-packs" id="dilmio-packs-{{ section.id }}">
+        <p class="dilmio-packs__label">{{ section.settings.pack_section_label }}</p>
+        <div class="dilmio-packs__values">
+          {%- if section.settings.pack_label_1 != blank and section.settings.pack_quantity_1 > 0 -%}
+            <button type="button" class="dilmio-pack-btn{%- unless first_pack_rendered %} is-selected{%- endunless -%}" data-quantity="{{ section.settings.pack_quantity_1 }}">{{ section.settings.pack_label_1 }}</button>
+            {%- assign first_pack_rendered = true -%}
+          {%- endif -%}
+          {%- if section.settings.pack_label_2 != blank and section.settings.pack_quantity_2 > 0 -%}
+            <button type="button" class="dilmio-pack-btn{%- unless first_pack_rendered %} is-selected{%- endunless -%}" data-quantity="{{ section.settings.pack_quantity_2 }}">{{ section.settings.pack_label_2 }}</button>
+            {%- assign first_pack_rendered = true -%}
+          {%- endif -%}
+          {%- if section.settings.pack_label_3 != blank and section.settings.pack_quantity_3 > 0 -%}
+            <button type="button" class="dilmio-pack-btn{%- unless first_pack_rendered %} is-selected{%- endunless -%}" data-quantity="{{ section.settings.pack_quantity_3 }}">{{ section.settings.pack_label_3 }}</button>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  <div class="dilmio-cta-wrap">
+    <button
+      type="button"
+      id="dilmio-cta-{{ section.id }}"
+      class="dilmio-cta"
+      data-variant-id="{{ current_variant.id }}"
+      data-add-label="{{ section.settings.cta_add_to_cart_label | escape }}"
+      data-sold-out-label="{{ section.settings.cta_sold_out_label | escape }}"
+      data-unavailable-label="{{ section.settings.cta_unavailable_label | escape }}"
+      {% unless current_variant.available %}disabled{% endunless %}
+    >
+      {%- if current_variant.available -%}{{ section.settings.cta_add_to_cart_label }}{%- else -%}{{ section.settings.cta_sold_out_label }}{%- endif -%}
+    </button>
+    <div
+      id="dilmio-error-{{ section.id }}"
+      class="dilmio-error"
+      role="alert"
+      style="display:none;"
+      data-error-add="{{ 'sections.cart_items.cart_error' | t | escape }}"
+      data-error-generic="{{ 'general.error.server_error' | t | default: 'Something went wrong. Please try again.' | escape }}"
+    ></div>
+  </div>
+
+  {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank -%}
+    <div class="dilmio-trust-inline">
+      {%- if section.settings.trust_1 != blank -%}
+        <span class="dilmio-trust-inline__item">
+          {%- if section.settings.trust_icon_1 != blank and section.settings.trust_icon_1 != 'none' -%}
+            <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_1 %}</span>
+          {%- endif -%}
+          {{ section.settings.trust_1 }}
+        </span>
+      {%- endif -%}
+      {%- if section.settings.trust_2 != blank -%}
+        <span class="dilmio-trust-inline__item">
+          {%- if section.settings.trust_icon_2 != blank and section.settings.trust_icon_2 != 'none' -%}
+            <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_2 %}</span>
+          {%- endif -%}
+          {{ section.settings.trust_2 }}
+        </span>
+      {%- endif -%}
+      {%- if section.settings.trust_3 != blank -%}
+        <span class="dilmio-trust-inline__item">
+          {%- if section.settings.trust_icon_3 != blank and section.settings.trust_icon_3 != 'none' -%}
+            <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_3 %}</span>
+          {%- endif -%}
+          {{ section.settings.trust_3 }}
+        </span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+</div>

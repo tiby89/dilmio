@@ -8,6 +8,7 @@
     assign landing_product = product
   endif
 -%}
+
 {%- if request.page_type == 'product' -%}
   {%- assign hero_headline        = landing_product.metafields.custom.dilmio_hero_headline.value -%}
   {%- assign hero_subheadline     = landing_product.metafields.custom.dilmio_hero_subheadline.value -%}
@@ -15,12 +16,13 @@
   {%- assign benefit_1            = landing_product.metafields.custom.dilmio_benefit_1.value -%}
   {%- assign benefit_2            = landing_product.metafields.custom.dilmio_benefit_2.value -%}
   {%- assign benefit_3            = landing_product.metafields.custom.dilmio_benefit_3.value -%}
-  {%- assign benefit_4            = landing_product.metafields.custom.custom_dilmio_benefit_4.value -%}
+  {%- assign benefit_4            = landing_product.metafields.custom.dilmio_benefit_4.value -%}
   {%- assign faq_question_1       = landing_product.metafields.custom.dilmio_faq_question_1.value -%}
-  {%- assign faq_question_2       = landing_product.metafields.custom.custom_dilmio_faq_question_2.value -%}
-  {%- assign faq_answer_2         = landing_product.metafields.custom.custom_dilmio_faq_answer_2.value -%}
-  {%- assign faq_question_3       = landing_product.metafields.custom.custom_dilmio_faq_question_3.value -%}
-  {%- assign faq_answer_3         = landing_product.metafields.custom.custom_dilmio_faq_answer_3.value -%}
+  {%- assign faq_answer_1         = landing_product.metafields.custom.dilmio_faq_answer_1.value -%}
+  {%- assign faq_question_2       = landing_product.metafields.custom.dilmio_faq_question_2.value -%}
+  {%- assign faq_answer_2         = landing_product.metafields.custom.dilmio_faq_answer_2.value -%}
+  {%- assign faq_question_3       = landing_product.metafields.custom.dilmio_faq_question_3.value -%}
+  {%- assign faq_answer_3         = landing_product.metafields.custom.dilmio_faq_answer_3.value -%}
   {%- assign how_it_works_heading = landing_product.metafields.custom.dilmio_how_it_works_heading.value -%}
   {%- assign how_step_1_title     = landing_product.metafields.custom.dilmio_how_step_1_title.value -%}
   {%- assign how_step_1_text      = landing_product.metafields.custom.dilmio_how_step_1_text.value -%}
@@ -37,6 +39,7 @@
   {%- assign benefit_3            = section.settings.benefit_3 -%}
   {%- assign benefit_4            = section.settings.benefit_4 -%}
   {%- assign faq_question_1       = section.settings.faq_question_1 -%}
+  {%- assign faq_answer_1         = section.settings.faq_answer_1 -%}
   {%- assign faq_question_2       = section.settings.faq_question_2 -%}
   {%- assign faq_answer_2         = section.settings.faq_answer_2 -%}
   {%- assign faq_question_3       = section.settings.faq_question_3 -%}
@@ -84,8 +87,8 @@
       ]
     </script>
 
+    {%- assign resolved_headline = hero_headline | default: landing_product.title -%}
     <div class="dilmio-hero">
-      {%- assign resolved_headline = hero_headline | default: landing_product.title -%}
       <div class="dilmio-hero__headline">{{ resolved_headline | newline_to_br }}</div>
       {%- if hero_subheadline != blank -%}
         <p class="dilmio-hero__subheadline">{{ hero_subheadline }}</p>
@@ -93,425 +96,67 @@
     </div>
 
     <div id="dilmio-buy-core" class="dilmio-landing__inner">
-
       <div class="dilmio-landing__media">
-        {%- assign first_img = landing_product.images.first -%}
-        {%- if first_img -%}
-          <div class="dilmio-gallery">
-            <div class="dilmio-gallery__main-wrap">
-              <img
-                id="dilmio-gallery-main-{{ section.id }}"
-                src="{{ first_img | image_url: width: 800 }}"
-                alt="{{ first_img.alt | escape }}"
-                width="800"
-                loading="eager"
-              >
-            </div>
-            {%- if landing_product.images.size > 1 -%}
-              <div class="dilmio-gallery__thumbs">
-                {%- for img in landing_product.images -%}
-                  <button
-                    type="button"
-                    class="dilmio-gallery__thumb{% if forloop.first %} is-active{% endif %}"
-                    data-src="{{ img | image_url: width: 800 }}"
-                    data-alt="{{ img.alt | escape }}"
-                  >
-                    <img
-                      src="{{ img | image_url: width: 150 }}"
-                      alt="{{ img.alt | escape }}"
-                      width="150"
-                      loading="lazy"
-                    >
-                  </button>
-                {%- endfor -%}
-              </div>
-              <script>
-                (function(){
-                  var mainImg = document.getElementById('dilmio-gallery-main-{{ section.id }}');
-                  if (!mainImg) return;
-                  document.querySelectorAll('#dilmio-landing-{{ section.id }} .dilmio-gallery__thumb').forEach(function(btn){
-                    btn.addEventListener('click', function(){
-                      mainImg.src = btn.dataset.src;
-                      mainImg.alt = btn.dataset.alt || '';
-                      document.querySelectorAll('#dilmio-landing-{{ section.id }} .dilmio-gallery__thumb').forEach(function(b){
-                        b.classList.remove('is-active');
-                      });
-                      btn.classList.add('is-active');
-                    });
-                  });
-                })();
-              </script>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
+        {%- render 'dilmio-landing-gallery', product: landing_product -%}
       </div>
-
-      <div class="dilmio-landing__form">
-
-        <h1 class="dilmio-landing__title">{{ landing_product.title }}</h1>
-
-        {%- assign rating_avg   = landing_product.metafields.custom.dilmio_rating_avg.value -%}
-        {%- assign rating_count = landing_product.metafields.custom.dilmio_rating_count.value -%}
-        {%- if rating_avg != blank and rating_count != blank -%}
-          {%- assign star_pct = rating_avg | divided_by: 5.0 | times: 100 | round -%}
-          <div class="dilmio-rating">
-            <span class="dilmio-rating__stars" aria-label="{{ rating_avg }} de 5 estrellas">
-              <span class="dilmio-rating__stars-bg">★★★★★</span>
-              <span class="dilmio-rating__stars-fg" style="width:{{ star_pct }}%">★★★★★</span>
-            </span>
-            <span class="dilmio-rating__avg">{{ rating_avg }}</span>
-            <span class="dilmio-rating__count">({{ rating_count }})</span>
-          </div>
-        {%- endif -%}
-
-        <div class="dilmio-landing__price" id="dilmio-price-{{ section.id }}">
-          {{ current_variant.price | money }}
-        </div>
-
-        {%- unless landing_product.has_only_default_variant -%}
-          <div class="dilmio-options" id="dilmio-options-{{ section.id }}">
-            {%- for option in landing_product.options_with_values -%}
-              {%- assign opt_index = forloop.index0 -%}
-              <div class="dilmio-option-group" data-option-index="{{ opt_index }}">
-                <p class="dilmio-option-group__label">{{ option.name }}</p>
-                <div class="dilmio-option-group__values">
-                  {%- for value in option.values -%}
-                    <button
-                      type="button"
-                      class="dilmio-option-btn{% if option.selected_value == value %} is-selected{% endif %}"
-                      data-option-index="{{ opt_index }}"
-                      data-value="{{ value | escape }}"
-                    >
-                      {{ value }}
-                    </button>
-                  {%- endfor -%}
-                </div>
-              </div>
-            {%- endfor -%}
-          </div>
-        {%- endunless -%}
-
-        {%- if section.settings.show_pack -%}
-          {%- assign has_packs = false -%}
-          {%- if section.settings.pack_label_1 != blank and section.settings.pack_quantity_1 > 0 -%}{%- assign has_packs = true -%}{%- endif -%}
-          {%- if section.settings.pack_label_2 != blank and section.settings.pack_quantity_2 > 0 -%}{%- assign has_packs = true -%}{%- endif -%}
-          {%- if section.settings.pack_label_3 != blank and section.settings.pack_quantity_3 > 0 -%}{%- assign has_packs = true -%}{%- endif -%}
-          {%- if has_packs -%}
-          {%- assign first_pack_rendered = false -%}
-          <div class="dilmio-packs" id="dilmio-packs-{{ section.id }}">
-            <p class="dilmio-packs__label">{{ section.settings.pack_section_label }}</p>
-            <div class="dilmio-packs__values">
-
-              {%- if section.settings.pack_label_1 != blank and section.settings.pack_quantity_1 > 0 -%}
-                <button
-                  type="button"
-                  class="dilmio-pack-btn{%- unless first_pack_rendered %} is-selected{%- endunless -%}"
-                  data-quantity="{{ section.settings.pack_quantity_1 }}"
-                >{{ section.settings.pack_label_1 }}</button>
-                {%- assign first_pack_rendered = true -%}
-              {%- endif -%}
-
-              {%- if section.settings.pack_label_2 != blank and section.settings.pack_quantity_2 > 0 -%}
-                <button
-                  type="button"
-                  class="dilmio-pack-btn{%- unless first_pack_rendered %} is-selected{%- endunless -%}"
-                  data-quantity="{{ section.settings.pack_quantity_2 }}"
-                >{{ section.settings.pack_label_2 }}</button>
-                {%- assign first_pack_rendered = true -%}
-              {%- endif -%}
-
-              {%- if section.settings.pack_label_3 != blank and section.settings.pack_quantity_3 > 0 -%}
-                <button
-                  type="button"
-                  class="dilmio-pack-btn{%- unless first_pack_rendered %} is-selected{%- endunless -%}"
-                  data-quantity="{{ section.settings.pack_quantity_3 }}"
-                >{{ section.settings.pack_label_3 }}</button>
-              {%- endif -%}
-
-            </div>
-          </div>
-          {%- endif -%}
-        {%- endif -%}
-
-        <div class="dilmio-cta-wrap">
-          <button
-            type="button"
-            id="dilmio-cta-{{ section.id }}"
-            class="dilmio-cta"
-            data-variant-id="{{ current_variant.id }}"
-            data-add-label="{{ section.settings.cta_add_to_cart_label | escape }}"
-            data-sold-out-label="{{ section.settings.cta_sold_out_label | escape }}"
-            data-unavailable-label="No disponible"
-            {% unless current_variant.available %}disabled{% endunless %}
-          >
-            {%- if current_variant.available -%}{{ section.settings.cta_add_to_cart_label }}{%- else -%}{{ section.settings.cta_sold_out_label }}{%- endif -%}
-          </button>
-          <div
-            id="dilmio-error-{{ section.id }}"
-            class="dilmio-error"
-            role="alert"
-            style="display:none;"
-          ></div>
-        </div>
-
-        {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank -%}
-          <div class="dilmio-trust-inline">
-            {%- if section.settings.trust_1 != blank -%}
-              <span class="dilmio-trust-inline__item">
-                {%- if section.settings.trust_icon_1 != blank and section.settings.trust_icon_1 != 'none' -%}
-                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_1 %}</span>
-                {%- endif -%}
-                {{ section.settings.trust_1 }}
-              </span>
-            {%- endif -%}
-            {%- if section.settings.trust_2 != blank -%}
-              <span class="dilmio-trust-inline__item">
-                {%- if section.settings.trust_icon_2 != blank and section.settings.trust_icon_2 != 'none' -%}
-                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_2 %}</span>
-                {%- endif -%}
-                {{ section.settings.trust_2 }}
-              </span>
-            {%- endif -%}
-            {%- if section.settings.trust_3 != blank -%}
-              <span class="dilmio-trust-inline__item">
-                {%- if section.settings.trust_icon_3 != blank and section.settings.trust_icon_3 != 'none' -%}
-                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_3 %}</span>
-                {%- endif -%}
-                {{ section.settings.trust_3 }}
-              </span>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-
-      </div>
+      {%- render 'dilmio-landing-form',
+        product: landing_product,
+        current_variant: current_variant,
+        benefit_1: benefit_1,
+        benefit_2: benefit_2,
+        benefit_3: benefit_3,
+        benefit_4: benefit_4
+      -%}
     </div>
 
     {%- if section.settings.show_how_it_works -%}
-      {%- assign has_steps = false -%}
-      {%- if how_step_1_title != blank or how_step_1_text != blank -%}
-        {%- assign has_steps = true -%}
-      {%- endif -%}
-      {%- if how_step_2_title != blank or how_step_2_text != blank -%}
-        {%- assign has_steps = true -%}
-      {%- endif -%}
-      {%- if how_step_3_title != blank or how_step_3_text != blank -%}
-        {%- assign has_steps = true -%}
-      {%- endif -%}
-      {%- if has_steps -%}
-        <div class="dilmio-steps">
-          {%- if how_it_works_heading != blank -%}
-            <h2 class="dilmio-steps__heading">{{ how_it_works_heading }}</h2>
-          {%- endif -%}
-          <ol class="dilmio-steps__list">
-            {%- if how_step_1_title != blank or how_step_1_text != blank -%}
-              <li class="dilmio-steps__item">
-                <div class="dilmio-steps__body">
-                  {%- if how_step_1_title != blank -%}
-                    <span class="dilmio-steps__title">{{ how_step_1_title }}</span>
-                  {%- endif -%}
-                  {%- if how_step_1_text != blank -%}
-                    <span class="dilmio-steps__text">{{ how_step_1_text }}</span>
-                  {%- endif -%}
-                </div>
-              </li>
-            {%- endif -%}
-            {%- if how_step_2_title != blank or how_step_2_text != blank -%}
-              <li class="dilmio-steps__item">
-                <div class="dilmio-steps__body">
-                  {%- if how_step_2_title != blank -%}
-                    <span class="dilmio-steps__title">{{ how_step_2_title }}</span>
-                  {%- endif -%}
-                  {%- if how_step_2_text != blank -%}
-                    <span class="dilmio-steps__text">{{ how_step_2_text }}</span>
-                  {%- endif -%}
-                </div>
-              </li>
-            {%- endif -%}
-            {%- if how_step_3_title != blank or how_step_3_text != blank -%}
-              <li class="dilmio-steps__item">
-                <div class="dilmio-steps__body">
-                  {%- if how_step_3_title != blank -%}
-                    <span class="dilmio-steps__title">{{ how_step_3_title }}</span>
-                  {%- endif -%}
-                  {%- if how_step_3_text != blank -%}
-                    <span class="dilmio-steps__text">{{ how_step_3_text }}</span>
-                  {%- endif -%}
-                </div>
-              </li>
-            {%- endif -%}
-          </ol>
-        </div>
-      {%- endif -%}
+      {%- render 'dilmio-landing-steps',
+        heading: how_it_works_heading,
+        step_1_title: how_step_1_title,
+        step_1_text: how_step_1_text,
+        step_2_title: how_step_2_title,
+        step_2_text: how_step_2_text,
+        step_3_title: how_step_3_title,
+        step_3_text: how_step_3_text
+      -%}
     {%- endif -%}
 
-    {%- assign show_video = false -%}
-    {%- if request.page_type == 'product' and demo_video_url != blank -%}
-      {%- assign show_video = true -%}
-    {%- elsif section.settings.show_demo_video and demo_video_url != blank -%}
-      {%- assign show_video = true -%}
-    {%- endif -%}
+    {%- liquid
+      assign show_video = false
+      if request.page_type == 'product' and demo_video_url != blank
+        assign show_video = true
+      elsif section.settings.show_demo_video and demo_video_url != blank
+        assign show_video = true
+      endif
 
-    {%- assign has_benefits = false -%}
-    {%- if benefit_1 != blank or benefit_2 != blank or benefit_3 != blank or benefit_4 != blank -%}
-      {%- assign has_benefits = true -%}
-    {%- endif -%}
+      assign has_benefits = false
+      if benefit_1 != blank or benefit_2 != blank or benefit_3 != blank or benefit_4 != blank
+        assign has_benefits = true
+      endif
 
-    {%- assign has_faq_question = false -%}
-    {%- if faq_question_1 != blank or faq_question_2 != blank or faq_question_3 != blank -%}
-      {%- assign has_faq_question = true -%}
-    {%- endif -%}
-    {%- assign has_faq = false -%}
-    {%- if section.settings.show_faq and has_faq_question -%}
-      {%- assign has_faq = true -%}
-    {%- endif -%}
-
-    {%- assign has_right_col = false -%}
-    {%- if has_benefits or has_faq -%}
-      {%- assign has_right_col = true -%}
-    {%- endif -%}
-
-    {%- if show_video or has_right_col -%}
-      <div class="dilmio-demo-section">
-        {%- if section.settings.demo_video_heading != blank -%}
-          <div class="dilmio-demo-header">
-            <h2 class="dilmio-demo-header__title">{{ section.settings.demo_video_heading }}</h2>
-          </div>
-        {%- endif -%}
-        {%- if show_video -%}
-          <div class="dilmio-demo-split">
-            <div class="dilmio-demo-split__video">
-              <video
-                class="dilmio-demo-split__player"
-                src="{{ demo_video_url | escape }}"
-                autoplay
-                muted
-                loop
-                playsinline
-              ></video>
-            </div>
-            {%- if has_right_col -%}
-              <div class="dilmio-demo-split__right">
-                {%- if has_benefits -%}
-                  <div class="dilmio-demo-split__benefits-card">
-                    {%- if section.settings.benefits_title != blank -%}
-                      <h3 class="dilmio-demo-split__benefits-title">{{ section.settings.benefits_title }}</h3>
-                    {%- endif -%}
-                    <ul class="dilmio-demo-split__benefits">
-                      {%- if benefit_1 != blank -%}
-                        <li class="dilmio-demo-split__benefit">{{ benefit_1 }}</li>
-                      {%- endif -%}
-                      {%- if benefit_2 != blank -%}
-                        <li class="dilmio-demo-split__benefit">{{ benefit_2 }}</li>
-                      {%- endif -%}
-                      {%- if benefit_3 != blank -%}
-                        <li class="dilmio-demo-split__benefit">{{ benefit_3 }}</li>
-                      {%- endif -%}
-                      {%- if benefit_4 != blank -%}
-                        <li class="dilmio-demo-split__benefit">{{ benefit_4 }}</li>
-                      {%- endif -%}
-                    </ul>
-                  </div>
-                {%- endif -%}
-                {%- if has_faq -%}
-                  <div class="dilmio-demo-split__faq-card">
-                    {%- if section.settings.faq_title != blank -%}
-                      <h3 class="dilmio-demo-split__benefits-title">{{ section.settings.faq_title }}</h3>
-                    {%- endif -%}
-                    {%- if faq_question_1 != blank -%}
-                      <details class="dilmio-faq__item">
-                        <summary class="dilmio-faq__question">{{ faq_question_1 }}</summary>
-                        {%- if request.page_type == 'product' -%}
-                          {%- if landing_product.metafields.custom.dilmio_faq_answer_1.value != blank -%}
-                            <div class="dilmio-faq__answer">{{ landing_product.metafields.custom.dilmio_faq_answer_1.value | newline_to_br }}</div>
-                          {%- endif -%}
-                        {%- elsif section.settings.faq_answer_1 != blank -%}
-                          <div class="dilmio-faq__answer">{{ section.settings.faq_answer_1 }}</div>
-                        {%- endif -%}
-                      </details>
-                    {%- endif -%}
-                    {%- if faq_question_2 != blank -%}
-                      <details class="dilmio-faq__item">
-                        <summary class="dilmio-faq__question">{{ faq_question_2 }}</summary>
-                        {%- if faq_answer_2 != blank -%}
-                          <div class="dilmio-faq__answer">{{ faq_answer_2 | newline_to_br }}</div>
-                        {%- endif -%}
-                      </details>
-                    {%- endif -%}
-                    {%- if faq_question_3 != blank -%}
-                      <details class="dilmio-faq__item">
-                        <summary class="dilmio-faq__question">{{ faq_question_3 }}</summary>
-                        {%- if faq_answer_3 != blank -%}
-                          <div class="dilmio-faq__answer">{{ faq_answer_3 | newline_to_br }}</div>
-                        {%- endif -%}
-                      </details>
-                    {%- endif -%}
-                  </div>
-                {%- endif -%}
-              </div>
-            {%- endif -%}
-          </div>
-        {%- elsif has_right_col -%}
-          <div class="dilmio-demo-fallback">
-            {%- if has_benefits -%}
-              <div class="dilmio-demo-split__benefits-card">
-                {%- if section.settings.benefits_title != blank -%}
-                  <h3 class="dilmio-demo-split__benefits-title">{{ section.settings.benefits_title }}</h3>
-                {%- endif -%}
-                <ul class="dilmio-demo-split__benefits">
-                  {%- if benefit_1 != blank -%}
-                    <li class="dilmio-demo-split__benefit">{{ benefit_1 }}</li>
-                  {%- endif -%}
-                  {%- if benefit_2 != blank -%}
-                    <li class="dilmio-demo-split__benefit">{{ benefit_2 }}</li>
-                  {%- endif -%}
-                  {%- if benefit_3 != blank -%}
-                    <li class="dilmio-demo-split__benefit">{{ benefit_3 }}</li>
-                  {%- endif -%}
-                  {%- if benefit_4 != blank -%}
-                    <li class="dilmio-demo-split__benefit">{{ benefit_4 }}</li>
-                  {%- endif -%}
-                </ul>
-              </div>
-            {%- endif -%}
-            {%- if has_faq -%}
-              <div class="dilmio-demo-split__faq-card">
-                {%- if section.settings.faq_title != blank -%}
-                  <h3 class="dilmio-demo-split__benefits-title">{{ section.settings.faq_title }}</h3>
-                {%- endif -%}
-                {%- if faq_question_1 != blank -%}
-                  <details class="dilmio-faq__item">
-                    <summary class="dilmio-faq__question">{{ faq_question_1 }}</summary>
-                    {%- if request.page_type == 'product' -%}
-                      {%- if landing_product.metafields.custom.dilmio_faq_answer_1.value != blank -%}
-                        <div class="dilmio-faq__answer">{{ landing_product.metafields.custom.dilmio_faq_answer_1.value | newline_to_br }}</div>
-                      {%- endif -%}
-                    {%- elsif section.settings.faq_answer_1 != blank -%}
-                      <div class="dilmio-faq__answer">{{ section.settings.faq_answer_1 }}</div>
-                    {%- endif -%}
-                  </details>
-                {%- endif -%}
-                {%- if faq_question_2 != blank -%}
-                  <details class="dilmio-faq__item">
-                    <summary class="dilmio-faq__question">{{ faq_question_2 }}</summary>
-                    {%- if faq_answer_2 != blank -%}
-                      <div class="dilmio-faq__answer">{{ faq_answer_2 | newline_to_br }}</div>
-                    {%- endif -%}
-                  </details>
-                {%- endif -%}
-                {%- if faq_question_3 != blank -%}
-                  <details class="dilmio-faq__item">
-                    <summary class="dilmio-faq__question">{{ faq_question_3 }}</summary>
-                    {%- if faq_answer_3 != blank -%}
-                      <div class="dilmio-faq__answer">{{ faq_answer_3 | newline_to_br }}</div>
-                    {%- endif -%}
-                  </details>
-                {%- endif -%}
-              </div>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
+      assign has_faq = false
+      if section.settings.show_faq
+        if faq_question_1 != blank or faq_question_2 != blank or faq_question_3 != blank
+          assign has_faq = true
+        endif
+      endif
+    -%}
+    {%- render 'dilmio-landing-demo',
+      show_video: show_video,
+      demo_video_url: demo_video_url,
+      has_benefits: has_benefits,
+      benefit_1: benefit_1,
+      benefit_2: benefit_2,
+      benefit_3: benefit_3,
+      benefit_4: benefit_4,
+      has_faq: has_faq,
+      faq_question_1: faq_question_1,
+      faq_answer_1: faq_answer_1,
+      faq_question_2: faq_question_2,
+      faq_answer_2: faq_answer_2,
+      faq_question_3: faq_question_3,
+      faq_answer_3: faq_answer_3
+    -%}
 
     {%- if section.settings.show_trust -%}
       {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank -%}
@@ -546,40 +191,7 @@
       {%- endif -%}
     {%- endif -%}
 
-
-    <div
-      id="dilmio-sticky-{{ section.id }}"
-      class="dilmio-sticky"
-      aria-hidden="true"
-    >
-      <div class="dilmio-sticky__inner">
-        <div class="dilmio-sticky__info">
-          <span class="dilmio-sticky__title">{{ landing_product.title }}</span>
-          {%- unless landing_product.has_only_default_variant -%}
-            <span
-              class="dilmio-sticky__variant"
-              id="dilmio-sticky-variant-{{ section.id }}"
-            >{{ current_variant.title }}</span>
-          {%- endunless -%}
-          <span
-            class="dilmio-sticky__price"
-            id="dilmio-sticky-price-{{ section.id }}"
-          >{{ current_variant.price | money }}</span>
-        </div>
-        <button
-          type="button"
-          id="dilmio-sticky-cta-{{ section.id }}"
-          class="dilmio-cta dilmio-sticky__cta"
-          data-variant-id="{{ current_variant.id }}"
-          data-add-label="{{ section.settings.cta_add_to_cart_label | escape }}"
-          data-sold-out-label="{{ section.settings.cta_sold_out_label | escape }}"
-          data-unavailable-label="No disponible"
-          {% unless current_variant.available %}disabled{% endunless %}
-        >
-          {%- if current_variant.available -%}{{ section.settings.cta_add_to_cart_label }}{%- else -%}{{ section.settings.cta_sold_out_label }}{%- endif -%}
-        </button>
-      </div>
-    </div>
+    {%- render 'dilmio-landing-sticky', product: landing_product, current_variant: current_variant -%}
 
   {%- endif -%}
 
@@ -827,6 +439,12 @@
       "id": "cta_sold_out_label",
       "label": "CTA — Sold out",
       "default": "Agotado"
+    },
+    {
+      "type": "text",
+      "id": "cta_unavailable_label",
+      "label": "CTA — Unavailable",
+      "default": "No disponible"
     },
     {
       "type": "select",
