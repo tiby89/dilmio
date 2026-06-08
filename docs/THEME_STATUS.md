@@ -21,8 +21,8 @@ Last commit:            feat: video section with separate benefits + FAQ cards �
 
 ```
 Theme folder:   theme/sense-clean/
-Git status:     On branch master — working tree clean
-Last commit:    47c48e7 feat: add SVG trust icon infrastructure
+Git status:     On branch master — working tree clean (untracked: backups/*.zip, ignored)
+Last commit:    1a4e54b feat: video section with separate benefits + FAQ cards — Phase 8E step 2
 
 LIVE theme (dilmio.com):
   Name:   DILMIO_DEV
