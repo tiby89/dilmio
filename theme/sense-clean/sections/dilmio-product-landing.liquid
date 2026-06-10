@@ -123,9 +123,7 @@
 
     {%- liquid
       assign show_video = false
-      if request.page_type == 'product' and demo_video_url != blank
-        assign show_video = true
-      elsif section.settings.show_demo_video and demo_video_url != blank
+      if section.settings.show_demo_video and demo_video_url != blank
         assign show_video = true
       endif
 
