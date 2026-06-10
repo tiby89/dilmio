@@ -130,8 +130,10 @@
       endif
 
       assign has_benefits = false
-      if benefit_1 != blank or benefit_2 != blank or benefit_3 != blank or benefit_4 != blank
-        assign has_benefits = true
+      if section.settings.show_benefits
+        if benefit_1 != blank or benefit_2 != blank or benefit_3 != blank or benefit_4 != blank
+          assign has_benefits = true
+        endif
       endif
 
       assign has_faq = false
