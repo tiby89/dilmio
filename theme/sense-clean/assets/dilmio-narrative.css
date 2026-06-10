@@ -123,41 +123,6 @@
   border-bottom: none;
 }
 
-/* ─── CTA Final ─── */
-
-.dilmio-cta-final {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
-  text-align: center;
-  border-top: 1px solid #e8ede0;
-}
-
-.dilmio-cta-final__headline {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #3E4A2D;
-  margin: 0 0 1.5rem;
-  line-height: 1.3;
-}
-
-.dilmio-cta-final__button {
-  display: inline-block;
-  background: #3E4A2D;
-  color: #FDFBF7;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.875rem 2.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.dilmio-cta-final__button:hover {
-  background: #2c3520;
-  color: #FDFBF7;
-}
-
 /* ─── Before/After bullets ─── */
 
 .dilmio-ba-bullets {
@@ -268,14 +233,4 @@
     grid-template-columns: 1fr;
   }
 
-  .dilmio-cta-final__headline {
-    font-size: 1.25rem;
-  }
-
-  .dilmio-cta-final__button {
-    display: block;
-    width: 100%;
-    text-align: center;
-    box-sizing: border-box;
-  }
 }

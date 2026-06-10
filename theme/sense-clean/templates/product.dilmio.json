@@ -73,16 +73,6 @@
         "show_before_after": true,
         "product": ""
       }
-    },
-    "dilmio_cta_final_WTBq8p": {
-      "type": "dilmio-cta-final",
-      "name": "DILMIO — CTA Final",
-      "settings": {
-        "show_cta_final": true,
-        "product": "",
-        "cta_final_headline": "",
-        "cta_final_button_label": "Comprar ahora"
-      }
     }
   },
   "order": [
@@ -90,7 +80,6 @@
     "dilmio_reviews_8jwfzk",
     "dilmio_problem_solution_LJK7Tw",
     "dilmio_details_hpKR8k",
-    "dilmio_before_after_r8CT3Q",
-    "dilmio_cta_final_WTBq8p"
+    "dilmio_before_after_r8CT3Q"
   ]
 }
