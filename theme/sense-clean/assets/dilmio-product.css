@@ -757,19 +757,26 @@
 /* ─── Trust inline (below CTA in form) ─── */
 
 .dilmio-trust-inline {
-  margin-top: 1rem;
+  margin-top: 1.15rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-  justify-content: center;
+  gap: 0.45rem 0.9rem;
+  justify-content: flex-start;
 }
 
 .dilmio-trust-inline__item {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 0.8rem;
-  color: #555;
+  font-size: 0.8125rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.dilmio-trust-inline .dilmio-trust__icon {
+  color: #3E4A2D;
 }
 
 /* ─── Demo split — right column (benefits + FAQ cards) ─── */
