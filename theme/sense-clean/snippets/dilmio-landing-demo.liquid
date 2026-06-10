@@ -27,14 +27,18 @@
         </div>
         {%- if has_right_col -%}
           <div class="dilmio-demo-split__right">
-            {%- render 'dilmio-landing-benefits', benefit_1: benefit_1, benefit_2: benefit_2, benefit_3: benefit_3, benefit_4: benefit_4 -%}
+            {%- if has_benefits -%}
+              {%- render 'dilmio-landing-benefits', benefit_1: benefit_1, benefit_2: benefit_2, benefit_3: benefit_3, benefit_4: benefit_4 -%}
+            {%- endif -%}
             {%- render 'dilmio-landing-faq', has_faq: has_faq, faq_question_1: faq_question_1, faq_answer_1: faq_answer_1, faq_question_2: faq_question_2, faq_answer_2: faq_answer_2, faq_question_3: faq_question_3, faq_answer_3: faq_answer_3 -%}
           </div>
         {%- endif -%}
       </div>
     {%- elsif has_right_col -%}
       <div class="dilmio-demo-fallback">
-        {%- render 'dilmio-landing-benefits', benefit_1: benefit_1, benefit_2: benefit_2, benefit_3: benefit_3, benefit_4: benefit_4 -%}
+        {%- if has_benefits -%}
+          {%- render 'dilmio-landing-benefits', benefit_1: benefit_1, benefit_2: benefit_2, benefit_3: benefit_3, benefit_4: benefit_4 -%}
+        {%- endif -%}
         {%- render 'dilmio-landing-faq', has_faq: has_faq, faq_question_1: faq_question_1, faq_answer_1: faq_answer_1, faq_question_2: faq_question_2, faq_answer_2: faq_answer_2, faq_question_3: faq_question_3, faq_answer_3: faq_answer_3 -%}
       </div>
     {%- endif -%}
