@@ -1,0 +1,14 @@
+/* ─── DILMIO Collection — card overrides ─── */
+
+#product-grid .card--card::after {
+  box-shadow: 0 4px 20px rgba(28, 36, 18, 0.08);
+}
+
+#product-grid .card__heading {
+  min-height: 2.8em;
+}
+
+#product-grid .price-item--regular {
+  font-weight: 600;
+  color: #1C2412;
+}
