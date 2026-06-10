@@ -27,6 +27,15 @@
     grid-template-columns: 1fr 1fr;
     padding: 2.5rem 2rem 2rem;
   }
+
+  .dilmio-landing__form {
+    align-self: start;
+    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(17, 17, 17, 0.05);
+  }
 }
 
 /* ─── Image ─── */
