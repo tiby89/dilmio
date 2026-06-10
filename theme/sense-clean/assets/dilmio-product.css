@@ -779,6 +779,16 @@
   color: #3E4A2D;
 }
 
+/* ─── Purchase note ─── */
+
+.dilmio-purchase-note {
+  margin: 0.65rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #555;
+  text-align: center;
+}
+
 /* ─── Demo split — right column (benefits + FAQ cards) ─── */
 
 .dilmio-demo-split__right {

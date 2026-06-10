@@ -95,6 +95,10 @@
     ></div>
   </div>
 
+  {%- if section.settings.purchase_note != blank -%}
+    <p class="dilmio-purchase-note">{{ section.settings.purchase_note }}</p>
+  {%- endif -%}
+
   {%- assign has_inline_trust = false -%}
   {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank -%}
     {%- assign has_inline_trust = true -%}
