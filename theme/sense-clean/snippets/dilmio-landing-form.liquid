@@ -95,7 +95,7 @@
     ></div>
   </div>
 
-  {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank -%}
+  {%- if section.settings.show_trust and (section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank) -%}
     <div class="dilmio-trust-inline">
       {%- if section.settings.trust_1 != blank -%}
         <span class="dilmio-trust-inline__item">
