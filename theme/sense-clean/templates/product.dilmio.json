@@ -1,9 +1,96 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "dilmio-landing": {
       "type": "dilmio-product-landing",
-      "settings": {}
+      "settings": {
+        "product": "",
+        "show_pack": true,
+        "pack_label_1": "",
+        "pack_quantity_1": 0,
+        "pack_label_2": "",
+        "pack_quantity_2": 0,
+        "pack_label_3": "",
+        "pack_quantity_3": 0,
+        "show_benefits": true,
+        "benefits_title": "Beneficios",
+        "show_trust": true,
+        "trust_1": "Envío gratis a España",
+        "trust_2": "Pago seguro",
+        "trust_3": "Devoluciones fáciles",
+        "trust_icon_1": "truck",
+        "trust_icon_2": "shield",
+        "trust_icon_3": "return",
+        "show_faq": true,
+        "faq_title": "FAQ",
+        "show_demo_video": true,
+        "demo_video_heading": "Míralo en acción",
+        "show_how_it_works": true,
+        "cta_add_to_cart_label": "Comprar",
+        "cta_sold_out_label": "Sin Stock",
+        "pack_section_label": "Pack"
+      }
+    },
+    "dilmio_reviews_8jwfzk": {
+      "type": "dilmio-reviews",
+      "name": "DILMIO Reviews",
+      "settings": {
+        "product": "multifunctional-peeler-with-storage-box-manual-apple-peeling-cutter-portable-veggie-potatoes-peelers-kitchen-accessories",
+        "heading": "Opiniones de clientes"
+      }
+    },
+    "dilmio_problem_solution_LJK7Tw": {
+      "type": "dilmio-problem-solution",
+      "name": "DILMIO — Problema/Solución",
+      "settings": {
+        "show_problem_solution": true,
+        "product": "",
+        "problem_column_title": "El problema",
+        "solution_column_title": "La solución"
+      }
+    },
+    "dilmio_details_hpKR8k": {
+      "type": "dilmio-details",
+      "name": "DILMIO — Detalles",
+      "settings": {
+        "show_details": true,
+        "product": "",
+        "details_section_title": "Detalles"
+      }
+    },
+    "dilmio_before_after_r8CT3Q": {
+      "type": "dilmio-before-after",
+      "name": "DILMIO — Antes/Después",
+      "settings": {
+        "show_before_after": true,
+        "product": ""
+      }
+    },
+    "dilmio_cta_final_WTBq8p": {
+      "type": "dilmio-cta-final",
+      "name": "DILMIO — CTA Final",
+      "settings": {
+        "show_cta_final": true,
+        "product": "",
+        "cta_final_headline": "",
+        "cta_final_button_label": "Comprar ahora"
+      }
     }
   },
-  "order": ["dilmio-landing"]
+  "order": [
+    "dilmio-landing",
+    "dilmio_reviews_8jwfzk",
+    "dilmio_problem_solution_LJK7Tw",
+    "dilmio_details_hpKR8k",
+    "dilmio_before_after_r8CT3Q",
+    "dilmio_cta_final_WTBq8p"
+  ]
 }

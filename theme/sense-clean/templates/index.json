@@ -1,74 +1,132 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "image-with-text": {
-      "type": "image-with-text",
+    "dilmio_brand_home_wQJkKd": {
+      "type": "dilmio-brand-home",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "trust_card_TUGLCD": {
+          "type": "trust_card",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h1"
+            "icon_svg": "dilmio-icon-shield",
+            "icon": "",
+            "title": "Pago seguro",
+            "subtitle": "Bizum, tarjeta y PayPal"
           }
         },
-        "button": {
-          "type": "button",
+        "trust_card_GnRfJp": {
+          "type": "trust_card",
           "settings": {
-            "button_label": "Shop now",
-            "button_link": "shopify://collections/all",
-            "button_style_secondary": false
+            "icon_svg": "dilmio-icon-box",
+            "icon": "",
+            "title": "Seguimiento",
+            "subtitle": "Rastrea tu pedido"
+          }
+        },
+        "trust_card_R76ipT": {
+          "type": "trust_card",
+          "settings": {
+            "icon_svg": "dilmio-icon-return",
+            "icon": "",
+            "title": "Devoluciones",
+            "subtitle": "Cambios fáciles"
+          }
+        },
+        "trust_card_kEQnUP": {
+          "type": "trust_card",
+          "settings": {
+            "icon_svg": "dilmio-icon-headset",
+            "icon": "",
+            "title": "Atención",
+            "subtitle": "Email o WhatsApp"
+          }
+        },
+        "category_card_7btHkw": {
+          "type": "category_card",
+          "settings": {
+            "image": "shopify://shop_images/image_84e121be-7de2-4cfe-86eb-5704c397df20.png",
+            "badge_icon": "",
+            "title": "Cocina",
+            "subtitle": "Ver productos",
+            "link": ""
+          }
+        },
+        "category_card_jXPFtK": {
+          "type": "category_card",
+          "settings": {
+            "image": "shopify://shop_images/image_6b8cc157-b19b-47f9-a77e-0f09183541b4.png",
+            "badge_icon": "",
+            "title": "Baño",
+            "subtitle": "Ver productos",
+            "link": ""
+          }
+        },
+        "category_card_J6zKW9": {
+          "type": "category_card",
+          "settings": {
+            "image": "shopify://shop_images/image_c7a2230c-b9d4-423e-a23d-cf7f9fd99123.png",
+            "badge_icon": "",
+            "title": "Salón",
+            "subtitle": "Ver productos",
+            "link": ""
+          }
+        },
+        "category_card_P3mCke": {
+          "type": "category_card",
+          "settings": {
+            "image": "shopify://shop_images/image_5b4286e0-0a5c-4c24-b099-48ade053b8c3.png",
+            "badge_icon": "",
+            "title": "Dormitorio",
+            "subtitle": "Ver novedades",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "trust_card_TUGLCD",
+        "trust_card_GnRfJp",
+        "trust_card_R76ipT",
+        "trust_card_kEQnUP",
+        "category_card_7btHkw",
+        "category_card_jXPFtK",
+        "category_card_J6zKW9",
+        "category_card_P3mCke"
       ],
+      "name": "DILMIO Brand Home",
       "settings": {
-        "height": "large",
-        "desktop_image_width": "large",
-        "layout": "text_first",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "content_layout": "overlap",
-        "section_color_scheme": "scheme-1",
-        "color_scheme": "scheme-2",
-        "image_behavior": "none",
-        "mobile_content_alignment": "left",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "featured-collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 56,
-        "padding_bottom": 68
+        "hero_heading": "Productos útiles para una casa más práctica.",
+        "hero_subtext": "Artículos para el hogar y la cocina elegidos por una sola razón: que de verdad sirvan.",
+        "hero_cta_label": "Ver catálogo",
+        "hero_cta_link": "shopify://collections/catalogo",
+        "hero_image": "shopify://shop_images/BESTHERO.png",
+        "categories_heading": "Soluciones para cada espacio",
+        "featured_heading": "Selección destacada",
+        "featured_subtitle": "",
+        "featured_view_all_label": "Ver catálogo completo →",
+        "featured_collection": "catalogo",
+        "featured_products_count": 6,
+        "criteria_heading": "Productos elegidos con criterio",
+        "criteria_1_title": "Útil de verdad",
+        "criteria_1_text": "Solo añadimos productos que resuelven algo concreto.",
+        "criteria_2_title": "Fácil de entender",
+        "criteria_2_text": "Sin tecnicismos: sabes qué compras y para qué sirve.",
+        "criteria_3_title": "Compra clara",
+        "criteria_3_text": "Precio visible, seguimiento y políticas sin letra pequeña.",
+        "banner_heading": "Mejora tu casa hoy. Pequeños cambios, gran diferencia.",
+        "banner_cta_label": "Ver novedades de la semana",
+        "banner_cta_link": "",
+        "banner_image": "shopify://shop_images/ChatGPT_Image_25_may_2026_13_54_15.png"
       }
     }
   },
   "order": [
-    "image-with-text",
-    "featured-collection"
+    "dilmio_brand_home_wQJkKd"
   ]
 }
