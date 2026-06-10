@@ -121,7 +121,7 @@
   display: block;
   width: 100%;
   padding: 0.9rem 1.5rem;
-  background: #111;
+  background: #3E4A2D;
   color: #fff;
   border: none;
   font-size: 1rem;
@@ -133,7 +133,7 @@
 }
 
 .dilmio-cta:hover:not(:disabled):not(.is-loading) {
-  background: #333;
+  background: #2c3520;
 }
 
 .dilmio-cta:disabled {
