@@ -2,7 +2,7 @@
 
 
 .dilmio-footer__top {
-  padding-bottom: 0;
+  padding-bottom: 4.8rem;
 }
 
 .dilmio-footer__grid {
@@ -21,6 +21,10 @@
 
 /* Mobile order: brand → newsletter → links */
 @media screen and (max-width: 749px) {
+  .dilmio-footer__top {
+    padding-bottom: 3.2rem;
+  }
+
   .dilmio-footer__col--brand      { order: 1; }
   .dilmio-footer__col--links      { order: 2; }
   .dilmio-footer__col--newsletter {
@@ -78,7 +82,7 @@
 
 .dilmio-footer__col--brand .footer__list-social {
   margin-top: 2rem;
-  /* 2. RR.SS. alineadas a la izquierda */
+  /* RR.SS. alineadas a la izquierda */
   justify-content: flex-start;
   padding-left: 0;
   margin-left: 0;
@@ -88,6 +92,16 @@
   padding-left: 0;
 }
 
+/* Social icons: premium opacity hover */
+.dilmio-footer__col--brand .list-social__link {
+  opacity: 0.6;
+  transition: opacity 200ms ease;
+}
+
+.dilmio-footer__col--brand .list-social__link:hover {
+  opacity: 1;
+}
+
 /* Column 2 — Links */
 .dilmio-footer__col--links {
   display: flex;
@@ -95,7 +109,7 @@
   gap: 2.4rem;
 }
 
-/* 3. Grupos de links en fila horizontal en desktop */
+/* Grupos de links en fila horizontal en desktop */
 @media screen and (min-width: 750px) {
   .dilmio-footer__col--links {
     flex-direction: row;
@@ -167,6 +181,34 @@
   }
 }
 
+/* ─── Bottom strip polish ─── */
+
+/* Mobile: restore breathing room (section-footer.css resets padding-top to 0) */
+@media screen and (max-width: 749px) {
+  .footer__content-bottom {
+    padding-top: 2rem;
+    padding-bottom: 1.6rem;
+  }
+}
+
+/* Payment icons — integrate visually without losing legibility */
+.footer__payment .icon--full-color {
+  opacity: 0.65;
+}
+
+/* Copyright + policies — muted, unobtrusive */
 .copyright__content {
   font-size: 0.95rem;
+  color: rgba(var(--color-foreground), 0.55);
+}
+
+/* Policy links hover */
+.copyright__content a {
+  transition: color 150ms ease;
+}
+
+.copyright__content a:hover {
+  color: rgba(var(--color-foreground), 0.9);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
