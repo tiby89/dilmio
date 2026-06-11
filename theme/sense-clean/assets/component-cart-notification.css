@@ -74,6 +74,8 @@
   flex-grow: 1;
   margin-bottom: 0;
   margin-top: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .cart-notification__heading .icon-checkmark {
@@ -83,22 +85,24 @@
 }
 
 .cart-notification__close {
-  margin-top: -2rem;
-  margin-right: -3rem;
+  margin-top: -1rem;
+  margin-right: -1.5rem;
 }
 
 .cart-notification__links {
   text-align: center;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.10);
+  padding-top: 1.5rem;
 }
 
 .cart-notification__links > * {
-  margin-top: 1rem;
+  margin-top: 0.8rem;
 }
 
 .cart-notification-product {
   align-items: flex-start;
   display: flex;
-  padding-bottom: 3rem;
+  padding-bottom: 1.5rem;
   padding-top: 2rem;
 }
 
