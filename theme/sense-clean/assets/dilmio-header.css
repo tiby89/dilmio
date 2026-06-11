@@ -1,0 +1,17 @@
+/* ─── DILMIO Header — premium polish ─── */
+
+/* M1: Subtle depth shadow */
+.header-wrapper {
+  box-shadow: 0 2px 16px rgba(28, 36, 18, 0.06);
+}
+
+/* M2: Desktop navigation letter-spacing */
+.header__inline-menu .header__menu-item {
+  letter-spacing: 0.04em;
+}
+
+/* M3: Predictive search thumbnail radius */
+.predictive-search__item-image-container {
+  border-radius: 4px;
+  overflow: hidden;
+}
