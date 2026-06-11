@@ -1,7 +1,7 @@
 .accordion summary {
   display: flex;
   position: relative;
-  line-height: 1;
+  line-height: 1.3;
   padding: 1.8rem 0;
 }
 

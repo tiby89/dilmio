@@ -1494,3 +1494,81 @@ a.product__text {
     border: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   Premium content styles — product description & accordion
+   Fase 2J.2b — CSS-only, no Liquid, no templates
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Separador visual entre buy-box y zona informativa ───────────── */
+
+.product__info-container .product__description.rte {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.1);
+}
+
+/* ── Padding interior del acordeón en producto ───────────────────── */
+
+.product__accordion .accordion__content {
+  padding: 0.4rem 1.2rem 1.6rem;
+}
+
+/* ── Tablas dentro de descripción y acordeón ─────────────────────── */
+
+.product__description.rte table,
+.product__accordion .accordion__content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin: 1.2rem 0;
+}
+
+.product__description.rte th,
+.product__description.rte td,
+.product__accordion .accordion__content th,
+.product__accordion .accordion__content td {
+  padding: 0.9rem 1.2rem;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  text-align: left;
+  vertical-align: top;
+}
+
+.product__description.rte th,
+.product__accordion .accordion__content th {
+  font-weight: 600;
+}
+
+.product__description.rte td:first-child,
+.product__accordion .accordion__content td:first-child {
+  color: rgba(var(--color-foreground), 0.6);
+  font-weight: 500;
+  min-width: 10rem;
+}
+
+.product__description.rte tr:last-child td,
+.product__accordion .accordion__content tr:last-child td {
+  border-bottom: none;
+}
+
+.product__description.rte tr:nth-child(even) td,
+.product__accordion .accordion__content tr:nth-child(even) td {
+  background-color: rgba(var(--color-foreground), 0.025);
+}
+
+/* ── Listas dentro de descripción y acordeón ─────────────────────── */
+
+.product__description.rte ul,
+.product__description.rte ol,
+.product__accordion .accordion__content ul,
+.product__accordion .accordion__content ol {
+  padding-left: 1.8rem;
+  margin: 0.6rem 0 1rem;
+  line-height: 1.75;
+}
+
+.product__description.rte li,
+.product__accordion .accordion__content li {
+  margin-bottom: 0.4rem;
+}
