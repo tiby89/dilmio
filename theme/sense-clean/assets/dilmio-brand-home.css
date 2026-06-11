@@ -16,6 +16,11 @@
   --dbh-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.14);
   --dbh-radius: 1.2rem;
   --dbh-radius-lg: 2rem;
+  --dbh-dark: #1C1C1C;
+  --dilmio-star: #F5A623;
+  --dilmio-star-empty: #D9D4C7;
+  --dilmio-green: #4A7C3F;
+  --dilmio-text-muted: #6B6B6B;
   font-family: inherit;
   background-color: var(--dbh-cream);
 }
@@ -695,6 +700,22 @@
   background-color: var(--dbh-olive) !important;
   border-color: var(--dbh-olive) !important;
   color: var(--dbh-white) !important;
+}
+
+/* Banner with image: dark overlay needs light text */
+.dbh-banner--has-image .dbh-banner__heading {
+  color: #FFFFFF !important;
+}
+
+.dbh-banner--has-image .dbh-btn {
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.dbh-banner--has-image .dbh-btn:hover {
+  background-color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  color: var(--dbh-olive) !important;
 }
 
 /* =============================================
