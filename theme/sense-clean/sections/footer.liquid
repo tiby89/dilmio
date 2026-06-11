@@ -201,6 +201,7 @@
             </h3>
           {%- endif -%}
         {%- endform -%}
+        <p class="dilmio-footer__privacy-note">Sin spam. Puedes darte de baja cuando quieras.</p>
       </div>
 
     </div>
@@ -232,7 +233,7 @@
     <div class="footer__content-bottom-wrapper page-width footer__content-bottom-wrapper--center">
       <div class="footer__copyright caption">
         <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }} DILMIO. Todos los derechos reservados.
+          >&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos los derechos reservados.
         </small>
         {%- comment -%}<small class="copyright__content">{{ powered_by_link }}</small>{%- endcomment -%}
         {%- if section.settings.show_policy -%}

@@ -212,3 +212,11 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+/* Newsletter privacy note */
+.dilmio-footer__privacy-note {
+  font-size: 1.1rem;
+  color: rgba(var(--color-foreground), 0.45);
+  margin-top: 0.8rem;
+  line-height: 1.5;
+}
