@@ -14,10 +14,6 @@
           "type": "title",
           "settings": {}
         },
-        "rating": {
-          "type": "rating",
-          "settings": {}
-        },
         "price": {
           "type": "price",
           "settings": {}
@@ -66,7 +62,6 @@
       "block_order": [
         "vendor",
         "title",
-        "rating",
         "price",
         "variant_picker",
         "quantity_selector",
