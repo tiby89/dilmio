@@ -1,7 +1,7 @@
 /* ─── DILMIO Collection — card overrides ─── */
 
 #product-grid .card--card::after {
-  box-shadow: 0 4px 20px rgba(28, 36, 18, 0.08);
+  box-shadow: var(--dilmio-shadow-collection);
 }
 
 #product-grid .card__heading {
@@ -22,7 +22,7 @@
 
 #product-grid .price-item--regular {
   font-weight: 600;
-  color: #1C2412;
+  color: var(--dilmio-green-ink);
   letter-spacing: 0.02rem;
 }
 
@@ -35,11 +35,11 @@
 
 #main-collection-filters .mobile-facets__header {
   padding: 1.6rem 2.5rem;
-  border-bottom-color: rgba(28, 36, 18, 0.14);
+  border-bottom-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
 }
 
 #main-collection-filters .mobile-facets__details + .mobile-facets__details {
-  border-top: 0.1rem solid rgba(28, 36, 18, 0.08);
+  border-top: 0.1rem solid rgba(var(--dilmio-green-ink-rgb), 0.08);
 }
 
 #main-collection-filters .mobile-facets__summary {
@@ -47,7 +47,7 @@
 }
 
 #main-collection-filters .mobile-facets__footer {
-  border-top-color: rgba(28, 36, 18, 0.14);
+  border-top-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
 }
 
 /* ─── DILMIO Search — mobile facets polish ─── */
@@ -59,11 +59,11 @@
 
 #main-search-filters .mobile-facets__header {
   padding: 1.6rem 2.5rem;
-  border-bottom-color: rgba(28, 36, 18, 0.14);
+  border-bottom-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
 }
 
 #main-search-filters .mobile-facets__details + .mobile-facets__details {
-  border-top: 0.1rem solid rgba(28, 36, 18, 0.08);
+  border-top: 0.1rem solid rgba(var(--dilmio-green-ink-rgb), 0.08);
 }
 
 #main-search-filters .mobile-facets__summary {
@@ -71,5 +71,5 @@
 }
 
 #main-search-filters .mobile-facets__footer {
-  border-top-color: rgba(28, 36, 18, 0.14);
+  border-top-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
 }

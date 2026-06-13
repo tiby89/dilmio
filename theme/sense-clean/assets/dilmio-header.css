@@ -2,7 +2,7 @@
 
 /* M1: Subtle depth shadow */
 .header-wrapper {
-  box-shadow: 0 2px 16px rgba(28, 36, 18, 0.06);
+  box-shadow: var(--dilmio-shadow-header);
 }
 
 /* M2: Desktop navigation letter-spacing */

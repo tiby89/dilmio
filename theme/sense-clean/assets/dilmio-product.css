@@ -34,7 +34,7 @@
     padding: 1.75rem;
     background: #fff;
     border: 1px solid rgba(17, 17, 17, 0.08);
-    border-radius: 14px;
+    border-radius: var(--dilmio-radius-md);
     box-shadow: 0 10px 30px rgba(17, 17, 17, 0.05);
   }
 }
@@ -45,7 +45,7 @@
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 4px;
+  border-radius: var(--dilmio-radius-sm);
 }
 
 /* ─── Title & price ─── */
@@ -98,7 +98,7 @@
   color: #111;
   cursor: pointer;
   font-size: 0.9rem;
-  border-radius: 4px;
+  border-radius: var(--dilmio-radius-sm);
   line-height: 1.4;
   transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
@@ -110,8 +110,8 @@
 
 .dilmio-option-btn.is-selected,
 .dilmio-pack-btn.is-selected {
-  border-color: #3E4A2D;
-  background: #3E4A2D;
+  border-color: var(--dilmio-green);
+  background: var(--dilmio-green);
   color: #fff;
 }
 
@@ -131,23 +131,23 @@
   display: block;
   width: 100%;
   padding: 0.9rem 1.5rem;
-  background: #3E4A2D;
+  background: var(--dilmio-green);
   color: #fff;
   border: none;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--dilmio-radius-sm);
   text-align: center;
   transition: background 0.15s ease, opacity 0.15s ease;
 }
 
 .dilmio-cta:hover:not(:disabled):not(.is-loading) {
-  background: #2c3520;
+  background: var(--dilmio-green-dark);
 }
 
 .dilmio-cta:disabled {
-  background: #aaa;
+  background: var(--dilmio-disabled);
   cursor: not-allowed;
 }
 
@@ -160,7 +160,7 @@
 
 .dilmio-error {
   margin-top: 0.75rem;
-  color: #c0392b;
+  color: var(--dilmio-error);
   font-size: 0.875rem;
 }
 
@@ -436,7 +436,7 @@
   max-height: 500px;
   object-fit: contain;
   margin: 0 auto;
-  border-radius: 4px;
+  border-radius: var(--dilmio-radius-sm);
 }
 
 @media screen and (max-width: 749px) {
@@ -456,11 +456,11 @@
 /* ─── Demo section (wrapper) ─── */
 
 .dilmio-demo-section {
-  background: #faf8f5;
+  background: var(--dilmio-cream-section);
   max-width: 1180px;
   margin: 48px auto 56px;
   padding: 48px 56px;
-  border-radius: 20px;
+  border-radius: var(--dilmio-radius-xl);
 }
 
 /* ─── Demo header (title above split) ─── */
@@ -490,7 +490,7 @@
 .dilmio-demo-split__video {
   flex: 0 0 clamp(320px, 30vw, 420px);
   aspect-ratio: 9 / 16;
-  border-radius: 18px;
+  border-radius: var(--dilmio-radius-lg);
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
@@ -508,7 +508,7 @@
   align-self: center;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 18px;
+  border-radius: var(--dilmio-radius-lg);
   padding: 2.5rem;
 }
 
@@ -534,7 +534,7 @@
   position: absolute;
   left: 0;
   top: 0.05em;
-  color: #3e4a2d;
+  color: var(--dilmio-green);
   font-size: 1.2rem;
   font-weight: 700;
 }
@@ -695,7 +695,7 @@
   left: 0;
   overflow: hidden;
   white-space: nowrap;
-  color: #f4a81d;
+  color: var(--dilmio-star);
 }
 
 .dilmio-rating__avg {
@@ -719,7 +719,7 @@
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 4px;
+  border-radius: var(--dilmio-radius-sm);
 }
 
 .dilmio-gallery__thumbs {
@@ -733,7 +733,7 @@
   border: 2px solid transparent;
   background: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--dilmio-radius-sm);
   overflow: hidden;
   flex: 0 0 auto;
   transition: border-color 0.15s ease;
@@ -776,7 +776,7 @@
 }
 
 .dilmio-trust-inline .dilmio-trust__icon {
-  color: #3E4A2D;
+  color: var(--dilmio-green);
 }
 
 /* ─── Purchase note ─── */
@@ -804,7 +804,7 @@
 .dilmio-demo-split__faq-card {
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 18px;
+  border-radius: var(--dilmio-radius-lg);
   padding: 2.5rem;
 }
 
