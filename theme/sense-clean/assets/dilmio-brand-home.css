@@ -13,13 +13,12 @@
   --dbh-text-muted: #6B6B6B;
   --dbh-border: #E8E4DC;
   --dbh-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-  --dbh-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.14);
-  --dbh-radius: 1.2rem;
-  --dbh-radius-lg: 2rem;
+  --dbh-shadow-hover: var(--dilmio-shadow-card-hover);
+  --dbh-radius: var(--dilmio-radius-card);
+  --dbh-radius-lg: var(--dilmio-radius-xl);
   --dbh-dark: #1C1C1C;
   --dilmio-star: #F5A623;
   --dilmio-star-empty: #D9D4C7;
-  --dilmio-green: #4A7C3F;
   --dilmio-text-muted: #6B6B6B;
   font-family: inherit;
   background-color: var(--dbh-cream);
@@ -305,7 +304,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--dilmio-shadow-sm);
   z-index: 1;
 }
 
@@ -614,7 +613,7 @@
   background: var(--dbh-white);
   border-radius: var(--dbh-radius);
   border: 1px solid var(--dbh-border);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--dilmio-shadow-sm);
 }
 
 .dbh-criteria__title {

@@ -35,7 +35,7 @@
     background: #fff;
     border: 1px solid rgba(17, 17, 17, 0.08);
     border-radius: var(--dilmio-radius-md);
-    box-shadow: 0 10px 30px rgba(17, 17, 17, 0.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   }
 }
 
@@ -172,7 +172,7 @@
   left: 0;
   right: 0;
   background: #fff;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--dilmio-border);
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
   padding: 0.75rem 1rem;
   z-index: 999;
@@ -492,7 +492,7 @@
   aspect-ratio: 9 / 16;
   border-radius: var(--dilmio-radius-lg);
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--dilmio-shadow-md);
 }
 
 .dilmio-demo-split__player {
