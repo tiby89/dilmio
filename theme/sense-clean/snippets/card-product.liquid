@@ -289,9 +289,6 @@
                 </quantity-popover>
               {% endif %}
             {%- endif -%}
-            {%- if quick_add == 'none' and card_product.available -%}
-              <a href="{{ card_product.url }}" class="dilmio-card-cta">Ver producto →</a>
-            {%- endif -%}
           </div>
         </div>
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
