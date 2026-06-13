@@ -41,11 +41,11 @@
           "settings": {
             "layout": "horizontal",
             "icon_1": "lock",
-            "heading_1": "Pago seguro",
+            "heading_1": "Pago 100% seguro",
             "icon_2": "truck",
-            "heading_2": "Envío rápido",
+            "heading_2": "Envío rápido garantizado",
             "icon_3": "return",
-            "heading_3": "Devolución fácil"
+            "heading_3": "Devoluciones sin complicaciones"
           }
         },
         "description": {
@@ -91,7 +91,7 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "You may also like",
+        "heading": "También te puede interesar",
         "heading_size": "h2",
         "products_to_show": 4,
         "columns_desktop": 4,
