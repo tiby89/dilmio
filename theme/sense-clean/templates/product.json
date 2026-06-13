@@ -49,8 +49,10 @@
           }
         },
         "description": {
-          "type": "description",
-          "settings": {}
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%- assign stripped = product.description | strip_html | strip | truncatewords: 80 -%}{%- if stripped != blank -%}<details><summary style=\"cursor:pointer;font-size:0.875rem;font-weight:600;padding:0.75rem 0;list-style:none\">Ver descripción completa</summary><div style=\"padding:0.25rem 0 1rem;font-size:0.875rem;color:#555;line-height:1.6\">{{ stripped }}</div></details>{%- endif -%}"
+          }
         },
         "share": {
           "type": "share",
