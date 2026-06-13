@@ -147,3 +147,46 @@
 #main-search-filters .mobile-facets__footer {
   border-top-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
 }
+
+/* ─── DILMIO Collection — hero / banner ─── */
+
+@media screen and (min-width: 750px) {
+  .collection-hero__title {
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+}
+
+.collection-hero__description {
+  color: var(--dilmio-text-secondary);
+}
+
+/* ─── DILMIO Collection — desktop facets ─── */
+
+#main-collection-filters .facets__heading {
+  color: var(--dilmio-text-muted);
+}
+
+#main-collection-filters .facets__summary {
+  color: var(--dilmio-text-secondary);
+}
+
+#main-collection-filters .facet-filters__label {
+  color: var(--dilmio-text-muted);
+}
+
+#main-collection-filters .facets__display {
+  border-radius: var(--dilmio-radius-md);
+  box-shadow: var(--dilmio-shadow-md);
+  border-color: var(--dilmio-green-border);
+}
+
+#main-collection-filters .product-count__text {
+  color: var(--dilmio-text-muted);
+}
+
+@media screen and (min-width: 990px) {
+  #main-collection-filters span.active-facets__button-inner {
+    box-shadow: 0 0 0 0.1rem var(--dilmio-green-border);
+  }
+}
