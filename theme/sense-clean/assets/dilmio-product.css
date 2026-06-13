@@ -137,7 +137,7 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  border-radius: var(--dilmio-radius-sm);
+  border-radius: var(--dilmio-radius-btn);
   text-align: center;
   transition: background 0.15s ease, opacity 0.15s ease;
 }

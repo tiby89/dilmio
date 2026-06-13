@@ -44,7 +44,8 @@
   --dilmio-after:          #2E7D32;  /* estado "después" (solución) */
 
   /* ── Radios ────────────────────────────────────── */
-  --dilmio-radius-sm:      4px;      /* imágenes, botones, thumbs */
+  --dilmio-radius-sm:      4px;      /* imágenes, thumbs, option selectors */
+  --dilmio-radius-btn:     6px;      /* botones CTA primarios DILMIO */
   --dilmio-radius-md:      14px;     /* tarjeta formulario (tablet) */
   --dilmio-radius-lg:      18px;     /* sección demo, cards */
   --dilmio-radius-xl:      20px;     /* wrapper demo desktop */
