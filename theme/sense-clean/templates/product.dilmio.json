@@ -22,10 +22,10 @@
         "pack_quantity_3": 0,
         "show_benefits": true,
         "benefits_title": "Beneficios",
-        "show_trust": true,
-        "trust_1": "Envío gratis a España",
-        "trust_2": "Pago seguro",
-        "trust_3": "Devoluciones fáciles",
+        "show_trust": false,
+        "trust_1": "",
+        "trust_2": "",
+        "trust_3": "",
         "trust_icon_1": "truck",
         "trust_icon_2": "shield",
         "trust_icon_3": "return",
@@ -43,7 +43,7 @@
       "type": "dilmio-reviews",
       "name": "DILMIO Reviews",
       "settings": {
-        "product": "multifunctional-peeler-with-storage-box-manual-apple-peeling-cutter-portable-veggie-potatoes-peelers-kitchen-accessories",
+        "product": "",
         "heading": "Opiniones de clientes"
       }
     },
