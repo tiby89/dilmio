@@ -65,7 +65,7 @@
   --dilmio-shadow-hover:  0 12px 40px rgba(17, 17, 17, 0.16);
 
   --dilmio-radius-sm:     2px;
-  --dilmio-radius-btn:    2px;
+  --dilmio-radius-btn:    4px;
   --dilmio-radius-card:   6px;
   --dilmio-radius-md:     8px;
   --dilmio-radius-lg:     10px;
@@ -183,7 +183,8 @@
    Solución provisional: invierte el logo monocromo para que se vea claro.
    Definitivo futuro: subir un logo alternativo claro en el editor. */
 .footer .dilmio-footer__logo img {
-  filter: brightness(0) invert(1);
+  filter: none;
+  opacity: 0.92;
 }
 
 /* — Contraste del footer oscuro —
