@@ -11,7 +11,8 @@
   --dbh-white: #FFFFFF;
   --dbh-text: var(--dilmio-text);
   --dbh-text-muted: var(--dilmio-text-muted);
-  --dbh-border: #E8E4DC;
+  --dbh-border: var(--dilmio-primary-border, #E8E4DC);
+  --dbh-bg-rgb: var(--dilmio-bg-rgb, 250, 249, 246);
   --dbh-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
   --dbh-shadow-hover: var(--dilmio-shadow-card-hover);
   --dbh-radius: var(--dilmio-radius-card);
@@ -115,10 +116,10 @@
   z-index: 1;
   background: linear-gradient(
     to right,
-    rgba(250, 249, 246, 0.97) 0%,
-    rgba(250, 249, 246, 0.95) 35%,
-    rgba(250, 249, 246, 0.60) 55%,
-    rgba(250, 249, 246, 0.00) 72%
+    rgba(var(--dbh-bg-rgb), 0.97) 0%,
+    rgba(var(--dbh-bg-rgb), 0.95) 35%,
+    rgba(var(--dbh-bg-rgb), 0.60) 55%,
+    rgba(var(--dbh-bg-rgb), 0.00) 72%
   );
 }
 
@@ -651,16 +652,6 @@
 .dbh-banner--has-image {
   border-radius: 1.6rem;
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(
-    ellipse 90% 90% at 50% 50%,
-    black 60%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 90% 90% at 50% 50%,
-    black 60%,
-    transparent 100%
-  );
 }
 
 .dbh-banner--has-image .dbh-banner__overlay {
@@ -680,7 +671,7 @@
 .dbh-banner__heading {
   font-size: 2.8rem;
   font-weight: 800;
-  color: var(--dilmio-green-ink) !important;
+  color: #FFFFFF;
   letter-spacing: -0.02em;
   margin: 0;
   max-width: 64rem;
@@ -688,30 +679,14 @@
 }
 
 .dbh-banner .dbh-btn {
-  color: var(--dilmio-green-ink) !important;
-  border-color: var(--dilmio-green-ink) !important;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.85);
 }
 
 .dbh-banner .dbh-btn:hover {
-  background-color: var(--dbh-olive) !important;
-  border-color: var(--dbh-olive) !important;
-  color: var(--dbh-white) !important;
-}
-
-/* Banner with image: dark overlay needs light text */
-.dbh-banner--has-image .dbh-banner__heading {
-  color: #FFFFFF !important;
-}
-
-.dbh-banner--has-image .dbh-btn {
-  color: #FFFFFF !important;
-  border-color: rgba(255, 255, 255, 0.85) !important;
-}
-
-.dbh-banner--has-image .dbh-btn:hover {
-  background-color: #FFFFFF !important;
-  border-color: #FFFFFF !important;
-  color: var(--dbh-olive) !important;
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+  color: var(--dbh-olive);
 }
 
 /* =============================================
@@ -745,18 +720,20 @@
     padding: 0 2rem;
   }
 
-  /* Hero */
+  /* Hero — stacked: imagen arriba, texto abajo */
   .dbh-hero {
-    min-height: 80vw;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
     overflow: hidden;
-    display: block;
   }
 
   .dbh-hero__bg {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    overflow: visible;
+    position: relative;
+    height: 62vw;
+    min-height: 22rem;
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
   .dbh-hero__bg-img {
@@ -764,56 +741,55 @@
   }
 
   .dbh-hero__overlay {
-    display: block;
+    bottom: auto;
+    height: 62vw;
+    min-height: 22rem;
     background: linear-gradient(
       to top,
-      rgba(250, 249, 246, 0.97) 0%,
-      rgba(250, 249, 246, 0.80) 35%,
-      rgba(250, 249, 246, 0.10) 65%,
-      rgba(250, 249, 246, 0.00) 85%
+      rgba(var(--dbh-bg-rgb), 0.7) 0%,
+      rgba(var(--dbh-bg-rgb), 0.0) 55%
     );
   }
 
   .dbh-hero__inner {
-    min-height: 80vw;
-    align-items: flex-end;
-    padding: 3.2rem 2rem;
-    background: transparent !important;
-    width: 100%;
-    box-sizing: border-box;
+    position: static;
+    min-height: auto;
+    align-items: flex-start;
+    padding: 2.4rem 2rem 2rem;
+    background: var(--dbh-cream);
+    z-index: auto;
   }
 
   .dbh-hero .dbh-hero__content {
-    max-width: 55%;
-    width: 55%;
-    padding: 1.6rem;
-    position: absolute;
-    bottom: 2rem;
-    left: 0;
-    justify-content: flex-end;
+    position: static;
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+    gap: 1.6rem;
+    justify-content: flex-start;
   }
 
   .dbh-hero__heading {
-    color: var(--dilmio-text);
-    font-size: 2rem;
+    color: var(--dbh-text);
+    font-size: 2.2rem;
   }
 
   .dbh-hero__subtext {
-    color: var(--dilmio-text-secondary);
-    font-size: 1.3rem;
+    color: var(--dbh-text-muted);
+    font-size: 1.4rem;
   }
 
   .dbh-hero__content .dbh-btn {
     align-self: flex-start;
-    font-size: 1.2rem;
-    padding: 0.8rem 1.8rem;
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
     width: auto;
-    display: inline-block;
+    display: inline-flex;
   }
 
   /* Trust cards */
   .dbh-trust {
-    margin-top: -2.4rem;
+    margin-top: 0;
   }
 
   .dbh-trust__grid {
@@ -857,7 +833,7 @@
 
   .dbh-products__carousel-wrap {
     position: relative;
-    width: 100vw;
+    width: 100%;
     overflow: hidden;
   }
 
@@ -966,7 +942,7 @@
     margin-bottom: 2.4rem;
   }
 
-  body {
-    overflow-x: hidden;
+  .dilmio-brand-home {
+    overflow-x: clip;
   }
 }

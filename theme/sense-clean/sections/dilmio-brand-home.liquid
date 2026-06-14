@@ -1,6 +1,4 @@
 {{ 'dilmio-brand-home.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'dilmio-card-rating.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
@@ -87,47 +85,6 @@
               </div>
             {%- endif -%}
           {%- endfor -%}
-        </div>
-      </div>
-    </div>
-  {%- endif -%}
-
-  {% comment %} ===================== ZONE 5 — BRAND CRITERIA ===================== {% endcomment %}
-  {%- if section.settings.criteria_heading != blank
-    or section.settings.criteria_1_title != blank
-    or section.settings.criteria_2_title != blank
-    or section.settings.criteria_3_title != blank
-  -%}
-    <div class="dbh-criteria">
-      <div class="dbh-wrapper">
-        {%- if section.settings.criteria_heading != blank -%}
-          <h2 class="dbh-criteria__heading">{{ section.settings.criteria_heading | escape }}</h2>
-        {%- endif -%}
-        <div class="dbh-criteria__grid">
-          {%- if section.settings.criteria_1_title != blank -%}
-            <div class="dbh-criteria__item">
-              <h3 class="dbh-criteria__title">{{ section.settings.criteria_1_title | escape }}</h3>
-              {%- if section.settings.criteria_1_text != blank -%}
-                <p class="dbh-criteria__text">{{ section.settings.criteria_1_text | escape }}</p>
-              {%- endif -%}
-            </div>
-          {%- endif -%}
-          {%- if section.settings.criteria_2_title != blank -%}
-            <div class="dbh-criteria__item">
-              <h3 class="dbh-criteria__title">{{ section.settings.criteria_2_title | escape }}</h3>
-              {%- if section.settings.criteria_2_text != blank -%}
-                <p class="dbh-criteria__text">{{ section.settings.criteria_2_text | escape }}</p>
-              {%- endif -%}
-            </div>
-          {%- endif -%}
-          {%- if section.settings.criteria_3_title != blank -%}
-            <div class="dbh-criteria__item">
-              <h3 class="dbh-criteria__title">{{ section.settings.criteria_3_title | escape }}</h3>
-              {%- if section.settings.criteria_3_text != blank -%}
-                <p class="dbh-criteria__text">{{ section.settings.criteria_3_text | escape }}</p>
-              {%- endif -%}
-            </div>
-          {%- endif -%}
         </div>
       </div>
     </div>
@@ -268,6 +225,47 @@
       <a href="{{ featured_collection.url }}" class="dbh-products__view-all-mobile">
         Ver catálogo →
       </a>
+    </div>
+  {%- endif -%}
+
+  {% comment %} ===================== ZONE 5 — BRAND CRITERIA ===================== {% endcomment %}
+  {%- if section.settings.criteria_heading != blank
+    or section.settings.criteria_1_title != blank
+    or section.settings.criteria_2_title != blank
+    or section.settings.criteria_3_title != blank
+  -%}
+    <div class="dbh-criteria">
+      <div class="dbh-wrapper">
+        {%- if section.settings.criteria_heading != blank -%}
+          <h2 class="dbh-criteria__heading">{{ section.settings.criteria_heading | escape }}</h2>
+        {%- endif -%}
+        <div class="dbh-criteria__grid">
+          {%- if section.settings.criteria_1_title != blank -%}
+            <div class="dbh-criteria__item">
+              <h3 class="dbh-criteria__title">{{ section.settings.criteria_1_title | escape }}</h3>
+              {%- if section.settings.criteria_1_text != blank -%}
+                <p class="dbh-criteria__text">{{ section.settings.criteria_1_text | escape }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.criteria_2_title != blank -%}
+            <div class="dbh-criteria__item">
+              <h3 class="dbh-criteria__title">{{ section.settings.criteria_2_title | escape }}</h3>
+              {%- if section.settings.criteria_2_text != blank -%}
+                <p class="dbh-criteria__text">{{ section.settings.criteria_2_text | escape }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.criteria_3_title != blank -%}
+            <div class="dbh-criteria__item">
+              <h3 class="dbh-criteria__title">{{ section.settings.criteria_3_title | escape }}</h3>
+              {%- if section.settings.criteria_3_text != blank -%}
+                <p class="dbh-criteria__text">{{ section.settings.criteria_3_text | escape }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
     </div>
   {%- endif -%}
 
