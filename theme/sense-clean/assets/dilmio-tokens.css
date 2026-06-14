@@ -19,18 +19,18 @@
   /* ── Texto ─────────────────────────────────────── */
   --dilmio-text:           #111111;  /* primario — títulos, CTAs, precios */
   --dilmio-text-secondary: #444444;  /* cuerpo — párrafos, respuestas FAQ */
-  --dilmio-text-muted:     #666666;  /* hints — fechas, captions, counts */
+  --dilmio-text-muted:     #6B6B6B;  /* hints — fechas, captions, counts */
   --dilmio-text-subtle:    #555555;  /* intermedio — subheadlines, captions producto */
 
   /* ── Cremas / fondos ───────────────────────────── */
   --dilmio-cream:          #FDFBF7;  /* crema DILMIO — cards review */
   --dilmio-cream-bg:       #FAF9F6;  /* fondo de página / hero */
-  --dilmio-cream-section:  #FAF8F5;  /* fondo secciones internas (demo split) */
+  --dilmio-cream-section:  #FAF9F6;  /* fondo secciones internas — unificado con cream-bg */
 
   /* ── Grises / bordes ───────────────────────────── */
-  --dilmio-border:         #DDDDDD;  /* borde estándar — sticky, inputs, thumbs */
-  --dilmio-border-light:   #EEEEEE;  /* divisores de sección */
-  --dilmio-border-strong:  #CCCCCC;  /* borde visible — option buttons */
+  --dilmio-border:         #DEDAD5;  /* borde estándar — sticky, inputs, thumbs */
+  --dilmio-border-light:   #ECEAE6;  /* divisores de sección */
+  --dilmio-border-strong:  #C9C4BE;  /* borde visible — option buttons */
   --dilmio-disabled:       #AAAAAA;  /* CTA desactivado, estados off */
 
   /* ── Estrellas ─────────────────────────────────── */

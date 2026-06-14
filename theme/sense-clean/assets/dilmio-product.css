@@ -8,8 +8,8 @@
   padding: 2rem;
   margin: 2rem;
   text-align: center;
-  color: #666;
-  border: 1px dashed #ccc;
+  color: var(--dilmio-text-muted);
+  border: 1px dashed var(--dilmio-border-strong);
 }
 
 .dilmio-landing__inner {
@@ -93,9 +93,9 @@
 .dilmio-option-btn,
 .dilmio-pack-btn {
   padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--dilmio-border-strong);
   background: #fff;
-  color: #111;
+  color: var(--dilmio-text);
   cursor: pointer;
   font-size: 0.9rem;
   border-radius: var(--dilmio-radius-sm);
@@ -105,7 +105,7 @@
 
 .dilmio-option-btn:hover,
 .dilmio-pack-btn:hover {
-  border-color: #555;
+  border-color: var(--dilmio-text-subtle);
 }
 
 .dilmio-option-btn.is-selected,
@@ -210,7 +210,7 @@
 
 .dilmio-sticky__variant {
   font-size: 0.8rem;
-  color: #555;
+  color: var(--dilmio-text-subtle);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -252,7 +252,7 @@
 
 .dilmio-hero__subheadline {
   font-size: 1rem;
-  color: #555;
+  color: var(--dilmio-text-subtle);
   margin: 0;
 }
 
@@ -262,7 +262,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--dilmio-border-light);
 }
 
 .dilmio-benefits__title {
@@ -292,7 +292,7 @@
   content: '✓';
   position: absolute;
   left: 0;
-  color: #111;
+  color: var(--dilmio-text);
   font-weight: 700;
 }
 
@@ -302,7 +302,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 1.5rem 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--dilmio-border-light);
 }
 
 .dilmio-trust__list {
@@ -326,7 +326,7 @@
 
 .dilmio-trust__item {
   font-size: 0.875rem;
-  color: #444;
+  color: var(--dilmio-text-secondary);
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -362,11 +362,11 @@
 }
 
 .dilmio-faq__item {
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--dilmio-border-light);
 }
 
 .dilmio-faq__item:last-child {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--dilmio-border-light);
 }
 
 .dilmio-faq__question {
@@ -401,7 +401,7 @@
 .dilmio-faq__answer {
   padding: 0 0 1rem;
   font-size: 0.9rem;
-  color: #444;
+  color: var(--dilmio-text-secondary);
   line-height: 1.6;
 }
 
@@ -419,7 +419,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--dilmio-border-light);
 }
 
 .dilmio-video__heading {
@@ -448,7 +448,7 @@
 .dilmio-video__caption {
   margin: 0.75rem 0 0;
   font-size: 0.875rem;
-  color: #555;
+  color: var(--dilmio-text-subtle);
   text-align: center;
   font-style: italic;
 }
@@ -476,7 +476,7 @@
   font-weight: 700;
   margin: 0;
   line-height: 1.2;
-  color: #1a1a1a;
+  color: var(--dilmio-text);
 }
 
 /* ─── Demo split (two-column) ─── */
@@ -526,7 +526,7 @@
   position: relative;
   font-size: 1.1rem;
   line-height: 1.65;
-  color: #2a2a2a;
+  color: var(--dilmio-text);
 }
 
 .dilmio-demo-split__benefit::before {
@@ -586,7 +586,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--dilmio-border-light);
 }
 
 .dilmio-steps__heading {
@@ -619,7 +619,7 @@
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: #111;
+  background: var(--dilmio-text);
   color: #fff;
   font-size: 0.8125rem;
   font-weight: 700;
@@ -643,7 +643,7 @@
 
 .dilmio-steps__text {
   font-size: 0.875rem;
-  color: #555;
+  color: var(--dilmio-text-subtle);
   line-height: 1.5;
 }
 
@@ -685,7 +685,7 @@
 }
 
 .dilmio-rating__stars-bg {
-  color: #ddd;
+  color: var(--dilmio-star-empty);
   display: block;
 }
 
@@ -701,12 +701,12 @@
 .dilmio-rating__avg {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #111;
+  color: var(--dilmio-text);
 }
 
 .dilmio-rating__count {
   font-size: 0.875rem;
-  color: #666;
+  color: var(--dilmio-text-muted);
 }
 
 /* ─── Gallery ─── */
@@ -747,11 +747,11 @@
 }
 
 .dilmio-gallery__thumb.is-active {
-  border-color: #111;
+  border-color: var(--dilmio-text);
 }
 
 .dilmio-gallery__thumb:hover:not(.is-active) {
-  border-color: #aaa;
+  border-color: var(--dilmio-disabled);
 }
 
 /* ─── Trust inline (below CTA in form) ─── */
@@ -771,7 +771,7 @@
   align-items: center;
   gap: 0.3rem;
   font-size: 0.8125rem;
-  color: #333;
+  color: var(--dilmio-text-secondary);
   font-weight: 500;
 }
 
@@ -785,7 +785,7 @@
   margin: 0.65rem 0 0;
   font-size: 0.8125rem;
   line-height: 1.4;
-  color: #555;
+  color: var(--dilmio-text-subtle);
   text-align: center;
 }
 

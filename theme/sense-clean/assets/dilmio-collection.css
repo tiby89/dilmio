@@ -2,7 +2,7 @@
 
 /* Card: warm white, shadow directly on card, clean border */
 #product-grid .card--card {
-  background-color: #fffdf9;
+  background-color: var(--dilmio-cream);
   border: 0.1rem solid rgba(28, 36, 18, 0.08);
   border-radius: var(--dilmio-radius-card);
   box-shadow: 0 4px 20px rgba(28, 36, 18, 0.07);

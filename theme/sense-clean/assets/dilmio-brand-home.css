@@ -5,21 +5,18 @@
    ============================================= */
 
 .dilmio-brand-home {
-  --dbh-olive: #3E4A2D;
-  --dbh-olive-hover: #4F5E3A;
-  --dbh-cream: #FAF9F6;
+  --dbh-olive: var(--dilmio-green);
+  --dbh-olive-hover: var(--dilmio-green-hover);
+  --dbh-cream: var(--dilmio-cream-bg);
   --dbh-white: #FFFFFF;
-  --dbh-text: #1C1C1C;
-  --dbh-text-muted: #6B6B6B;
+  --dbh-text: var(--dilmio-text);
+  --dbh-text-muted: var(--dilmio-text-muted);
   --dbh-border: #E8E4DC;
   --dbh-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
   --dbh-shadow-hover: var(--dilmio-shadow-card-hover);
   --dbh-radius: var(--dilmio-radius-card);
   --dbh-radius-lg: var(--dilmio-radius-xl);
-  --dbh-dark: #1C1C1C;
-  --dilmio-star: #F5A623;
-  --dilmio-star-empty: #D9D4C7;
-  --dilmio-text-muted: #6B6B6B;
+  --dbh-dark: var(--dilmio-text);
   font-family: inherit;
   background-color: var(--dbh-cream);
 }
@@ -205,12 +202,12 @@
   font-size: 6.4rem;
   line-height: 1;
   flex-shrink: 0;
-  color: #1C2412;
+  color: var(--dilmio-green-ink);
 }
 
 .dbh-trust__icon svg {
   fill: none;
-  stroke: #1C2412;
+  stroke: var(--dilmio-green-ink);
   stroke-width: 1.2;
   width: 6.4rem;
   height: 6.4rem;
@@ -667,7 +664,7 @@
 }
 
 .dbh-banner--has-image .dbh-banner__overlay {
-  background-color: rgba(28, 36, 18, 0.75);
+  background-color: rgba(var(--dilmio-green-ink-rgb), 0.75);
 }
 
 .dbh-banner__content {
@@ -683,7 +680,7 @@
 .dbh-banner__heading {
   font-size: 2.8rem;
   font-weight: 800;
-  color: #1C2412 !important;
+  color: var(--dilmio-green-ink) !important;
   letter-spacing: -0.02em;
   margin: 0;
   max-width: 64rem;
@@ -691,8 +688,8 @@
 }
 
 .dbh-banner .dbh-btn {
-  color: #1C2412 !important;
-  border-color: #1C2412 !important;
+  color: var(--dilmio-green-ink) !important;
+  border-color: var(--dilmio-green-ink) !important;
 }
 
 .dbh-banner .dbh-btn:hover {
@@ -797,12 +794,12 @@
   }
 
   .dbh-hero__heading {
-    color: #1a1a1a;
+    color: var(--dilmio-text);
     font-size: 2rem;
   }
 
   .dbh-hero__subtext {
-    color: #3a3a3a;
+    color: var(--dilmio-text-secondary);
     font-size: 1.3rem;
   }
 
