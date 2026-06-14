@@ -16,7 +16,7 @@
 .dilmio-reviews__title {
   font-size: 2.2rem;
   font-weight: 600;
-  color: #1C2412;
+  color: var(--dilmio-primary-ink);
   margin: 0;
   letter-spacing: -0.02em;
 }
@@ -24,10 +24,10 @@
 /* --- Empty state (editor only) --- */
 .dilmio-reviews__empty {
   padding: 2rem;
-  background: #f5f5f0;
+  background: var(--dilmio-surface-soft);
   border-radius: 8px;
-  border: 1px dashed #ccc;
-  color: #666;
+  border: 1px dashed var(--dilmio-border-strong);
+  color: var(--dilmio-text-muted);
   font-size: 1.4rem;
   text-align: center;
 }
@@ -54,8 +54,8 @@
 
 /* --- Card --- */
 .dilmio-reviews__card {
-  background: #FDFBF7;
-  border: 1px solid #e2e0da;
+  background: var(--dilmio-surface);
+  border: 1px solid var(--dilmio-border-faint);
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(28, 36, 18, 0.07);
   overflow: hidden;
@@ -102,12 +102,12 @@
 .dilmio-reviews__name {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #1C2412;
+  color: var(--dilmio-primary-ink);
 }
 
 .dilmio-reviews__date {
   font-size: 1.2rem;
-  color: #888;
+  color: var(--dilmio-text-faint);
   white-space: nowrap;
 }
 
@@ -120,18 +120,18 @@
 }
 
 .dilmio-reviews__star {
-  color: #ddd;
+  color: var(--dilmio-star-empty);
 }
 
 .dilmio-reviews__star--filled {
-  color: #c8a84b;
+  color: var(--dilmio-star);
 }
 
 /* --- Review text --- */
 .dilmio-reviews__text {
   font-size: 1.4rem;
   line-height: 1.6;
-  color: #444;
+  color: var(--dilmio-text-body);
   margin: 0;
 }
 
@@ -139,7 +139,7 @@
 .dilmio-reviews__video-link {
   display: inline-block;
   font-size: 1.3rem;
-  color: #3E4A2D;
+  color: var(--dilmio-primary);
   text-decoration: underline;
   margin-top: auto;
   padding-top: 0.8rem;
@@ -147,7 +147,7 @@
 }
 
 .dilmio-reviews__video-link:hover {
-  color: #1C2412;
+  color: var(--dilmio-primary-ink);
 }
 
 /* ================================================

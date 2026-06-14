@@ -9,7 +9,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 2.5rem 1rem;
-  border-top: 1px solid #e8ede0;
+  border-top: 1px solid var(--dilmio-primary-border);
 }
 
 .dilmio-problem-solution__grid {
@@ -24,25 +24,25 @@
 }
 
 .dilmio-problem-solution__column--problem {
-  background: #fdf2f2;
-  border: 1px solid #f5c6c6;
+  background: var(--dilmio-before-bg);
+  border: 1px solid var(--dilmio-before-border);
 }
 
 .dilmio-problem-solution__column--solution {
-  background: #f0f4ec;
-  border: 1px solid #c5d6b2;
+  background: var(--dilmio-after-bg);
+  border: 1px solid var(--dilmio-after-border);
 }
 
 .dilmio-problem-solution__title {
   font-size: 1rem;
   font-weight: 600;
-  color: #3E4A2D;
+  color: var(--dilmio-primary);
   margin: 0 0 0.75rem;
 }
 
 .dilmio-problem-solution__text {
   font-size: 0.9rem;
-  color: #444;
+  color: var(--dilmio-text-body);
   line-height: 1.6;
   white-space: pre-line;
 }
@@ -53,7 +53,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 2.5rem 1rem;
-  border-top: 1px solid #e8ede0;
+  border-top: 1px solid var(--dilmio-primary-border);
 }
 
 .dilmio-before-after__grid {
@@ -77,7 +77,7 @@
 .dilmio-before-after__label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #3E4A2D;
+  color: var(--dilmio-primary);
   margin: 0.5rem 0 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -89,19 +89,19 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2.5rem 1rem;
-  border-top: 1px solid #e8ede0;
+  border-top: 1px solid var(--dilmio-primary-border);
 }
 
 .dilmio-details__title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #3E4A2D;
+  color: var(--dilmio-primary);
   margin: 0 0 1.25rem;
 }
 
 .dilmio-details__content {
   font-size: 0.9rem;
-  color: #444;
+  color: var(--dilmio-text-body);
   line-height: 1.7;
 }
 
@@ -113,7 +113,7 @@
 .dilmio-details__content td,
 .dilmio-details__content th {
   padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid #e8ede0;
+  border-bottom: 1px solid var(--dilmio-primary-border);
   text-align: left;
   vertical-align: top;
 }
@@ -139,7 +139,7 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.875rem;
-  color: #444;
+  color: var(--dilmio-text-body);
 }
 
 .dilmio-ba-bullet__icon {
@@ -157,11 +157,11 @@
 }
 
 .dilmio-before-after__item--before .dilmio-ba-bullet__icon {
-  color: #c0392b;
+  color: var(--dilmio-error);
 }
 
 .dilmio-before-after__item--after .dilmio-ba-bullet__icon {
-  color: #2e7d32;
+  color: var(--dilmio-after);
 }
 
 /* ─── Details cards ─── */
@@ -173,8 +173,8 @@
 }
 
 .dilmio-details__card {
-  background: #f0f4ec;
-  border: 1px solid #d8e4c8;
+  background: var(--dilmio-after-bg);
+  border: 1px solid var(--dilmio-after-border);
   border-radius: 12px;
   padding: 1.25rem;
 }
@@ -184,7 +184,7 @@
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
-  color: #3E4A2D;
+  color: var(--dilmio-primary);
 }
 
 .dilmio-details__card-icon {
@@ -211,7 +211,7 @@
 
 .dilmio-details__card-text {
   font-size: 0.875rem;
-  color: #444;
+  color: var(--dilmio-text-body);
   line-height: 1.55;
   margin: 0;
   white-space: pre-line;
@@ -219,7 +219,7 @@
 
 .dilmio-details__note {
   font-size: 0.8rem;
-  color: #777;
+  color: var(--dilmio-text-muted);
   margin: 1rem 0 0;
   text-align: center;
 }

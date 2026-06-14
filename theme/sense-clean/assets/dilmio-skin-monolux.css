@@ -1,0 +1,208 @@
+/* ═══════════════════════════════════════════════════════════════════
+   DILMIO Skin — Mono Lux (SKIN DE TEST · FASE 1)
+   dilmio-skin-monolux.css
+   ───────────────────────────────────────────────────────────────────
+   Objetivo: PRUEBA BINARIA del sistema de skins.
+   Monocromo de lujo (grafito + crema), deliberadamente RADICAL.
+   Carga DESPUÉS de dilmio-tokens.css → gana en la cascada.
+
+   Bloques:
+     [1] PALETA              — valores editables
+     [2] PUENTE SHOPIFY      — usa --*-rgb derivados (incl. foreground/button-text)
+     [3] ALIASES             — retrocompatibilidad
+     [4] OVERRIDES DE TEST   — TEMPORAL: selectores directos para que el
+                               cambio sea inequívoco. Se ELIMINA en Fase 2.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ╔═══ [1] PALETA ═══╗ */
+:root {
+  /* RGB base (fuente única; el resto deriva de aquí) */
+  --dilmio-primary-rgb:   26, 26, 26;     /* #1A1A1A grafito */
+  --dilmio-bg-rgb:        251, 249, 244;  /* #FBF9F4 crema */
+  --dilmio-ink-rgb:       17, 17, 17;     /* #111111 */
+  --dilmio-on-dark-rgb:   247, 242, 234;  /* #F7F2EA texto sobre oscuro */
+  --dilmio-surf-alt-rgb:  243, 241, 236;  /* #F3F1EC superficie alterna suave */
+  --dilmio-dark-rgb:      22, 22, 22;      /* #161616 oscuro premium (footer/banda) */
+  --dilmio-accent-rgb:    58, 58, 58;      /* #3A3A3A acento controlado dentro de paleta */
+
+  --dilmio-primary:       rgb(var(--dilmio-primary-rgb));
+  --dilmio-primary-hover: #2E2E2E;
+  --dilmio-primary-dark:  #0D0D0D;
+  --dilmio-primary-ink:   rgb(var(--dilmio-ink-rgb));
+  --dilmio-primary-ink-rgb: var(--dilmio-ink-rgb);
+  --dilmio-primary-tint:  #ECEAE5;
+  --dilmio-primary-border:#E4E1DB;
+
+  --dilmio-bg:            rgb(var(--dilmio-bg-rgb));
+  --dilmio-surface:       #FFFFFF;
+  --dilmio-surface-alt:   #FBF9F4;
+  --dilmio-surface-soft:  #F3F1EC;
+  --dilmio-header-bg:     #FBF9F4;
+  --dilmio-footer-bg:     #161616;          /* footer oscuro */
+  --dilmio-footer-fg-rgb: var(--dilmio-on-dark-rgb);
+
+  --dilmio-text:          #161616;
+  --dilmio-text-body:     #3D3D3D;
+  --dilmio-text-subtle:   #505050;
+  --dilmio-text-muted:    #6E6E6E;
+  --dilmio-text-faint:    #909090;
+
+  --dilmio-border:        #D6D2CA;
+  --dilmio-border-light:  #E6E2DA;
+  --dilmio-border-strong: #C7C2B9;
+  --dilmio-border-faint:  #E8E5DE;
+
+  --dilmio-star:          #C79A3A;
+  --dilmio-star-empty:    #D4D1CB;
+  --dilmio-error:         #B23A2E;
+  --dilmio-before-bg:     #FAF2F1;
+  --dilmio-before-border: #EEC9C4;
+  --dilmio-after:         #3C7A4E;
+  --dilmio-after-bg:      #EEF3EE;
+  --dilmio-after-border:  #CBDBCC;
+
+  --dilmio-shadow-card:   0 4px 24px rgba(17, 17, 17, 0.10);
+  --dilmio-shadow-hover:  0 12px 40px rgba(17, 17, 17, 0.16);
+
+  --dilmio-radius-sm:     2px;
+  --dilmio-radius-btn:    2px;
+  --dilmio-radius-card:   6px;
+  --dilmio-radius-md:     8px;
+  --dilmio-radius-lg:     10px;
+  --dilmio-radius-xl:     12px;
+
+  --dilmio-section-spacing: 6rem;
+}
+
+/* ╔═══ [2] PUENTE SHOPIFY — 5 schemes con INTENCIÓN VISUAL ═══╗
+   No clona los 5: preserva jerarquía premium.
+     scheme-1 → base CLARA principal (crema + botón grafito)
+     scheme-2 → base ALTERNA suave (superficie secundaria)
+     scheme-3 → OSCURO premium (texto claro sobre grafito)
+     scheme-4 → ACENTO controlado (dentro de la paleta, no magenta)
+     scheme-5 → OSCURO secundario / contraste
+   Todo derivado de los --*-rgb de [1]; cambiar la paleta los recalcula. */
+
+/* — scheme-1: base clara principal — */
+:root,
+.color-scheme-1 {
+  --color-background:            var(--dilmio-bg-rgb);
+  --gradient-background:         rgb(var(--dilmio-bg-rgb));
+  --color-foreground:            var(--dilmio-ink-rgb);
+  --color-button:                var(--dilmio-primary-rgb);
+  --color-button-text:           var(--dilmio-bg-rgb);
+  --color-shadow:                var(--dilmio-primary-rgb);
+  --color-link:                  var(--dilmio-primary-rgb);
+  --color-secondary-button-text: var(--dilmio-primary-rgb);
+  --color-secondary-button:      var(--dilmio-bg-rgb);
+}
+
+/* — scheme-2: base alterna suave (superficie secundaria) — */
+.color-scheme-2 {
+  --color-background:            var(--dilmio-surf-alt-rgb);
+  --gradient-background:         rgb(var(--dilmio-surf-alt-rgb));
+  --color-foreground:            var(--dilmio-ink-rgb);
+  --color-button:                var(--dilmio-primary-rgb);
+  --color-button-text:           var(--dilmio-bg-rgb);
+  --color-shadow:                var(--dilmio-primary-rgb);
+  --color-link:                  var(--dilmio-primary-rgb);
+  --color-secondary-button-text: var(--dilmio-primary-rgb);
+  --color-secondary-button:      var(--dilmio-surf-alt-rgb);
+}
+
+/* — scheme-3: oscuro premium — */
+.color-scheme-3 {
+  --color-background:            var(--dilmio-dark-rgb);
+  --gradient-background:         rgb(var(--dilmio-dark-rgb));
+  --color-foreground:            var(--dilmio-on-dark-rgb);
+  --color-button:                var(--dilmio-on-dark-rgb);     /* botón claro sobre oscuro */
+  --color-button-text:           var(--dilmio-dark-rgb);
+  --color-shadow:                0, 0, 0;
+  --color-link:                  var(--dilmio-on-dark-rgb);
+  --color-secondary-button-text: var(--dilmio-on-dark-rgb);
+  --color-secondary-button:      var(--dilmio-dark-rgb);
+}
+
+/* — scheme-4: acento controlado (announcement bar). Dentro de la paleta:
+     fondo grafito acento + texto claro. Cierra la fuga del verde/magenta. — */
+.color-scheme-4 {
+  --color-background:            var(--dilmio-accent-rgb);
+  --gradient-background:         rgb(var(--dilmio-accent-rgb));
+  --color-foreground:            var(--dilmio-on-dark-rgb);
+  --color-button:                var(--dilmio-on-dark-rgb);
+  --color-button-text:           var(--dilmio-accent-rgb);
+  --color-shadow:                0, 0, 0;
+  --color-link:                  var(--dilmio-on-dark-rgb);
+  --color-secondary-button-text: var(--dilmio-on-dark-rgb);
+  --color-secondary-button:      var(--dilmio-accent-rgb);
+}
+
+/* — scheme-5: oscuro / contraste secundario — */
+.color-scheme-5 {
+  --color-background:            var(--dilmio-dark-rgb);
+  --gradient-background:         rgb(var(--dilmio-dark-rgb));
+  --color-foreground:            var(--dilmio-on-dark-rgb);
+  --color-button:                var(--dilmio-on-dark-rgb);
+  --color-button-text:           var(--dilmio-dark-rgb);
+  --color-shadow:                0, 0, 0;
+  --color-link:                  var(--dilmio-on-dark-rgb);
+  --color-secondary-button-text: var(--dilmio-on-dark-rgb);
+  --color-secondary-button:      var(--dilmio-dark-rgb);
+}
+
+/* ╔═══ [3] ALIASES — no editar ═══╗ */
+:root {
+  --dilmio-green:             var(--dilmio-primary);
+  --dilmio-green-hover:       var(--dilmio-primary-hover);
+  --dilmio-green-dark:        var(--dilmio-primary-dark);
+  --dilmio-green-ink:         var(--dilmio-primary-ink);
+  --dilmio-green-ink-rgb:     var(--dilmio-primary-ink-rgb);
+  --dilmio-green-tint:        var(--dilmio-primary-tint);
+  --dilmio-green-border:      var(--dilmio-primary-border);
+  --dilmio-cream:             var(--dilmio-surface);
+  --dilmio-cream-bg:          var(--dilmio-bg);
+  --dilmio-cream-section:     var(--dilmio-surface-alt);
+  --dilmio-text-secondary:    var(--dilmio-text-body);
+  --dilmio-shadow-sm:         var(--dilmio-shadow-card);
+  --dilmio-shadow-md:         var(--dilmio-shadow-hover);
+  --dilmio-shadow-collection: var(--dilmio-shadow-card);
+  --dilmio-shadow-card-hover: var(--dilmio-shadow-hover);
+  --dilmio-disabled:          var(--dilmio-border-strong);
+}
+
+
+/* ╔═══ [4] AJUSTES DE SKIN OSCURA — limpio, sin parches ═══╗
+   Estas reglas NO existen para tapar hardcodes (eso se resuelve ya por
+   el puente de schemes [2] y por la tokenización de los CSS de marca).
+   Son ajustes cosméticos legítimos de una skin con footer oscuro:
+     · logo: aclarar el PNG oscuro sobre fondo oscuro (provisional);
+     · footer: subir contraste de los textos más tenues.
+   Sin !important: se apoyan en especificidad normal. */
+
+/* — Logo del footer sobre fondo oscuro —
+   Solución provisional: invierte el logo monocromo para que se vea claro.
+   Definitivo futuro: subir un logo alternativo claro en el editor. */
+.footer .dilmio-footer__logo img {
+  filter: brightness(0) invert(1);
+}
+
+/* — Contraste del footer oscuro —
+   El footer usa scheme oscuro (vía [2]), así que --color-foreground ya es claro.
+   Aquí solo elevamos los textos que el CSS base dejaba muy tenues (opacidad
+   pensada para fondo claro) para que sean legibles sobre oscuro. */
+.footer .copyright__content,
+.footer .footer__content-bottom,
+.footer small,
+.footer .dilmio-footer__legal {
+  color: rgba(var(--color-foreground), 0.78);
+}
+
+/* ╔═══ [5] APP OVERRIDES — excepciones justificadas ═══╗
+   Selectores que corrigen inline styles inyectados por apps externas.
+   !important es obligatorio cuando la app usa style="" inline. */
+
+/* 17TRACK tracking widget — botón RASTREAR
+   La app inyecta background-color inline desde su JS. */
+#trackingForm button.ant-btn.ant-btn-lg[type="submit"] {
+  background-color: var(--dilmio-primary, #1a1a1a) !important;
+}

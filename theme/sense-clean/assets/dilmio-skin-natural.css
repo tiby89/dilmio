@@ -1,0 +1,159 @@
+/* ═══════════════════════════════════════════════════════════════════
+   DILMIO Skin — Natural Premium  ·  dilmio-skin-natural.css
+   ───────────────────────────────────────────────────────────────────
+   Paleta original DILMIO (verde oliva + ivory). Mantiene la estética
+   actual del theme. Incluye el sistema completo de puente de 5 schemes
+   con intención visual (igual estructura que monolux).
+   Activar: en layout/theme.liquid cargar esta skin tras dilmio-tokens.css.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ╔═══ [1] PALETA ═══╗ */
+:root {
+  /* RGB base */
+  --dilmio-primary-rgb:   38, 58, 20;     /* #263A14 verde */
+  --dilmio-bg-rgb:        244, 241, 232;  /* #F4F1E8 ivory */
+  --dilmio-ink-rgb:       28, 36, 18;     /* #1C2412 */
+  --dilmio-on-dark-rgb:   244, 241, 232;  /* ivory sobre oscuro */
+  --dilmio-surf-alt-rgb:  244, 241, 232;  /* superficie alterna */
+  --dilmio-dark-rgb:      28, 36, 18;      /* oscuro premium (verde ink) */
+  --dilmio-accent-rgb:    38, 58, 20;      /* acento = primario */
+
+  --dilmio-primary:       rgb(var(--dilmio-primary-rgb));
+  --dilmio-primary-hover: #334D1C;
+  --dilmio-primary-dark:  #182810;
+  --dilmio-primary-ink:   rgb(var(--dilmio-ink-rgb));
+  --dilmio-primary-ink-rgb: var(--dilmio-ink-rgb);
+  --dilmio-primary-tint:  #E4EED4;
+  --dilmio-primary-border:#E8EDE0;
+
+  --dilmio-bg:            rgb(var(--dilmio-bg-rgb));
+  --dilmio-surface:       #FFFFFF;
+  --dilmio-surface-alt:   #F4F1E8;
+  --dilmio-surface-soft:  #F5F5F0;
+  --dilmio-header-bg:     #F4F1E8;
+  --dilmio-footer-bg:     #1C2412;
+  --dilmio-footer-fg-rgb: var(--dilmio-on-dark-rgb);
+
+  --dilmio-text:          #111111;
+  --dilmio-text-body:     #444444;
+  --dilmio-text-subtle:   #555555;
+  --dilmio-text-muted:    #6B6B6B;
+  --dilmio-text-faint:    #888888;
+
+  --dilmio-border:        #CCC5B8;
+  --dilmio-border-light:  #E0D9D0;
+  --dilmio-border-strong: #C9C4BE;
+  --dilmio-border-faint:  #E2E0DA;
+
+  --dilmio-star:          #E8960A;
+  --dilmio-star-empty:    #D0CDC8;
+  --dilmio-error:         #C0392B;
+  --dilmio-before-bg:     #FDF2F2;
+  --dilmio-before-border: #F5C6C6;
+  --dilmio-after:         #2E7D32;
+  --dilmio-after-bg:      #F0F4EC;
+  --dilmio-after-border:  #C5D6B2;
+
+  --dilmio-shadow-card:   0 4px 20px rgba(28, 36, 18, 0.07);
+  --dilmio-shadow-hover:  0 8px 32px rgba(28, 36, 18, 0.13);
+
+  --dilmio-radius-sm:     4px;
+  --dilmio-radius-btn:    6px;
+  --dilmio-radius-card:   12px;
+  --dilmio-radius-md:     14px;
+  --dilmio-radius-lg:     18px;
+  --dilmio-radius-xl:     20px;
+
+  --dilmio-section-spacing: 5rem;
+}
+
+/* ╔═══ [2] PUENTE SHOPIFY — 5 schemes con intención visual ═══╗ */
+:root,
+.color-scheme-1 {
+  --color-background:            var(--dilmio-bg-rgb);
+  --gradient-background:         rgb(var(--dilmio-bg-rgb));
+  --color-foreground:            var(--dilmio-ink-rgb);
+  --color-button:                var(--dilmio-primary-rgb);
+  --color-button-text:           var(--dilmio-bg-rgb);
+  --color-shadow:                var(--dilmio-primary-rgb);
+  --color-link:                  var(--dilmio-primary-rgb);
+  --color-secondary-button-text: var(--dilmio-primary-rgb);
+  --color-secondary-button:      var(--dilmio-bg-rgb);
+}
+.color-scheme-2 {
+  --color-background:            var(--dilmio-surf-alt-rgb);
+  --gradient-background:         rgb(var(--dilmio-surf-alt-rgb));
+  --color-foreground:            var(--dilmio-ink-rgb);
+  --color-button:                var(--dilmio-primary-rgb);
+  --color-button-text:           var(--dilmio-bg-rgb);
+  --color-shadow:                var(--dilmio-primary-rgb);
+  --color-link:                  var(--dilmio-primary-rgb);
+  --color-secondary-button-text: var(--dilmio-primary-rgb);
+  --color-secondary-button:      var(--dilmio-surf-alt-rgb);
+}
+.color-scheme-3 {
+  --color-background:            var(--dilmio-dark-rgb);
+  --gradient-background:         rgb(var(--dilmio-dark-rgb));
+  --color-foreground:            var(--dilmio-on-dark-rgb);
+  --color-button:                var(--dilmio-on-dark-rgb);
+  --color-button-text:           var(--dilmio-dark-rgb);
+  --color-shadow:                0, 0, 0;
+  --color-link:                  var(--dilmio-on-dark-rgb);
+  --color-secondary-button-text: var(--dilmio-on-dark-rgb);
+  --color-secondary-button:      var(--dilmio-dark-rgb);
+}
+.color-scheme-4 {
+  --color-background:            var(--dilmio-accent-rgb);
+  --gradient-background:         rgb(var(--dilmio-accent-rgb));
+  --color-foreground:            var(--dilmio-on-dark-rgb);
+  --color-button:                var(--dilmio-on-dark-rgb);
+  --color-button-text:           var(--dilmio-accent-rgb);
+  --color-shadow:                0, 0, 0;
+  --color-link:                  var(--dilmio-on-dark-rgb);
+  --color-secondary-button-text: var(--dilmio-on-dark-rgb);
+  --color-secondary-button:      var(--dilmio-accent-rgb);
+}
+.color-scheme-5 {
+  --color-background:            var(--dilmio-dark-rgb);
+  --gradient-background:         rgb(var(--dilmio-dark-rgb));
+  --color-foreground:            var(--dilmio-on-dark-rgb);
+  --color-button:                var(--dilmio-on-dark-rgb);
+  --color-button-text:           var(--dilmio-dark-rgb);
+  --color-shadow:                0, 0, 0;
+  --color-link:                  var(--dilmio-on-dark-rgb);
+  --color-secondary-button-text: var(--dilmio-on-dark-rgb);
+  --color-secondary-button:      var(--dilmio-dark-rgb);
+}
+
+/* ╔═══ [3] ALIASES — no editar ═══╗ */
+:root {
+  --dilmio-green:             var(--dilmio-primary);
+  --dilmio-green-hover:       var(--dilmio-primary-hover);
+  --dilmio-green-dark:        var(--dilmio-primary-dark);
+  --dilmio-green-ink:         var(--dilmio-primary-ink);
+  --dilmio-green-ink-rgb:     var(--dilmio-primary-ink-rgb);
+  --dilmio-green-tint:        var(--dilmio-primary-tint);
+  --dilmio-green-border:      var(--dilmio-primary-border);
+  --dilmio-cream:             var(--dilmio-surface);
+  --dilmio-cream-bg:          var(--dilmio-bg);
+  --dilmio-cream-section:     var(--dilmio-surface-alt);
+  --dilmio-text-secondary:    var(--dilmio-text-body);
+  --dilmio-shadow-sm:         var(--dilmio-shadow-card);
+  --dilmio-shadow-md:         var(--dilmio-shadow-hover);
+  --dilmio-shadow-collection: var(--dilmio-shadow-card);
+  --dilmio-shadow-card-hover: var(--dilmio-shadow-hover);
+  --dilmio-disabled:          var(--dilmio-border-strong);
+}
+
+/* ╔═══ [4] AJUSTES DE SKIN OSCURA ═══╗
+   En Natural el footer es verde-ink oscuro, así que aplican los mismos
+   ajustes de contraste/logo que en monolux. Sin !important. */
+.footer .dilmio-footer__logo img {
+  filter: brightness(0) invert(1);
+}
+.footer .copyright__content,
+.footer .footer__content-bottom,
+.footer small,
+.footer .dilmio-footer__legal {
+  color: rgba(var(--color-foreground), 0.78);
+}

@@ -84,7 +84,7 @@
 }
 
 .email-signup-banner {
-  background-color: #FAF9F6;
+  background-color: var(--dilmio-bg, #FAF9F6);
   --color-background: 250, 249, 246;
   --color-foreground: 28, 28, 28;
   --color-button: 62, 74, 45;
@@ -93,7 +93,7 @@
 
 @media screen and (max-width: 749px) {
   .email-signup-banner:not(.banner--mobile-bottom) .banner__box:not(.email-signup-banner__box--no-image) {
-    background-color: #FAF9F6;
+    background-color: var(--dilmio-bg, #FAF9F6);
     --color-foreground: 28, 28, 28;
     --color-button: 62, 74, 45;
   }
