@@ -123,9 +123,6 @@
                     }}
                   {%- endif -%}
                 </div>
-                {%- if block.settings.badge_icon != blank -%}
-                  <span class="dbh-category__badge" aria-hidden="true">{{ block.settings.badge_icon }}</span>
-                {%- endif -%}
                 <div class="dbh-category__body">
                   <div class="dbh-category__info">
                     {%- if block.settings.title != blank -%}
@@ -175,28 +172,26 @@
                 {%- break -%}
               {%- endif -%}
             {%- endfor -%}
-            <div class="dbh-pcard">
-              <a href="{{ product.url }}" class="dbh-pcard__image-link">
-                <div class="dbh-pcard__image-wrap">
-                  {%- if badge_text != blank -%}
-                    <span class="dbh-pcard__badge">{{ badge_text | escape }}</span>
-                  {%- endif -%}
-                  {%- if product.featured_image != blank -%}
-                    {{
-                      product.featured_image
-                      | image_url: width: 600
-                      | image_tag:
-                        loading: 'lazy',
-                        class: 'dbh-pcard__img',
-                        widths: '200, 300, 400, 600',
-                        sizes: '(min-width: 990px) 25vw, 72vw',
-                        alt: product.featured_image.alt | default: product.title | escape
-                    }}
-                  {%- else -%}
-                    <div class="dbh-pcard__img-placeholder"></div>
-                  {%- endif -%}
-                </div>
-              </a>
+            <a href="{{ product.url }}" class="dbh-pcard">
+              <div class="dbh-pcard__image-wrap">
+                {%- if badge_text != blank -%}
+                  <span class="dbh-pcard__badge">{{ badge_text | escape }}</span>
+                {%- endif -%}
+                {%- if product.featured_image != blank -%}
+                  {{
+                    product.featured_image
+                    | image_url: width: 600
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'dbh-pcard__img',
+                      widths: '200, 300, 400, 600',
+                      sizes: '(min-width: 990px) 25vw, 72vw',
+                      alt: product.featured_image.alt | default: product.title | escape
+                  }}
+                {%- else -%}
+                  <div class="dbh-pcard__img-placeholder"></div>
+                {%- endif -%}
+              </div>
               <div class="dbh-pcard__body">
                 <p class="dbh-pcard__name">{{ product.title | escape }}</p>
                 {%- render 'dilmio-card-rating', product: product -%}
@@ -206,9 +201,8 @@
                   {%- endif -%}
                   <span class="dbh-pcard__price-now">{{ product.price | money }}</span>
                 </div>
-                <a href="{{ product.url }}" class="dbh-pcard__btn">Ver producto &rarr;</a>
               </div>
-            </div>
+            </a>
           {%- endfor -%}
         </div>
         <button
