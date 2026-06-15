@@ -20,9 +20,13 @@
   {%- assign faq_question_1       = landing_product.metafields.custom.dilmio_faq_question_1.value -%}
   {%- assign faq_answer_1         = landing_product.metafields.custom.dilmio_faq_answer_1.value -%}
   {%- assign faq_question_2       = landing_product.metafields.custom.dilmio_faq_question_2.value -%}
+  {%- if faq_question_2 == blank -%}{%- assign faq_question_2 = landing_product.metafields.custom.custom_dilmio_faq_question_2.value -%}{%- endif -%}
   {%- assign faq_answer_2         = landing_product.metafields.custom.dilmio_faq_answer_2.value -%}
+  {%- if faq_answer_2 == blank -%}{%- assign faq_answer_2 = landing_product.metafields.custom.custom_dilmio_faq_answer_2.value -%}{%- endif -%}
   {%- assign faq_question_3       = landing_product.metafields.custom.dilmio_faq_question_3.value -%}
+  {%- if faq_question_3 == blank -%}{%- assign faq_question_3 = landing_product.metafields.custom.custom_dilmio_faq_question_3.value -%}{%- endif -%}
   {%- assign faq_answer_3         = landing_product.metafields.custom.dilmio_faq_answer_3.value -%}
+  {%- if faq_answer_3 == blank -%}{%- assign faq_answer_3 = landing_product.metafields.custom.custom_dilmio_faq_answer_3.value -%}{%- endif -%}
   {%- assign how_it_works_heading = landing_product.metafields.custom.dilmio_how_it_works_heading.value -%}
   {%- assign how_step_1_title     = landing_product.metafields.custom.dilmio_how_step_1_title.value -%}
   {%- assign how_step_1_text      = landing_product.metafields.custom.dilmio_how_step_1_text.value -%}
