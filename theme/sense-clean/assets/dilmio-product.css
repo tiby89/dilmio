@@ -51,15 +51,19 @@
 /* ─── Title & price ─── */
 
 .dilmio-landing__title {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 800;
   line-height: 1.2;
   margin: 0 0 0.75rem;
+  letter-spacing: -0.025em;
 }
 
 .dilmio-landing__price {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.55rem;
+  font-weight: 800;
   margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--dilmio-green);
 }
 
 /* ─── Option groups ─── */
@@ -130,16 +134,18 @@
 .dilmio-cta {
   display: block;
   width: 100%;
-  padding: 0.9rem 1.5rem;
+  padding: 1.1rem 1.5rem;
   background: var(--dilmio-green);
   color: #fff;
   border: none;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
   cursor: pointer;
   border-radius: var(--dilmio-radius-btn);
   text-align: center;
   transition: background 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 3px 10px rgba(62, 74, 45, 0.18);
 }
 
 .dilmio-cta:hover:not(:disabled):not(.is-loading) {
@@ -247,6 +253,20 @@
 @media (min-width: 750px) {
   .dilmio-hero__headline {
     font-size: 2.25rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-hero {
+    text-align: left;
+    padding-top: 1.4rem;
+    padding-bottom: 1rem;
+  }
+
+  .dilmio-hero__headline {
+    font-size: 2.05rem;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
   }
 }
 
@@ -713,13 +733,17 @@
 
 .dilmio-gallery__main-wrap {
   margin: 0 0 0.75rem;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--dilmio-radius-sm);
+  background: #fff;
 }
 
 .dilmio-gallery__main-wrap img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  border-radius: var(--dilmio-radius-sm);
+  object-fit: contain;
 }
 
 .dilmio-gallery__thumbs {
