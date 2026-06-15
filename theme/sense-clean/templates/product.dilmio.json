@@ -47,16 +47,6 @@
         "heading": "Opiniones de clientes"
       }
     },
-    "dilmio_problem_solution_LJK7Tw": {
-      "type": "dilmio-problem-solution",
-      "name": "DILMIO — Problema/Solución",
-      "settings": {
-        "show_problem_solution": true,
-        "product": "",
-        "problem_column_title": "El problema",
-        "solution_column_title": "La solución"
-      }
-    },
     "dilmio_details_hpKR8k": {
       "type": "dilmio-details",
       "name": "DILMIO — Detalles",
@@ -78,7 +68,6 @@
   "order": [
     "dilmio-landing",
     "dilmio_reviews_8jwfzk",
-    "dilmio_problem_solution_LJK7Tw",
     "dilmio_details_hpKR8k",
     "dilmio_before_after_r8CT3Q"
   ]

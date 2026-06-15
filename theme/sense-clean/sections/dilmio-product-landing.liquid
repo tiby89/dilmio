@@ -113,6 +113,21 @@
       -%}
     </div>
 
+    {%- assign prob_statement = landing_product.metafields.custom.dilmio_problem_statement.value | default: 'Cambiar de utensilio ensucia más y corta el ritmo.' -%}
+    {%- assign sol_statement  = landing_product.metafields.custom.dilmio_solution_statement.value | default: 'Recoge, escurre y sirve en un solo gesto.' -%}
+    <div class="dilmio-prob-sol-inline">
+      <div class="dilmio-prob-sol-inline__grid">
+        <div class="dilmio-prob-sol-inline__col dilmio-prob-sol-inline__col--problem">
+          <p class="dilmio-prob-sol-inline__label">{{ section.settings.inline_problem_label }}</p>
+          <div class="dilmio-prob-sol-inline__text">{{ prob_statement }}</div>
+        </div>
+        <div class="dilmio-prob-sol-inline__col dilmio-prob-sol-inline__col--solution">
+          <p class="dilmio-prob-sol-inline__label">{{ section.settings.inline_solution_label }}</p>
+          <div class="dilmio-prob-sol-inline__text">{{ sol_statement }}</div>
+        </div>
+      </div>
+    </div>
+
     {%- if section.settings.show_how_it_works -%}
       {%- render 'dilmio-landing-steps',
         heading: how_it_works_heading,
@@ -194,6 +209,17 @@
         </div>
       {%- endif -%}
     {%- endif -%}
+
+    {%- liquid
+      assign cta_heading = section.settings.cta_final_heading | default: 'Haz tu cocina más práctica desde hoy'
+      assign cta_sub     = section.settings.cta_final_sub | default: 'Escurre, sirve y limpia menos con un solo utensilio.'
+      assign cta_btn     = section.settings.cta_final_btn | default: 'Comprar ahora'
+    -%}
+    <div class="dilmio-cta-final">
+      <p class="dilmio-cta-final__heading">{{ cta_heading }}</p>
+      <p class="dilmio-cta-final__sub">{{ cta_sub }}</p>
+      <a href="#dilmio-buy-core" class="dilmio-cta-final__btn">{{ cta_btn }}</a>
+    </div>
 
     {%- render 'dilmio-landing-sticky', product: landing_product, current_variant: current_variant -%}
 
@@ -468,6 +494,44 @@
         {"value": "Sesiones", "label": "Sesiones"},
         {"value": "Cantidad", "label": "Cantidad"}
       ]
+    },
+    {
+      "type": "header",
+      "content": "Inline problem / solution"
+    },
+    {
+      "type": "text",
+      "id": "inline_problem_label",
+      "label": "Problem column label",
+      "default": "El problema"
+    },
+    {
+      "type": "text",
+      "id": "inline_solution_label",
+      "label": "Solution column label",
+      "default": "La solución"
+    },
+    {
+      "type": "header",
+      "content": "Final CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_final_heading",
+      "label": "Final CTA — Heading",
+      "placeholder": "e.g. Make it more practical today"
+    },
+    {
+      "type": "text",
+      "id": "cta_final_sub",
+      "label": "Final CTA — Subtext",
+      "placeholder": "e.g. One tool for everything"
+    },
+    {
+      "type": "text",
+      "id": "cta_final_btn",
+      "label": "Final CTA — Button label",
+      "default": "Comprar ahora"
     }
   ],
   "presets": [
