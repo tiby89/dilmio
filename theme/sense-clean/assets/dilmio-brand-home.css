@@ -724,8 +724,8 @@
 
   .dbh-hero__bg {
     position: relative;
-    height: 62vw;
-    min-height: 22rem;
+    height: 64vw;
+    min-height: 23rem;
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -736,8 +736,8 @@
 
   .dbh-hero__overlay {
     bottom: auto;
-    height: 62vw;
-    min-height: 22rem;
+    height: 64vw;
+    min-height: 23rem;
     background: linear-gradient(
       to top,
       rgba(var(--dbh-bg-rgb), 0.7) 0%,
@@ -749,7 +749,7 @@
     position: static;
     min-height: auto;
     align-items: flex-start;
-    padding: 2.4rem 2rem 2rem;
+    padding: 2.4rem 2rem 3.2rem;
     background: var(--dbh-cream);
     z-index: auto;
   }
@@ -775,8 +775,8 @@
 
   .dbh-hero__content .dbh-btn {
     align-self: flex-start;
-    font-size: 1.3rem;
-    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    padding: 1.2rem 2.4rem;
     width: auto;
     display: inline-flex;
   }
