@@ -885,8 +885,8 @@
   }
 
   .dbh-pcard {
-    flex: 0 0 90vw;
-    max-width: 90vw;
+    flex: 0 0 72vw;
+    max-width: 72vw;
     scroll-snap-align: start;
     min-width: 0;
     box-sizing: border-box;
@@ -904,12 +904,12 @@
 
   /* Criteria */
   .dbh-criteria {
-    padding: 2rem 0;
+    padding: 3.6rem 0;
   }
 
   .dbh-criteria__grid {
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 1.2rem;
   }
 
   .dbh-criteria__item {
@@ -924,7 +924,8 @@
 
   /* Banner */
   .dbh-banner {
-    padding: 4rem 0;
+    padding: 5.6rem 0;
+    border-radius: 0;
   }
 
   .dbh-banner__heading {
