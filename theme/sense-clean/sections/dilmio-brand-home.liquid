@@ -146,10 +146,10 @@
   {%- if featured_collection != blank and featured_collection.all_products_count > 0 -%}
     <div class="dbh-products">
       <div class="dbh-wrapper">
-        <div class="dbh-products__header" style="text-align:left; align-items:flex-start">
+        <div class="dbh-products__header">
           <div class="dbh-products__header-left">
             {%- if section.settings.featured_heading != blank -%}
-              <h2 class="dbh-section-heading dbh-products__heading" style="text-align:left">{{ section.settings.featured_heading | escape }}</h2>
+              <h2 class="dbh-section-heading dbh-products__heading">{{ section.settings.featured_heading | escape }}</h2>
             {%- endif -%}
             {%- if section.settings.featured_subtitle != blank -%}
               <p class="dbh-products__subtitle">{{ section.settings.featured_subtitle | escape }}</p>

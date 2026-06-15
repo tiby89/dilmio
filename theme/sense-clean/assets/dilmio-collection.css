@@ -1,155 +1,170 @@
-/* ─── DILMIO Collection — card overrides ─── */
+/* =============================================
+   DILMIO Collection — dilmio-collection.css
+   Mejora visual del catálogo de productos.
+   ============================================= */
 
-/* Card: warm white, shadow directly on card, clean border */
-#product-grid .card--card {
-  background-color: var(--dilmio-cream);
-  border: 0.1rem solid rgba(28, 36, 18, 0.08);
+/* ─── CARD: borde y fondo premium ─────────── */
+
+.product-grid .card-wrapper {
   border-radius: var(--dilmio-radius-card);
-  box-shadow: 0 4px 20px rgba(28, 36, 18, 0.07);
-  transition: box-shadow 0.2s ease;
-}
-
-/* Suppress ::after shadow — managed on card directly */
-#product-grid .card--card::after {
-  border-radius: var(--dilmio-radius-card);
-  box-shadow: none;
-}
-
-/* Card-wrapper: handles lift — no transform conflict with card's perspective(0) */
-#product-grid .card-wrapper {
+  overflow: hidden;
   transition: transform 0.2s ease;
 }
 
-/* Heading: compact, lighter */
-#product-grid .card__heading {
-  min-height: 0;
-  line-height: 1.22;
-  letter-spacing: -0.01em;
-  font-weight: 500;
+.product-grid .card--card,
+.product-grid .card--standard .card__inner {
+  border-radius: var(--dilmio-radius-card);
+  border-color: var(--dilmio-primary-border, #E4E1DB);
+  background-color: var(--dilmio-surface, #FFFFFF);
 }
 
-/* Card information: slightly more air */
-#product-grid .card__information {
+/* Reemplaza el sistema --shadow-* de Shopify con tokens DILMIO */
+.product-grid .card--card:after,
+.product-grid .card--standard .card__inner:after {
+  box-shadow: var(--dilmio-shadow-collection);
+  border-radius: var(--dilmio-radius-card);
+}
+
+/* ─── Área de imagen: fondo placeholder ─────── */
+.product-grid .card__media {
+  background-color: var(--dilmio-primary-border, #E4E1DB);
+  overflow: hidden;
+}
+
+/* ─── Título del producto ─────────────────────── */
+.product-grid .card__heading.h5,
+.product-grid .card__heading {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--dilmio-text, #161616);
+  min-height: 0;
+}
+
+/* 2 líneas máx — se aplica al enlace interior del h3 */
+.product-grid .card__heading a {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Precio ──────────────────────────────────── */
+
+/* Bloque precio: tamaño base más contenido para todo el conjunto
+   ("A partir de" y el importe van en el mismo span, se bajan juntos) */
+.product-grid .price {
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+/* Precio final/oferta: 600 en vez de 700 — legible pero no titular */
+.product-grid .price__regular .price-item--regular,
+.product-grid .price__sale .price-item--sale {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--dilmio-text, #161616);
+}
+
+/* Precio tachado: más pequeño y apagado */
+.product-grid .price__sale .price-item--regular {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--dilmio-text-muted, #6E6E6E);
+}
+
+/* ─── Badge: pill premium ─────────────────────── */
+.product-grid .badge {
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ─── Espaciado de información de card ────────── */
+.product-grid .card__information {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
 }
 
-/* Rating: secondary, less prominent */
-#product-grid .dilmio-card-rating {
-  margin-top: 0.2rem;
-  margin-bottom: 0.1rem;
+/* ─── Rating DILMIO ───────────────────────────── */
+.product-grid .dilmio-card-rating {
+  margin-top: 0.1rem;
+  margin-bottom: 0;
 }
 
-#product-grid .dilmio-card-rating__stars {
+.product-grid .dilmio-card-rating__stars {
   font-size: 1.05rem;
 }
 
-#product-grid .dilmio-card-rating__avg {
+.product-grid .dilmio-card-rating__avg {
   font-size: 0.85rem;
   font-weight: 400;
   color: var(--dilmio-text-muted);
 }
 
-#product-grid .dilmio-card-rating__count {
+.product-grid .dilmio-card-rating__count {
   font-size: 0.8rem;
 }
 
-/* Price: present but not heavy */
-#product-grid .price-item--regular {
-  font-weight: 500;
-  color: var(--dilmio-green-ink);
-  letter-spacing: 0.01rem;
-}
-
-/* ─── DILMIO Collection — desktop hover ─── */
-
+/* ─── Desktop hover ───────────────────────────── */
 @media (hover: hover) and (min-width: 750px) {
-  #product-grid .card-wrapper:hover {
+  .product-grid .card-wrapper:hover {
     transform: translateY(-3px);
   }
 
-  #product-grid .card-wrapper:hover .card--card {
+  .product-grid .card-wrapper:hover .card--card:after,
+  .product-grid .card-wrapper:hover .card--standard .card__inner:after {
     box-shadow: var(--dilmio-shadow-card-hover);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #product-grid .card--card,
-  #product-grid .card-wrapper {
+  .product-grid .card--card,
+  .product-grid .card-wrapper {
     transition: none;
   }
 }
 
-/* ─── DILMIO Collection — mobile ─── */
-
+/* ─── Mobile ──────────────────────────────────── */
 @media screen and (max-width: 749px) {
-  /* Uniform square image grid */
-  #product-grid .card__inner.ratio {
+  .product-grid.grid--2-col-tablet-down {
+    gap: 1.2rem;
+  }
+
+  .product-grid .card__heading.h5,
+  .product-grid .card__heading {
+    font-size: 1.3rem;
+  }
+
+  /* Precio más contenido en columnas estrechas */
+  .product-grid .price {
+    font-size: 1.2rem;
+  }
+
+  .product-grid .price__regular .price-item--regular,
+  .product-grid .price__sale .price-item--sale {
+    font-size: 1.2rem;
+  }
+
+  .product-grid .price__sale .price-item--regular {
+    font-size: 1rem;
+  }
+
+  /* Imagen siempre cuadrada en móvil */
+  .product-grid .card__inner.ratio {
     --ratio-percent: 100% !important;
   }
 
-  /* Text alignment */
-  #product-grid .card {
-    --text-alignment: center;
-  }
-
-  /* Collection header: lighter, more refined */
+  /* Colección hero */
   .collection-hero__title {
     font-weight: 400;
     letter-spacing: 0.03em;
   }
 }
 
-/* ─── DILMIO Collection — mobile facets polish ─── */
-
-#main-collection-filters span.active-facets__button-inner {
-  font-size: 1.2rem;
-  padding: 0.35rem 1.4rem;
-}
-
-#main-collection-filters .mobile-facets__header {
-  padding: 1.6rem 2.5rem;
-  border-bottom-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
-}
-
-#main-collection-filters .mobile-facets__details + .mobile-facets__details {
-  border-top: 0.1rem solid rgba(var(--dilmio-green-ink-rgb), 0.08);
-}
-
-#main-collection-filters .mobile-facets__summary {
-  padding: 1.6rem 2.5rem;
-}
-
-#main-collection-filters .mobile-facets__footer {
-  border-top-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
-}
-
-/* ─── DILMIO Search — mobile facets polish ─── */
-
-#main-search-filters span.active-facets__button-inner {
-  font-size: 1.2rem;
-  padding: 0.35rem 1.4rem;
-}
-
-#main-search-filters .mobile-facets__header {
-  padding: 1.6rem 2.5rem;
-  border-bottom-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
-}
-
-#main-search-filters .mobile-facets__details + .mobile-facets__details {
-  border-top: 0.1rem solid rgba(var(--dilmio-green-ink-rgb), 0.08);
-}
-
-#main-search-filters .mobile-facets__summary {
-  padding: 1.6rem 2.5rem;
-}
-
-#main-search-filters .mobile-facets__footer {
-  border-top-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
-}
-
-/* ─── DILMIO Collection — hero / banner ─── */
-
+/* ─── Colección hero / banner ─────────────────── */
 @media screen and (min-width: 750px) {
   .collection-hero__title {
     font-weight: 400;
@@ -161,8 +176,35 @@
   color: var(--dilmio-text-secondary);
 }
 
-/* ─── DILMIO Collection — desktop facets ─── */
+/* ─── Facets móvil (collection + search) ──────── */
+#main-collection-filters span.active-facets__button-inner,
+#main-search-filters span.active-facets__button-inner {
+  font-size: 1.2rem;
+  padding: 0.35rem 1.4rem;
+}
 
+#main-collection-filters .mobile-facets__header,
+#main-search-filters .mobile-facets__header {
+  padding: 1.6rem 2.5rem;
+  border-bottom-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
+}
+
+#main-collection-filters .mobile-facets__details + .mobile-facets__details,
+#main-search-filters .mobile-facets__details + .mobile-facets__details {
+  border-top: 0.1rem solid rgba(var(--dilmio-green-ink-rgb), 0.08);
+}
+
+#main-collection-filters .mobile-facets__summary,
+#main-search-filters .mobile-facets__summary {
+  padding: 1.6rem 2.5rem;
+}
+
+#main-collection-filters .mobile-facets__footer,
+#main-search-filters .mobile-facets__footer {
+  border-top-color: rgba(var(--dilmio-green-ink-rgb), 0.14);
+}
+
+/* ─── Facets desktop (collection) ─────────────── */
 #main-collection-filters .facets__heading {
   color: var(--dilmio-text-muted);
 }

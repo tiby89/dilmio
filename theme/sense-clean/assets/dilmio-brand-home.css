@@ -371,10 +371,11 @@
 
 .dbh-products__header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1.6rem;
   margin-bottom: 2.8rem;
+  text-align: left;
 }
 
 .dbh-products__header-left {
