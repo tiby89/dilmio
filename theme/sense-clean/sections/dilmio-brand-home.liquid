@@ -216,9 +216,11 @@
           onclick="(function(c){c.scrollBy({left:c.offsetWidth/4,behavior:'smooth'})})(document.getElementById('dbh-carousel-{{ section.id }}'))"
         >&#8594;</button>
       </div>
-      <a href="{{ featured_collection.url }}" class="dbh-products__view-all-mobile">
-        Ver catálogo →
-      </a>
+      {%- if section.settings.featured_view_all_label != blank -%}
+        <a href="{{ featured_collection.url }}" class="dbh-products__view-all-mobile">
+          {{- section.settings.featured_view_all_label | escape -}}
+        </a>
+      {%- endif -%}
     </div>
   {%- endif -%}
 
