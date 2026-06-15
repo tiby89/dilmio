@@ -92,14 +92,13 @@
     </script>
 
     {%- assign resolved_headline = hero_headline | default: landing_product.title -%}
-    <div class="dilmio-hero">
-      <div class="dilmio-hero__headline">{{ resolved_headline | newline_to_br }}</div>
-      {%- if hero_subheadline != blank -%}
-        <p class="dilmio-hero__subheadline">{{ hero_subheadline }}</p>
-      {%- endif -%}
-    </div>
-
     <div id="dilmio-buy-core" class="dilmio-landing__inner">
+      <div class="dilmio-hero">
+        <div class="dilmio-hero__headline">{{ resolved_headline | newline_to_br }}</div>
+        {%- if hero_subheadline != blank -%}
+          <p class="dilmio-hero__subheadline">{{ hero_subheadline }}</p>
+        {%- endif -%}
+      </div>
       <div class="dilmio-landing__media">
         {%- render 'dilmio-landing-gallery', product: landing_product -%}
       </div>
@@ -111,6 +110,7 @@
         benefit_3: benefit_3,
         benefit_4: benefit_4
       -%}
+
     </div>
 
     {%- assign prob_statement = landing_product.metafields.custom.dilmio_problem_statement.value | default: 'Cambiar de utensilio ensucia más y corta el ritmo.' -%}
@@ -176,39 +176,6 @@
       faq_question_3: faq_question_3,
       faq_answer_3: faq_answer_3
     -%}
-
-    {%- if section.settings.show_trust -%}
-      {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank -%}
-        <div class="dilmio-trust">
-          <ul class="dilmio-trust__list">
-            {%- if section.settings.trust_1 != blank -%}
-              <li class="dilmio-trust__item">
-                {%- if section.settings.trust_icon_1 != blank and section.settings.trust_icon_1 != 'none' -%}
-                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_1 %}</span>
-                {%- endif -%}
-                {{ section.settings.trust_1 }}
-              </li>
-            {%- endif -%}
-            {%- if section.settings.trust_2 != blank -%}
-              <li class="dilmio-trust__item">
-                {%- if section.settings.trust_icon_2 != blank and section.settings.trust_icon_2 != 'none' -%}
-                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_2 %}</span>
-                {%- endif -%}
-                {{ section.settings.trust_2 }}
-              </li>
-            {%- endif -%}
-            {%- if section.settings.trust_3 != blank -%}
-              <li class="dilmio-trust__item">
-                {%- if section.settings.trust_icon_3 != blank and section.settings.trust_icon_3 != 'none' -%}
-                  <span class="dilmio-trust__icon">{% render 'dilmio-trust-icon', icon: section.settings.trust_icon_3 %}</span>
-                {%- endif -%}
-                {{ section.settings.trust_3 }}
-              </li>
-            {%- endif -%}
-          </ul>
-        </div>
-      {%- endif -%}
-    {%- endif -%}
 
     {%- liquid
       assign cta_heading = section.settings.cta_final_heading | default: 'Haz tu cocina más práctica desde hoy'

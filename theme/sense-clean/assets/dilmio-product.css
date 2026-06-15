@@ -24,12 +24,25 @@
 
 @media (min-width: 750px) {
   .dilmio-landing__inner {
-    grid-template-columns: 1fr 1.15fr;
-    gap: 2.75rem;
-    padding: 2.5rem 2rem 2rem;
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-areas:
+      "media hero"
+      "media form";
+    grid-template-rows: min-content min-content;
+    gap: 0 2.5rem;
+    padding: 1.5rem 2rem 2rem;
+    align-items: start;
+  }
+
+  .dilmio-landing__media {
+    grid-area: media;
+    background: var(--dilmio-cream-section, #f7f4f0);
+    border-radius: var(--dilmio-radius-md);
+    padding: 1.25rem;
   }
 
   .dilmio-landing__form {
+    grid-area: form;
     align-self: start;
     padding: 1.75rem;
     background: #fff;
@@ -37,6 +50,7 @@
     border-radius: var(--dilmio-radius-md);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   }
+
 }
 
 /* ─── Image ─── */
@@ -237,10 +251,8 @@
 /* ─── Hero ─── */
 
 .dilmio-hero {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem 1rem 1.5rem;
-  text-align: center;
+  padding: 0;
+  margin: 0;
 }
 
 .dilmio-hero__headline {
@@ -250,17 +262,15 @@
   margin: 0 0 0.75rem;
 }
 
-@media (min-width: 750px) {
-  .dilmio-hero__headline {
-    font-size: 2.6rem;
-  }
+.dilmio-hero__subheadline {
+  font-size: 1rem;
+  color: var(--dilmio-text-subtle);
+  margin: 0;
 }
 
 @media screen and (max-width: 749px) {
   .dilmio-hero {
-    text-align: left;
-    padding-top: 1.4rem;
-    padding-bottom: 1rem;
+    padding: 0.25rem 0 0;
   }
 
   .dilmio-hero__headline {
@@ -271,10 +281,15 @@
   }
 }
 
-.dilmio-hero__subheadline {
-  font-size: 1rem;
-  color: var(--dilmio-text-subtle);
-  margin: 0;
+@media (min-width: 750px) {
+  .dilmio-hero {
+    grid-area: hero;
+    padding: 0 0 0.75rem;
+  }
+
+  .dilmio-hero__headline {
+    font-size: 2.6rem;
+  }
 }
 
 /* ─── Benefits ─── */
@@ -479,8 +494,8 @@
 .dilmio-demo-section {
   background: var(--dilmio-cream-section);
   max-width: 1180px;
-  margin: 48px auto 56px;
-  padding: 48px 56px;
+  margin: 32px auto 40px;
+  padding: 36px 48px;
   border-radius: var(--dilmio-radius-xl);
 }
 
@@ -680,6 +695,11 @@
     text-align: center;
     flex: 1;
   }
+
+  .dilmio-steps {
+    max-width: 960px;
+    padding: 3rem 2rem;
+  }
 }
 
 /* ─── Section-level sticky clearance ─── */
@@ -787,21 +807,23 @@
   border-top: 1px solid rgba(17, 17, 17, 0.08);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem 0.9rem;
+  gap: 0.5rem 1.5rem;
   justify-content: flex-start;
 }
 
 .dilmio-trust-inline__item {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  font-size: 0.8125rem;
-  color: var(--dilmio-text-secondary);
-  font-weight: 500;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  color: var(--dilmio-text);
+  font-weight: 600;
 }
 
 .dilmio-trust-inline .dilmio-trust__icon {
   color: var(--dilmio-green);
+  width: 16px;
+  height: 16px;
 }
 
 /* ─── Purchase note ─── */
@@ -862,7 +884,7 @@
 .dilmio-prob-sol-inline {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 3.5rem 1rem;
+  padding: 2rem 1.5rem;
   border-top: 1px solid var(--dilmio-border-light);
 }
 
@@ -920,6 +942,12 @@
   }
 }
 
+@media (min-width: 750px) {
+  .dilmio-prob-sol-inline {
+    padding: 3rem 2rem;
+  }
+}
+
 /* ─── Final CTA ─── */
 
 .dilmio-cta-final {
@@ -934,8 +962,8 @@
 
 @media (min-width: 750px) {
   .dilmio-cta-final {
-    margin: 4rem auto 0;
-    padding: 5rem 4rem;
+    margin: 2.5rem auto 0;
+    padding: 3.5rem 3rem;
   }
 }
 
