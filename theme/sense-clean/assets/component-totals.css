@@ -1,6 +1,6 @@
 .totals {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: baseline;
 }
 
@@ -11,7 +11,7 @@
 
 .totals > h2 {
   font-size: calc(var(--font-heading-scale) * 1.6rem);
-  opacity: 0.65;
+  opacity: 0.85;
 }
 
 .totals * {

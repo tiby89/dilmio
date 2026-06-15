@@ -105,7 +105,7 @@ cart-items {
   position: relative;
   border-radius: var(--inputs-radius);
   padding: 1rem 2rem;
-  min-height: 8rem;
+  min-height: 5.5rem;
 }
 
 .cart__note .text-area {
@@ -178,7 +178,7 @@ cart-items {
 }
 
 .cart__blocks > * + * {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .cart-note__label {
