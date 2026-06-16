@@ -562,6 +562,87 @@
 }
 
 /* =============================================
+   ZONE 4.5 — BRAND STORY
+   ============================================= */
+
+.dbh-brandstory {
+  background-color: var(--dbh-cream);
+  padding: 6.4rem 0 2rem;
+  border-top: 1px solid var(--dbh-border);
+}
+
+.dbh-brandstory__card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6.4rem;
+  align-items: center;
+  background: var(--dbh-white);
+  border-radius: 2.4rem;
+  padding: 5.6rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
+
+.dbh-brandstory__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dbh-brandstory__heading {
+  font-size: clamp(2.8rem, 3.2vw, 4.2rem);
+  font-weight: 800;
+  color: var(--dbh-text);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 2rem;
+}
+
+.dbh-brandstory__body {
+  font-size: 1.5rem;
+  line-height: 1.65;
+  color: var(--dbh-text-muted);
+  margin: 0 0 2.4rem;
+}
+
+.dbh-brandstory__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.dbh-brandstory__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.4rem;
+  border: 1px solid var(--dbh-border);
+  border-radius: 9999px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--dbh-text);
+  background: var(--dbh-cream);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.dbh-brandstory__visual {
+  border-radius: 1.6rem;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.dbh-brandstory__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dbh-brandstory__img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #EDE9E3 0%, #D5CFC7 55%, #C4BAB0 100%);
+}
+
+/* =============================================
    GOD 11.3b — Editorial scroll-stage reveal
    ZONE 6 — BOTTOM BANNER
    Pattern: tall banner = scroll stage.
@@ -573,50 +654,38 @@
 /* ── Outer reveal wrapper ───────────────────── */
 
 .dbh-banner__reveal {
-  /* overflow must NOT be hidden here — it would
-     break position:sticky on .dbh-banner__sticky.
-     Clipping is handled by .dbh-banner__sticky.  */
   overflow: visible;
 }
 
-/* ── Banner: tall scroll stage ──────────────── */
+/* ── Banner: compact editorial section ──────── */
 
-/* Fallback height: compact, no scroll stage */
 .dbh-banner {
   background-color: var(--dbh-cream);
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  padding: 4rem 0;
 }
 
-/* ── Sticky viewport anchor ─────────────────── */
+/* ── Banner inner container ─────────────────── */
 
 .dbh-banner__sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100svh;
+  position: relative;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* overflow: clip, NOT hidden — clip recorta visualmente sin crear un
-     scroll container. overflow:hidden crearía un nuevo scroll container,
-     rompiendo el scope del named view-timeline --dbh-er-stage (Chrome 116+). */
-  overflow: clip;
+  overflow: visible;
 }
 
-/* ── Expanding image frame ───────────────────
-   Default (fallback): full size so non-animating
-   browsers see a correct large-frame layout.     */
+/* ── Image frame ─────────────────────────────── */
 
 .dbh-banner__frame {
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
-  width: calc(100vw - 3.2rem);
-  height: 56vh;
-  height: 56svh;
-  border-radius: 1.2rem;
+  width: calc(100% - 6.4rem);
+  height: 42vh;
+  height: 42svh;
+  border-radius: 1.6rem;
 }
 
 /* ── Image fills frame ──────────────────────── */
@@ -727,74 +796,113 @@
   color: var(--dbh-olive);
 }
 
+/* GOD 12.5e — banner is a compact static editorial section. No animation. */
+
 /* =============================================
-   GOD 11.3b — Scroll-driven frame expansion
-   Named view-timeline on the tall .dbh-banner.
-   All animations reference --dbh-er-stage.
-   @supports guard: no-op in Safari/old browsers.
-   prefers-reduced-motion: no-preference guard.
-   Fallback: frame shows at full default size.
+   ZONE 7 — FAQ + WHATSAPP SUPPORT
    ============================================= */
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+.dbh-faq {
+  background-color: var(--dbh-cream);
+  padding: 4rem 0;
+  border-top: 1px solid var(--dbh-border);
+}
 
-    /* Named view-timeline on the tall scroll stage.
-       Also set the tall min-height for scroll room.
-       Descendants reference --dbh-er-stage to sync
-       their animation to the parent's traversal.   */
-    .dbh-banner {
-      min-height: 115svh;
-      view-timeline-name: --dbh-er-stage;
-      view-timeline-axis: block;
-    }
+.dbh-faq__card {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 7.2rem;
+  align-items: start;
+  background: var(--dbh-white);
+  border-radius: 2.4rem;
+  padding: 5.6rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
 
-    /* Desktop: shorter scroll stage */
-    @media screen and (min-width: 990px) {
-      .dbh-banner {
-        min-height: 110vh;
-      }
-    }
+.dbh-faq__heading {
+  font-size: clamp(2.4rem, 2.8vw, 3.6rem);
+  font-weight: 800;
+  color: var(--dbh-text);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 2rem;
+}
 
-    /* Frame: starts as a contained card,
-       expands to near-full-width as parent scrolls. */
-    .dbh-banner__frame {
-      animation: dbh-er-frame-expand linear both;
-      animation-timeline: --dbh-er-stage;
-      animation-range: cover 0% cover 60%;
-    }
+.dbh-faq__body {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: var(--dbh-text-muted);
+  margin: 0 0 2.8rem;
+}
 
-    /* Mobile keyframes — GOD 11.3c */
-    @keyframes dbh-er-frame-expand {
-      from {
-        width: 50vw;
-        height: 38svh;
-        border-radius: 3.6rem;
-      }
-      to {
-        width: calc(100vw - 3.2rem);
-        height: 60svh;
-        border-radius: 1.2rem;
-      }
-    }
+.dbh-btn--whatsapp {
+  background-color: #25D366;
+  color: #FFFFFF;
+  border-color: #25D366;
+  border-radius: 9999px;
+  gap: 0.8rem;
+  font-weight: 700;
+  font-size: 1.35rem;
+  padding: 1rem 2.2rem;
+}
 
-    /* Desktop keyframes — override for wide screens */
-    @media screen and (min-width: 990px) {
-      @keyframes dbh-er-frame-expand {
-        from {
-          width: 38vw;
-          height: 42vh;
-          border-radius: 4rem;
-        }
-        to {
-          width: calc(100% - 4rem);
-          height: 56vh;
-          border-radius: 1.6rem;
-        }
-      }
-    }
+.dbh-btn--whatsapp:hover {
+  background-color: #1EBE58;
+  border-color: #1EBE58;
+  color: #FFFFFF;
+}
 
-  }
+.dbh-faq__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.dbh-faq__item {
+  border-bottom: 1px solid var(--dbh-border);
+}
+
+.dbh-faq__item:first-child {
+  border-top: 1px solid var(--dbh-border);
+}
+
+.dbh-faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem 0;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--dbh-text);
+  cursor: pointer;
+  list-style: none;
+  gap: 1.2rem;
+  user-select: none;
+}
+
+.dbh-faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.dbh-faq__question::after {
+  content: '+';
+  font-size: 2rem;
+  font-weight: 300;
+  flex-shrink: 0;
+  color: var(--dbh-text-muted);
+  line-height: 1;
+}
+
+.dbh-faq__item[open] .dbh-faq__question::after {
+  content: '−';
+  color: var(--dbh-olive);
+}
+
+.dbh-faq__answer {
+  font-size: 1.35rem;
+  line-height: 1.65;
+  color: var(--dbh-text-muted);
+  margin: 0;
+  padding: 0 0 2rem;
 }
 
 /* =============================================
@@ -866,14 +974,14 @@
     margin-top: 1.4rem;
   }
 
-  /* Banner — desktop (GOD 11.3b) */
-  .dbh-banner__sticky {
-    height: 100vh;
+  /* Banner — desktop */
+  .dbh-banner {
+    padding: 5.2rem 0;
   }
 
   .dbh-banner__frame {
-    width: calc(100% - 4rem);
-    height: 56vh;
+    width: calc(100% - 6.4rem);
+    height: 48vh;
     border-radius: 1.6rem;
   }
 
@@ -1150,14 +1258,15 @@
     text-align: left;
   }
 
-  /* Banner — editorial scroll stage mobile (GOD 12.2b restore)
-     Fallback: card contenida + redondeada, no imagen gigante.
-     Animated browsers: keyframes override with 50vw/42svh/3.6rem → expands.
-     Non-animated: fallback shows as contained premium card. */
+  /* Banner — mobile editorial */
+  .dbh-banner {
+    padding: 3.2rem 0;
+  }
+
   .dbh-banner__frame {
-    width: 80vw;
-    height: 48svh;
-    border-radius: 2.8rem;
+    width: calc(100% - 4rem);
+    height: 38svh;
+    border-radius: 1.4rem;
   }
 
   .dbh-banner__content {
@@ -1189,6 +1298,63 @@
   .dilmio-brand-home {
     overflow-x: clip;
   }
+}
+
+/* =============================================
+   ZONE 4.5 + ZONE 7 — BRAND STORY + FAQ MOBILE
+   ============================================= */
+
+@media screen and (max-width: 749px) {
+
+  .dbh-brandstory {
+    padding: 3.6rem 0 2.4rem;
+  }
+
+  .dbh-brandstory__card {
+    grid-template-columns: 1fr;
+    gap: 2.8rem;
+    padding: 3.2rem 2.4rem;
+    border-radius: 1.6rem;
+  }
+
+  .dbh-brandstory__heading {
+    font-size: 2.6rem;
+  }
+
+  .dbh-brandstory__body {
+    font-size: 1.4rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .dbh-brandstory__img-placeholder {
+    min-height: 22rem;
+  }
+
+  .dbh-faq {
+    padding: 3.2rem 0;
+  }
+
+  .dbh-faq__card {
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+    padding: 3.2rem 2.4rem;
+    border-radius: 1.6rem;
+  }
+
+  .dbh-faq__heading {
+    font-size: 2.4rem;
+  }
+
+  .dbh-btn--whatsapp {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dbh-faq__right {
+    border-top: 1px solid var(--dbh-border);
+    padding-top: 0.4rem;
+  }
+
 }
 
 /* =============================================
