@@ -662,17 +662,61 @@
 }
 
 /* =============================================
+   GOD 11.3b — Editorial scroll-stage reveal
    ZONE 6 — BOTTOM BANNER
+   Pattern: tall banner = scroll stage.
+   Sticky inner pins while parent scrolls.
+   Frame expands from card to near-full-width.
+   Text lives inside frame — no separate movement.
    ============================================= */
 
+/* ── Outer reveal wrapper ───────────────────── */
+
+.dbh-banner__reveal {
+  /* overflow must NOT be hidden here — it would
+     break position:sticky on .dbh-banner__sticky.
+     Clipping is handled by .dbh-banner__sticky.  */
+  overflow: visible;
+}
+
+/* ── Banner: tall scroll stage ──────────────── */
+
+/* Fallback height: compact, no scroll stage */
 .dbh-banner {
-  background-color: var(--dbh-olive);
-  color: #FFFFFF;
-  padding: 7.2rem 0;
+  background-color: var(--dbh-cream);
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* ── Sticky viewport anchor ─────────────────── */
+
+.dbh-banner__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Expanding image frame ───────────────────
+   Default (fallback): full size so non-animating
+   browsers see a correct large-frame layout.     */
+
+.dbh-banner__frame {
   position: relative;
   overflow: hidden;
-  border-radius: 1.6rem;
+  flex-shrink: 0;
+  width: calc(100vw - 3.2rem);
+  height: 80vh;
+  height: 80svh;
+  border-radius: 1.2rem;
 }
+
+/* ── Image fills frame ──────────────────────── */
 
 .dbh-banner__bg {
   position: absolute;
@@ -684,87 +728,162 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 30%;
   display: block;
 }
 
-.dbh-banner__reveal {
-  overflow: hidden;
+/* ── No image: olive background ─────────────── */
+
+.dbh-banner:not(.dbh-banner--has-image) .dbh-banner__frame {
+  background-color: var(--dbh-olive);
 }
 
-@supports (animation-timeline: view()) {
-  .dbh-banner__reveal {
-    animation: dbh-banner-expand linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 50%;
-  }
-}
-
-@keyframes dbh-banner-expand {
-  from {
-    clip-path: inset(0 8% 0 8% round 4.8rem);
-  }
-  to {
-    clip-path: inset(0 0% 0 0% round 1.6rem);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dbh-banner__reveal {
-    animation: none;
-    clip-path: none;
-  }
-}
+/* ── Overlay inside frame ───────────────────── */
 
 .dbh-banner__overlay {
   position: absolute;
   inset: 0;
-  z-index: 0;
-}
-
-.dbh-banner--has-image {
-  border-radius: 1.6rem;
-  overflow: hidden;
+  z-index: 1;
+  background: transparent;
 }
 
 .dbh-banner--has-image .dbh-banner__overlay {
-  background: linear-gradient(
-    160deg,
-    rgba(0, 0, 0, 0.65) 0%,
-    rgba(0, 0, 0, 0.30) 55%,
-    rgba(0, 0, 0, 0.55) 100%
-  );
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.80) 0%,
+      rgba(0, 0, 0, 0.44) 28%,
+      rgba(0, 0, 0, 0.08) 58%,
+      rgba(0, 0, 0, 0.00) 80%
+    );
 }
 
+/* ── Content: absolute inside frame ─────────── */
+
 .dbh-banner__content {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  text-align: left;
-  gap: 2.4rem;
+  justify-content: flex-end;
+  padding: 2.8rem 2.4rem;
+  gap: 1.4rem;
+  pointer-events: none;
 }
 
+.dbh-banner__content .dbh-btn {
+  pointer-events: auto;
+}
+
+/* ── Eyebrow label ────────────────────────────── */
+
+.dbh-banner__label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.68);
+  margin: 0;
+  padding-left: 0.8rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.36);
+  line-height: 1.4;
+}
+
+/* ── Heading: editorial ───────────────────────── */
+
 .dbh-banner__heading {
-  font-size: 3.6rem;
+  font-size: clamp(3.2rem, 5vw, 6.4rem);
   font-weight: 800;
   color: #FFFFFF;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
   margin: 0;
-  max-width: 64rem;
-  line-height: 1.2;
+  max-width: 20ch;
 }
+
+/* ── CTA button ──────────────────────────────── */
 
 .dbh-banner .dbh-btn {
   color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.75);
 }
 
 .dbh-banner .dbh-btn:hover {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: var(--dbh-olive);
+}
+
+/* =============================================
+   GOD 11.3b — Scroll-driven frame expansion
+   Named view-timeline on the tall .dbh-banner.
+   All animations reference --dbh-er-stage.
+   @supports guard: no-op in Safari/old browsers.
+   prefers-reduced-motion: no-preference guard.
+   Fallback: frame shows at full default size.
+   ============================================= */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+
+    /* Named view-timeline on the tall scroll stage.
+       Also set the tall min-height for scroll room.
+       Descendants reference --dbh-er-stage to sync
+       their animation to the parent's traversal.   */
+    .dbh-banner {
+      min-height: 130svh;
+      view-timeline-name: --dbh-er-stage;
+      view-timeline-axis: block;
+    }
+
+    /* Desktop: shorter scroll stage */
+    @media screen and (min-width: 990px) {
+      .dbh-banner {
+        min-height: 120vh;
+      }
+    }
+
+    /* Frame: starts as a contained card,
+       expands to near-full-width as parent scrolls. */
+    .dbh-banner__frame {
+      animation: dbh-er-frame-expand linear both;
+      animation-timeline: --dbh-er-stage;
+      animation-range: cover 0% cover 60%;
+    }
+
+    /* Mobile keyframes — GOD 11.3c */
+    @keyframes dbh-er-frame-expand {
+      from {
+        width: 50vw;
+        height: 42svh;
+        border-radius: 3.6rem;
+      }
+      to {
+        width: calc(100vw - 3.2rem);
+        height: 80svh;
+        border-radius: 1.2rem;
+      }
+    }
+
+    /* Desktop keyframes — override for wide screens */
+    @media screen and (min-width: 990px) {
+      @keyframes dbh-er-frame-expand {
+        from {
+          width: 38vw;
+          height: 55vh;
+          border-radius: 4rem;
+        }
+        to {
+          width: calc(100% - 8rem);
+          height: 72vh;
+          border-radius: 1.6rem;
+        }
+      }
+    }
+
+  }
 }
 
 /* =============================================
@@ -833,6 +952,25 @@
   .dbh-hero--has-image .dbh-hero__content .dbh-btn--primary {
     align-self: flex-start;
     margin-top: 1.4rem;
+  }
+
+  /* Banner — desktop (GOD 11.3b) */
+  .dbh-banner__sticky {
+    height: 100vh;
+  }
+
+  .dbh-banner__frame {
+    width: calc(100% - 8rem);
+    height: 72vh;
+    border-radius: 1.6rem;
+  }
+
+  .dbh-banner__heading {
+    font-size: clamp(4.8rem, 5vw, 7.2rem);
+  }
+
+  .dbh-banner__content {
+    padding: 4.8rem 6.4rem;
   }
 }
 
@@ -1085,25 +1223,29 @@
     text-align: left;
   }
 
-  /* Banner */
-  .dbh-banner__reveal {
-    animation: none;
-    clip-path: none;
-  }
-
-  .dbh-banner {
-    padding: 8rem 0;
-    border-radius: 0;
+  /* Banner — editorial scroll stage mobile (GOD 11.3c) */
+  .dbh-banner__frame {
+    width: calc(100vw - 2.4rem);
+    border-radius: 1rem;
   }
 
   .dbh-banner__content {
-    align-items: center;
-    text-align: center;
+    padding: 1.6rem 1.6rem;
+    gap: 1rem;
   }
 
   .dbh-banner__heading {
     font-size: 3rem;
-    max-width: 30rem;
+    max-width: 20ch;
+  }
+
+  .dbh-banner__label {
+    font-size: 1rem;
+  }
+
+  .dbh-banner__cta {
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
   }
 
   .dbh-section-heading {

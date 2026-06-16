@@ -279,36 +279,43 @@
     </div>
   {%- endif -%}
 
-  {% comment %} ===================== ZONE 6 — BOTTOM BANNER ===================== {% endcomment %}
+  {% comment %} ===================== ZONE 6 — BOTTOM BANNER (GOD 11.3b) ===================== {% endcomment %}
   {%- if section.settings.banner_heading != blank -%}
     <div class="dbh-banner__reveal">
       <div class="dbh-banner{% if section.settings.banner_image != blank %} dbh-banner--has-image{% endif %}">
-      {%- if section.settings.banner_image != blank -%}
-        <div class="dbh-banner__bg">
-          {{
-            section.settings.banner_image
-            | image_url: width: 2000
-            | image_tag:
-              loading: 'lazy',
-              class: 'dbh-banner__bg-img',
-              widths: '750, 1000, 1400, 1800, 2000',
-              sizes: '100vw',
-              alt: ''
-          }}
+        <div class="dbh-banner__sticky">
+          <div class="dbh-banner__frame">
+            {%- if section.settings.banner_image != blank -%}
+              <div class="dbh-banner__bg">
+                {{
+                  section.settings.banner_image
+                  | image_url: width: 2000
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'dbh-banner__bg-img',
+                    widths: '750, 1000, 1400, 1800, 2000',
+                    sizes: '100vw',
+                    alt: ''
+                }}
+              </div>
+            {%- endif -%}
+            <div class="dbh-banner__overlay"></div>
+            <div class="dbh-banner__content">
+              {%- if section.settings.banner_label != blank -%}
+                <p class="dbh-banner__label">{{ section.settings.banner_label | escape }}</p>
+              {%- endif -%}
+              <h2 class="dbh-banner__heading">{{ section.settings.banner_heading | escape }}</h2>
+              {%- if section.settings.banner_cta_label != blank and section.settings.banner_cta_link != blank -%}
+                <a
+                  href="{{ section.settings.banner_cta_link }}"
+                  class="dbh-btn dbh-btn--outline dbh-banner__cta"
+                >
+                  {{- section.settings.banner_cta_label | escape -}}
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
         </div>
-      {%- endif -%}
-      <div class="dbh-banner__overlay"></div>
-      <div class="dbh-wrapper dbh-banner__content">
-        <h2 class="dbh-banner__heading">{{ section.settings.banner_heading | escape }}</h2>
-        {%- if section.settings.banner_cta_label != blank and section.settings.banner_cta_link != blank -%}
-          <a
-            href="{{ section.settings.banner_cta_link }}"
-            class="dbh-btn dbh-btn--outline"
-          >
-            {{- section.settings.banner_cta_label | escape -}}
-          </a>
-        {%- endif -%}
-      </div>
       </div>
     </div>
   {%- endif -%}
@@ -472,6 +479,12 @@
       "type": "image_picker",
       "id": "banner_image",
       "label": "Background image (optional)"
+    },
+    {
+      "type": "text",
+      "id": "banner_label",
+      "label": "Eyebrow label (optional)",
+      "info": "Short label above the heading — e.g. 'DILMIO — Colección 2025'"
     },
   ],
   "blocks": [
