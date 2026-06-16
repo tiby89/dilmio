@@ -128,8 +128,8 @@
 
 /* ── Variante ambient boxed (con imagen) ── */
 .dbh-hero--has-image {
-  /* Gradiente ambiental: olive oscuro → sage — el gradiente ES el fondo */
-  background: linear-gradient(127deg, #3A4228 11%, #8A9D7B 100%);
+  /* Fondo ambiental cálido: taupe → lino → crema — acompaña imagen y fluye hacia categorías */
+  background: linear-gradient(180deg, #C9BDB0 0%, #D9D2C8 35%, #EDE9E3 100%);
   padding: 2.4rem 4%;
   display: flex;
   align-items: stretch;
@@ -798,9 +798,9 @@
 
 @media screen and (min-width: 990px) {
 
-  /* Contenedor verde: padding equilibrado */
+  /* Contenedor ambiental: más aire inferior para que la card no quede pegada al suelo */
   .dbh-hero--has-image {
-    padding: 4rem 4vw;
+    padding: 4rem 4vw 6.4rem;
     align-items: flex-start;
   }
 
@@ -813,6 +813,7 @@
     aspect-ratio: 2.55 / 1;
     min-height: 560px;
     max-height: 720px;
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.18);
   }
 
   /* Imagen: cubre card, punto focal centro-derecha */
@@ -1188,9 +1189,9 @@
    no al body — los selectores de restauración van contra .section-header.
    ============================================= */
 
-/* Fondo body: dark ambient durante carga de imagen */
+/* Fondo body: taupe cálido durante carga de imagen — coincide con ambient superior */
 body:has(.dbh-hero--has-image) {
-  background-color: #3A4228;
+  background-color: #C9BDB0;
 }
 
 /* Primera sección sube bajo el header */
