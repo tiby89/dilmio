@@ -2,7 +2,6 @@
 {{ 'dilmio-card-rating.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign trust_cards = section.blocks | where: "type", "trust_card"
   assign category_cards = section.blocks | where: "type", "category_card"
   assign featured_collection = section.settings.featured_collection
 -%}
@@ -64,46 +63,6 @@
 
   </div>
 
-  {% comment %} ===================== ZONE 2 — TRUST CARDS ===================== {% endcomment %}
-  {%- if trust_cards.size > 0 -%}
-    <div class="dbh-trust">
-      <div class="dbh-wrapper">
-        <div class="dbh-trust__grid">
-          {%- for block in trust_cards -%}
-            {%- if block.settings.title != blank -%}
-              <div class="dbh-trust__item" {{ block.shopify_attributes }}>
-                {%- if block.settings.icon_svg != blank -%}
-                  <span class="dbh-trust__icon" aria-hidden="true">
-                    {%- case block.settings.icon_svg -%}
-                      {%- when 'icon-lock' -%}{{ 'icon-lock.svg' | inline_asset_content }}
-                      {%- when 'icon-truck' -%}{{ 'icon-truck.svg' | inline_asset_content }}
-                      {%- when 'icon-return' -%}{{ 'icon-return.svg' | inline_asset_content }}
-                      {%- when 'icon-chat-bubble' -%}{{ 'icon-chat-bubble.svg' | inline_asset_content }}
-                      {%- when 'icon-box' -%}{{ 'icon-box.svg' | inline_asset_content }}
-                      {%- when 'icon-padlock' -%}{{ 'icon-padlock.svg' | inline_asset_content }}
-                      {%- when 'dilmio-icon-shield' -%}{{ 'dilmio-icon-shield.svg' | inline_asset_content }}
-                      {%- when 'dilmio-icon-box' -%}{{ 'dilmio-icon-box.svg' | inline_asset_content }}
-                      {%- when 'dilmio-icon-return' -%}{{ 'dilmio-icon-return.svg' | inline_asset_content }}
-                      {%- when 'dilmio-icon-headset' -%}{{ 'dilmio-icon-headset.svg' | inline_asset_content }}
-                    {%- endcase -%}
-                  </span>
-                {%- elsif block.settings.icon != blank -%}
-                  <span class="dbh-trust__icon" aria-hidden="true">{{ block.settings.icon }}</span>
-                {%- endif -%}
-                <div class="dbh-trust__text-wrap">
-                  <span class="dbh-trust__title">{{ block.settings.title | escape }}</span>
-                  {%- if block.settings.subtitle != blank -%}
-                    <span class="dbh-trust__subtitle">{{ block.settings.subtitle | escape }}</span>
-                  {%- endif -%}
-                </div>
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
-      </div>
-    </div>
-  {%- endif -%}
-
   {% comment %} ===================== ZONE 3 — CATEGORY CARDS ===================== {% endcomment %}
   {%- if category_cards.size > 0 -%}
     <div class="dbh-categories">
@@ -146,7 +105,6 @@
                       <p class="dbh-category__subtitle">{{ block.settings.subtitle | escape }}</p>
                     {%- endif -%}
                   </div>
-                  <span class="dbh-category__arrow" aria-hidden="true">&#8594;</span>
                 </div>
               </a>
             {%- endif -%}
@@ -171,7 +129,7 @@
           </div>
           {%- if section.settings.featured_view_all_label != blank -%}
             <a href="{{ featured_collection.url }}" class="dbh-products__view-all">
-              {{- section.settings.featured_view_all_label | escape -}}
+              {{- section.settings.featured_view_all_label | replace: '→', '' | strip | escape -}}
             </a>
           {%- endif -%}
         </div>
@@ -219,20 +177,10 @@
             </a>
           {%- endfor -%}
         </div>
-        <button
-          class="dbh-products__arrow dbh-products__arrow--prev"
-          aria-label="Anterior"
-          onclick="(function(c){c.scrollBy({left:-c.offsetWidth/4,behavior:'smooth'})})(document.getElementById('dbh-carousel-{{ section.id }}'))"
-        >&#8592;</button>
-        <button
-          class="dbh-products__arrow dbh-products__arrow--next"
-          aria-label="Siguiente"
-          onclick="(function(c){c.scrollBy({left:c.offsetWidth/4,behavior:'smooth'})})(document.getElementById('dbh-carousel-{{ section.id }}'))"
-        >&#8594;</button>
       </div>
       {%- if section.settings.featured_view_all_label != blank -%}
         <a href="{{ featured_collection.url }}" class="dbh-products__view-all-mobile">
-          {{- section.settings.featured_view_all_label | escape -}}
+          {{- section.settings.featured_view_all_label | replace: '→', '' | strip | escape -}}
         </a>
       {%- endif -%}
     </div>
