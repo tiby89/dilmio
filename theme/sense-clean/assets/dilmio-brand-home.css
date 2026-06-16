@@ -37,11 +37,11 @@
    ============================================= */
 
 .dbh-section-heading {
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-size: 2.8rem;
+  font-weight: 800;
   color: var(--dbh-text);
   margin: 0 0 2.8rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 /* =============================================
@@ -86,70 +86,35 @@
 }
 
 /* =============================================
-   ZONE 1 — HERO
+   ZONE 1 — AMBIENT BOXED HERO
+   Lógica: gradiente ambiental rodea una card redondeada.
+   La imagen RELLENA la card. El texto va superpuesto
+   sobre la imagen (no al lado). Vignette inferior.
    ============================================= */
 
+/* Base: sin imagen — texto centrado sobre crema */
 .dbh-hero {
-  position: relative;
-  min-height: 64rem;
-  overflow: hidden;
   background: var(--dbh-cream);
-}
-
-.dbh-hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.dbh-hero__bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center right;
-  display: block;
-}
-
-.dbh-hero__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to right,
-    rgba(var(--dbh-bg-rgb), 0.82) 0%,
-    rgba(var(--dbh-bg-rgb), 0.60) 32%,
-    rgba(var(--dbh-bg-rgb), 0.18) 56%,
-    rgba(var(--dbh-bg-rgb), 0.00) 70%
-  );
-}
-
-.dbh-hero:not(.dbh-hero--has-image) .dbh-hero__overlay {
-  display: none;
-}
-
-.dbh-hero__inner {
-  position: relative;
-  z-index: 2;
+  padding: 6.4rem 0;
   display: flex;
   align-items: center;
-  min-height: 64rem;
-  padding-top: 5.6rem;
-  padding-bottom: 5.6rem;
 }
 
 .dbh-hero__content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  max-width: 52rem;
-  padding: 2.8rem 0;
+  gap: 2.4rem;
+}
+
+.dbh-hero__content .dbh-btn {
+  align-self: flex-start;
 }
 
 .dbh-hero__heading {
-  font-size: 4rem;
+  font-size: 4.8rem;
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
   color: var(--dbh-text);
   margin: 0;
 }
@@ -159,11 +124,84 @@
   line-height: 1.65;
   color: var(--dbh-text-muted);
   margin: 0;
-  max-width: 44rem;
 }
 
-.dbh-hero__content .dbh-btn {
+/* ── Variante ambient boxed (con imagen) ── */
+.dbh-hero--has-image {
+  /* Gradiente ambiental: olive oscuro → sage — el gradiente ES el fondo */
+  background: linear-gradient(127deg, #3A4228 11%, #8A9D7B 100%);
+  padding: 2.4rem 4%;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Card redondeada — rellena el área ambient */
+.dbh-hero__card {
+  flex: 1;
+  position: relative;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  min-height: 88vh;
+}
+
+/* Imagen: absolute fill de la card */
+.dbh-hero__card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Texto superpuesto — bottom left, con vignette inferior */
+.dbh-hero--has-image .dbh-hero__content {
+  position: relative;
+  z-index: 1;
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 4.8rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.30) 36%,
+    rgba(0, 0, 0, 0.06) 60%,
+    rgba(0, 0, 0, 0.00) 80%
+  );
+}
+
+.dbh-hero--has-image .dbh-hero__heading {
+  color: #FFFFFF;
+  font-size: 5.6rem;
+  line-height: 1.06;
+}
+
+.dbh-hero--has-image .dbh-hero__subtext {
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 52rem;
+}
+
+/* CTA píldora blanca */
+.dbh-hero--has-image .dbh-hero__content .dbh-btn--primary {
+  background: #FFFFFF;
+  color: #2C3520;
+  border-color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 1.4rem 3.6rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   align-self: flex-start;
+  margin-top: 0.8rem;
+}
+
+.dbh-hero--has-image .dbh-hero__content .dbh-btn--primary:hover {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(255, 255, 255, 0.88);
+  color: #2C3520;
 }
 
 /* =============================================
@@ -177,7 +215,7 @@
   padding: 1.6rem 0 3.2rem;
   position: relative;
   z-index: 1;
-  margin-top: -4rem;
+  margin-top: 0;
 }
 
 .dbh-trust__grid {
@@ -235,12 +273,65 @@
 }
 
 /* =============================================
+   ZONE 2.5 — MARQUEE
+   ============================================= */
+
+.dbh-marquee {
+  overflow: hidden;
+  background: var(--dbh-cream);
+  padding: 3.6rem 0;
+  user-select: none;
+  border-top: 1px solid var(--dbh-border);
+  border-bottom: 1px solid var(--dbh-border);
+}
+
+.dbh-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: dbh-marquee-scroll 60s linear infinite;
+}
+
+.dbh-marquee--slow .dbh-marquee__track {
+  animation-duration: 90s;
+}
+
+.dbh-marquee--fast .dbh-marquee__track {
+  animation-duration: 35s;
+}
+
+.dbh-marquee__content {
+  font-size: 7.2rem;
+  font-weight: 800;
+  color: var(--dbh-text);
+  white-space: nowrap;
+  padding: 0 8rem;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+@keyframes dbh-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dbh-marquee__track {
+    animation: none;
+    width: auto;
+    justify-content: center;
+  }
+  .dbh-marquee__content:last-child {
+    display: none;
+  }
+}
+
+/* =============================================
    ZONE 3 — CATEGORY CARDS
    ============================================= */
 
 .dbh-categories {
   background-color: var(--dbh-cream);
-  padding: 5.2rem 0;
+  padding: 6.4rem 0;
 }
 
 .dbh-categories__grid {
@@ -272,7 +363,7 @@
   width: 100%;
   border-radius: var(--dbh-radius) var(--dbh-radius) 0 0;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4;
   position: relative;
   background-color: var(--dbh-border);
 }
@@ -630,13 +721,52 @@
 .dbh-banner {
   background-color: var(--dbh-olive);
   color: #FFFFFF;
-  padding: 5.2rem 0;
+  padding: 7.2rem 0;
   position: relative;
   overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   border-radius: 1.6rem;
+}
+
+.dbh-banner__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.dbh-banner__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.dbh-banner__reveal {
+  overflow: hidden;
+}
+
+@supports (animation-timeline: view()) {
+  .dbh-banner__reveal {
+    animation: dbh-banner-expand linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 50%;
+  }
+}
+
+@keyframes dbh-banner-expand {
+  from {
+    clip-path: inset(0 8% 0 8% round 4.8rem);
+  }
+  to {
+    clip-path: inset(0 0% 0 0% round 1.6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dbh-banner__reveal {
+    animation: none;
+    clip-path: none;
+  }
 }
 
 .dbh-banner__overlay {
@@ -651,7 +781,12 @@
 }
 
 .dbh-banner--has-image .dbh-banner__overlay {
-  background-color: rgba(var(--dilmio-green-ink-rgb), 0.75);
+  background: linear-gradient(
+    160deg,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.30) 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
 }
 
 .dbh-banner__content {
@@ -686,20 +821,94 @@
 }
 
 /* =============================================
+   RESPONSIVE — DESKTOP (990px+)
+   Hero: proporciones panorámicas tipo Impact.
+   Card ratio 2.55:1, ancha hasta 1600px,
+   con aire premium alrededor. Header integrado.
+   ============================================= */
+
+@media screen and (min-width: 990px) {
+
+  /* Contenedor verde: padding equilibrado */
+  .dbh-hero--has-image {
+    padding: 4rem 4vw;
+    align-items: flex-start;
+  }
+
+  /* Card panorámica: ancha hasta 1600px, ratio 2.55:1 */
+  .dbh-hero__card {
+    flex: 1;
+    max-width: 1600px;
+    margin-inline: auto;
+    border-radius: 1.6rem;
+    aspect-ratio: 2.55 / 1;
+    min-height: 560px;
+    max-height: 720px;
+  }
+
+  /* Imagen: cubre card, punto focal centro-derecha */
+  .dbh-hero__card-img {
+    object-position: center right;
+  }
+
+  /* Contenido: absolute fill — overlay correcto sobre card con aspect-ratio */
+  .dbh-hero--has-image .dbh-hero__content {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    align-items: flex-start;
+    text-align: left;
+    padding: clamp(2.8rem, 4vw, 5.6rem) clamp(3.2rem, 5vw, 7.2rem);
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.70) 0%,
+      rgba(0, 0, 0, 0.40) 32%,
+      rgba(0, 0, 0, 0.10) 56%,
+      rgba(0, 0, 0, 0.00) 75%
+    );
+  }
+
+  /* H1: clamp fluido, comprimido, columna editorial */
+  .dbh-hero--has-image .dbh-hero__heading {
+    font-size: clamp(4.8rem, 4.2vw, 7.2rem);
+    line-height: 0.97;
+    letter-spacing: -0.05em;
+    max-width: 14ch;
+  }
+
+  /* Subheadline: contenida para jerarquía visual */
+  .dbh-hero--has-image .dbh-hero__subtext {
+    max-width: 46rem;
+    font-size: 1.5rem;
+  }
+
+  /* CTA: alineado izquierda, margen propio */
+  .dbh-hero--has-image .dbh-hero__content .dbh-btn--primary {
+    align-self: flex-start;
+    margin-top: 1.4rem;
+  }
+}
+
+/* =============================================
    RESPONSIVE — TABLET (750–989px)
    ============================================= */
 
 @media screen and (min-width: 750px) and (max-width: 989px) {
-  .dbh-hero {
-    min-height: 48rem;
+  .dbh-hero--has-image {
+    padding: 3.6rem 8%;
   }
 
-  .dbh-hero__inner {
-    min-height: 48rem;
+  .dbh-hero__card {
+    min-height: calc(72vh - 7.2rem);
   }
 
-  .dbh-hero__heading {
-    font-size: 3.2rem;
+  .dbh-hero--has-image .dbh-hero__content {
+    min-height: calc(72vh - 7.2rem);
+    padding: 3.6rem;
+  }
+
+  .dbh-hero--has-image .dbh-hero__heading {
+    font-size: 4.4rem;
   }
 
   .dbh-pcard {
@@ -716,71 +925,70 @@
     padding: 0 2rem;
   }
 
-  /* Hero — stacked: imagen arriba, texto abajo */
+  /* ── Hero mobile base (sin imagen) ── */
   .dbh-hero {
-    display: flex;
-    flex-direction: column;
-    min-height: auto;
-    overflow: hidden;
-  }
-
-  .dbh-hero__bg {
-    position: relative;
-    height: 64vw;
-    min-height: 23rem;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-
-  .dbh-hero__bg-img {
-    object-position: center center;
-  }
-
-  .dbh-hero__overlay {
-    bottom: auto;
-    height: 64vw;
-    min-height: 23rem;
-    background: linear-gradient(
-      to top,
-      rgba(var(--dbh-bg-rgb), 1.0) 0%,
-      rgba(var(--dbh-bg-rgb), 0.0) 55%
-    );
-  }
-
-  .dbh-hero__inner {
-    position: static;
-    min-height: auto;
-    align-items: flex-start;
-    padding: 2.4rem 2rem 3.2rem;
-    background: var(--dbh-cream);
-    z-index: auto;
-  }
-
-  .dbh-hero .dbh-hero__content {
-    position: static;
-    max-width: 100%;
-    width: 100%;
-    padding: 0;
-    gap: 1.6rem;
-    justify-content: flex-start;
+    padding: 4rem 0 4.8rem;
   }
 
   .dbh-hero__heading {
-    color: var(--dbh-text);
     font-size: 2.8rem;
   }
 
   .dbh-hero__subtext {
-    color: var(--dbh-text-muted);
     font-size: 1.4rem;
   }
 
   .dbh-hero__content .dbh-btn {
-    align-self: flex-start;
     font-size: 1.4rem;
     padding: 1.2rem 2.4rem;
-    width: auto;
     display: inline-flex;
+    width: auto;
+  }
+
+  /* ── Hero full-bleed mobile: imagen dominante, sin frame ambient ── */
+  .dbh-hero--has-image {
+    padding: 0;
+  }
+
+  /* Card: sin bordes, llena el primer viewport */
+  .dbh-hero__card {
+    border-radius: 0;
+    min-height: 92vh;
+    min-height: 92svh;
+  }
+
+  /* Texto: centrado, parte inferior de la card. Overlay dual: top (header) + bottom (texto) */
+  .dbh-hero--has-image .dbh-hero__content {
+    min-height: 92vh;
+    min-height: 92svh;
+    align-items: center;
+    text-align: center;
+    padding: 2.4rem 3.2rem 5.2rem;
+    justify-content: flex-end;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 18%),
+      linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 28%, rgba(0,0,0,0) 58%);
+  }
+
+  .dbh-hero--has-image .dbh-hero__heading {
+    color: #FFFFFF;
+    font-size: 3.8rem;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .dbh-hero--has-image .dbh-hero__subtext {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.4rem;
+    max-width: 30rem;
+    margin: 0 auto;
+  }
+
+  .dbh-hero--has-image .dbh-hero__content .dbh-btn--primary {
+    align-self: center;
+    padding: 1.4rem 3.6rem;
+    font-size: 1.5rem;
+    margin-top: 0.4rem;
   }
 
   /* Trust cards */
@@ -806,6 +1014,16 @@
 
   .dbh-trust__icon {
     font-size: 2.4rem;
+  }
+
+  /* Marquee */
+  .dbh-marquee {
+    padding: 2.4rem 0;
+  }
+
+  .dbh-marquee__content {
+    font-size: 4rem;
+    padding: 0 4rem;
   }
 
   /* Category cards */
@@ -931,17 +1149,28 @@
   }
 
   /* Banner */
+  .dbh-banner__reveal {
+    animation: none;
+    clip-path: none;
+  }
+
   .dbh-banner {
-    padding: 5.6rem 0;
+    padding: 8rem 0;
     border-radius: 0;
   }
 
+  .dbh-banner__content {
+    align-items: center;
+    text-align: center;
+  }
+
   .dbh-banner__heading {
-    font-size: 2rem;
+    font-size: 3rem;
+    max-width: 30rem;
   }
 
   .dbh-section-heading {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     margin-bottom: 2.4rem;
   }
 
@@ -949,3 +1178,75 @@
     overflow-x: clip;
   }
 }
+
+/* =============================================
+   HOME + AMBIENT HERO — HEADER TRANSPARENTE
+   Técnica:
+     1. body bg dark → evita flash durante carga de imagen.
+     2. Primera sección sube con margin-top negativo.
+     3. desktop: padding-top del hero compensa la altura del header.
+     4. mobile: padding-top: 0 — imagen full-bleed desde detrás del header.
+   Selector correcto: body:has(.dbh-hero--has-image).
+   El body de Sense NO tiene clase template-index.
+   scrolled-past-header lo añade sticky-header.js al .section-header,
+   no al body — los selectores de restauración van contra .section-header.
+   ============================================= */
+
+/* Fondo body: dark ambient durante carga de imagen */
+body:has(.dbh-hero--has-image) {
+  background-color: #3A4228;
+}
+
+/* Primera sección sube bajo el header */
+body:has(.dbh-hero--has-image) .dilmio-brand-home-section {
+  margin-top: calc(-1 * var(--header-height, 7.2rem));
+}
+
+/* Desktop: hero padding-top = header height + inset ambient mínimo */
+body:has(.dbh-hero--has-image) .dbh-hero--has-image {
+  padding-top: calc(var(--header-height, 7.2rem) + 2rem);
+}
+
+/* Mobile: full-bleed — imagen arranca desde detrás del header */
+@media screen and (max-width: 749px) {
+  body:has(.dbh-hero--has-image) .dbh-hero--has-image {
+    padding-top: 0;
+  }
+}
+
+/* Header transparente mientras el hero es visible */
+body:has(.dbh-hero--has-image) .header-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body:has(.dbh-hero--has-image) .header-wrapper--border-bottom {
+  border-bottom: none !important;
+}
+
+/* Restaurar fondo al scrollear (scrolled-past-header va en .section-header) */
+body:has(.dbh-hero--has-image) .section-header.scrolled-past-header .header-wrapper {
+  background: #FFFFFF !important;
+  box-shadow: var(--dilmio-shadow-header) !important;
+}
+
+/* Logo, menú e iconos blancos sobre hero */
+body:has(.dbh-hero--has-image) .header__heading-link,
+body:has(.dbh-hero--has-image) .header__menu-item,
+body:has(.dbh-hero--has-image) .header__icon,
+body:has(.dbh-hero--has-image) .header__heading {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+body:has(.dbh-hero--has-image) .header__icon svg {
+  fill: currentColor !important;
+}
+
+/* Restaurar colores al scrollear */
+body:has(.dbh-hero--has-image) .section-header.scrolled-past-header .header__heading-link,
+body:has(.dbh-hero--has-image) .section-header.scrolled-past-header .header__menu-item,
+body:has(.dbh-hero--has-image) .section-header.scrolled-past-header .header__icon,
+body:has(.dbh-hero--has-image) .section-header.scrolled-past-header .header__heading {
+  color: unset !important;
+}
+

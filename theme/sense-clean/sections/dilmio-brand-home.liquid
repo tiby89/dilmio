@@ -9,28 +9,42 @@
 
 <div class="dilmio-brand-home">
 
-  {% comment %} ===================== ZONE 1 — HERO ===================== {% endcomment %}
+  {% comment %} ===================== ZONE 1 — AMBIENT BOXED HERO ===================== {% endcomment %}
   <div class="dbh-hero{% if section.settings.hero_image != blank %} dbh-hero--has-image{% endif %}">
 
     {%- if section.settings.hero_image != blank -%}
-      <div class="dbh-hero__bg">
+      {%- comment -%} Card: imagen + texto superpuesto, rodeada por gradiente ambiental {%- endcomment -%}
+      <div class="dbh-hero__card">
         {{
           section.settings.hero_image
           | image_url: width: 2000
           | image_tag:
             loading: 'eager',
-            class: 'dbh-hero__bg-img',
-            widths: '750, 1000, 1400, 1800, 2000',
+            class: 'dbh-hero__card-img',
+            widths: '400, 600, 800, 1000, 1200, 1600, 2000',
             sizes: '100vw',
             alt: section.settings.hero_image.alt | escape
         }}
+        <div class="dbh-hero__content">
+          {%- if section.settings.hero_heading != blank -%}
+            <h1 class="dbh-hero__heading">{{ section.settings.hero_heading | escape }}</h1>
+          {%- endif -%}
+          {%- if section.settings.hero_subtext != blank -%}
+            <p class="dbh-hero__subtext">{{ section.settings.hero_subtext | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.hero_cta_label != blank -%}
+            <a
+              href="{{ section.settings.hero_cta_link | default: '#' }}"
+              class="dbh-btn dbh-btn--primary"
+            >
+              {{- section.settings.hero_cta_label | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
       </div>
-    {%- endif -%}
-
-    <div class="dbh-hero__overlay"></div>
-
-    <div class="dbh-wrapper dbh-hero__inner">
-      <div class="dbh-hero__content">
+    {%- else -%}
+      {%- comment -%} Fallback sin imagen: texto centrado sobre fondo crema {%- endcomment -%}
+      <div class="dbh-wrapper dbh-hero__content">
         {%- if section.settings.hero_heading != blank -%}
           <h1 class="dbh-hero__heading">{{ section.settings.hero_heading | escape }}</h1>
         {%- endif -%}
@@ -46,7 +60,7 @@
           </a>
         {%- endif -%}
       </div>
-    </div>
+    {%- endif -%}
 
   </div>
 
@@ -86,6 +100,16 @@
             {%- endif -%}
           {%- endfor -%}
         </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {% comment %} ===================== ZONE 2.5 — MARQUEE ===================== {% endcomment %}
+  {%- if section.settings.show_marquee and section.settings.marquee_text != blank -%}
+    <div class="dbh-marquee dbh-marquee--{{ section.settings.marquee_speed }}" aria-hidden="true">
+      <div class="dbh-marquee__track">
+        <span class="dbh-marquee__content">{{- section.settings.marquee_text | escape -}}</span>
+        <span class="dbh-marquee__content" aria-hidden="true">{{- section.settings.marquee_text | escape -}}</span>
       </div>
     </div>
   {%- endif -%}
@@ -267,12 +291,22 @@
 
   {% comment %} ===================== ZONE 6 — BOTTOM BANNER ===================== {% endcomment %}
   {%- if section.settings.banner_heading != blank -%}
-    <div
-      class="dbh-banner{% if section.settings.banner_image != blank %} dbh-banner--has-image{% endif %}"
+    <div class="dbh-banner__reveal">
+      <div class="dbh-banner{% if section.settings.banner_image != blank %} dbh-banner--has-image{% endif %}">
       {%- if section.settings.banner_image != blank -%}
-        style="background-image: url('{{ section.settings.banner_image | image_url: width: 2000 }}')"
+        <div class="dbh-banner__bg">
+          {{
+            section.settings.banner_image
+            | image_url: width: 2000
+            | image_tag:
+              loading: 'lazy',
+              class: 'dbh-banner__bg-img',
+              widths: '750, 1000, 1400, 1800, 2000',
+              sizes: '100vw',
+              alt: ''
+          }}
+        </div>
       {%- endif -%}
-    >
       <div class="dbh-banner__overlay"></div>
       <div class="dbh-wrapper dbh-banner__content">
         <h2 class="dbh-banner__heading">{{ section.settings.banner_heading | escape }}</h2>
@@ -284,6 +318,7 @@
             {{- section.settings.banner_cta_label | escape -}}
           </a>
         {%- endif -%}
+      </div>
       </div>
     </div>
   {%- endif -%}
@@ -447,6 +482,33 @@
       "type": "image_picker",
       "id": "banner_image",
       "label": "Background image (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Marquee"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_marquee",
+      "label": "Mostrar marquee",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "marquee_text",
+      "label": "Texto del marquee",
+      "default": "Útil de verdad  —  Fácil de entender  —  Compra clara  —  Envío con seguimiento  —  Devolución fácil  —  "
+    },
+    {
+      "type": "select",
+      "id": "marquee_speed",
+      "label": "Velocidad de animación",
+      "options": [
+        { "value": "slow", "label": "Lenta (40s)" },
+        { "value": "medium", "label": "Media (25s)" },
+        { "value": "fast", "label": "Rápida (15s)" }
+      ],
+      "default": "medium"
     }
   ],
   "blocks": [
