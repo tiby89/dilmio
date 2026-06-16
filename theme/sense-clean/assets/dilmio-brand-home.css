@@ -614,8 +614,8 @@
   overflow: hidden;
   flex-shrink: 0;
   width: calc(100vw - 3.2rem);
-  height: 80vh;
-  height: 80svh;
+  height: 56vh;
+  height: 56svh;
   border-radius: 1.2rem;
 }
 
@@ -654,10 +654,15 @@
   background:
     linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.68) 0%,
-      rgba(0, 0, 0, 0.36) 26%,
-      rgba(0, 0, 0, 0.06) 52%,
-      rgba(0, 0, 0, 0.00) 72%
+      rgba(0, 0, 0, 0.44) 0%,
+      rgba(0, 0, 0, 0.00) 28%
+    ),
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.40) 30%,
+      rgba(0, 0, 0, 0.08) 58%,
+      rgba(0, 0, 0, 0.00) 80%
     );
 }
 
@@ -670,8 +675,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
-  padding: 3.6rem 2.4rem 2.4rem;
+  justify-content: flex-end;
+  padding: 2rem 2.4rem 3.6rem;
   gap: 1.4rem;
   pointer-events: none;
 }
@@ -683,6 +688,9 @@
 /* ── Eyebrow label ────────────────────────────── */
 
 .dbh-banner__label {
+  position: absolute;
+  top: 3.2rem;
+  left: 2.4rem;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -736,7 +744,7 @@
        Descendants reference --dbh-er-stage to sync
        their animation to the parent's traversal.   */
     .dbh-banner {
-      min-height: 130svh;
+      min-height: 115svh;
       view-timeline-name: --dbh-er-stage;
       view-timeline-axis: block;
     }
@@ -744,7 +752,7 @@
     /* Desktop: shorter scroll stage */
     @media screen and (min-width: 990px) {
       .dbh-banner {
-        min-height: 120vh;
+        min-height: 110vh;
       }
     }
 
@@ -760,12 +768,12 @@
     @keyframes dbh-er-frame-expand {
       from {
         width: 50vw;
-        height: 42svh;
+        height: 38svh;
         border-radius: 3.6rem;
       }
       to {
         width: calc(100vw - 3.2rem);
-        height: 80svh;
+        height: 60svh;
         border-radius: 1.2rem;
       }
     }
@@ -775,12 +783,12 @@
       @keyframes dbh-er-frame-expand {
         from {
           width: 38vw;
-          height: 55vh;
+          height: 42vh;
           border-radius: 4rem;
         }
         to {
-          width: calc(100% - 8rem);
-          height: 72vh;
+          width: calc(100% - 4rem);
+          height: 56vh;
           border-radius: 1.6rem;
         }
       }
@@ -864,8 +872,8 @@
   }
 
   .dbh-banner__frame {
-    width: calc(100% - 8rem);
-    height: 72vh;
+    width: calc(100% - 4rem);
+    height: 56vh;
     border-radius: 1.6rem;
   }
 
@@ -874,7 +882,12 @@
   }
 
   .dbh-banner__content {
-    padding: 4.8rem 6.4rem;
+    padding: 2.4rem 6.4rem 4.8rem;
+  }
+
+  .dbh-banner__label {
+    top: 2.4rem;
+    left: 6.4rem;
   }
 }
 
@@ -1143,12 +1156,12 @@
      Non-animated: fallback shows as contained premium card. */
   .dbh-banner__frame {
     width: 80vw;
-    height: 54svh;
+    height: 48svh;
     border-radius: 2.8rem;
   }
 
   .dbh-banner__content {
-    padding: 2.8rem 1.6rem 1.6rem;
+    padding: 1.2rem 1.6rem 3rem;
     gap: 1rem;
   }
 
@@ -1159,6 +1172,8 @@
 
   .dbh-banner__label {
     font-size: 1rem;
+    top: 2.4rem;
+    left: 1.6rem;
   }
 
   .dbh-banner__cta {
