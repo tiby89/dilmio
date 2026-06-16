@@ -16,8 +16,18 @@
         {{- 'icon-close.svg' | inline_asset_content -}}
       </span>
     </summary>
-    <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
+    <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}" onclick="if(event.target===this)this.closest('details').querySelector('summary').click()">
       <div class="menu-drawer__inner-container">
+        <button
+          class="dlm-drawer-close"
+          type="button"
+          aria-label="Cerrar menú"
+          onclick="this.closest('details').querySelector('summary').click()"
+        >
+          <span class="svg-wrapper" aria-hidden="true">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
+        </button>
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
