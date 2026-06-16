@@ -213,10 +213,16 @@
   padding: 6.4rem 0;
 }
 
+.dbh-categories__grid-wrap {
+  max-width: 144rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}
+
 .dbh-categories__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.6rem;
+  gap: 2rem;
 }
 
 .dbh-category__card {
@@ -277,7 +283,7 @@
 }
 
 .dbh-category__body {
-  padding: 1.6rem 1.4rem 1.4rem;
+  padding: 2rem 1.6rem 1.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -290,8 +296,9 @@
 }
 
 .dbh-category__title {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--dbh-text);
   margin: 0;
   white-space: nowrap;
@@ -300,9 +307,9 @@
 }
 
 .dbh-category__subtitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--dbh-text-muted);
-  margin: 0.2rem 0 0;
+  margin: 0.4rem 0 0;
 }
 
 /* =============================================
@@ -592,7 +599,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: clip, NOT hidden — clip recorta visualmente sin crear un
+     scroll container. overflow:hidden crearía un nuevo scroll container,
+     rompiendo el scope del named view-timeline --dbh-er-stage (Chrome 116+). */
+  overflow: clip;
 }
 
 /* ── Expanding image frame ───────────────────
@@ -969,14 +979,53 @@
     margin-top: 0.4rem;
   }
 
-  /* Category cards */
+  /* Category cards — mobile carousel (GOD 12.2a) */
   .dbh-categories {
-    padding: 4rem 0;
+    padding: 4.8rem 0;
+  }
+
+  .dbh-categories__grid-wrap {
+    max-width: unset;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dbh-categories__grid-wrap::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4.8rem;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(to right, transparent, var(--dbh-cream));
   }
 
   .dbh-categories__grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.4rem;
+    display: flex;
+    grid-template-columns: unset;
+    gap: 1.2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 2rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-left: 2rem;
+    padding-right: 4rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .dbh-categories__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dbh-category__card {
+    flex: 0 0 72vw;
+    min-width: 0;
+    scroll-snap-align: start;
   }
 
   .dbh-category__title {
@@ -1087,10 +1136,14 @@
     text-align: left;
   }
 
-  /* Banner — editorial scroll stage mobile (GOD 11.3c) */
+  /* Banner — editorial scroll stage mobile (GOD 12.2b restore)
+     Fallback: card contenida + redondeada, no imagen gigante.
+     Animated browsers: keyframes override with 50vw/42svh/3.6rem → expands.
+     Non-animated: fallback shows as contained premium card. */
   .dbh-banner__frame {
-    width: calc(100vw - 2.4rem);
-    border-radius: 1rem;
+    width: 80vw;
+    height: 54svh;
+    border-radius: 2.8rem;
   }
 
   .dbh-banner__content {

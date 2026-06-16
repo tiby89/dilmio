@@ -66,10 +66,12 @@
   {% comment %} ===================== ZONE 3 — CATEGORY CARDS ===================== {% endcomment %}
   {%- if category_cards.size > 0 -%}
     <div class="dbh-categories">
-      <div class="dbh-wrapper">
-        {%- if section.settings.categories_heading != blank -%}
+      {%- if section.settings.categories_heading != blank -%}
+        <div class="dbh-wrapper">
           <h2 class="dbh-section-heading">{{ section.settings.categories_heading | escape }}</h2>
-        {%- endif -%}
+        </div>
+      {%- endif -%}
+      <div class="dbh-categories__grid-wrap">
         <div class="dbh-categories__grid">
           {%- for block in category_cards -%}
             {%- if block.settings.title != blank or block.settings.image != blank -%}
@@ -91,7 +93,7 @@
                         loading: 'lazy',
                         class: 'dbh-category__img',
                         widths: '200, 300, 400, 600',
-                        sizes: '(min-width: 990px) 25vw, 50vw',
+                        sizes: '(min-width: 990px) 25vw, 75vw',
                         alt: block.settings.title | escape
                     }}
                   {%- endif -%}
