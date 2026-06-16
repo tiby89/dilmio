@@ -273,59 +273,6 @@
 }
 
 /* =============================================
-   ZONE 2.5 — MARQUEE
-   ============================================= */
-
-.dbh-marquee {
-  overflow: hidden;
-  background: var(--dbh-cream);
-  padding: 3.6rem 0;
-  user-select: none;
-  border-top: 1px solid var(--dbh-border);
-  border-bottom: 1px solid var(--dbh-border);
-}
-
-.dbh-marquee__track {
-  display: flex;
-  width: max-content;
-  animation: dbh-marquee-scroll 60s linear infinite;
-}
-
-.dbh-marquee--slow .dbh-marquee__track {
-  animation-duration: 90s;
-}
-
-.dbh-marquee--fast .dbh-marquee__track {
-  animation-duration: 35s;
-}
-
-.dbh-marquee__content {
-  font-size: 7.2rem;
-  font-weight: 800;
-  color: var(--dbh-text);
-  white-space: nowrap;
-  padding: 0 8rem;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-
-@keyframes dbh-marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dbh-marquee__track {
-    animation: none;
-    width: auto;
-    justify-content: center;
-  }
-  .dbh-marquee__content:last-child {
-    display: none;
-  }
-}
-
-/* =============================================
    ZONE 3 — CATEGORY CARDS
    ============================================= */
 
@@ -1014,16 +961,6 @@
 
   .dbh-trust__icon {
     font-size: 2.4rem;
-  }
-
-  /* Marquee */
-  .dbh-marquee {
-    padding: 2.4rem 0;
-  }
-
-  .dbh-marquee__content {
-    font-size: 4rem;
-    padding: 0 4rem;
   }
 
   /* Category cards */

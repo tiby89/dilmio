@@ -104,16 +104,6 @@
     </div>
   {%- endif -%}
 
-  {% comment %} ===================== ZONE 2.5 — MARQUEE ===================== {% endcomment %}
-  {%- if section.settings.show_marquee and section.settings.marquee_text != blank -%}
-    <div class="dbh-marquee dbh-marquee--{{ section.settings.marquee_speed }}" aria-hidden="true">
-      <div class="dbh-marquee__track">
-        <span class="dbh-marquee__content">{{- section.settings.marquee_text | escape -}}</span>
-        <span class="dbh-marquee__content" aria-hidden="true">{{- section.settings.marquee_text | escape -}}</span>
-      </div>
-    </div>
-  {%- endif -%}
-
   {% comment %} ===================== ZONE 3 — CATEGORY CARDS ===================== {% endcomment %}
   {%- if category_cards.size > 0 -%}
     <div class="dbh-categories">
@@ -483,33 +473,6 @@
       "id": "banner_image",
       "label": "Background image (optional)"
     },
-    {
-      "type": "header",
-      "content": "Marquee"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_marquee",
-      "label": "Mostrar marquee",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "marquee_text",
-      "label": "Texto del marquee",
-      "default": "Útil de verdad  —  Fácil de entender  —  Compra clara  —  Envío con seguimiento  —  Devolución fácil  —  "
-    },
-    {
-      "type": "select",
-      "id": "marquee_speed",
-      "label": "Velocidad de animación",
-      "options": [
-        { "value": "slow", "label": "Lenta (40s)" },
-        { "value": "medium", "label": "Media (25s)" },
-        { "value": "fast", "label": "Rápida (15s)" }
-      ],
-      "default": "medium"
-    }
   ],
   "blocks": [
     {
