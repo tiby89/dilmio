@@ -4,6 +4,11 @@
   position: relative;
 }
 
+.dilmio-stage-bg {
+  background: #f2f2f1;
+  padding: 0.5rem 0 2rem;
+}
+
 .dilmio-placeholder {
   padding: 2rem;
   margin: 2rem;
@@ -15,40 +20,51 @@
 .dilmio-landing__inner {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  padding: 1.5rem 1rem 2.5rem;
+  gap: 0;
+  padding: 0;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 1rem;
   box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.09);
+  overflow: hidden;
 }
 
 @media (min-width: 750px) {
   .dilmio-landing__inner {
-    grid-template-columns: 1.1fr 1fr;
-    grid-template-areas:
-      "media hero"
-      "media form";
-    grid-template-rows: min-content min-content;
-    gap: 0 2.5rem;
-    padding: 1.5rem 2rem 2rem;
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-areas: "media form";
+    grid-template-rows: auto;
+    gap: 0 2rem;
+    padding: 1.75rem 2rem 2rem 1.75rem;
     align-items: start;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    box-shadow: 0 18px 50px rgba(26, 26, 26, 0.10);
+    margin: 1.25rem auto;
+    overflow: visible;
   }
 
   .dilmio-landing__media {
     grid-area: media;
-    background: var(--dilmio-cream-section, #f7f4f0);
-    border-radius: var(--dilmio-radius-md);
-    padding: 1.25rem;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
   }
 
   .dilmio-landing__form {
     grid-area: form;
-    align-self: start;
-    padding: 1.75rem;
-    background: #fff;
-    border: 1px solid rgba(17, 17, 17, 0.08);
-    border-radius: var(--dilmio-radius-md);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 0 2rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 
 }
@@ -65,29 +81,47 @@
 /* ─── Title & price ─── */
 
 .dilmio-landing__title {
-  font-size: 1.7rem;
+  font-size: clamp(1.9rem, 7vw, 2.5rem);
   font-weight: 800;
-  line-height: 1.2;
-  margin: 0 0 0.75rem;
-  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.04em;
+  color: var(--dilmio-text);
+}
+
+/* ─── Price + rating row ─── */
+
+.dilmio-price-rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 0 1.5rem;
+}
+
+.dilmio-price-rating-row .dilmio-landing__price,
+.dilmio-price-rating-row .dilmio-rating {
+  margin: 0;
 }
 
 .dilmio-landing__price {
-  font-size: 1.55rem;
+  font-size: 1.4rem;
   font-weight: 800;
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.25rem;
   letter-spacing: -0.02em;
-  color: var(--dilmio-green);
+  color: var(--dilmio-text);
 }
 
 /* ─── Option groups ─── */
 
 .dilmio-options {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.25rem;
 }
 
 .dilmio-option-group {
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
 }
 
 .dilmio-option-group__label,
@@ -95,7 +129,7 @@
   font-size: 0.8125rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   margin: 0 0 0.5rem;
 }
 
@@ -103,67 +137,131 @@
 .dilmio-packs__values {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.625rem;
 }
 
 /* ─── Option & pack buttons ─── */
 
 .dilmio-option-btn,
 .dilmio-pack-btn {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--dilmio-border-strong);
+  padding: 0.625rem 1.25rem;
+  border: 1.5px solid var(--dilmio-border-strong);
   background: #fff;
   color: var(--dilmio-text);
   cursor: pointer;
-  font-size: 0.9rem;
-  border-radius: var(--dilmio-radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: 8px;
   line-height: 1.4;
   transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
+.dilmio-pack-btn {
+  border-radius: 999px;
+  padding: 0.625rem 1.5rem;
+}
+
 .dilmio-option-btn:hover,
 .dilmio-pack-btn:hover {
-  border-color: var(--dilmio-text-subtle);
+  border-color: rgba(26, 26, 26, 0.5);
 }
 
 .dilmio-option-btn.is-selected,
 .dilmio-pack-btn.is-selected {
-  border-color: var(--dilmio-green);
-  background: var(--dilmio-green);
+  border-color: #1a1a1a;
+  background: #1a1a1a;
   color: #fff;
+}
+
+/* ─── Option swatch (variant image + label) ─── */
+
+.dilmio-option-btn--swatch {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0.5rem 0.5rem;
+  border-radius: 10px;
+  border: 1.5px solid rgba(0, 0, 0, 0.10);
+  min-width: 72px;
+  max-width: 96px;
+  background: #fff;
+  gap: 0;
+}
+
+.dilmio-option-btn--swatch.is-selected {
+  border: 2px solid #1a1a1a;
+  background: #fff;
+  color: var(--dilmio-text);
+}
+
+.dilmio-option-btn--swatch:hover {
+  border-color: rgba(26, 26, 26, 0.35);
+}
+
+.dilmio-option-btn__img {
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-bottom: 0.375rem;
+}
+
+.dilmio-option-btn__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dilmio-option-btn__lbl {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--dilmio-text);
+  text-align: center;
+  line-height: 1.25;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-width: 80px;
+  padding: 0 2px;
 }
 
 /* ─── Pack selector ─── */
 
 .dilmio-packs {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.25rem;
 }
 
 /* ─── CTA ─── */
 
 .dilmio-cta-wrap {
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1.375rem;
+  border-top: 1px solid rgba(32, 28, 24, 0.08);
 }
 
 .dilmio-cta {
   display: block;
   width: 100%;
-  padding: 1.1rem 1.5rem;
-  background: var(--dilmio-green);
+  padding: 1.15rem 2rem;
+  min-height: 56px;
+  background: #1a1a1a;
   color: #fff;
   border: none;
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-size: 1.0625rem;
+  font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
-  border-radius: var(--dilmio-radius-btn);
+  border-radius: 999px;
   text-align: center;
   transition: background 0.15s ease, opacity 0.15s ease;
-  box-shadow: 0 3px 10px rgba(62, 74, 45, 0.18);
+  box-shadow: none;
 }
 
 .dilmio-cta:hover:not(:disabled):not(.is-loading) {
-  background: var(--dilmio-green-dark);
+  background: #333333;
 }
 
 .dilmio-cta:disabled {
@@ -255,40 +353,115 @@
   margin: 0;
 }
 
-.dilmio-hero__headline {
-  font-size: 1.75rem;
-  font-weight: 800;
-  line-height: 1.2;
-  margin: 0 0 0.75rem;
-}
-
 .dilmio-hero__subheadline {
   font-size: 1rem;
   color: var(--dilmio-text-subtle);
-  margin: 0;
+  line-height: 1.55;
+  max-width: 38ch;
+  margin: 0 0 0.25rem;
 }
 
 @media screen and (max-width: 749px) {
   .dilmio-hero {
-    padding: 0.25rem 0 0;
+    padding: 1.25rem 1.25rem 0.75rem;
   }
 
-  .dilmio-hero__headline {
-    font-size: 2.3rem;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.04em;
+  .dilmio-gallery__main-wrap {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .dilmio-gallery__thumbs {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .dilmio-landing__form {
+    padding: 0.75rem 1.25rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
 @media (min-width: 750px) {
   .dilmio-hero {
-    grid-area: hero;
-    padding: 0 0 0.75rem;
+    display: none;
   }
 
-  .dilmio-hero__headline {
-    font-size: 2.6rem;
+  .dilmio-landing__title {
+    font-size: clamp(2.6rem, 3.2vw, 4.2rem);
+    line-height: 0.98;
+    margin-bottom: 0.625rem;
+  }
+
+  .dilmio-gallery__main-wrap {
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .dilmio-gallery {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .dilmio-gallery__main-wrap {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .dilmio-gallery__thumbs {
+    order: -1;
+    flex: 0 0 68px;
+    min-height: 0;
+    align-self: flex-start;
+    max-height: min(610px, calc(100vh - 180px));
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 4px;
+    mask-image: linear-gradient(to bottom, transparent 0, #000 8px, #000 calc(100% - 8px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 8px, #000 calc(100% - 8px), transparent 100%);
+  }
+
+  .dilmio-gallery__thumbs::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  .dilmio-gallery__thumbs-scroll {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .dilmio-gallery__thumb {
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
+    background: #fffdf9;
+    border-radius: 8px;
+    opacity: 0.82;
+    transition: border-color 0.15s ease, opacity 0.15s ease;
+  }
+
+  .dilmio-gallery__thumb.is-active {
+    border: 2px solid var(--dilmio-text);
+    opacity: 1;
+  }
+
+  .dilmio-gallery__thumb:hover:not(.is-active) {
+    border-color: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+  }
+
+  .dilmio-gallery__thumb img {
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -720,7 +893,7 @@
 .dilmio-rating__stars {
   position: relative;
   display: inline-block;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1;
   letter-spacing: 0.05em;
 }
@@ -768,6 +941,10 @@
 }
 
 .dilmio-gallery__thumbs {
+  /* layout handled by .dilmio-gallery__thumbs-scroll */
+}
+
+.dilmio-gallery__thumbs-scroll {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -799,31 +976,89 @@
   border-color: var(--dilmio-disabled);
 }
 
-/* ─── Trust inline (below CTA in form) ─── */
+/* ─── Stock badge ─── */
+
+.dilmio-stock-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #22a05a;
+  margin-bottom: 1rem;
+}
+
+.dilmio-stock-badge__dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22a05a;
+}
+
+/* ─── Trust inline — offer box ─── */
 
 .dilmio-trust-inline {
-  margin-top: 1.15rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  margin-top: 3rem;
+  padding: 1.25rem 1.375rem;
+  background: #f2f2f1;
+  border-radius: 14px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .dilmio-trust-inline__item {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--dilmio-text-subtle);
+}
+
+.dilmio-trust-inline__item:first-child {
+  font-size: 0.9375rem;
+  font-weight: 700;
   color: var(--dilmio-text);
-  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.dilmio-trust-inline__item:not(:first-child) {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--dilmio-text-subtle);
 }
 
 .dilmio-trust-inline .dilmio-trust__icon {
-  color: var(--dilmio-green);
+  color: var(--dilmio-text-subtle);
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.dilmio-trust-inline__item:first-child .dilmio-trust__icon {
+  color: var(--dilmio-text);
   width: 16px;
   height: 16px;
+}
+
+/* ─── Form subtitle + subcopy (rendered inside form, after product title) ─── */
+
+.dilmio-form__subtitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--dilmio-text);
+  margin: 0.5rem 0 1.25rem;
+}
+
+.dilmio-form__subcopy {
+  font-size: 0.9375rem;
+  color: rgba(26, 26, 26, 0.6);
+  line-height: 1.6;
+  max-width: 38ch;
+  margin: 0 0 1.5rem;
 }
 
 /* ─── Purchase note ─── */
@@ -845,6 +1080,14 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+@media (min-width: 750px) {
+  .dilmio-trust-inline {
+    margin-top: auto;
+  }
+
+  /* webkit scrollbar for thumbs-scroll moved to @media (min-width: 750px) block above */
 }
 
 .dilmio-demo-split__benefits-card,
@@ -1015,5 +1258,462 @@
   .dilmio-cta-final__btn {
     display: block;
     padding: 1rem 2rem;
+  }
+}
+
+/* ─── GOD 13.1 — Editorial block ─── */
+
+.dilmio-editorial {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  border-top: 1px solid var(--dilmio-border-light);
+}
+
+.dilmio-editorial__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 750px) {
+  .dilmio-editorial__inner--two-col {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .dilmio-editorial__inner--single {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+.dilmio-editorial__eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 1rem;
+  opacity: 0.55;
+  color: inherit;
+}
+
+.dilmio-editorial__eyebrow--light {
+  color: #fff;
+  opacity: 0.6;
+}
+
+.dilmio-editorial__claim {
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 0 0 1.25rem;
+  color: var(--dilmio-text);
+}
+
+.dilmio-editorial__claim--legacy {
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+.dilmio-editorial__text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--dilmio-text-subtle);
+  margin: 0;
+  max-width: 44ch;
+}
+
+/* Legacy (prob/sol fallback) */
+.dilmio-editorial--legacy .dilmio-editorial__claim-col--problem {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--dilmio-border-light);
+  border-left: 3px solid var(--dilmio-error, #b94a3a);
+  border-radius: var(--dilmio-radius-lg, 12px);
+  padding: 2.25rem 2.5rem;
+}
+
+.dilmio-editorial--legacy .dilmio-editorial__table-col--solution {
+  background: var(--dilmio-green, #3e4a2d);
+  color: #fff;
+  border-radius: var(--dilmio-radius-lg, 12px);
+  padding: 2.25rem 2.5rem;
+}
+
+.dilmio-editorial__sol-text {
+  font-size: 1.025rem;
+  line-height: 1.65;
+  font-weight: 500;
+  margin: 0;
+  color: inherit;
+}
+
+/* Data table */
+.dilmio-editorial__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dilmio-editorial__row {
+  border-bottom: 1px solid var(--dilmio-border-light);
+}
+
+.dilmio-editorial__row:first-child {
+  border-top: 1px solid var(--dilmio-border-light);
+}
+
+.dilmio-editorial__cell {
+  padding: 0.875rem 0.5rem;
+  font-size: 0.9375rem;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.dilmio-editorial__cell--label {
+  font-weight: 600;
+  color: var(--dilmio-text);
+  width: 42%;
+  padding-right: 1.25rem;
+}
+
+.dilmio-editorial__cell--value {
+  color: var(--dilmio-text-subtle);
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-editorial {
+    padding: 2.5rem 1rem;
+  }
+
+  .dilmio-editorial--legacy .dilmio-editorial__claim-col--problem,
+  .dilmio-editorial--legacy .dilmio-editorial__table-col--solution {
+    padding: 1.5rem 1.75rem;
+  }
+}
+
+/* ─── GOD 13.1b — Video editorial ─── */
+
+.dilmio-video-editorial {
+  background: var(--dilmio-text, #111);
+  color: #fff;
+  padding: 4.5rem 1.25rem;
+}
+
+.dilmio-video-editorial__header {
+  max-width: 640px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.dilmio-video-editorial__heading {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  color: #fff;
+}
+
+.dilmio-video-editorial__sub {
+  font-size: 1.0625rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  line-height: 1.7;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dilmio-video-editorial__frame {
+  max-width: 340px;
+  margin: 0 auto;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--dilmio-radius-lg, 12px);
+  overflow: hidden;
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.dilmio-video-editorial__player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-video-editorial {
+    padding: 3.5rem 0;
+  }
+
+  .dilmio-video-editorial__header {
+    padding: 0 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .dilmio-video-editorial__frame {
+    max-width: 82vw;
+    border-radius: var(--dilmio-radius-lg, 12px);
+  }
+}
+
+@media (min-width: 750px) {
+  .dilmio-video-editorial {
+    padding: 5.5rem 2rem;
+  }
+
+  .dilmio-video-editorial__frame {
+    max-width: 420px;
+  }
+}
+
+/* ─── GOD 13.1b — Before / After slider (clip-path) ─── */
+
+.dilmio-ba {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem;
+  border-top: 1px solid var(--dilmio-border-light);
+}
+
+.dilmio-ba__header {
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.dilmio-ba__heading {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  color: var(--dilmio-text);
+}
+
+.dilmio-ba__text {
+  font-size: 1rem;
+  color: var(--dilmio-text-subtle);
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* Slider container */
+.dilmio-ba__slider {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: var(--dilmio-radius-lg, 12px);
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: pan-y;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* After: in-flow, defines the container's height */
+.dilmio-ba__img--after {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* Before: absolute overlay at full slider size, clipped by JS */
+.dilmio-ba__img--before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: inset(0 50% 0 0);
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* Labels */
+.dilmio-ba__label {
+  position: absolute;
+  bottom: 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(0, 0, 0, 0.52);
+  color: #fff;
+  padding: 0.275rem 0.7rem;
+  border-radius: 100px;
+  line-height: 1.4;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.dilmio-ba__label--before {
+  left: 0.875rem;
+}
+
+.dilmio-ba__label--after {
+  right: 0.875rem;
+}
+
+/* Handle */
+.dilmio-ba__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  transform: translateX(-50%);
+  cursor: ew-resize;
+  z-index: 2;
+}
+
+.dilmio-ba__handle-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+}
+
+.dilmio-ba__handle-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dilmio-text, #111);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.dilmio-ba__handle:focus .dilmio-ba__handle-circle,
+.dilmio-ba__handle-circle:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Fallback / empty state */
+.dilmio-ba__empty {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3rem;
+  background: var(--dilmio-cream-section, #f7f4f0);
+  border-radius: var(--dilmio-radius-lg, 12px);
+  color: var(--dilmio-text-muted);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-ba {
+    padding: 2.5rem 1rem;
+  }
+
+  .dilmio-ba__header {
+    margin-bottom: 2rem;
+  }
+}
+
+/* ─── GOD 13.1b — FAQ standalone (2-col editorial) ─── */
+
+.dilmio-faq-standalone {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem;
+  border-top: 1px solid var(--dilmio-border-light);
+}
+
+.dilmio-faq-standalone__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 750px) {
+  .dilmio-faq-standalone__inner {
+    grid-template-columns: 1fr 1.8fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+.dilmio-faq-standalone__lead {
+  /* sticky context for desktop */
+}
+
+@media (min-width: 750px) {
+  .dilmio-faq-standalone__lead {
+    position: sticky;
+    top: 2rem;
+  }
+}
+
+.dilmio-faq-standalone__title {
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  color: var(--dilmio-text);
+}
+
+.dilmio-faq-standalone__support {
+  font-size: 1rem;
+  color: var(--dilmio-text-subtle);
+  margin: 0;
+  line-height: 1.65;
+}
+
+.dilmio-faq-standalone__items {
+  /* accordions column */
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-faq-standalone {
+    padding: 2.5rem 1rem;
+  }
+
+  .dilmio-faq-standalone__lead {
+    text-align: center;
+  }
+}
+
+/* ─── GOD 13.1 — Benefits standalone ─── */
+
+.dilmio-benefits-standalone {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid var(--dilmio-border-light);
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-benefits-standalone {
+    padding: 2rem 1rem;
+  }
+
+  .dilmio-benefits-standalone .dilmio-demo-split__benefits-card {
+    background: transparent;
+    border: none;
+    padding: 0;
   }
 }
