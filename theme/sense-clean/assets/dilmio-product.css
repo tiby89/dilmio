@@ -367,12 +367,75 @@
   }
 
   .dilmio-gallery__main-wrap {
-    margin: 0;
-    border-radius: 0;
+    display: none;
   }
 
   .dilmio-gallery__thumbs {
-    padding: 0.75rem 1.25rem;
+    display: none;
+  }
+
+  .dilmio-gallery__mobile-slider {
+    display: block;
+    position: relative;
+  }
+
+  .dilmio-gallery__mobile-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .dilmio-gallery__mobile-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dilmio-gallery__mobile-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  .dilmio-gallery__mobile-slide img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background: #fff;
+  }
+
+  .dilmio-gallery__progress {
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    width: 4.8rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    z-index: 4;
+  }
+
+  .dilmio-gallery__progress-bar {
+    display: block;
+    width: 1.4rem;
+    height: 100%;
+    border-radius: 999px;
+    background: #1d1d1b;
+    transform: translateX(0);
+    transition: transform 0.2s ease;
+  }
+
+  .dilmio-gallery__progress-bar.is-center {
+    transform: translateX(1.7rem);
+  }
+
+  .dilmio-gallery__progress-bar.is-right {
+    transform: translateX(3.4rem);
   }
 
   .dilmio-landing__form {
@@ -462,6 +525,10 @@
   .dilmio-gallery__thumb img {
     width: 60px;
     height: 60px;
+  }
+
+  .dilmio-gallery__mobile-slider {
+    display: none;
   }
 }
 
@@ -975,6 +1042,8 @@
 .dilmio-gallery__thumb:hover:not(.is-active) {
   border-color: var(--dilmio-disabled);
 }
+
+/* Gallery mobile slider — display controlled by media queries */
 
 /* ─── Stock badge ─── */
 

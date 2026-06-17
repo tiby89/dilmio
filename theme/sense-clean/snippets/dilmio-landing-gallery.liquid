@@ -4,6 +4,7 @@
 {%- assign first_img = product.images.first -%}
 {%- if first_img -%}
   <div class="dilmio-gallery">
+
     <div class="dilmio-gallery__main-wrap">
       <img
         id="dilmio-gallery-main-{{ section.id }}"
@@ -31,22 +32,82 @@
           </button>
         {%- endfor -%}
       </div>
+    {%- endif -%}
+
+    <div class="dilmio-gallery__mobile-slider">
+      <div
+        class="dilmio-gallery__mobile-track"
+        id="dilmio-mobile-track-{{ section.id }}"
+      >
+        {%- for img in product.images -%}
+          <div class="dilmio-gallery__mobile-slide">
+            <img
+              src="{{ img | image_url: width: 800 }}"
+              alt="{{ img.alt | escape }}"
+              width="800"
+              loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            >
+          </div>
+        {%- endfor -%}
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="dilmio-gallery__progress">
+          <span
+            class="dilmio-gallery__progress-bar"
+            id="dilmio-progress-bar-{{ section.id }}"
+          ></span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if product.images.size > 1 -%}
       <script>
         (function(){
           var mainImg = document.getElementById('dilmio-gallery-main-{{ section.id }}');
-          if (!mainImg) return;
-          document.querySelectorAll('#dilmio-landing-{{ section.id }} .dilmio-gallery__thumb').forEach(function(btn){
-            btn.addEventListener('click', function(){
-              mainImg.src = btn.dataset.src;
-              mainImg.alt = btn.dataset.alt || '';
-              document.querySelectorAll('#dilmio-landing-{{ section.id }} .dilmio-gallery__thumb').forEach(function(b){
-                b.classList.remove('is-active');
+          var scope   = document.getElementById('dilmio-landing-{{ section.id }}');
+          if (mainImg && scope) {
+            var thumbs = Array.from(scope.querySelectorAll('.dilmio-gallery__thumb'));
+            thumbs.forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                mainImg.src = btn.dataset.src;
+                mainImg.alt = btn.dataset.alt || '';
+                thumbs.forEach(function(b) { b.classList.remove('is-active'); });
+                btn.classList.add('is-active');
               });
-              btn.classList.add('is-active');
             });
-          });
+          }
+
+          var track = document.getElementById('dilmio-mobile-track-{{ section.id }}');
+          var bar   = document.getElementById('dilmio-progress-bar-{{ section.id }}');
+          if (!track || !bar) return;
+
+          var total = {{ product.images.size }};
+
+          function getState(idx) {
+            if (total <= 1) return 'left';
+            var progress = idx / (total - 1);
+            if (progress < 0.34) return 'left';
+            if (progress < 0.67) return 'center';
+            return 'right';
+          }
+
+          function updateIndicator(idx) {
+            bar.classList.remove('is-left', 'is-center', 'is-right');
+            bar.classList.add('is-' + getState(idx));
+          }
+
+          updateIndicator(0);
+
+          track.addEventListener('scroll', function() {
+            var w = track.offsetWidth;
+            if (!w) return;
+            var idx = Math.round(track.scrollLeft / w);
+            idx = Math.max(0, Math.min(idx, total - 1));
+            updateIndicator(idx);
+          }, { passive: true });
         })();
       </script>
     {%- endif -%}
+
   </div>
 {%- endif -%}
