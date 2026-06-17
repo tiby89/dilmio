@@ -1786,3 +1786,48 @@
     padding: 0;
   }
 }
+
+/* =============================================
+   GOD 12.8 — Product Landing: Full-Bleed Mobile + Solid Header
+   Selector: body:has(.dilmio-landing) — present ONLY on product.dilmio.json.
+   Header stays solid, no overlay. Image full-bleed below header.
+   ============================================= */
+
+/* Mobile: solid header matching desktop tone — no overlay, no transparency */
+@media screen and (max-width: 749px) {
+  body:has(.dilmio-landing) .header-wrapper {
+    background: #f0f0ee !important;
+    box-shadow: none !important;
+  }
+
+  body:has(.dilmio-landing) .header-wrapper--border-bottom {
+    border-bottom: none !important;
+  }
+
+  /* Strip grey stage background */
+  body:has(.dilmio-landing) .dilmio-stage-bg {
+    background: transparent;
+    padding: 0;
+  }
+
+  /* Remove white floating card */
+  body:has(.dilmio-landing) .dilmio-landing__inner {
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  /* .dilmio-hero is an empty div — suppress its padding */
+  body:has(.dilmio-landing) .dilmio-hero {
+    display: none;
+  }
+
+  /* Form needs its own background now that the card is gone */
+  body:has(.dilmio-landing) .dilmio-landing__form {
+    background: var(--dilmio-bg, #FAFAF8);
+    padding: 2rem 1.6rem 3rem;
+  }
+}
