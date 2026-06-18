@@ -205,19 +205,6 @@
     {%- comment -%} ── BEFORE / AFTER ── {%- endcomment -%}
     {%- render 'dilmio-landing-before-after', landing_product: landing_product -%}
 
-    {%- comment -%} ── HOW IT WORKS ── {%- endcomment -%}
-    {%- if section.settings.show_how_it_works -%}
-      {%- render 'dilmio-landing-steps',
-        heading: how_it_works_heading,
-        step_1_title: how_step_1_title,
-        step_1_text: how_step_1_text,
-        step_2_title: how_step_2_title,
-        step_2_text: how_step_2_text,
-        step_3_title: how_step_3_title,
-        step_3_text: how_step_3_text
-      -%}
-    {%- endif -%}
-
     {%- comment -%} ── BENEFITS ── {%- endcomment -%}
     {%- liquid
       assign has_benefits = false
@@ -236,6 +223,19 @@
           benefit_4: benefit_4
         -%}
       </div>
+    {%- endif -%}
+
+    {%- comment -%} ── HOW IT WORKS ── {%- endcomment -%}
+    {%- if section.settings.show_how_it_works -%}
+      {%- render 'dilmio-landing-steps',
+        heading: how_it_works_heading,
+        step_1_title: how_step_1_title,
+        step_1_text: how_step_1_text,
+        step_2_title: how_step_2_title,
+        step_2_text: how_step_2_text,
+        step_3_title: how_step_3_title,
+        step_3_text: how_step_3_text
+      -%}
     {%- endif -%}
 
     {%- comment -%} ── FAQ STANDALONE ── {%- endcomment -%}

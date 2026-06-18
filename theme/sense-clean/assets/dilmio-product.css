@@ -291,8 +291,8 @@
   right: 0;
   background: #fff;
   border-top: 1px solid var(--dilmio-border);
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
-  padding: 0.75rem 1rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.10), 0 -1px 0 rgba(0, 0, 0, 0.04);
+  padding: 0.875rem 1rem;
   z-index: 999;
   display: none;
 }
@@ -313,14 +313,24 @@
 .dilmio-sticky__info {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.15rem;
   min-width: 0;
   overflow: hidden;
 }
 
+.dilmio-sticky__micro {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--dilmio-text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.01em;
+}
+
 .dilmio-sticky__title {
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -335,15 +345,17 @@
 }
 
 .dilmio-sticky__price {
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .dilmio-sticky__cta {
   width: auto;
   flex-shrink: 0;
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.75rem;
   white-space: nowrap;
+  min-width: 110px;
 }
 
 /* ─── Hero ─── */
@@ -1851,3 +1863,4 @@
     border-bottom-color: rgba(0, 0, 0, 0.06) !important;
   }
 }
+
