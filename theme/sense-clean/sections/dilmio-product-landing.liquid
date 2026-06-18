@@ -110,8 +110,6 @@
     {%- assign ed_row_3_value = landing_product.metafields.custom.dilmio_editorial_row_3_value.value -%}
     {%- assign ed_row_4_label = landing_product.metafields.custom.dilmio_editorial_row_4_label.value -%}
     {%- assign ed_row_4_value = landing_product.metafields.custom.dilmio_editorial_row_4_value.value -%}
-    {%- assign prob_statement = landing_product.metafields.custom.dilmio_problem_statement.value -%}
-    {%- assign sol_statement  = landing_product.metafields.custom.dilmio_solution_statement.value -%}
     {%- assign has_new_ed     = false -%}
     {%- if ed_claim != blank -%}{%- assign has_new_ed = true -%}{%- endif -%}
     {%- assign has_ed_table   = false -%}
@@ -120,10 +118,9 @@
     {%- endif -%}
     {%- assign ed_two_col = false -%}
     {%- if has_new_ed and has_ed_table -%}{%- assign ed_two_col = true -%}{%- endif -%}
-    {%- if has_new_ed == false and prob_statement != blank and sol_statement != blank -%}{%- assign ed_two_col = true -%}{%- endif -%}
 
-    {%- if has_new_ed or prob_statement != blank or sol_statement != blank -%}
-      <div class="dilmio-editorial{% unless has_new_ed %} dilmio-editorial--legacy{% endunless %}">
+    {%- if has_new_ed -%}
+      <div class="dilmio-editorial">
         <div class="dilmio-editorial__inner{% if ed_two_col %} dilmio-editorial__inner--two-col{% else %} dilmio-editorial__inner--single{% endif %}">
 
           {%- if has_new_ed -%}
@@ -164,17 +161,6 @@
               </div>
             {%- endif -%}
 
-          {%- elsif prob_statement != blank -%}
-            <div class="dilmio-editorial__claim-col dilmio-editorial__claim-col--problem">
-              <p class="dilmio-editorial__eyebrow">El problema</p>
-              <p class="dilmio-editorial__claim dilmio-editorial__claim--legacy">{{ prob_statement }}</p>
-            </div>
-            {%- if sol_statement != blank -%}
-              <div class="dilmio-editorial__table-col dilmio-editorial__table-col--solution">
-                <p class="dilmio-editorial__eyebrow dilmio-editorial__eyebrow--light">La solución</p>
-                <p class="dilmio-editorial__sol-text">{{ sol_statement }}</p>
-              </div>
-            {%- endif -%}
           {%- endif -%}
 
         </div>
@@ -270,21 +256,6 @@
       faq_answer_3: faq_answer_3,
       faq_support_text: '¿Dudas? Estamos para ayudarte.'
     -%}
-
-    {%- liquid
-      assign cta_heading = landing_product.metafields.custom.dilmio_cta_final_heading.value
-      assign cta_sub     = landing_product.metafields.custom.dilmio_cta_final_subtext.value
-      assign cta_btn     = 'Comprar ahora'
-    -%}
-    <div class="dilmio-cta-final">
-      {%- if cta_heading != blank -%}
-        <p class="dilmio-cta-final__heading">{{ cta_heading }}</p>
-      {%- endif -%}
-      {%- if cta_sub != blank -%}
-        <p class="dilmio-cta-final__sub">{{ cta_sub }}</p>
-      {%- endif -%}
-      <a href="#dilmio-buy-core" class="dilmio-cta-final__btn">{{ cta_btn }}</a>
-    </div>
 
     {%- render 'dilmio-landing-sticky', product: landing_product, current_variant: current_variant -%}
 

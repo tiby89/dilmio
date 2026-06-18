@@ -1262,74 +1262,6 @@
 
 /* ─── Final CTA ─── */
 
-.dilmio-cta-final {
-  max-width: 1180px;
-  margin: 3.5rem 1rem 0;
-  padding: 3.5rem 2rem;
-  background: var(--dilmio-text, #111);
-  color: #fff;
-  border-radius: var(--dilmio-radius-xl, 20px);
-  text-align: center;
-}
-
-@media (min-width: 750px) {
-  .dilmio-cta-final {
-    margin: 2.5rem auto 0;
-    padding: 3.5rem 3rem;
-  }
-}
-
-.dilmio-cta-final__heading {
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
-  margin: 0 0 1rem;
-}
-
-.dilmio-cta-final__sub {
-  font-size: 1.0625rem;
-  color: rgba(255, 255, 255, 0.65);
-  margin: 0 auto 2.5rem;
-  line-height: 1.55;
-  max-width: 520px;
-}
-
-.dilmio-cta-final__btn {
-  display: inline-block;
-  padding: 1.1rem 3rem;
-  background: #fff;
-  color: var(--dilmio-text, #111);
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: var(--dilmio-radius-btn, 8px);
-  text-decoration: none;
-  transition: opacity 0.15s ease;
-  letter-spacing: 0.01em;
-}
-
-.dilmio-cta-final__btn:hover {
-  opacity: 0.88;
-}
-
-@media screen and (max-width: 749px) {
-  .dilmio-cta-final {
-    margin: 2.5rem 1rem 0;
-    padding: 3rem 1.5rem;
-    border-radius: var(--dilmio-radius-lg, 12px);
-  }
-
-  .dilmio-cta-final__sub {
-    margin-bottom: 2rem;
-    font-size: 1rem;
-  }
-
-  .dilmio-cta-final__btn {
-    display: block;
-    padding: 1rem 2rem;
-  }
-}
-
 /* ─── GOD 13.1 — Editorial block ─── */
 
 .dilmio-editorial {
@@ -1359,21 +1291,6 @@
   }
 }
 
-.dilmio-editorial__eyebrow {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0 0 1rem;
-  opacity: 0.55;
-  color: inherit;
-}
-
-.dilmio-editorial__eyebrow--light {
-  color: #fff;
-  opacity: 0.6;
-}
-
 .dilmio-editorial__claim {
   font-size: clamp(1.7rem, 3.5vw, 2.6rem);
   font-weight: 800;
@@ -1383,44 +1300,12 @@
   color: var(--dilmio-text);
 }
 
-.dilmio-editorial__claim--legacy {
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.45;
-  margin-bottom: 0;
-}
-
 .dilmio-editorial__text {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--dilmio-text-subtle);
   margin: 0;
   max-width: 44ch;
-}
-
-/* Legacy (prob/sol fallback) */
-.dilmio-editorial--legacy .dilmio-editorial__claim-col--problem {
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid var(--dilmio-border-light);
-  border-left: 3px solid var(--dilmio-error, #b94a3a);
-  border-radius: var(--dilmio-radius-lg, 12px);
-  padding: 2.25rem 2.5rem;
-}
-
-.dilmio-editorial--legacy .dilmio-editorial__table-col--solution {
-  background: var(--dilmio-green, #3e4a2d);
-  color: #fff;
-  border-radius: var(--dilmio-radius-lg, 12px);
-  padding: 2.25rem 2.5rem;
-}
-
-.dilmio-editorial__sol-text {
-  font-size: 1.025rem;
-  line-height: 1.65;
-  font-weight: 500;
-  margin: 0;
-  color: inherit;
 }
 
 /* Data table */
@@ -1459,11 +1344,6 @@
 @media screen and (max-width: 749px) {
   .dilmio-editorial {
     padding: 2.5rem 1rem;
-  }
-
-  .dilmio-editorial--legacy .dilmio-editorial__claim-col--problem,
-  .dilmio-editorial--legacy .dilmio-editorial__table-col--solution {
-    padding: 1.5rem 1.75rem;
   }
 }
 
