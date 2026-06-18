@@ -1,0 +1,123 @@
+{%- comment -%}
+  Before/After comparison slider — clip-path approach.
+  Images: product metafields (product-specific, never from Theme Editor).
+  Text: section settings (global/fallback, editable in Theme Editor).
+  Renders when: show_before_after toggle on + both images present.
+{%- endcomment -%}
+
+{%- assign ba_product = landing_product | default: product -%}
+
+{%- liquid
+  assign ba_before_image = ba_product.metafields.custom.dilmio_before_after_before_image.value
+  assign ba_after_image  = ba_product.metafields.custom.dilmio_before_after_after_image.value
+-%}
+
+{%- if section.settings.show_before_after and ba_before_image != blank and ba_after_image != blank -%}
+
+  {%- liquid
+    assign ba_kicker     = section.settings.before_after_kicker
+    assign ba_heading    = section.settings.before_after_heading
+    assign ba_text       = section.settings.before_after_text
+    assign ba_lbl_before = section.settings.before_after_label_before
+    assign ba_lbl_after  = section.settings.before_after_label_after
+  -%}
+
+  <div class="dilmio-ba">
+
+    {%- if ba_kicker != blank or ba_heading != blank or ba_text != blank -%}
+      <div class="dilmio-ba__header">
+        {%- if ba_kicker != blank -%}
+          <p class="dilmio-ba__kicker">{{ ba_kicker }}</p>
+        {%- endif -%}
+        {%- if ba_heading != blank -%}
+          <h2 class="dilmio-ba__heading">{{ ba_heading }}</h2>
+        {%- endif -%}
+        {%- if ba_text != blank -%}
+          <p class="dilmio-ba__text">{{ ba_text }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div
+      class="dilmio-ba__slider"
+      id="dilmio-ba-{{ section.id }}"
+    >
+      <img
+        class="dilmio-ba__img dilmio-ba__img--after"
+        src="{{ ba_after_image | image_url: width: 1200 }}"
+        alt="{{ ba_lbl_after | escape }}"
+        draggable="false"
+        loading="lazy"
+      >
+      <img
+        class="dilmio-ba__img dilmio-ba__img--before"
+        src="{{ ba_before_image | image_url: width: 1200 }}"
+        alt="{{ ba_lbl_before | escape }}"
+        draggable="false"
+        loading="lazy"
+      >
+      {%- if ba_lbl_before != blank -%}<span class="dilmio-ba__label dilmio-ba__label--before" aria-hidden="true">{{ ba_lbl_before }}</span>{%- endif -%}
+      {%- if ba_lbl_after != blank -%}<span class="dilmio-ba__label dilmio-ba__label--after" aria-hidden="true">{{ ba_lbl_after }}</span>{%- endif -%}
+      <div
+        class="dilmio-ba__handle"
+        style="left:50%"
+        role="slider"
+        aria-label="Comparar imágenes"
+        aria-valuenow="50"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        tabindex="0"
+      >
+        <div class="dilmio-ba__handle-line"></div>
+        <div class="dilmio-ba__handle-circle" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+            <rect x="4" y="4" width="1.8" height="8" rx="0.9" fill="currentColor"/>
+            <rect x="7.1" y="4" width="1.8" height="8" rx="0.9" fill="currentColor"/>
+            <rect x="10.2" y="4" width="1.8" height="8" rx="0.9" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var slider    = document.getElementById('dilmio-ba-{{ section.id }}');
+        if (!slider) return;
+        var handle    = slider.querySelector('.dilmio-ba__handle');
+        var beforeImg = slider.querySelector('.dilmio-ba__img--before');
+        var dragging  = false;
+        var pct = 50;
+
+        function clamp(v) { return Math.min(Math.max(v, 2), 98); }
+
+        function move(clientX) {
+          var r = slider.getBoundingClientRect();
+          pct = clamp(((clientX - r.left) / r.width) * 100);
+          beforeImg.style.clipPath = 'inset(0 ' + (100 - pct).toFixed(2) + '% 0 0)';
+          handle.style.left = pct + '%';
+          handle.setAttribute('aria-valuenow', Math.round(pct));
+        }
+
+        handle.addEventListener('mousedown', function (e) { dragging = true; e.preventDefault(); });
+        document.addEventListener('mousemove', function (e) { if (dragging) move(e.clientX); });
+        document.addEventListener('mouseup',   function ()  { dragging = false; });
+
+        handle.addEventListener('touchstart', function (e) { dragging = true; e.preventDefault(); }, { passive: false });
+        slider.addEventListener('touchmove',  function (e) {
+          if (dragging) { e.preventDefault(); move(e.touches[0].clientX); }
+        }, { passive: false });
+        document.addEventListener('touchend', function ()  { dragging = false; });
+
+        handle.addEventListener('keydown', function (e) {
+          var step = e.shiftKey ? 10 : 5;
+          if (e.key === 'ArrowLeft')  move(slider.getBoundingClientRect().left + (pct - step) / 100 * slider.offsetWidth);
+          if (e.key === 'ArrowRight') move(slider.getBoundingClientRect().left + (pct + step) / 100 * slider.offsetWidth);
+        });
+
+        move(slider.getBoundingClientRect().left + slider.offsetWidth * 0.5);
+      })();
+    </script>
+
+  </div>
+
+{%- endif -%}

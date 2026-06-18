@@ -1547,14 +1547,23 @@
 .dilmio-ba {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 3.5rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   border-top: 1px solid var(--dilmio-border-light);
 }
 
 .dilmio-ba__header {
   max-width: 640px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 2rem;
   text-align: center;
+}
+
+.dilmio-ba__kicker {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--dilmio-text-subtle);
+  margin: 0 0 0.625rem;
 }
 
 .dilmio-ba__heading {
@@ -1576,7 +1585,8 @@
 /* Slider container */
 .dilmio-ba__slider {
   position: relative;
-  max-width: 800px;
+  max-width: 500px;
+  aspect-ratio: 3 / 2;
   margin: 0 auto;
   border-radius: var(--dilmio-radius-lg, 12px);
   overflow: hidden;
@@ -1584,13 +1594,18 @@
   user-select: none;
   touch-action: pan-y;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  background-color: var(--dilmio-surface-alt, #f2f2f0);
 }
 
-/* After: in-flow, defines the container's height */
+/* After: absolute fill — container height owned by aspect-ratio */
 .dilmio-ba__img--after {
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
   pointer-events: none;
   -webkit-user-drag: none;
 }
@@ -1603,6 +1618,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   clip-path: inset(0 50% 0 0);
   pointer-events: none;
   -webkit-user-drag: none;
@@ -1634,26 +1650,38 @@
   right: 0.875rem;
 }
 
-/* Handle */
+/* Handle — full-height rail, positioned by JS via inline left:% */
 .dilmio-ba__handle {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 48px;
+  height: 100%;
+  width: 44px;
+  display: block;      /* no flex/grid — children use absolute positioning */
   transform: translateX(-50%);
   cursor: ew-resize;
-  z-index: 2;
+  z-index: 5;
 }
 
-.dilmio-ba__handle-line {
+/* Divider line via pseudo-element — avoids child-div height failures */
+.dilmio-ba__handle::before {
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 2px;
-  background: #fff;
+  width: 3px;
   transform: translateX(-50%);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+  background: #fff;
+  opacity: 1;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Old divider div — hidden, replaced by ::before */
+.dilmio-ba__handle-line {
+  display: none;
 }
 
 .dilmio-ba__handle-circle {
@@ -1661,22 +1689,28 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.24);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--dilmio-text, #111);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  z-index: 2;
+}
+
+.dilmio-ba__handle-circle svg {
+  width: 15px;
+  height: 15px;
 }
 
 .dilmio-ba__handle:focus .dilmio-ba__handle-circle,
 .dilmio-ba__handle-circle:hover {
   transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
 }
 
 /* Fallback / empty state */
@@ -1694,11 +1728,16 @@
 
 @media screen and (max-width: 749px) {
   .dilmio-ba {
-    padding: 2.5rem 1rem;
+    padding: 2rem 1rem;
   }
 
   .dilmio-ba__header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dilmio-ba__slider {
+    width: 90vw;
+    max-width: 360px;
   }
 }
 

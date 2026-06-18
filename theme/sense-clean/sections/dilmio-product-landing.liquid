@@ -2,60 +2,47 @@
 
 {%- liquid
   assign landing_product = nil
-  if section.settings.product != blank
-    assign landing_product = section.settings.product
-  elsif request.page_type == 'product'
+  if request.page_type == 'product'
     assign landing_product = product
+  elsif section.settings.product != blank
+    assign landing_product = section.settings.product
   endif
 -%}
 
-{%- if request.page_type == 'product' -%}
-  {%- assign hero_headline        = landing_product.metafields.custom.dilmio_hero_headline.value -%}
-  {%- assign hero_subheadline     = landing_product.metafields.custom.dilmio_hero_subheadline.value -%}
-  {%- assign demo_video_url       = landing_product.metafields.custom.dilmio_demo_video_url.value -%}
-  {%- assign benefit_1            = landing_product.metafields.custom.dilmio_benefit_1.value -%}
-  {%- assign benefit_2            = landing_product.metafields.custom.dilmio_benefit_2.value -%}
-  {%- assign benefit_3            = landing_product.metafields.custom.dilmio_benefit_3.value -%}
-  {%- assign benefit_4            = landing_product.metafields.custom.dilmio_benefit_4.value -%}
-  {%- assign faq_question_1       = landing_product.metafields.custom.dilmio_faq_question_1.value -%}
-  {%- assign faq_answer_1         = landing_product.metafields.custom.dilmio_faq_answer_1.value -%}
-  {%- assign faq_question_2       = landing_product.metafields.custom.dilmio_faq_question_2.value -%}
-  {%- if faq_question_2 == blank -%}{%- assign faq_question_2 = landing_product.metafields.custom.custom_dilmio_faq_question_2.value -%}{%- endif -%}
-  {%- assign faq_answer_2         = landing_product.metafields.custom.dilmio_faq_answer_2.value -%}
-  {%- if faq_answer_2 == blank -%}{%- assign faq_answer_2 = landing_product.metafields.custom.custom_dilmio_faq_answer_2.value -%}{%- endif -%}
-  {%- assign faq_question_3       = landing_product.metafields.custom.dilmio_faq_question_3.value -%}
-  {%- if faq_question_3 == blank -%}{%- assign faq_question_3 = landing_product.metafields.custom.custom_dilmio_faq_question_3.value -%}{%- endif -%}
-  {%- assign faq_answer_3         = landing_product.metafields.custom.dilmio_faq_answer_3.value -%}
-  {%- if faq_answer_3 == blank -%}{%- assign faq_answer_3 = landing_product.metafields.custom.custom_dilmio_faq_answer_3.value -%}{%- endif -%}
-  {%- assign how_it_works_heading = landing_product.metafields.custom.dilmio_how_it_works_heading.value -%}
-  {%- assign how_step_1_title     = landing_product.metafields.custom.dilmio_how_step_1_title.value -%}
-  {%- assign how_step_1_text      = landing_product.metafields.custom.dilmio_how_step_1_text.value -%}
-  {%- assign how_step_2_title     = landing_product.metafields.custom.dilmio_how_step_2_title.value -%}
-  {%- assign how_step_2_text      = landing_product.metafields.custom.dilmio_how_step_2_text.value -%}
-  {%- assign how_step_3_title     = landing_product.metafields.custom.dilmio_how_step_3_title.value -%}
-  {%- assign how_step_3_text      = landing_product.metafields.custom.dilmio_how_step_3_text.value -%}
-{%- else -%}
-  {%- assign hero_headline        = section.settings.hero_headline -%}
-  {%- assign hero_subheadline     = section.settings.hero_subheadline -%}
-  {%- assign demo_video_url       = section.settings.demo_video_url -%}
-  {%- assign benefit_1            = section.settings.benefit_1 -%}
-  {%- assign benefit_2            = section.settings.benefit_2 -%}
-  {%- assign benefit_3            = section.settings.benefit_3 -%}
-  {%- assign benefit_4            = section.settings.benefit_4 -%}
-  {%- assign faq_question_1       = section.settings.faq_question_1 -%}
-  {%- assign faq_answer_1         = section.settings.faq_answer_1 -%}
-  {%- assign faq_question_2       = section.settings.faq_question_2 -%}
-  {%- assign faq_answer_2         = section.settings.faq_answer_2 -%}
-  {%- assign faq_question_3       = section.settings.faq_question_3 -%}
-  {%- assign faq_answer_3         = section.settings.faq_answer_3 -%}
-  {%- assign how_it_works_heading = section.settings.how_it_works_heading -%}
-  {%- assign how_step_1_title     = section.settings.how_it_works_step_1_title -%}
-  {%- assign how_step_1_text      = section.settings.how_it_works_step_1_text -%}
-  {%- assign how_step_2_title     = section.settings.how_it_works_step_2_title -%}
-  {%- assign how_step_2_text      = section.settings.how_it_works_step_2_text -%}
-  {%- assign how_step_3_title     = section.settings.how_it_works_step_3_title -%}
-  {%- assign how_step_3_text      = section.settings.how_it_works_step_3_text -%}
-{%- endif -%}
+{%- liquid
+  assign hero_headline        = landing_product.metafields.custom.dilmio_hero_headline.value
+  assign hero_subheadline     = landing_product.metafields.custom.dilmio_hero_subheadline.value
+  assign demo_video_url       = landing_product.metafields.custom.dilmio_demo_video_url.value
+  assign benefit_1            = landing_product.metafields.custom.dilmio_benefit_1.value
+  assign benefit_2            = landing_product.metafields.custom.dilmio_benefit_2.value
+  assign benefit_3            = landing_product.metafields.custom.dilmio_benefit_3.value
+  assign benefit_4            = landing_product.metafields.custom.dilmio_benefit_4.value
+  assign faq_question_1       = landing_product.metafields.custom.dilmio_faq_question_1.value
+  assign faq_answer_1         = landing_product.metafields.custom.dilmio_faq_answer_1.value
+  assign faq_question_2       = landing_product.metafields.custom.dilmio_faq_question_2.value
+  unless faq_question_2
+    assign faq_question_2     = landing_product.metafields.custom.custom_dilmio_faq_question_2.value
+  endunless
+  assign faq_answer_2         = landing_product.metafields.custom.dilmio_faq_answer_2.value
+  unless faq_answer_2
+    assign faq_answer_2       = landing_product.metafields.custom.custom_dilmio_faq_answer_2.value
+  endunless
+  assign faq_question_3       = landing_product.metafields.custom.dilmio_faq_question_3.value
+  unless faq_question_3
+    assign faq_question_3     = landing_product.metafields.custom.custom_dilmio_faq_question_3.value
+  endunless
+  assign faq_answer_3         = landing_product.metafields.custom.dilmio_faq_answer_3.value
+  unless faq_answer_3
+    assign faq_answer_3       = landing_product.metafields.custom.custom_dilmio_faq_answer_3.value
+  endunless
+  assign how_it_works_heading = landing_product.metafields.custom.dilmio_how_it_works_heading.value
+  assign how_step_1_title     = landing_product.metafields.custom.dilmio_how_step_1_title.value
+  assign how_step_1_text      = landing_product.metafields.custom.dilmio_how_step_1_text.value
+  assign how_step_2_title     = landing_product.metafields.custom.dilmio_how_step_2_title.value
+  assign how_step_2_text      = landing_product.metafields.custom.dilmio_how_step_2_text.value
+  assign how_step_3_title     = landing_product.metafields.custom.dilmio_how_step_3_title.value
+  assign how_step_3_text      = landing_product.metafields.custom.dilmio_how_step_3_text.value
+-%}
 
 <section
   id="dilmio-landing-{{ section.id }}"
@@ -91,43 +78,147 @@
       ]
     </script>
 
+    {%- comment -%} ── ABOVE THE FOLD ── {%- endcomment -%}
     {%- assign resolved_headline = hero_headline | default: landing_product.title -%}
-    <div id="dilmio-buy-core" class="dilmio-landing__inner">
-      <div class="dilmio-hero">
-        <div class="dilmio-hero__headline">{{ resolved_headline | newline_to_br }}</div>
-        {%- if hero_subheadline != blank -%}
-          <p class="dilmio-hero__subheadline">{{ hero_subheadline }}</p>
+    <div class="dilmio-stage-bg">
+      <div id="dilmio-buy-core" class="dilmio-landing__inner">
+        <div class="dilmio-hero"></div>
+        <div class="dilmio-landing__media">
+          {%- render 'dilmio-landing-gallery', product: landing_product -%}
+        </div>
+        {%- render 'dilmio-landing-form',
+          product: landing_product,
+          current_variant: current_variant,
+          hero_subtitle: resolved_headline,
+          hero_subheadline: hero_subheadline,
+          benefit_1: benefit_1,
+          benefit_2: benefit_2,
+          benefit_3: benefit_3,
+          benefit_4: benefit_4
+        -%}
+      </div>
+    </div>
+
+    {%- comment -%} ── EDITORIAL: POR QUÉ EXISTE ESTE PRODUCTO ── {%- endcomment -%}
+    {%- assign ed_claim       = landing_product.metafields.custom.dilmio_editorial_claim.value -%}
+    {%- assign ed_text        = landing_product.metafields.custom.dilmio_editorial_text.value -%}
+    {%- assign ed_row_1_label = landing_product.metafields.custom.dilmio_editorial_row_1_label.value -%}
+    {%- assign ed_row_1_value = landing_product.metafields.custom.dilmio_editorial_row_1_value.value -%}
+    {%- assign ed_row_2_label = landing_product.metafields.custom.dilmio_editorial_row_2_label.value -%}
+    {%- assign ed_row_2_value = landing_product.metafields.custom.dilmio_editorial_row_2_value.value -%}
+    {%- assign ed_row_3_label = landing_product.metafields.custom.dilmio_editorial_row_3_label.value -%}
+    {%- assign ed_row_3_value = landing_product.metafields.custom.dilmio_editorial_row_3_value.value -%}
+    {%- assign ed_row_4_label = landing_product.metafields.custom.dilmio_editorial_row_4_label.value -%}
+    {%- assign ed_row_4_value = landing_product.metafields.custom.dilmio_editorial_row_4_value.value -%}
+    {%- assign prob_statement = landing_product.metafields.custom.dilmio_problem_statement.value -%}
+    {%- assign sol_statement  = landing_product.metafields.custom.dilmio_solution_statement.value -%}
+    {%- assign has_new_ed     = false -%}
+    {%- if ed_claim != blank -%}{%- assign has_new_ed = true -%}{%- endif -%}
+    {%- assign has_ed_table   = false -%}
+    {%- if ed_row_1_label != blank or ed_row_2_label != blank or ed_row_3_label != blank or ed_row_4_label != blank -%}
+      {%- assign has_ed_table = true -%}
+    {%- endif -%}
+    {%- assign ed_two_col = false -%}
+    {%- if has_new_ed and has_ed_table -%}{%- assign ed_two_col = true -%}{%- endif -%}
+    {%- if has_new_ed == false and prob_statement != blank and sol_statement != blank -%}{%- assign ed_two_col = true -%}{%- endif -%}
+
+    {%- if has_new_ed or prob_statement != blank or sol_statement != blank -%}
+      <div class="dilmio-editorial{% unless has_new_ed %} dilmio-editorial--legacy{% endunless %}">
+        <div class="dilmio-editorial__inner{% if ed_two_col %} dilmio-editorial__inner--two-col{% else %} dilmio-editorial__inner--single{% endif %}">
+
+          {%- if has_new_ed -%}
+            <div class="dilmio-editorial__claim-col">
+              <h2 class="dilmio-editorial__claim">{{ ed_claim }}</h2>
+              {%- if ed_text != blank -%}
+                <p class="dilmio-editorial__text">{{ ed_text }}</p>
+              {%- endif -%}
+            </div>
+            {%- if has_ed_table -%}
+              <div class="dilmio-editorial__table-col">
+                <table class="dilmio-editorial__table">
+                  {%- if ed_row_1_label != blank -%}
+                    <tr class="dilmio-editorial__row">
+                      <th class="dilmio-editorial__cell dilmio-editorial__cell--label">{{ ed_row_1_label }}</th>
+                      <td class="dilmio-editorial__cell dilmio-editorial__cell--value">{{ ed_row_1_value }}</td>
+                    </tr>
+                  {%- endif -%}
+                  {%- if ed_row_2_label != blank -%}
+                    <tr class="dilmio-editorial__row">
+                      <th class="dilmio-editorial__cell dilmio-editorial__cell--label">{{ ed_row_2_label }}</th>
+                      <td class="dilmio-editorial__cell dilmio-editorial__cell--value">{{ ed_row_2_value }}</td>
+                    </tr>
+                  {%- endif -%}
+                  {%- if ed_row_3_label != blank -%}
+                    <tr class="dilmio-editorial__row">
+                      <th class="dilmio-editorial__cell dilmio-editorial__cell--label">{{ ed_row_3_label }}</th>
+                      <td class="dilmio-editorial__cell dilmio-editorial__cell--value">{{ ed_row_3_value }}</td>
+                    </tr>
+                  {%- endif -%}
+                  {%- if ed_row_4_label != blank -%}
+                    <tr class="dilmio-editorial__row">
+                      <th class="dilmio-editorial__cell dilmio-editorial__cell--label">{{ ed_row_4_label }}</th>
+                      <td class="dilmio-editorial__cell dilmio-editorial__cell--value">{{ ed_row_4_value }}</td>
+                    </tr>
+                  {%- endif -%}
+                </table>
+              </div>
+            {%- endif -%}
+
+          {%- elsif prob_statement != blank -%}
+            <div class="dilmio-editorial__claim-col dilmio-editorial__claim-col--problem">
+              <p class="dilmio-editorial__eyebrow">El problema</p>
+              <p class="dilmio-editorial__claim dilmio-editorial__claim--legacy">{{ prob_statement }}</p>
+            </div>
+            {%- if sol_statement != blank -%}
+              <div class="dilmio-editorial__table-col dilmio-editorial__table-col--solution">
+                <p class="dilmio-editorial__eyebrow dilmio-editorial__eyebrow--light">La solución</p>
+                <p class="dilmio-editorial__sol-text">{{ sol_statement }}</p>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} ── VIDEO EDITORIAL ── {%- endcomment -%}
+    {%- liquid
+      assign video_heading = landing_product.metafields.custom.dilmio_demo_video_heading.value
+      assign video_subtext = landing_product.metafields.custom.dilmio_demo_video_subtext.value
+      assign show_video    = false
+      if section.settings.show_demo_video and demo_video_url != blank
+        assign show_video = true
+      endif
+    -%}
+    {%- if show_video -%}
+      <div class="dilmio-video-editorial">
+        {%- if video_heading != blank or video_subtext != blank -%}
+          <div class="dilmio-video-editorial__header">
+            {%- if video_heading != blank -%}
+              <h2 class="dilmio-video-editorial__heading">{{ video_heading }}</h2>
+            {%- endif -%}
+            {%- if video_subtext != blank -%}
+              <p class="dilmio-video-editorial__sub">{{ video_subtext }}</p>
+            {%- endif -%}
+          </div>
         {%- endif -%}
-      </div>
-      <div class="dilmio-landing__media">
-        {%- render 'dilmio-landing-gallery', product: landing_product -%}
-      </div>
-      {%- render 'dilmio-landing-form',
-        product: landing_product,
-        current_variant: current_variant,
-        benefit_1: benefit_1,
-        benefit_2: benefit_2,
-        benefit_3: benefit_3,
-        benefit_4: benefit_4
-      -%}
-
-    </div>
-
-    {%- assign prob_statement = landing_product.metafields.custom.dilmio_problem_statement.value | default: 'Cambiar de utensilio ensucia más y corta el ritmo.' -%}
-    {%- assign sol_statement  = landing_product.metafields.custom.dilmio_solution_statement.value | default: 'Recoge, escurre y sirve en un solo gesto.' -%}
-    <div class="dilmio-prob-sol-inline">
-      <div class="dilmio-prob-sol-inline__grid">
-        <div class="dilmio-prob-sol-inline__col dilmio-prob-sol-inline__col--problem">
-          <p class="dilmio-prob-sol-inline__label">{{ section.settings.inline_problem_label }}</p>
-          <div class="dilmio-prob-sol-inline__text">{{ prob_statement }}</div>
-        </div>
-        <div class="dilmio-prob-sol-inline__col dilmio-prob-sol-inline__col--solution">
-          <p class="dilmio-prob-sol-inline__label">{{ section.settings.inline_solution_label }}</p>
-          <div class="dilmio-prob-sol-inline__text">{{ sol_statement }}</div>
+        <div class="dilmio-video-editorial__frame">
+          <video
+            class="dilmio-video-editorial__player"
+            src="{{ demo_video_url | escape }}"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
         </div>
       </div>
-    </div>
+    {%- endif -%}
 
+    {%- comment -%} ── BEFORE / AFTER ── {%- endcomment -%}
+    {%- render 'dilmio-landing-before-after', landing_product: landing_product -%}
+
+    {%- comment -%} ── HOW IT WORKS ── {%- endcomment -%}
     {%- if section.settings.show_how_it_works -%}
       {%- render 'dilmio-landing-steps',
         heading: how_it_works_heading,
@@ -140,19 +231,28 @@
       -%}
     {%- endif -%}
 
+    {%- comment -%} ── BENEFITS ── {%- endcomment -%}
     {%- liquid
-      assign show_video = false
-      if section.settings.show_demo_video and demo_video_url != blank
-        assign show_video = true
-      endif
-
       assign has_benefits = false
       if section.settings.show_benefits
         if benefit_1 != blank or benefit_2 != blank or benefit_3 != blank or benefit_4 != blank
           assign has_benefits = true
         endif
       endif
+    -%}
+    {%- if has_benefits -%}
+      <div class="dilmio-benefits-standalone">
+        {%- render 'dilmio-landing-benefits',
+          benefit_1: benefit_1,
+          benefit_2: benefit_2,
+          benefit_3: benefit_3,
+          benefit_4: benefit_4
+        -%}
+      </div>
+    {%- endif -%}
 
+    {%- comment -%} ── FAQ STANDALONE ── {%- endcomment -%}
+    {%- liquid
       assign has_faq = false
       if section.settings.show_faq
         if faq_question_1 != blank or faq_question_2 != blank or faq_question_3 != blank
@@ -160,31 +260,29 @@
         endif
       endif
     -%}
-    {%- render 'dilmio-landing-demo',
-      show_video: show_video,
-      demo_video_url: demo_video_url,
-      has_benefits: has_benefits,
-      benefit_1: benefit_1,
-      benefit_2: benefit_2,
-      benefit_3: benefit_3,
-      benefit_4: benefit_4,
+    {%- render 'dilmio-landing-faq',
       has_faq: has_faq,
       faq_question_1: faq_question_1,
       faq_answer_1: faq_answer_1,
       faq_question_2: faq_question_2,
       faq_answer_2: faq_answer_2,
       faq_question_3: faq_question_3,
-      faq_answer_3: faq_answer_3
+      faq_answer_3: faq_answer_3,
+      faq_support_text: '¿Dudas? Estamos para ayudarte.'
     -%}
 
     {%- liquid
-      assign cta_heading = section.settings.cta_final_heading | default: 'Haz tu cocina más práctica desde hoy'
-      assign cta_sub     = section.settings.cta_final_sub | default: 'Escurre, sirve y limpia menos con un solo utensilio.'
-      assign cta_btn     = section.settings.cta_final_btn | default: 'Comprar ahora'
+      assign cta_heading = landing_product.metafields.custom.dilmio_cta_final_heading.value
+      assign cta_sub     = landing_product.metafields.custom.dilmio_cta_final_subtext.value
+      assign cta_btn     = 'Comprar ahora'
     -%}
     <div class="dilmio-cta-final">
-      <p class="dilmio-cta-final__heading">{{ cta_heading }}</p>
-      <p class="dilmio-cta-final__sub">{{ cta_sub }}</p>
+      {%- if cta_heading != blank -%}
+        <p class="dilmio-cta-final__heading">{{ cta_heading }}</p>
+      {%- endif -%}
+      {%- if cta_sub != blank -%}
+        <p class="dilmio-cta-final__sub">{{ cta_sub }}</p>
+      {%- endif -%}
       <a href="#dilmio-buy-core" class="dilmio-cta-final__btn">{{ cta_btn }}</a>
     </div>
 
@@ -207,7 +305,7 @@
     },
     {
       "type": "header",
-      "content": "Pack selector"
+      "content": "Módulos"
     },
     {
       "type": "checkbox",
@@ -216,60 +314,10 @@
       "default": false
     },
     {
-      "type": "text",
-      "id": "pack_label_1",
-      "label": "Pack 1 — label",
-      "placeholder": "e.g. 1 unit"
-    },
-    {
-      "type": "number",
-      "id": "pack_quantity_1",
-      "label": "Pack 1 — quantity",
-      "default": 0
-    },
-    {
-      "type": "text",
-      "id": "pack_label_2",
-      "label": "Pack 2 — label",
-      "placeholder": "e.g. 2 units"
-    },
-    {
-      "type": "number",
-      "id": "pack_quantity_2",
-      "label": "Pack 2 — quantity",
-      "default": 0
-    },
-    {
-      "type": "text",
-      "id": "pack_label_3",
-      "label": "Pack 3 — label",
-      "placeholder": "e.g. 3 units"
-    },
-    {
-      "type": "number",
-      "id": "pack_quantity_3",
-      "label": "Pack 3 — quantity",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Benefits"
-    },
-    {
       "type": "checkbox",
       "id": "show_benefits",
       "label": "Show benefits block",
       "default": false
-    },
-    {
-      "type": "text",
-      "id": "benefits_title",
-      "label": "Benefits title",
-      "placeholder": "e.g. Why customers love it"
-    },
-    {
-      "type": "header",
-      "content": "Trust"
     },
     {
       "type": "checkbox",
@@ -278,126 +326,10 @@
       "default": false
     },
     {
-      "type": "text",
-      "id": "trust_1",
-      "label": "Trust bullet 1",
-      "placeholder": "e.g. Free shipping on orders over €30"
-    },
-    {
-      "type": "text",
-      "id": "trust_2",
-      "label": "Trust bullet 2",
-      "placeholder": "e.g. 30-day returns"
-    },
-    {
-      "type": "text",
-      "id": "trust_3",
-      "label": "Trust bullet 3",
-      "placeholder": "e.g. 100% satisfaction guarantee"
-    },
-    {
-      "type": "select",
-      "id": "trust_icon_1",
-      "label": "Trust icon 1",
-      "default": "none",
-      "options": [
-        {"value": "none", "label": "None"},
-        {"value": "check", "label": "Check"},
-        {"value": "shield", "label": "Shield"},
-        {"value": "lock", "label": "Lock"},
-        {"value": "star", "label": "Star"},
-        {"value": "heart", "label": "Heart"},
-        {"value": "truck", "label": "Truck"},
-        {"value": "box", "label": "Box"},
-        {"value": "return", "label": "Return"},
-        {"value": "headset", "label": "Headset"},
-        {"value": "leaf", "label": "Leaf"},
-        {"value": "globe", "label": "Globe"},
-        {"value": "award", "label": "Award"},
-        {"value": "lightning", "label": "Lightning"},
-        {"value": "clock", "label": "Clock"},
-        {"value": "phone", "label": "Phone"},
-        {"value": "users", "label": "Users"},
-        {"value": "chart", "label": "Chart"},
-        {"value": "download", "label": "Download"},
-        {"value": "key", "label": "Key"}
-      ]
-    },
-    {
-      "type": "select",
-      "id": "trust_icon_2",
-      "label": "Trust icon 2",
-      "default": "none",
-      "options": [
-        {"value": "none", "label": "None"},
-        {"value": "check", "label": "Check"},
-        {"value": "shield", "label": "Shield"},
-        {"value": "lock", "label": "Lock"},
-        {"value": "star", "label": "Star"},
-        {"value": "heart", "label": "Heart"},
-        {"value": "truck", "label": "Truck"},
-        {"value": "box", "label": "Box"},
-        {"value": "return", "label": "Return"},
-        {"value": "headset", "label": "Headset"},
-        {"value": "leaf", "label": "Leaf"},
-        {"value": "globe", "label": "Globe"},
-        {"value": "award", "label": "Award"},
-        {"value": "lightning", "label": "Lightning"},
-        {"value": "clock", "label": "Clock"},
-        {"value": "phone", "label": "Phone"},
-        {"value": "users", "label": "Users"},
-        {"value": "chart", "label": "Chart"},
-        {"value": "download", "label": "Download"},
-        {"value": "key", "label": "Key"}
-      ]
-    },
-    {
-      "type": "select",
-      "id": "trust_icon_3",
-      "label": "Trust icon 3",
-      "default": "none",
-      "options": [
-        {"value": "none", "label": "None"},
-        {"value": "check", "label": "Check"},
-        {"value": "shield", "label": "Shield"},
-        {"value": "lock", "label": "Lock"},
-        {"value": "star", "label": "Star"},
-        {"value": "heart", "label": "Heart"},
-        {"value": "truck", "label": "Truck"},
-        {"value": "box", "label": "Box"},
-        {"value": "return", "label": "Return"},
-        {"value": "headset", "label": "Headset"},
-        {"value": "leaf", "label": "Leaf"},
-        {"value": "globe", "label": "Globe"},
-        {"value": "award", "label": "Award"},
-        {"value": "lightning", "label": "Lightning"},
-        {"value": "clock", "label": "Clock"},
-        {"value": "phone", "label": "Phone"},
-        {"value": "users", "label": "Users"},
-        {"value": "chart", "label": "Chart"},
-        {"value": "download", "label": "Download"},
-        {"value": "key", "label": "Key"}
-      ]
-    },
-    {
-      "type": "header",
-      "content": "FAQ"
-    },
-    {
       "type": "checkbox",
       "id": "show_faq",
       "label": "Show FAQ block",
       "default": false
-    },
-    {
-      "type": "text",
-      "id": "faq_title",
-      "label": "FAQ title",
-      "placeholder": "e.g. Frequently Asked Questions"
-    },
-    {
-      "type": "header",
-      "content": "Demo video"
     },
     {
       "type": "checkbox",
@@ -406,99 +338,45 @@
       "default": false
     },
     {
-      "type": "text",
-      "id": "demo_video_heading",
-      "label": "Video heading",
-      "placeholder": "e.g. See it in action"
-    },
-    {
-      "type": "header",
-      "content": "How it works"
-    },
-    {
       "type": "checkbox",
       "id": "show_how_it_works",
       "label": "Show how it works",
       "default": false
     },
     {
-      "type": "header",
-      "content": "Labels"
+      "type": "checkbox",
+      "id": "show_before_after",
+      "label": "Show before/after slider",
+      "default": false
     },
     {
       "type": "text",
-      "id": "cta_add_to_cart_label",
-      "label": "CTA — Add to cart",
-      "default": "Añadir al carrito"
+      "id": "before_after_kicker",
+      "label": "Before/After — Kicker",
+      "default": "Antes / Después"
     },
     {
       "type": "text",
-      "id": "cta_sold_out_label",
-      "label": "CTA — Sold out",
-      "default": "Agotado"
+      "id": "before_after_heading",
+      "label": "Before/After — Heading",
+      "default": "Antes y después"
+    },
+    {
+      "type": "textarea",
+      "id": "before_after_text",
+      "label": "Before/After — Subtext"
     },
     {
       "type": "text",
-      "id": "cta_unavailable_label",
-      "label": "CTA — Unavailable",
-      "default": "No disponible"
+      "id": "before_after_label_before",
+      "label": "Before/After — Label antes",
+      "default": "Antes"
     },
     {
       "type": "text",
-      "id": "purchase_note",
-      "label": "Purchase note (below CTA)",
-      "placeholder": "En stock · Envío gratis · Pago seguro"
-    },
-    {
-      "type": "select",
-      "id": "pack_section_label",
-      "label": "Pack section label",
-      "default": "Pack",
-      "options": [
-        {"value": "Pack", "label": "Pack"},
-        {"value": "Plan", "label": "Plan"},
-        {"value": "Licencia", "label": "Licencia"},
-        {"value": "Sesiones", "label": "Sesiones"},
-        {"value": "Cantidad", "label": "Cantidad"}
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Inline problem / solution"
-    },
-    {
-      "type": "text",
-      "id": "inline_problem_label",
-      "label": "Problem column label",
-      "default": "El problema"
-    },
-    {
-      "type": "text",
-      "id": "inline_solution_label",
-      "label": "Solution column label",
-      "default": "La solución"
-    },
-    {
-      "type": "header",
-      "content": "Final CTA"
-    },
-    {
-      "type": "text",
-      "id": "cta_final_heading",
-      "label": "Final CTA — Heading",
-      "placeholder": "e.g. Make it more practical today"
-    },
-    {
-      "type": "text",
-      "id": "cta_final_sub",
-      "label": "Final CTA — Subtext",
-      "placeholder": "e.g. One tool for everything"
-    },
-    {
-      "type": "text",
-      "id": "cta_final_btn",
-      "label": "Final CTA — Button label",
-      "default": "Comprar ahora"
+      "id": "before_after_label_after",
+      "label": "Before/After — Label después",
+      "default": "Después"
     }
   ],
   "presets": [

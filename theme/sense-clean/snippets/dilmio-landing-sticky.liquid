@@ -19,12 +19,12 @@
       id="dilmio-sticky-cta-{{ section.id }}"
       class="dilmio-cta dilmio-sticky__cta"
       data-variant-id="{{ current_variant.id }}"
-      data-add-label="{{ section.settings.cta_add_to_cart_label | escape }}"
-      data-sold-out-label="{{ section.settings.cta_sold_out_label | escape }}"
-      data-unavailable-label="{{ section.settings.cta_unavailable_label | escape }}"
+      data-add-label="Comprar"
+      data-sold-out-label="Sin stock"
+      data-unavailable-label="No disponible"
       {% unless current_variant.available %}disabled{% endunless %}
     >
-      {%- if current_variant.available -%}{{ section.settings.cta_add_to_cart_label }}{%- else -%}{{ section.settings.cta_sold_out_label }}{%- endif -%}
+      {%- if current_variant.available -%}Comprar{%- else -%}Sin stock{%- endif -%}
     </button>
   </div>
 </div>
