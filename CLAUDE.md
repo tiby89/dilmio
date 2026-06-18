@@ -301,3 +301,21 @@ Antes de dar una tarea por terminada, responder SIEMPRE con esta estructura:
 - **¿Tocó archivos protegidos?** sí/no. Si sí, señalarlos de forma destacada y confirmar que hubo aprobación.
 
 Ninguna tarea se considera terminada sin este reporte.
+
+---
+
+## 14. Roadmap vivo del proyecto
+
+La fuente estratégica viva del proyecto es `DILMIO_ROADMAP.md` en la raíz del repo.
+
+Antes de proponer, planificar o ejecutar nuevas fases GOD, Claude Code debe revisar `DILMIO_ROADMAP.md`.
+
+`CLAUDE.md` contiene reglas operativas, safety rails y contexto técnico.
+
+`DILMIO_ROADMAP.md` contiene prioridades, pendientes, ideas futuras, bloqueos, descartes y objetivos cerrados.
+
+No duplicar todo el roadmap dentro de `CLAUDE.md` para evitar contradicciones.
+
+Si una idea nueva aparece durante el trabajo, debe clasificarse en `DILMIO_ROADMAP.md` como inmediata, pendiente, futura, bloqueada o descartada antes de ejecutarla.
+
+Cuando una fase se cierre y se pushee a GitHub, actualizar `DILMIO_ROADMAP.md` marcando la fase como `[x]`, moviendo lo que corresponda a objetivos cerrados y actualizando la próxima acción aprobada.
