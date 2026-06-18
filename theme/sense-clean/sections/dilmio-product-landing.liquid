@@ -188,7 +188,7 @@
             {%- endif -%}
           </div>
         {%- endif -%}
-        <div class="dilmio-video-editorial__frame">
+        <div class="dilmio-video-editorial__frame{% if section.settings.video_aspect == 'landscape' %} dilmio-video-editorial__frame--landscape{% elsif section.settings.video_aspect == 'portrait' %} dilmio-video-editorial__frame--portrait{% else %} is-detecting{% endif %}">
           <video
             class="dilmio-video-editorial__player"
             src="{{ demo_video_url | escape }}"
@@ -196,6 +196,7 @@
             muted
             loop
             playsinline
+            preload="metadata"
           ></video>
         </div>
       </div>
@@ -265,6 +266,51 @@
 
 <script src="{{ 'dilmio-product.js' | asset_url }}" defer="defer"></script>
 
+<script>
+(function () {
+  'use strict';
+
+  function detectVideoAspect(video) {
+    var frame = video.closest('.dilmio-video-editorial__frame');
+    if (!frame) return;
+    if (video.videoWidth <= 0 || video.videoHeight <= 0) return;
+    frame.classList.remove(
+      'dilmio-video-editorial__frame--portrait',
+      'dilmio-video-editorial__frame--landscape',
+      'is-detecting'
+    );
+    frame.classList.add(
+      video.videoWidth > video.videoHeight
+        ? 'dilmio-video-editorial__frame--landscape'
+        : 'dilmio-video-editorial__frame--portrait'
+    );
+    video.play().catch(function () {});
+  }
+
+  function initVideoDetection(root) {
+    (root || document).querySelectorAll('.dilmio-video-editorial__player').forEach(function (video) {
+      if (video.readyState >= 1) {
+        detectVideoAspect(video);
+      } else {
+        video.addEventListener('loadedmetadata', function () {
+          detectVideoAspect(video);
+        }, { once: true });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { initVideoDetection(); });
+  } else {
+    initVideoDetection();
+  }
+
+  document.addEventListener('shopify:section:load', function (e) {
+    initVideoDetection(e.target);
+  });
+}());
+</script>
+
 {% schema %}
 {
   "name": "DILMIO Product Landing",
@@ -307,6 +353,17 @@
       "id": "show_demo_video",
       "label": "Show demo video",
       "default": false
+    },
+    {
+      "type": "select",
+      "id": "video_aspect",
+      "label": "Video aspect ratio",
+      "options": [
+        { "value": "auto", "label": "Auto / Detectar automáticamente" },
+        { "value": "portrait", "label": "Portrait / Vertical (9:16)" },
+        { "value": "landscape", "label": "Landscape / Horizontal (16:9)" }
+      ],
+      "default": "auto"
     },
     {
       "type": "checkbox",
