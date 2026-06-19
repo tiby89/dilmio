@@ -440,7 +440,7 @@
   {%- endif -%}
   {% comment %}  Drawer and mobile filter {% endcomment %}
   <menu-drawer
-    class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %}"
+    class="mobile-facets__wrapper dilmio-mobile-facets-source{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %}"
     data-breakpoint="mobile"
   >
     <details class="mobile-facets__disclosure disclosure-has-popup">
@@ -781,6 +781,102 @@
       </facet-filters-form>
     </details>
   </menu-drawer>
+
+  {%- if filter_type == 'drawer' or filter_type == 'vertical' or filter_type == 'horizontal' -%}
+    <button
+      type="button"
+      class="dilmio-floating-filter-button medium-hide large-up-hide"
+      aria-controls="FacetFiltersFormMobile"
+    >
+      <span class="svg-wrapper">
+        {{- 'icon-filter.svg' | inline_asset_content -}}
+      </span>
+      <span>
+        {%- if enable_filtering and enable_sorting -%}
+          {{ 'products.facets.filter_and_sort' | t }}
+        {%- elsif enable_filtering -%}
+          {{ 'products.facets.filter_button' | t }}
+        {%- elsif enable_sorting -%}
+          {{ 'products.facets.sort_button' | t }}
+        {%- else -%}
+          Filtrar
+        {%- endif -%}
+      </span>
+    </button>
+
+    <button type="button" class="dilmio-filter-close-button medium-hide large-up-hide" aria-label="Cerrar filtros">
+      &#x00D7;
+    </button>
+
+    <script>
+    (function () {
+      var currentObserver = null;
+
+      function initDilmioFilter() {
+        var allBtns  = Array.from(document.querySelectorAll('.dilmio-floating-filter-button'));
+        var allClose = Array.from(document.querySelectorAll('.dilmio-filter-close-button'));
+
+        var srcBtn   = allBtns.find(function (b) { return !b.classList.contains('dilmio-is-portaled'); });
+        var srcClose = allClose.find(function (b) { return !b.classList.contains('dilmio-is-portaled'); });
+
+        if (srcBtn) {
+          /* Hay un botón nuevo (de re-render de sección): reemplazar los viejos */
+          allBtns.filter(function (b) { return b.classList.contains('dilmio-is-portaled'); }).forEach(function (b) { b.remove(); });
+          allClose.filter(function (b) { return b.classList.contains('dilmio-is-portaled'); }).forEach(function (b) { b.remove(); });
+
+          document.body.appendChild(srcBtn);
+          srcBtn.classList.add('dilmio-is-portaled');
+          if (srcClose) {
+            document.body.appendChild(srcClose);
+            srcClose.classList.add('dilmio-is-portaled');
+          }
+        } else {
+          /* Sin botón nuevo — ya portado. Nada que hacer. */
+          return;
+        }
+
+        var wrapper = document.querySelector('.dilmio-mobile-facets-source');
+        if (!wrapper) return;
+        var details = wrapper.querySelector('details');
+        if (!details) return;
+
+        function syncState() {
+          document.documentElement.classList.toggle('dilmio-filter-open', details.hasAttribute('open'));
+        }
+
+        srcBtn.addEventListener('click', function () {
+          var s = document.querySelector('.dilmio-mobile-facets-source summary.mobile-facets__open-wrapper');
+          if (s) s.click();
+        });
+
+        if (srcClose) {
+          srcClose.addEventListener('click', function () {
+            var d = document.querySelector('.dilmio-mobile-facets-source details');
+            if (d && d.hasAttribute('open')) {
+              var s = document.querySelector('.dilmio-mobile-facets-source summary.mobile-facets__open-wrapper');
+              if (s) s.click();
+            } else {
+              document.documentElement.classList.remove('dilmio-filter-open');
+            }
+          });
+        }
+
+        if (currentObserver) currentObserver.disconnect();
+        currentObserver = new MutationObserver(syncState);
+        currentObserver.observe(details, { attributes: true, attributeFilter: ['open'] });
+
+        syncState();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDilmioFilter);
+      } else {
+        initDilmioFilter();
+      }
+      document.addEventListener('shopify:section:load', initDilmioFilter);
+    })();
+    </script>
+  {%- endif -%}
 
   <div class="active-facets active-facets-mobile medium-hide large-up-hide">
     {%- for filter in results.filters -%}

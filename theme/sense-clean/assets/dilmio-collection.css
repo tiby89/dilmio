@@ -249,3 +249,492 @@
     box-shadow: 0 0 0 0.1rem var(--dilmio-green-border);
   }
 }
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.5 — Collection premium: mismo lenguaje visual
+   que la Product Landing. Fondo crema continuo +
+   header editorial + grid con más aire.
+   ═══════════════════════════════════════════════════ */
+
+/* ─── Fondo crema unificado ────────────────────────
+   body:has(#shopify-section-main-collection-product-grid) (0,2,1) > .gradient (0,1,0).
+   No requiere !important. Anula el background de
+   Shopify en ambas secciones. */
+body:has(#shopify-section-main-collection-product-grid) {
+  background-color: var(--dilmio-cream-bg);
+}
+
+body:has(#shopify-section-main-collection-product-grid) .collection-hero,
+body:has(#shopify-section-main-collection-product-grid) #shopify-section-main-collection-product-grid > div {
+  background: var(--dilmio-cream-bg);
+}
+
+/* ─── Banner: aire editorial ─────────────────────── */
+body:has(#shopify-section-main-collection-product-grid) .collection-hero__inner {
+  padding-top: 2rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--dilmio-border-light);
+}
+
+@media screen and (min-width: 750px) {
+  body:has(#shopify-section-main-collection-product-grid) .collection-hero__inner {
+    padding-top: 2.8rem;
+    padding-bottom: 1.8rem;
+  }
+}
+
+/* Override las reglas previas de font-weight:400 */
+body:has(#shopify-section-main-collection-product-grid) .collection-hero__title {
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--dilmio-text);
+}
+
+@media screen and (min-width: 750px) {
+  body:has(#shopify-section-main-collection-product-grid) .collection-hero__title {
+    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+    letter-spacing: -0.04em;
+  }
+}
+
+body:has(#shopify-section-main-collection-product-grid) .collection-hero__description {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--dilmio-text-subtle);
+  margin-top: 0.75rem;
+  max-width: 52ch;
+}
+
+/* ─── Facets: separador limpio bajo la barra ─────── */
+body:has(#shopify-section-main-collection-product-grid) .facets-wrapper {
+  border-bottom: 1px solid var(--dilmio-border-light);
+}
+
+/* ─── Grid: más respiración entre cards (desktop) ── */
+@media screen and (min-width: 750px) {
+  body:has(#shopify-section-main-collection-product-grid) .product-grid {
+    gap: 2.4rem;
+  }
+}
+
+/* ─── Clearance final antes del footer ───────────── */
+body:has(#shopify-section-main-collection-product-grid) #shopify-section-main-collection-product-grid {
+  padding-bottom: 3rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.5c — Floating pill (mobile) + polish editorial
+   Estrategia: el form.mobile-facets ya es position:fixed
+   (z-index:100) en component-facets.css, independiente
+   del padre. Hacemos el menu-drawer mismo position:fixed
+   para evitar conflictos con position:fixed en <summary>.
+   ═══════════════════════════════════════════════════ */
+
+/* ─── Aire entre barra-filtros y grid ───────────── */
+body:has(#shopify-section-main-collection-product-grid) .product-grid-container {
+  padding-top: 1.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  body:has(#shopify-section-main-collection-product-grid) .product-grid-container {
+    padding-top: 2.2rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+
+  /* ─── Colapsar el toolbar row (sin borde ni espacio) ── */
+  body:has(#shopify-section-main-collection-product-grid) .facets-wrapper {
+    border-bottom: none !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+
+  body:has(#shopify-section-main-collection-product-grid) #main-collection-filters .facets-container {
+    display: block !important;
+    grid-template-columns: unset !important;
+    padding: 0 !important;
+  }
+
+  /* Ocultar el contador ("X productos") del toolbar */
+  body:has(#shopify-section-main-collection-product-grid) #main-collection-filters .facets-container > .product-count {
+    display: none !important;
+  }
+
+  /* Ocultar las pills de filtros activos del toolbar */
+  body:has(#shopify-section-main-collection-product-grid) #main-collection-filters .active-facets-mobile {
+    display: none !important;
+  }
+
+  /* ── pill flotante y drawer: neutralizados por GOD 13.5g ── */
+
+  /* Clearance para que el pill no tape el footer/últimas cards */
+  body:has(#shopify-section-main-collection-product-grid) #shopify-section-main-collection-product-grid {
+    padding-bottom: 9rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.5d — Floating pill (selectores directos, sin body:has)
+   Override de 13.5c para navegadores donde :has() no funciona.
+   Alcance: #main-collection-filters = .facets-wrapper (mismo nodo).
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (max-width: 749px) {
+
+  /* ─── Colapsar fila toolbar ───────────────────── */
+  #main-collection-filters .facets-container,
+  .facets-wrapper .facets-container {
+    display: block !important;
+    grid-template-columns: unset !important;
+    padding: 0 !important;
+  }
+
+  #main-collection-filters,
+  .facets-wrapper {
+    border-bottom: none !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+
+  /* Ocultar contador de productos — scoped para no afectar otros contextos */
+  #ProductCount,
+  #main-collection-filters .product-count,
+  .facets-wrapper .product-count,
+  #main-collection-filters .facets-container > .product-count,
+  .facets-wrapper .facets-container > .product-count {
+    display: none !important;
+  }
+
+  /* Ocultar pills de filtros activos del toolbar */
+  #main-collection-filters .active-facets-mobile,
+  .facets-wrapper .active-facets-mobile {
+    display: none !important;
+  }
+
+  /* ── pill flotante y drawer: neutralizados por GOD 13.5g ── */
+
+  /* Clearance inferior */
+  #ProductGridContainer,
+  .product-grid-container,
+  #shopify-section-main-collection-product-grid {
+    padding-bottom: 9rem !important;
+  }
+}
+
+/* GOD 13.5e — neutralizado, supersedido por GOD 13.5g */
+
+/* GOD 13.5f — neutralizado, supersedido por GOD 13.5g */
+
+@media screen and (max-width: 749px) {
+  /* Clearance inferior con safe-area */
+  #shopify-section-main-collection-product-grid {
+    padding-bottom: calc(6.4rem + max(3.2rem, env(safe-area-inset-bottom))) !important;
+  }
+}
+
+/* GOD 13.5g/h — neutralizados, supersedidos por GOD 13.5i */
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.5i — Estado visual controlado por html.dilmio-filter-open
+   Fuente única de verdad: clase en <html> puesta/quitada por JS.
+   No depende de .menu-opening ni de .mobile-facets__close.
+   Botón X propio: .dilmio-filter-close-button (fuera del details).
+   facet-filters-form forzado display:block para mantener el form
+   position:fixed en el DOM aunque details esté cerrado.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (max-width: 749px) {
+
+  /* 1. wrapper estructural: colapsa sin afectar fixed descendants */
+  .dilmio-mobile-facets-source {
+    display: block !important;
+    position: static !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* 2. facet-filters-form siempre visible para que el form position:fixed
+     no desaparezca con details:not([open]) — permite animación de cierre */
+  .dilmio-mobile-facets-source facet-filters-form {
+    display: block !important;
+  }
+
+  /* 3. Trigger de Sense: invisible y no-interactuable, clickeable por JS */
+  .dilmio-mobile-facets-source summary.mobile-facets__open-wrapper {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+
+  /* 4. Botón DILMIO flotante */
+  .dilmio-floating-filter-button {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: max(1.6rem, env(safe-area-inset-bottom)) !important;
+    transform: translateX(-50%) !important;
+    z-index: 95 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: .8rem !important;
+    min-height: 5.2rem !important;
+    width: auto !important;
+    padding: 1.35rem 2.4rem !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: #171717 !important;
+    color: #fff !important;
+    box-shadow: 0 1.2rem 3rem rgba(0,0,0,.28) !important;
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity .15s ease, visibility .15s ease !important;
+  }
+
+  .dilmio-floating-filter-button .svg-wrapper,
+  .dilmio-floating-filter-button svg {
+    color: #fff !important;
+    flex-shrink: 0 !important;
+    width: 2rem !important;
+  }
+
+  .dilmio-floating-filter-button svg line,
+  .dilmio-floating-filter-button svg circle {
+    stroke: #fff !important;
+  }
+
+  /* 5. Botón X propio DILMIO: fuera del details, siempre en DOM */
+  .dilmio-filter-close-button {
+    position: fixed !important;
+    left: 50% !important;
+    top: calc(18dvh - 2.4rem) !important;
+    transform: translateX(-50%) !important;
+    width: 4.8rem !important;
+    height: 4.8rem !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: #fff !important;
+    color: #171717 !important;
+    z-index: 180 !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 2.8rem !important;
+    line-height: 1 !important;
+    box-shadow: 0 1rem 2.4rem rgba(0,0,0,.22) !important;
+    cursor: pointer !important;
+  }
+
+  /* 6. html.dilmio-filter-open: estado abierto */
+  html.dilmio-filter-open .dilmio-filter-close-button {
+    display: flex !important;
+  }
+
+  html.dilmio-filter-open .dilmio-floating-filter-button {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* 7. Overlay: siempre fixed, invisible por defecto */
+  .dilmio-mobile-facets-source form.mobile-facets {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-width: none !important;
+    max-height: none !important;
+    z-index: 130 !important;
+    background: rgba(0,0,0,.42) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+
+  html.dilmio-filter-open .dilmio-mobile-facets-source form.mobile-facets {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* 8. Sheet: panel crema, slide desde abajo */
+  .dilmio-mobile-facets-source .mobile-facets__inner {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    width: 100vw !important;
+    max-width: none !important;
+    height: 82dvh !important;
+    max-height: 82dvh !important;
+    margin: 0 !important;
+    border-radius: 2.4rem 2.4rem 0 0 !important;
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    box-shadow: 0 -1.6rem 4rem rgba(0,0,0,.25) !important;
+    filter: none !important;
+    border: none !important;
+    pointer-events: all !important;
+    transform: translateY(110%) !important;
+    transition: transform .28s ease !important;
+  }
+
+  html.dilmio-filter-open .dilmio-mobile-facets-source .mobile-facets__inner {
+    transform: translateY(0) !important;
+  }
+
+  /* 9. Clearance inferior */
+  #shopify-section-main-collection-product-grid {
+    padding-bottom: calc(5.2rem + max(3.2rem, env(safe-area-inset-bottom))) !important;
+  }
+}
+
+/* GOD 13.5j — neutralizado, supersedido por GOD 13.5k */
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.5k — Botones portados a document.body por JS
+   Sin dependencia de ningún stacking context de la sección.
+   FOUC prevenido: botón invisible hasta recibir .dilmio-is-portaled.
+   El estado visual sigue siendo html.dilmio-filter-open.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (max-width: 749px) {
+  /* FOUC: invisible hasta que JS lo mueva a body y añada la clase */
+  .dilmio-floating-filter-button:not(.dilmio-is-portaled),
+  .dilmio-filter-close-button:not(.dilmio-is-portaled) {
+    visibility: hidden !important;
+  }
+
+  /* Botón DILMIO: estilos globales definitivos */
+  .dilmio-floating-filter-button {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: max(1.6rem, env(safe-area-inset-bottom)) !important;
+    transform: translate3d(-50%, 0, 0) !important;
+    z-index: 2147483000 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: .8rem !important;
+    min-height: 5.2rem !important;
+    width: auto !important;
+    max-width: calc(100vw - 3.2rem) !important;
+    padding: 1.35rem 2.4rem !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: #171717 !important;
+    color: #fff !important;
+    box-shadow: 0 1.2rem 3rem rgba(0,0,0,.28) !important;
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    will-change: transform !important;
+    backface-visibility: hidden !important;
+  }
+
+  html.dilmio-filter-open .dilmio-floating-filter-button {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* SVG del botón DILMIO */
+  .dilmio-floating-filter-button .svg-wrapper,
+  .dilmio-floating-filter-button svg {
+    color: #fff !important;
+    flex-shrink: 0 !important;
+    width: 2rem !important;
+  }
+
+  .dilmio-floating-filter-button svg line,
+  .dilmio-floating-filter-button svg circle {
+    stroke: #fff !important;
+  }
+
+  /* Botón X: estilos globales definitivos */
+  .dilmio-filter-close-button {
+    position: fixed !important;
+    left: 50% !important;
+    top: calc(18dvh - 2.4rem) !important;
+    transform: translateX(-50%) !important;
+    width: 4.8rem !important;
+    height: 4.8rem !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: #fff !important;
+    color: #171717 !important;
+    z-index: 2147483001 !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 2.8rem !important;
+    line-height: 1 !important;
+    box-shadow: 0 1rem 2.4rem rgba(0,0,0,.22) !important;
+    cursor: pointer !important;
+  }
+
+  html.dilmio-filter-open .dilmio-filter-close-button {
+    display: flex !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.5l — Polish visual del sheet móvil
+   Sheet más compacto (68dvh), márgenes laterales,
+   border-radius completo, X separada del borde.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (max-width: 749px) {
+  /* X: centrada y separada del borde superior del sheet */
+  .dilmio-filter-close-button {
+    top: calc(32dvh - 6.4rem) !important;
+  }
+
+  /* Sheet: más pequeño, con márgenes, radius completo */
+  .dilmio-mobile-facets-source .mobile-facets__inner {
+    left: 1.2rem !important;
+    right: 1.2rem !important;
+    bottom: max(1.2rem, env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    height: min(68dvh, 58rem) !important;
+    max-height: 68dvh !important;
+    border-radius: 2.4rem !important;
+  }
+
+  /* Footer interno: espacio para el botón Aplicar con safe-area */
+  .dilmio-mobile-facets-source .mobile-facets__footer {
+    padding-bottom: max(1.6rem, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* GOD 13.5m — X más cerca del sheet */
+@media screen and (max-width: 749px) {
+  .dilmio-filter-close-button {
+    top: calc(32dvh - 3.9rem) !important;
+  }
+}
