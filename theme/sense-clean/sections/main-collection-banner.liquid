@@ -1,48 +1,47 @@
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  @media screen and (max-width: 749px) {
-    .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
-    }
-  }
-{%- endstyle -%}
+{%- assign has_image = false -%}
+{%- assign hero_image = nil -%}
+{%- if section.settings.editorial_image != blank -%}
+  {%- assign has_image = true -%}
+  {%- assign hero_image = section.settings.editorial_image -%}
+{%- elsif section.settings.show_collection_image and collection.image -%}
+  {%- assign has_image = true -%}
+  {%- assign hero_image = collection.image -%}
+{%- endif -%}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
+<div class="dilmio-collection-hero{% if has_image %} dilmio-collection-hero--has-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+
+  <div class="dilmio-collection-hero__visual">
+    {%- if has_image -%}
+      {{- hero_image | image_url: width: 2000 | image_tag:
+        class: 'dilmio-collection-hero__img',
+        loading: 'eager',
+        widths: '600, 900, 1200, 1600, 2000',
+        sizes: '100vw'
+      -}}
+    {%- else -%}
+      <div class="dilmio-collection-hero__fallback">
+        <div class="dilmio-hero-visual__shape dilmio-hero-visual__shape--1"></div>
+        <div class="dilmio-hero-visual__shape dilmio-hero-visual__shape--2"></div>
+        <div class="dilmio-hero-visual__shape dilmio-hero-visual__shape--3"></div>
+      </div>
+    {%- endif -%}
+
+    <div class="dilmio-collection-hero__content{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      <h1 class="dilmio-collection-hero__heading">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection.title | escape -}}
       </h1>
-
-      {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+      {%- if section.settings.show_collection_description and collection.description != blank -%}
+        <p class="dilmio-collection-hero__subtext">{{ collection.description | strip_html | truncate: 140 }}</p>
+      {%- elsif section.settings.editorial_subtitle != blank -%}
+        <p class="dilmio-collection-hero__subtext">{{ section.settings.editorial_subtitle | escape }}</p>
       {%- endif -%}
     </div>
-
-    {%- if section.settings.show_collection_image and collection.image -%}
-      <div class="collection-hero__image-container media gradient">
-        <img
-          srcset="
-            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
-            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
-            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
-            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
-            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {{ collection.image | image_url }} {{ collection.image.width }}w
-          "
-          src="{{ collection.image | image_url: width: 750 }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt="{{ collection.image.alt | escape }}"
-          width="{{ collection.image.width }}"
-          height="{{ collection.image.height }}"
-        >
-      </div>
-    {%- endif -%}
   </div>
+
 </div>
 
 {% schema %}
@@ -61,9 +60,34 @@
       "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
     },
     {
+      "type": "textarea",
+      "id": "editorial_subtitle",
+      "label": "Subtítulo editorial (fallback)",
+      "default": "Productos útiles para el hogar, la cocina y el día a día. Seleccionados por diseño, practicidad y precio.",
+      "info": "Se muestra si la colección no tiene descripción propia."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reassurance",
+      "label": "Mostrar barra de confianza",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "reassurance_text",
+      "label": "Texto de confianza (separado por ·)",
+      "default": "Envío con seguimiento · Pago seguro · Selección revisada"
+    },
+    {
+      "type": "image_picker",
+      "id": "editorial_image",
+      "label": "Imagen hero editorial",
+      "info": "Tiene prioridad sobre la imagen de la colección. Si no hay imagen, se muestra un gradiente decorativo."
+    },
+    {
       "type": "checkbox",
       "id": "show_collection_image",
-      "default": false,
+      "default": true,
       "label": "t:sections.main-collection-banner.settings.show_collection_image.label"
     },
     {

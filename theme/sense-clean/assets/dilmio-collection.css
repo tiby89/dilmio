@@ -738,3 +738,638 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
     top: calc(32dvh - 3.9rem) !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10g — Collection Hero Full-Width Editorial
+   Reemplaza GOD 13.10→13.10e (layout 2 columnas card).
+   Imagen full-width + bloque de texto debajo en fondo crema.
+   ═══════════════════════════════════════════════════ */
+
+/* ─── Outer wrapper ───────────────────────────────────── */
+body:has(#shopify-section-main-collection-product-grid) .dilmio-collection-hero {
+  background: var(--dilmio-cream-bg);
+}
+
+/* ─── Visual full-width ───────────────────────────────── */
+.dilmio-collection-hero__visual {
+  width: 100%;
+  height: 26rem;
+  overflow: hidden;
+  position: relative;
+}
+
+@media screen and (min-width: 750px) {
+  .dilmio-collection-hero__visual {
+    height: 32rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .dilmio-collection-hero__visual {
+    height: 36rem;
+  }
+}
+
+/* ─── Imagen hero ─────────────────────────────────────── */
+.dilmio-collection-hero__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+/* ─── Fallback gradiente full-width ───────────────────── */
+.dilmio-collection-hero__fallback {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, #F5F2EC 0%, #EDE9E1 50%, #E6E1D7 100%);
+  overflow: hidden;
+}
+
+.dilmio-hero-visual__shape {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.dilmio-hero-visual__shape--1 {
+  width: 60rem;
+  height: 60rem;
+  background: radial-gradient(circle at 30% 30%, rgba(62, 74, 45, 0.07) 0%, transparent 70%);
+  top: -20rem;
+  right: -15rem;
+}
+
+.dilmio-hero-visual__shape--2 {
+  width: 40rem;
+  height: 40rem;
+  background: radial-gradient(circle at 60% 60%, rgba(62, 74, 45, 0.04) 0%, transparent 70%);
+  bottom: -10rem;
+  left: -10rem;
+}
+
+.dilmio-hero-visual__shape--3 {
+  width: 20rem;
+  height: 20rem;
+  border: 1.5px solid rgba(62, 74, 45, 0.09);
+  background: transparent;
+  bottom: 6rem;
+  right: 15rem;
+}
+
+/* ─── Bloque texto debajo de la imagen ─────────────────── */
+.dilmio-collection-hero__text {
+  padding-top: 2rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--dilmio-border-light);
+  background: var(--dilmio-cream-bg);
+}
+
+@media screen and (min-width: 750px) {
+  .dilmio-collection-hero__text {
+    padding-top: 1.8rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* ─── Título (supera GOD 13.5 body:has (1,1,1) → (1,2,1)) */
+body:has(#shopify-section-main-collection-product-grid) .dilmio-collection-hero__text .collection-hero__title {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: var(--dilmio-text);
+  margin: 0 0 1rem;
+}
+
+@media screen and (max-width: 749px) {
+  body:has(#shopify-section-main-collection-product-grid) .dilmio-collection-hero__text .collection-hero__title {
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    margin-bottom: 0.8rem;
+  }
+}
+
+/* ─── Subtítulo editorial ─────────────────────────────── */
+.dilmio-hero-subtitle {
+  font-size: 1.55rem;
+  line-height: 1.7;
+  color: var(--dilmio-text-subtle, #666);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.dilmio-hero-subtitle.rte > *:first-child { margin-top: 0; }
+.dilmio-hero-subtitle.rte > *:last-child { margin-bottom: 0; }
+
+@media screen and (min-width: 750px) {
+  .dilmio-hero-subtitle {
+    font-size: 1.65rem;
+    max-width: 64ch;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .dilmio-hero-subtitle {
+    font-size: 1.4rem;
+  }
+}
+
+/* ─── Reassurance bar (oculta por defecto en schema) ──── */
+.dilmio-hero-reassurance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 1.2rem;
+}
+
+.dilmio-hero-reassurance__item {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--dilmio-text-muted, #888);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.dilmio-hero-reassurance__sep {
+  color: var(--dilmio-border-light, #d5d0c8);
+  font-size: 1.1rem;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10k — Header transparente sobre collection hero
+   Patrón idéntico al de HOME (dilmio-brand-home.css):
+   body:has(.dbh-hero--has-image) → body:has(.dilmio-collection-hero--has-image).
+   Técnica: margin-top negativo en la sección + header transparente.
+   Desktop ≥750px: sección sube bajo header + header transparente.
+   Mobile <750px: header sólido intacto, imagen debajo del header.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (min-width: 750px) {
+
+  /* Sección sube bajo el header — mismo patrón que home brand */
+  body:has(.dilmio-collection-hero--has-image) #shopify-section-main-collection-banner {
+    margin-top: calc(-1 * var(--header-height, 7.2rem));
+  }
+
+  /* Imagen más alta (tablet): compensa header overlay sin mover texto ni grid */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__visual {
+    height: calc(32rem + var(--header-height, 7.2rem));
+  }
+
+  /* Header: frosted glass integrado — logo/nav/iconos en color ink natural */
+  body:has(.dilmio-collection-hero--has-image) .header-wrapper {
+    background: rgba(255, 255, 255, 0.42) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  }
+
+  /* Restaurar fondo sólido + sombra al scrollear */
+  body:has(.dilmio-collection-hero--has-image) .section-header.scrolled-past-header .header-wrapper {
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: var(--dilmio-shadow-header) !important;
+    border-bottom: none !important;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  /* Imagen más alta (desktop): base 36rem + header height */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__visual {
+    height: calc(36rem + var(--header-height, 7.2rem));
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10m — Collection hero = sistema visual HOME
+   Ambient taupe + card boxed + header transparente blanco.
+   Supersede en cascada: height fija de 13.10k, frosted glass de 13.10l.
+   Mobile <750px: sin cambios (imagen debajo del header, header sólido).
+   ═══════════════════════════════════════════════════ */
+
+/* Fondo body: taupe cálido — evita flash durante carga, igual que HOME */
+body:has(.dilmio-collection-hero--has-image) {
+  background-color: #C9BDB0;
+}
+
+@media screen and (min-width: 750px) {
+
+  /* Ambient wrapper: gradiente taupe→crema, mismo que .dbh-hero--has-image en HOME */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
+    background: linear-gradient(180deg, #C9BDB0 0%, #D9D2C8 35%, #EDE9E3 100%) !important;
+    padding: calc(var(--header-height, 7.2rem) + 2rem) 4% 3.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Card boxed: mismo concepto que .dbh-hero__card en HOME */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__visual {
+    width: 100%;
+    max-width: 1400px;
+    height: auto !important;
+    aspect-ratio: 2 / 1;
+    min-height: 300px;
+    max-height: 520px;
+    border-radius: 1.6rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Imagen: absolute fill de la card */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  /* Vignette inferior sutil: profundidad sin tapar el texto debajo */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.20) 100%);
+    pointer-events: none;
+  }
+
+  /* Texto: debajo de la card, dentro del ambient zone */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__text {
+    width: 100%;
+    max-width: 1400px;
+    margin-top: 2.4rem;
+    padding: 0 !important;
+    background: transparent !important;
+    border-bottom: none !important;
+  }
+
+  /* Título: ink sobre taupe — siempre legible */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__text .collection-hero__title {
+    color: var(--dilmio-text, #1A1A1A) !important;
+    font-size: clamp(2.2rem, 2.6vw, 3.6rem) !important;
+  }
+
+  /* Subtítulo: apagado sobre taupe */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-hero-subtitle {
+    color: rgba(0, 0, 0, 0.52);
+  }
+
+  /* Header: transparente sobre ambient taupe — texto blanco, igual que HOME */
+  body:has(.dilmio-collection-hero--has-image) .header-wrapper {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+  }
+
+  body:has(.dilmio-collection-hero--has-image) .header-wrapper--border-bottom {
+    border-bottom: none !important;
+  }
+
+  /* Logo / nav / iconos: blancos sobre ambient taupe (suficientemente oscuro) */
+  body:has(.dilmio-collection-hero--has-image) .header__heading-link,
+  body:has(.dilmio-collection-hero--has-image) .header__menu-item,
+  body:has(.dilmio-collection-hero--has-image) .header__icon,
+  body:has(.dilmio-collection-hero--has-image) .header__heading {
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  body:has(.dilmio-collection-hero--has-image) .header__icon svg {
+    fill: currentColor !important;
+  }
+
+  /* Restaurar fondo sólido + colores al scrollear */
+  body:has(.dilmio-collection-hero--has-image) .section-header.scrolled-past-header .header-wrapper {
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: var(--dilmio-shadow-header) !important;
+    border-bottom: none !important;
+  }
+
+  body:has(.dilmio-collection-hero--has-image) .section-header.scrolled-past-header .header__heading-link,
+  body:has(.dilmio-collection-hero--has-image) .section-header.scrolled-past-header .header__menu-item,
+  body:has(.dilmio-collection-hero--has-image) .section-header.scrolled-past-header .header__icon,
+  body:has(.dilmio-collection-hero--has-image) .section-header.scrolled-past-header .header__heading {
+    color: unset !important;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  /* Desktop: card más panorámica — mismo ratio que HOME (2.55:1) */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__visual {
+    aspect-ratio: 2.55 / 1;
+    min-height: 380px;
+    max-height: 580px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10n — Polish: transición hero → grid fluida
+   Elimina franja marrón inferior, refuerza H1.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (min-width: 750px) {
+
+  /* Section wrapper: fondo crema — cualquier espacio expuesto fluye al grid */
+  body:has(.dilmio-collection-hero--has-image) #shopify-section-main-collection-banner {
+    background: var(--dilmio-cream-bg, #FAF9F6);
+  }
+
+  /* Ambient gradient: termina en crema para transición limpia al grid */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
+    background: linear-gradient(180deg, #C9BDB0 0%, #D9D2C8 28%, #EDE9E3 60%, var(--dilmio-cream-bg, #FAF9F6) 100%) !important;
+    padding-bottom: 2.4rem;
+  }
+
+  /* Texto: más aire desde la card */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__text {
+    margin-top: 3rem;
+  }
+
+  /* H1: más prominente y editorial */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero__text .collection-hero__title {
+    font-size: clamp(2.4rem, 3vw, 4.2rem) !important;
+    letter-spacing: -0.05em !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10o — Collection hero: composición HOME
+   Texto superpuesto dentro de la card (igual que HOME).
+   Sin bloque H1 separado bajo la imagen.
+   Mobile y desktop: overlay bottom-left con gradiente dual.
+   ═══════════════════════════════════════════════════ */
+
+/* Mobile: card alta para texto superpuesto legible */
+.dilmio-collection-hero--has-image .dilmio-collection-hero__visual {
+  height: auto !important;
+  min-height: 58svh;
+}
+
+/* Mobile: body crema (ambient taupe solo en desktop) */
+@media screen and (max-width: 749px) {
+  body:has(.dilmio-collection-hero--has-image) {
+    background-color: var(--dilmio-cream-bg, #FAF9F6);
+  }
+}
+
+/* Content overlay: fill absoluto, flex bottom-left — mismo que HOME */
+.dilmio-collection-hero__content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 2.4rem 2.8rem 3.6rem;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0) 22%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.38) 28%, rgba(0, 0, 0, 0) 58%);
+}
+
+/* Sin imagen: sin overlay oscuro, texto ink sobre gradiente crema */
+.dilmio-collection-hero:not(.dilmio-collection-hero--has-image) .dilmio-collection-hero__content {
+  background: none;
+}
+
+/* H1 superpuesto — blanco, editorial, igual que HOME */
+.dilmio-collection-hero__heading {
+  font-size: clamp(3.2rem, 8vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #FFFFFF;
+  margin: 0 0 0.6rem;
+}
+
+/* Subtítulo superpuesto */
+.dilmio-collection-hero__subtext {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0;
+  max-width: 36rem;
+}
+
+/* Sin imagen: texto ink */
+.dilmio-collection-hero:not(.dilmio-collection-hero--has-image) .dilmio-collection-hero__heading {
+  color: var(--dilmio-text, #1A1A1A);
+}
+
+.dilmio-collection-hero:not(.dilmio-collection-hero--has-image) .dilmio-collection-hero__subtext {
+  color: var(--dilmio-text-muted, #888);
+}
+
+/* Desktop: heading más grande, padding editorial */
+@media screen and (min-width: 750px) {
+
+  .dilmio-collection-hero__content {
+    padding: clamp(2.4rem, 4vw, 4.8rem) clamp(2.8rem, 5vw, 6.4rem);
+  }
+
+  .dilmio-collection-hero__heading {
+    font-size: clamp(4rem, 5vw, 7.2rem);
+    line-height: 0.97;
+    letter-spacing: -0.05em;
+    margin-bottom: 1.2rem;
+  }
+
+  .dilmio-collection-hero__subtext {
+    font-size: 1.5rem;
+    max-width: 48rem;
+  }
+
+  /* Ambient: sin texto abajo — menos padding inferior */
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
+    padding-bottom: 4rem;
+  }
+
+  /* Bloque texto separado (13.10m/n): oculto — ya no existe en markup */
+  .dilmio-collection-hero__text {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10p — Match collection hero top spacing with HOME
+   La card colección tiene min-height 380px vs HOME 560px:
+   el mismo gap de 2rem se percibe mayor. Reducir a 0.4rem
+   para que la card arranque casi a ras del header como HOME.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (min-width: 750px) {
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
+    padding-top: calc(var(--header-height, 7.2rem) + 0.4rem);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10q — Drop --header-height from padding-top
+   El cálculo var(--header-height) + X no produce el gap visual
+   esperado (demasiado aire). Se sustituye por valor fijo que
+   controla directamente el espacio entre header y card.
+   Mismo selector que 13.10p (0,2,0) → gana en cascada.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (min-width: 750px) {
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
+    padding-top: 2.4rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10r — neutralizado por 13.10s
+   Diagnóstico erróneo: el hero no era el origen de la franja.
+   La parte background queda anulada por 13.10s.
+   La parte padding-bottom (4rem → 2.8rem) se mantiene.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (min-width: 750px) {
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
+    padding-bottom: 2.8rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10s — Restaurar gradiente hero + fix franja real
+   1. Restaura el degradado premium del hero (revertido 13.10r).
+   2. La franja marrón real viene del div.gradient.color-scheme-1
+      en #shopify-section-main-collection-product-grid > div.
+      El padding-top de ese div (px de section settings) exponía
+      el fondo taupe del color scheme. GOD 13.5 ya tenía background
+      cream sin !important — la skin lo sobreescribía. Se añade
+      !important aquí scoped a la página con hero imagen.
+   ═══════════════════════════════════════════════════ */
+
+/* 1. Restaurar degradado premium hero (anula el background-cream de 13.10r) */
+@media screen and (min-width: 750px) {
+  body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
+    background: linear-gradient(180deg, #C9BDB0 0%, #D8CEC2 52%, var(--dilmio-cream-bg, #FAF9F6) 100%) !important;
+  }
+}
+
+/* 2. Forzar crema en div.gradient del product grid — origen real de la franja */
+@media screen and (min-width: 750px) {
+  body:has(.dilmio-collection-hero--has-image) #shopify-section-main-collection-product-grid > div {
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10t — Eliminar físicamente la banda: padding-top 0
+   13.10s puso el background crema pero el padding-top (en px,
+   generado inline por el liquid via .section-{id}-padding)
+   seguía creando el espacio físico visible. Se colapsa a 0
+   y se redistribuye el aire dentro del facets-wrapper.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (min-width: 750px) {
+  /* Colapsa el padding-top que generaba la franja física */
+  body:has(.dilmio-collection-hero--has-image) #shopify-section-main-collection-product-grid > div {
+    padding-top: 0 !important;
+  }
+
+  /* Asegurar fondo crema en facets-wrapper y su contenedor interior */
+  body:has(.dilmio-collection-hero--has-image) .facets-wrapper,
+  body:has(.dilmio-collection-hero--has-image) .facets-container {
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+  }
+
+  /* Aire premium encima de la barra de filtros: reemplaza el padding del wrapper */
+  body:has(.dilmio-collection-hero--has-image) .facets-wrapper {
+    padding-top: 1.6rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10u — Fix selector mismatch: IDs dinámicos Shopify
+   DESCUBRIMIENTO: Shopify usa IDs dinámicos tipo:
+   shopify-section-template--30587087814987__main-collection-product-grid
+   Los selectores #shopify-section-main-collection-product-grid y
+   #shopify-section-main-collection-banner de bloques anteriores
+   (13.5, 13.10k, 13.10n, 13.10s, 13.10t) NUNCA coincidían → dead CSS.
+   Se usa [id$="__..."] (ends-with) + body.template-collection.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (min-width: 750px) {
+  /* Product grid inner div: colapsar padding-top taupe y forzar fondo crema */
+  body.template-collection [id$="__main-collection-product-grid"] > div {
+    padding-top: 0 !important;
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+  }
+
+  /* Facets: fondo crema + aire interior */
+  body.template-collection [id$="__main-collection-product-grid"] .facets-wrapper,
+  body.template-collection [id$="__main-collection-product-grid"] .facets-container {
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+  }
+
+  body.template-collection [id$="__main-collection-product-grid"] .facets-wrapper {
+    padding-top: 1.6rem;
+  }
+
+  /* Hero banner: padding-bottom reducido — si la franja viene del hero */
+  body.template-collection [id$="__main-collection-banner"] .dilmio-collection-hero {
+    padding-bottom: 1.2rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10v — Scope correcto: body:has(clase) + ID ends-with
+   13.10u usó body.template-collection → no confirmado en DOM.
+   13.10t/s usaron #shopify-section-... estático → dead CSS.
+   Este bloque usa body:has(.dilmio-collection-hero--has-image)
+   (scope por clase, confirmado funcional) + [id$="__..."]
+   para IDs dinámicos de Shopify. Cubre ambos frentes:
+   padding-bottom hero y padding-top product grid.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (min-width: 750px) {
+  /* Hero: colapsar padding-bottom — elimina zona inferior del gradiente */
+  body:has(.dilmio-collection-hero--has-image) [id$="__main-collection-banner"] .dilmio-collection-hero {
+    padding-bottom: 0 !important;
+  }
+
+  /* Product grid inner div: colapsar padding-top + fondo crema */
+  body:has(.dilmio-collection-hero--has-image) [id$="__main-collection-product-grid"] > div {
+    padding-top: 0 !important;
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+  }
+
+  /* Facets: fondo crema + aire interior crema */
+  body:has(.dilmio-collection-hero--has-image) [id$="__main-collection-product-grid"] .facets-wrapper {
+    padding-top: 1.2rem !important;
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+  }
+
+  body:has(.dilmio-collection-hero--has-image) [id$="__main-collection-product-grid"] .facets-container {
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.10w — Fix real: franja era background de main#MainContent
+   DevTools confirmó: al seleccionar la franja se seleccionaba
+   main#MainContent.content-for-layout.focus-none — el contenedor
+   padre visible entre secciones. No era hero ni product grid.
+   Fix: forzar crema en main#MainContent bajo body:has(clase).
+   El gradiente de .dilmio-collection-hero sigue pintando su zona.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (min-width: 750px) {
+  body:has(.dilmio-collection-hero--has-image) main#MainContent {
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+  }
+}
