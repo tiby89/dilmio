@@ -116,6 +116,19 @@
     </div>
   {%- endif -%}
 
+  {% comment %} ===================== ZONE 3→4 — EDITORIAL BRIDGE ===================== {% endcomment %}
+  {%- if category_cards.size > 0 -%}
+    {%- assign bridge_text = section.settings.editorial_bridge_text -%}
+    {%- if bridge_text == blank -%}
+      {%- assign bridge_text = 'Pequeñas soluciones para una casa más ordenada, cómoda y fácil de vivir.' -%}
+    {%- endif -%}
+    <div class="dbh-editorial-bridge">
+      <div class="dbh-wrapper">
+        <p class="dbh-editorial-bridge__text">{{ bridge_text | escape }}</p>
+      </div>
+    </div>
+  {%- endif -%}
+
   {% comment %} ===================== ZONE 4 — FEATURED PRODUCTS ===================== {% endcomment %}
   {%- if featured_collection != blank and featured_collection.all_products_count > 0 -%}
     <div class="dbh-products">
@@ -125,9 +138,11 @@
             {%- if section.settings.featured_heading != blank -%}
               <h2 class="dbh-section-heading dbh-products__heading">{{ section.settings.featured_heading | escape }}</h2>
             {%- endif -%}
-            {%- if section.settings.featured_subtitle != blank -%}
-              <p class="dbh-products__subtitle">{{ section.settings.featured_subtitle | escape }}</p>
+            {%- assign featured_subtitle_display = section.settings.featured_subtitle -%}
+            {%- if featured_subtitle_display == blank -%}
+              {%- assign featured_subtitle_display = 'Productos útiles, fáciles de usar y pensados para resolver problemas reales del hogar.' -%}
             {%- endif -%}
+            <p class="dbh-products__subtitle">{{ featured_subtitle_display | escape }}</p>
           </div>
           {%- if section.settings.featured_view_all_label != blank -%}
             <a href="{{ featured_collection.url }}" class="dbh-products__view-all">
@@ -379,6 +394,17 @@
     },
     {
       "type": "header",
+      "content": "Texto editorial de transición"
+    },
+    {
+      "type": "text",
+      "id": "editorial_bridge_text",
+      "label": "Frase de transición",
+      "info": "Aparece entre las categorías y los productos destacados.",
+      "default": "Pequeñas soluciones para una casa más ordenada, cómoda y fácil de vivir."
+    },
+    {
+      "type": "header",
       "content": "Productos destacados"
     },
     {
@@ -390,7 +416,8 @@
     {
       "type": "text",
       "id": "featured_subtitle",
-      "label": "Subtitle"
+      "label": "Subtitle",
+      "default": "Productos útiles, fáciles de usar y pensados para resolver problemas reales del hogar."
     },
     {
       "type": "text",
