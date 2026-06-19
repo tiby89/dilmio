@@ -144,11 +144,6 @@
             {%- endif -%}
             <p class="dbh-products__subtitle">{{ featured_subtitle_display | escape }}</p>
           </div>
-          {%- if section.settings.featured_view_all_label != blank -%}
-            <a href="{{ featured_collection.url }}" class="dbh-products__view-all">
-              {{- section.settings.featured_view_all_label | replace: '→', '' | strip | escape -}}
-            </a>
-          {%- endif -%}
         </div>
       </div>
       <div class="dbh-products__carousel-wrap">

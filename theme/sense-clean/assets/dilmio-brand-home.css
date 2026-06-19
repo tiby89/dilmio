@@ -368,19 +368,6 @@
   line-height: 1.6;
 }
 
-.dbh-products__view-all {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--dbh-olive);
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.dbh-products__view-all:hover {
-  text-decoration: underline;
-}
-
 .dbh-products__carousel-wrap {
   position: relative;
 }
@@ -400,6 +387,7 @@
 .dbh-products__carousel::-webkit-scrollbar {
   display: none;
 }
+
 
 .dbh-pcard {
   flex: 0 0 calc(25% - 1.2rem);
@@ -1244,9 +1232,6 @@
     text-align: left !important;
   }
 
-  .dbh-products__header .dbh-products__view-all {
-    display: none;
-  }
 
   .dbh-products__carousel {
     display: flex;
