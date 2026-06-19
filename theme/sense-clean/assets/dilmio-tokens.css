@@ -59,4 +59,73 @@
   --dilmio-shadow-header:    0 2px 16px rgba(28, 36, 18, 0.06);
   --dilmio-shadow-collection: 0 4px 20px rgba(28, 36, 18, 0.08);
   --dilmio-shadow-card-hover: 0 8px 32px rgba(28, 36, 18, 0.13); /* hover unificado para cards */
+
+  /* ── Tipografía DILMIO (GOD 13.8e) ────────────── */
+  --dilmio-font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Override variables de Shopify → DM Sans en todo el site */
+  --font-body-family:    'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── Body: DM Sans 400, sin tracking forzado ────────── */
+body {
+  font-family: var(--dilmio-font);
+  letter-spacing: 0;
+}
+
+/* ── Headings: DM Sans 800, tracking negativo sutil ─── */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5 {
+  font-family: var(--dilmio-font);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Display-size: tracking más compacto */
+.hxxl, .hxl {
+  letter-spacing: -0.03em;
+}
+
+/* ── Botones: 800, sin tracking espaciado ───────────── */
+.button,
+button[type='submit'],
+input[type='submit'] {
+  font-family: var(--dilmio-font);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+/* ── Card titles: 700 ───────────────────────────────── */
+.card__heading {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── Precios: 800 ───────────────────────────────────── */
+.price--large,
+.price__regular,
+.price__sale {
+  font-weight: 800;
+}
+
+/* ── Captions uppercase: reducir tracking genérico Sense */
+.caption {
+  letter-spacing: 0.02em;
+}
+
+.caption-large {
+  letter-spacing: 0.01em;
+}
+
+.caption-with-letter-spacing {
+  letter-spacing: 0.08em;
+}
+
+.caption-with-letter-spacing--medium {
+  letter-spacing: 0.10em;
+}
+
+.caption-with-letter-spacing--large {
+  letter-spacing: 0.12em;
 }
