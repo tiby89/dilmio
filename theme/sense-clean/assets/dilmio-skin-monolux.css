@@ -202,8 +202,115 @@
    Selectores que corrigen inline styles inyectados por apps externas.
    !important es obligatorio cuando la app usa style="" inline. */
 
-/* 17TRACK tracking widget — botón RASTREAR
-   La app inyecta background-color inline desde su JS. */
+/* ── 17TRACK page polish — /apps/17TRACK ─────────────────
+   Todo scopeado bajo #yq-trackingBox / #yq-tracking-form.
+   !important necesario donde la app inyecta style="" inline. */
+
+/* Fondo general y padding de página */
+#yq-trackingBox,
+.ClassicTheme_trackWrap__4cgnh {
+  background-color: var(--dilmio-cream-bg, #FBF9F4) !important;
+  min-height: auto !important;
+  padding-top: 2.4rem !important;
+  padding-bottom: 2.8rem !important;
+}
+
+/* Card premium centrada */
+#yq-tracking-form {
+  max-width: 56rem !important;
+  margin: 0 auto !important;
+  background: var(--dilmio-surface, #fff) !important;
+  border: 1px solid var(--dilmio-border-light, #E6E2DA) !important;
+  border-radius: 2rem !important;
+  box-shadow: 0 8px 32px rgba(17, 17, 17, 0.10) !important;
+  padding: 2.4rem 2rem !important;
+}
+
+/* Título */
+.yq-track-page-title {
+  font-family: var(--dilmio-font) !important;
+  font-weight: 800 !important;
+  font-size: clamp(1.6rem, 4vw, 2.2rem) !important;
+  color: var(--dilmio-text, #161616) !important;
+  letter-spacing: -0.02em !important;
+  text-align: center !important;
+  line-height: 1.15 !important;
+  margin-bottom: 0.2rem !important;
+}
+
+/* Subcopy bajo el título vía pseudo-elemento */
+.yq-track-page-title::after {
+  content: "Consulta el estado de tu envío en segundos.";
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--dilmio-text-body, #3D3D3D);
+  letter-spacing: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 1.6rem;
+}
+
+/* Input de número de seguimiento */
+#trackingForm_track_no {
+  height: 4.8rem !important;
+  border: 1.5px solid var(--dilmio-border, #D6D2CA) !important;
+  border-radius: 0.8rem !important;
+  background: var(--dilmio-surface, #fff) !important;
+  font-family: var(--dilmio-font) !important;
+  font-size: 1rem !important;
+  color: var(--dilmio-text, #161616) !important;
+  padding: 0 1.6rem !important;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+#trackingForm_track_no::placeholder {
+  color: var(--dilmio-text-subtle, #505050) !important;
+  opacity: 1 !important;
+}
+
+#trackingForm_track_no:focus {
+  border-color: var(--dilmio-primary, #1a1a1a) !important;
+  box-shadow: 0 0 0 2.5px rgba(26, 26, 26, 0.12) !important;
+  outline: none !important;
+}
+
+/* Botón RASTREAR — la app inyecta background inline, !important obligatorio */
 #trackingForm button.ant-btn.ant-btn-lg[type="submit"] {
   background-color: var(--dilmio-primary, #1a1a1a) !important;
+  border-color: var(--dilmio-primary, #1a1a1a) !important;
+  color: var(--dilmio-bg, #FBF9F4) !important;
+  width: 100% !important;
+  height: 4.8rem !important;
+  border-radius: 0.8rem !important;
+  font-family: var(--dilmio-font) !important;
+  font-weight: 800 !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.02em !important;
+  transition: background-color 0.18s ease, border-color 0.18s ease !important;
+}
+
+#trackingForm button.ant-btn.ant-btn-lg[type="submit"]:hover {
+  background-color: var(--dilmio-primary-dark, #0D0D0D) !important;
+  border-color: var(--dilmio-primary-dark, #0D0D0D) !important;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 749px) {
+  #yq-trackingBox,
+  .ClassicTheme_trackWrap__4cgnh {
+    padding-top: 1.6rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  #yq-tracking-form {
+    padding: 1.8rem 1.4rem !important;
+    border-radius: 1.2rem !important;
+    margin: 0 0.8rem !important;
+  }
+}
+
+@media (min-width: 750px) {
+  #yq-tracking-form {
+    padding: 3.2rem !important;
+  }
 }
