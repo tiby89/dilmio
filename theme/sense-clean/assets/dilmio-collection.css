@@ -1373,3 +1373,62 @@ body:has(.dilmio-collection-hero--has-image) {
     background: var(--dilmio-cream-bg, #FAF9F6) !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════
+   GOD 13.11 — Mobile: texto debajo de la imagen
+   Elimina el overlay oscuro/degradado en mobile.
+   La imagen ocupa la zona visual completa. Título y
+   subtítulo fluyen debajo sobre fondo crema, en negro.
+   Desktop ≥750px: sin cambios.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (max-width: 749px) {
+
+  /* Outer hero: crema limpio — anula ambient taupe de 13.10m */
+  .dilmio-collection-hero--has-image {
+    background: var(--dilmio-cream-bg, #FAF9F6) !important;
+  }
+
+  /* Visual: altura auto sin suelo — la imagen dicta la altura */
+  .dilmio-collection-hero--has-image .dilmio-collection-hero__visual {
+    min-height: 0 !important;
+  }
+
+  /* Imagen: más alta que el min-height anterior (58svh) para compensar
+     el espacio que antes ocupaba el overlay oscuro superpuesto */
+  .dilmio-collection-hero--has-image .dilmio-collection-hero__img {
+    height: 60svh;
+  }
+
+  /* Content: sale del absolute overlay, fluye bajo la imagen */
+  .dilmio-collection-hero--has-image .dilmio-collection-hero__content {
+    position: relative !important;
+    inset: auto !important;
+    z-index: auto !important;
+    background: none !important;
+    background-color: var(--dilmio-cream-bg, #FAF9F6) !important;
+    padding: 1.2rem 2.4rem 2rem !important;
+    justify-content: flex-start !important;
+    border-bottom: 1px solid var(--dilmio-border-light, #E8E4DC) !important;
+  }
+
+  /* H1: negro sobre crema, editorial, sin sombra */
+  .dilmio-collection-hero--has-image .dilmio-collection-hero__heading {
+    color: var(--dilmio-text, #1A1A1A) !important;
+    font-size: clamp(2.4rem, 6.5vw, 3.2rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.04em !important;
+    line-height: 1.05 !important;
+    text-shadow: none !important;
+    margin: 0 0 0.5rem !important;
+  }
+
+  /* Subtítulo: compacto y legible, sin sombra */
+  .dilmio-collection-hero--has-image .dilmio-collection-hero__subtext {
+    color: var(--dilmio-text-subtle, #666) !important;
+    font-size: 1.3rem !important;
+    line-height: 1.55 !important;
+    max-width: 32rem !important;
+    text-shadow: none !important;
+  }
+}
