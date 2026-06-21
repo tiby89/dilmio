@@ -1,63 +1,109 @@
 {{ 'dilmio-tracking.css' | asset_url | stylesheet_tag }}
 
-<div class="dtp-page">
+<div class="dtp-page{%- if section.settings.hero_editorial_image != blank %} dilmio-tracking-page--with-hero-image{%- endif -%}">
 
   {%- comment -%} ── Hero ──────────────────────────────────────────────── {%- endcomment -%}
-  <header class="dtp-hero">
-    {%- if section.settings.eyebrow != blank -%}
-      <p class="dtp-eyebrow">{{ section.settings.eyebrow }}</p>
-    {%- endif -%}
-    <h1 class="dtp-title">{{ section.settings.heading | escape }}</h1>
-    {%- if section.settings.text != blank -%}
-      <p class="dtp-subcopy">{{ section.settings.text }}</p>
-    {%- endif -%}
-  </header>
-
-  {%- comment -%} ── Imagen editorial en el flujo del hero (GOD 13.17c) ─── {%- endcomment -%}
   {%- if section.settings.hero_editorial_image != blank -%}
-    <div class="dilmio-tracking-hero__media">
-      {{
-        section.settings.hero_editorial_image
-        | image_url: width: 1440
-        | image_tag:
-          class: 'dilmio-tracking-hero__image',
-          loading: 'eager',
-          widths: '375, 750, 990, 1440',
-          sizes: '(min-width: 990px) 720px, 100vw'
-      }}
-    </div>
-  {%- endif -%}
 
-  {%- comment -%} ── Formulario → /apps/17TRACK?nums=VALOR ─────────────── {%- endcomment -%}
-  <div class="dtp-form-wrapper">
-    <div class="dtp-form-card">
-      <form
-        method="get"
-        action="/apps/17TRACK"
-        class="dtp-form"
-        role="search"
-        aria-label="{{ section.settings.input_label | escape }}"
-      >
-        <label for="dtp-tracking-input" class="dtp-form-label">{{ section.settings.input_label }}</label>
-        <div class="dtp-form__row">
-          <input
-            type="text"
-            name="nums"
-            id="dtp-tracking-input"
-            class="dtp-input"
-            placeholder="{{ section.settings.input_placeholder | escape }}"
-            required
-            autocomplete="off"
-            spellcheck="false"
-          />
-          <button type="submit" class="dtp-btn">{{ section.settings.button_label }}</button>
+    <div class="dilmio-tracking-hero--with-image">
+
+      <div class="dilmio-tracking-hero__visual">
+        {{-
+          section.settings.hero_editorial_image
+          | image_url: width: 2400
+          | image_tag:
+            class: 'dilmio-tracking-hero__img',
+            loading: 'eager',
+            widths: '750, 1100, 1440, 2000',
+            sizes: '(min-width: 1200px) 1180px, 100vw'
+        -}}
+        <div class="dilmio-tracking-hero__overlay" aria-hidden="true"></div>
+        <div class="dilmio-tracking-hero__content">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="dtp-eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          <h1 class="dilmio-tracking-hero__heading">{{ section.settings.heading | escape }}</h1>
+          {%- if section.settings.text != blank -%}
+            <p class="dilmio-tracking-hero__subcopy">{{ section.settings.text }}</p>
+          {%- endif -%}
         </div>
-        {%- if section.settings.form_note != blank -%}
-          <p class="dtp-form-hint">{{ section.settings.form_note }}</p>
-        {%- endif -%}
-      </form>
+      </div>
+
+      <div class="dilmio-tracking-hero__form-shell">
+        <div class="dtp-form-card">
+          <form
+            method="get"
+            action="/apps/17TRACK"
+            class="dtp-form"
+            role="search"
+            aria-label="{{ section.settings.input_label | escape }}"
+          >
+            <label for="dtp-tracking-input" class="dtp-form-label">{{ section.settings.input_label }}</label>
+            <div class="dtp-form__row">
+              <input
+                type="text"
+                name="nums"
+                id="dtp-tracking-input"
+                class="dtp-input"
+                placeholder="{{ section.settings.input_placeholder | escape }}"
+                required
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="submit" class="dtp-btn">{{ section.settings.button_label }}</button>
+            </div>
+            {%- if section.settings.form_note != blank -%}
+              <p class="dtp-form-hint">{{ section.settings.form_note }}</p>
+            {%- endif -%}
+          </form>
+        </div>
+      </div>
+
     </div>
-  </div>
+
+  {%- else -%}
+
+    <header class="dtp-hero">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="dtp-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 class="dtp-title">{{ section.settings.heading | escape }}</h1>
+      {%- if section.settings.text != blank -%}
+        <p class="dtp-subcopy">{{ section.settings.text }}</p>
+      {%- endif -%}
+    </header>
+
+    <div class="dtp-form-wrapper">
+      <div class="dtp-form-card">
+        <form
+          method="get"
+          action="/apps/17TRACK"
+          class="dtp-form"
+          role="search"
+          aria-label="{{ section.settings.input_label | escape }}"
+        >
+          <label for="dtp-tracking-input" class="dtp-form-label">{{ section.settings.input_label }}</label>
+          <div class="dtp-form__row">
+            <input
+              type="text"
+              name="nums"
+              id="dtp-tracking-input"
+              class="dtp-input"
+              placeholder="{{ section.settings.input_placeholder | escape }}"
+              required
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button type="submit" class="dtp-btn">{{ section.settings.button_label }}</button>
+          </div>
+          {%- if section.settings.form_note != blank -%}
+            <p class="dtp-form-hint">{{ section.settings.form_note }}</p>
+          {%- endif -%}
+        </form>
+      </div>
+    </div>
+
+  {%- endif -%}
 
   {%- comment -%} ── Editorial supply chain story ──────────────────────── {%- endcomment -%}
   <section class="dtp-story" aria-label="{{ section.settings.story_heading | escape }}">
@@ -87,25 +133,33 @@
         </ol>
       </div>
 
-      <div class="dtp-story__media">
-        <div class="dtp-story__video-frame">
-          {%- if section.settings.video_url != blank -%}
-            <video
-              class="dtp-story__video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-              aria-hidden="true"
-              {%- if section.settings.video_poster != blank -%}
-                poster="{{ section.settings.video_poster | image_url: width: 1200 }}"
-              {%- endif -%}
-            >
-              <source src="{{ section.settings.video_url }}" type="video/mp4">
-            </video>
-          {%- endif -%}
-          <div class="dtp-story__video-placeholder" aria-hidden="true">
+      <div class="dilmio-tracking-story__media">
+        {%- if section.settings.story_video != blank -%}
+          <video
+            class="dilmio-tracking-story__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="none"
+            aria-hidden="true"
+          >
+            {%- for source in section.settings.story_video.sources -%}
+              <source src="{{ source.url }}" type="{{ source.mime_type }}">
+            {%- endfor -%}
+          </video>
+        {%- elsif section.settings.story_media_image != blank -%}
+          {{
+            section.settings.story_media_image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'dilmio-tracking-story__image',
+              loading: 'lazy',
+              widths: '600, 900, 1200',
+              sizes: '(min-width: 990px) 55vw, 100vw'
+          }}
+        {%- else -%}
+          <div class="dilmio-tracking-story__placeholder" aria-hidden="true">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -113,7 +167,7 @@
               <p class="dtp-story__placeholder-label">{{ section.settings.placeholder_text }}</p>
             {%- endif -%}
           </div>
-        </div>
+        {%- endif -%}
       </div>
 
     </div>
@@ -161,7 +215,7 @@
 {
   "name": "Tracking — Página premium",
   "tag": "section",
-  "class": "section",
+  "class": "section dilmio-tracking-page-wrap",
   "settings": [
     { "type": "header", "content": "Hero" },
     {
@@ -254,23 +308,35 @@
       "default": "Entrega en casa"
     },
 
-    { "type": "header", "content": "Vídeo" },
+    { "type": "header", "content": "Media del bloque de historia" },
     {
-      "type": "text",
-      "id": "video_url",
-      "label": "URL del vídeo (MP4 directo, opcional)",
-      "info": "Déjalo vacío para mostrar el placeholder premium. Rellénalo con una URL directa de MP4 para activar el vídeo."
+      "type": "video",
+      "id": "story_video",
+      "label": "Vídeo del bloque de historia"
     },
     {
       "type": "image_picker",
-      "id": "video_poster",
-      "label": "Poster del vídeo (opcional)"
+      "id": "story_media_image",
+      "label": "Imagen alternativa del bloque de historia"
     },
     {
       "type": "text",
       "id": "placeholder_text",
-      "label": "Texto del placeholder",
+      "label": "Texto del placeholder (si no hay vídeo ni imagen)",
       "default": "Vídeo próximamente"
+    },
+
+    { "type": "header", "content": "Vídeo legacy (URL directa — no activo)" },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "URL del vídeo (MP4 directo, legacy)",
+      "info": "No se renderiza en GOD 13.18. Usa el campo 'Vídeo del bloque de historia' arriba."
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Poster del vídeo (legacy)"
     },
 
     { "type": "header", "content": "FAQ" },

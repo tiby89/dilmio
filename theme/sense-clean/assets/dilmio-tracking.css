@@ -202,37 +202,29 @@
   color: var(--dilmio-text);
 }
 
-/* Video frame */
-.dtp-story__media {
-  display: flex;
-  align-items: stretch;
-}
-
-.dtp-story__video-frame {
+/* Story media block — GOD 13.18 (video › image › placeholder) */
+.dilmio-tracking-story__media {
   position: relative;
   width: 100%;
   background: #0d0d0d;
-  border-radius: 16px;
+  border-radius: 2rem;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.14), 0 4px 16px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   aspect-ratio: 16 / 10;
 }
 
-/* z-index 2: cuando el vídeo carga y reproduce, cubre el placeholder */
-.dtp-story__video {
+.dilmio-tracking-story__video,
+.dilmio-tracking-story__image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 2;
 }
 
-/* z-index 1: visible a través del vídeo transparente cuando el src da 404 */
-.dtp-story__video-placeholder {
+.dilmio-tracking-story__placeholder {
   position: absolute;
   inset: 0;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -355,27 +347,86 @@
   white-space: nowrap;
 }
 
-/* GOD 13.17 — Tracking editorial hero image */
-.dilmio-tracking-hero__media {
-  display: flex;
-  justify-content: center;
-  padding: 0 2rem;
-  margin-top: 0;
-  margin-bottom: 3.2rem;
+/* ── Catalog-style editorial hero (with image) — GOD 13.18b ──── */
+.dilmio-tracking-hero--with-image {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 4rem 2rem 0;
 }
 
-.dilmio-tracking-hero__image {
-  display: block;
-  width: 100%;
-  max-width: 720px;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.dilmio-tracking-hero__visual {
+  position: relative;
   border-radius: 2rem;
-  border: 1px solid var(--dilmio-border-light);
+  overflow: hidden;
+  aspect-ratio: 16 / 7;
   box-shadow:
-    0 8px 24px rgba(17, 17, 17, 0.08),
-    0 2px 8px rgba(17, 17, 17, 0.05);
-  background: var(--dilmio-surface-soft);
+    0 24px 64px rgba(0, 0, 0, 0.14),
+    0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.dilmio-tracking-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dilmio-tracking-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.22) 45%,
+    rgba(0, 0, 0, 0.62) 100%
+  );
+}
+
+.dilmio-tracking-hero__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3.2rem 4rem 4.8rem;
+  z-index: 2;
+}
+
+.dilmio-tracking-hero__content .dtp-eyebrow {
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 0.8rem;
+}
+
+.dilmio-tracking-hero__heading {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: clamp(2.8rem, 4vw, 4.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.dilmio-tracking-hero__subcopy {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0;
+  max-width: 52ch;
+}
+
+.dilmio-tracking-hero__form-shell {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem 5.6rem;
+  margin-top: 2.2rem;
+  position: relative;
+  z-index: 3;
+}
+
+.dilmio-tracking-hero__form-shell .dtp-form-card {
+  max-width: 620px;
 }
 
 /* ── Responsive ───────────────────────────────────────────────────── */
@@ -414,23 +465,115 @@
     max-width: none;
   }
 
-  .dtp-story__video-frame {
-    border-radius: 12px;
+  .dilmio-tracking-story__media {
+    aspect-ratio: 4 / 3;
+    border-radius: 1.4rem;
   }
 
   .dtp-faq {
     padding: 4.8rem 1.6rem 6.4rem;
   }
 
-  .dilmio-tracking-hero__media {
-    padding: 0 1.6rem;
-    margin-top: 0;
-    margin-bottom: 2.4rem;
+  .dilmio-tracking-hero--with-image {
+    padding: 2rem 1.6rem 0;
   }
 
-  .dilmio-tracking-hero__image {
+  .dilmio-tracking-hero__visual {
+    aspect-ratio: 4 / 3;
     border-radius: 1.4rem;
-    aspect-ratio: 3 / 2;
-    max-height: 40rem;
+  }
+
+  .dilmio-tracking-hero__content {
+    padding: 2rem 2rem;
+  }
+
+  .dilmio-tracking-hero__content .dtp-eyebrow {
+    font-size: 0.9rem;
+  }
+
+  .dilmio-tracking-hero__subcopy {
+    display: none;
+  }
+
+  .dilmio-tracking-hero__form-shell {
+    padding: 0 1.6rem 4.8rem;
+    margin-top: 2rem;
+  }
+}
+
+/* ── Transparent header — tracking page with hero image — GOD 13.18c ─── */
+
+/* Flash color on load — matches ambient gradient top (same as HOME and collection) */
+body:has(.dilmio-tracking-page--with-hero-image) {
+  background-color: #C9BDB0;
+}
+
+@media screen and (min-width: 750px) {
+
+  /* Section wrapper slides under sticky header — targets Shopify section wrapper via schema class */
+  body:has(.dilmio-tracking-page--with-hero-image) .dilmio-tracking-page-wrap {
+    margin-top: calc(-1 * var(--header-height, 7.2rem));
+  }
+
+  /* Ambient zone: taupe gradient same as HOME + collection — covers dtp-page bg, full-width */
+  body:has(.dilmio-tracking-page--with-hero-image) .dilmio-tracking-hero--with-image {
+    background: linear-gradient(180deg, #C9BDB0 0%, #D9D2C8 35%, #EDE9E3 100%);
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: calc(var(--header-height, 7.2rem) + 2rem);
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 3.6rem;
+    box-sizing: border-box;
+  }
+
+  /* Image card stays centered and max-constrained within the ambient zone */
+  body:has(.dilmio-tracking-page--with-hero-image) .dilmio-tracking-hero__visual {
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Fully transparent header over ambient taupe — same as catalog GOD 13.10m */
+  body:has(.dilmio-tracking-page--with-hero-image) .header-wrapper {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+  }
+
+  body:has(.dilmio-tracking-page--with-hero-image) .header-wrapper--border-bottom {
+    border-bottom: none !important;
+  }
+
+  /* Logo / nav / icons: white on taupe ambient — same as catalog GOD 13.10m */
+  body:has(.dilmio-tracking-page--with-hero-image) .header__heading-link,
+  body:has(.dilmio-tracking-page--with-hero-image) .header__menu-item,
+  body:has(.dilmio-tracking-page--with-hero-image) .header__icon,
+  body:has(.dilmio-tracking-page--with-hero-image) .header__heading {
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  body:has(.dilmio-tracking-page--with-hero-image) .header__icon svg {
+    fill: currentColor !important;
+  }
+
+  /* Restore solid header + natural colors on scroll */
+  body:has(.dilmio-tracking-page--with-hero-image) .section-header.scrolled-past-header .header-wrapper {
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: var(--dilmio-shadow-header) !important;
+    border-bottom: none !important;
+  }
+
+  body:has(.dilmio-tracking-page--with-hero-image) .section-header.scrolled-past-header .header__heading-link,
+  body:has(.dilmio-tracking-page--with-hero-image) .section-header.scrolled-past-header .header__menu-item,
+  body:has(.dilmio-tracking-page--with-hero-image) .section-header.scrolled-past-header .header__icon,
+  body:has(.dilmio-tracking-page--with-hero-image) .section-header.scrolled-past-header .header__heading {
+    color: unset !important;
   }
 }
