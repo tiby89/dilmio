@@ -13,6 +13,21 @@
     {%- endif -%}
   </header>
 
+  {%- comment -%} ── Imagen editorial en el flujo del hero (GOD 13.17c) ─── {%- endcomment -%}
+  {%- if section.settings.hero_editorial_image != blank -%}
+    <div class="dilmio-tracking-hero__media">
+      {{
+        section.settings.hero_editorial_image
+        | image_url: width: 1440
+        | image_tag:
+          class: 'dilmio-tracking-hero__image',
+          loading: 'eager',
+          widths: '375, 750, 990, 1440',
+          sizes: '(min-width: 990px) 720px, 100vw'
+      }}
+    </div>
+  {%- endif -%}
+
   {%- comment -%} ── Formulario → /apps/17TRACK?nums=VALOR ─────────────── {%- endcomment -%}
   <div class="dtp-form-wrapper">
     <div class="dtp-form-card">
@@ -192,6 +207,13 @@
       "id": "form_note",
       "label": "Nota del formulario",
       "default": "Lo encontrarás en tu email de confirmación de envío."
+    },
+
+    { "type": "header", "content": "Imagen editorial" },
+    {
+      "type": "image_picker",
+      "id": "hero_editorial_image",
+      "label": "Imagen editorial bajo el formulario"
     },
 
     { "type": "header", "content": "Bloque editorial" },
