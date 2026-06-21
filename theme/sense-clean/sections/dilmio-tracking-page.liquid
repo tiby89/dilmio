@@ -1,0 +1,331 @@
+{{ 'dilmio-tracking.css' | asset_url | stylesheet_tag }}
+
+<div class="dtp-page">
+
+  {%- comment -%} ── Hero ──────────────────────────────────────────────── {%- endcomment -%}
+  <header class="dtp-hero">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="dtp-eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h1 class="dtp-title">{{ section.settings.heading | escape }}</h1>
+    {%- if section.settings.text != blank -%}
+      <p class="dtp-subcopy">{{ section.settings.text }}</p>
+    {%- endif -%}
+  </header>
+
+  {%- comment -%} ── Formulario → /apps/17TRACK?nums=VALOR ─────────────── {%- endcomment -%}
+  <div class="dtp-form-wrapper">
+    <div class="dtp-form-card">
+      <form
+        method="get"
+        action="/apps/17TRACK"
+        class="dtp-form"
+        role="search"
+        aria-label="{{ section.settings.input_label | escape }}"
+      >
+        <label for="dtp-tracking-input" class="dtp-form-label">{{ section.settings.input_label }}</label>
+        <div class="dtp-form__row">
+          <input
+            type="text"
+            name="nums"
+            id="dtp-tracking-input"
+            class="dtp-input"
+            placeholder="{{ section.settings.input_placeholder | escape }}"
+            required
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="submit" class="dtp-btn">{{ section.settings.button_label }}</button>
+        </div>
+        {%- if section.settings.form_note != blank -%}
+          <p class="dtp-form-hint">{{ section.settings.form_note }}</p>
+        {%- endif -%}
+      </form>
+    </div>
+  </div>
+
+  {%- comment -%} ── Editorial supply chain story ──────────────────────── {%- endcomment -%}
+  <section class="dtp-story" aria-label="{{ section.settings.story_heading | escape }}">
+    <div class="dtp-story__inner">
+
+      <div class="dtp-story__content">
+        {%- if section.settings.story_eyebrow != blank -%}
+          <p class="dtp-eyebrow">{{ section.settings.story_eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="dtp-story__heading">{{ section.settings.story_heading | escape }}</h2>
+        {%- if section.settings.story_text != blank -%}
+          <p class="dtp-story__body">{{ section.settings.story_text }}</p>
+        {%- endif -%}
+        <ol class="dtp-steps" aria-label="Etapas del envío">
+          <li class="dtp-steps__step">
+            <span class="dtp-steps__num" aria-hidden="true">01</span>
+            <span class="dtp-steps__label">{{ section.settings.step_1_label }}</span>
+          </li>
+          <li class="dtp-steps__step">
+            <span class="dtp-steps__num" aria-hidden="true">02</span>
+            <span class="dtp-steps__label">{{ section.settings.step_2_label }}</span>
+          </li>
+          <li class="dtp-steps__step">
+            <span class="dtp-steps__num" aria-hidden="true">03</span>
+            <span class="dtp-steps__label">{{ section.settings.step_3_label }}</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="dtp-story__media">
+        <div class="dtp-story__video-frame">
+          {%- if section.settings.video_url != blank -%}
+            <video
+              class="dtp-story__video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="none"
+              aria-hidden="true"
+              {%- if section.settings.video_poster != blank -%}
+                poster="{{ section.settings.video_poster | image_url: width: 1200 }}"
+              {%- endif -%}
+            >
+              <source src="{{ section.settings.video_url }}" type="video/mp4">
+            </video>
+          {%- endif -%}
+          <div class="dtp-story__video-placeholder" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {%- if section.settings.placeholder_text != blank -%}
+              <p class="dtp-story__placeholder-label">{{ section.settings.placeholder_text }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  {%- comment -%} ── FAQ corta ─────────────────────────────────────────── {%- endcomment -%}
+  <section class="dtp-faq" aria-label="{{ section.settings.faq_heading | escape }}">
+    <div class="dtp-faq__inner">
+      <h2 class="dtp-faq__heading">{{ section.settings.faq_heading | escape }}</h2>
+
+      <details class="dtp-faq__item">
+        <summary class="dtp-faq__question">{{ section.settings.faq_1_question }}</summary>
+        <p class="dtp-faq__answer">{{ section.settings.faq_1_answer }}</p>
+      </details>
+      <details class="dtp-faq__item">
+        <summary class="dtp-faq__question">{{ section.settings.faq_2_question }}</summary>
+        <p class="dtp-faq__answer">{{ section.settings.faq_2_answer }}</p>
+      </details>
+      <details class="dtp-faq__item">
+        <summary class="dtp-faq__question">{{ section.settings.faq_3_question }}</summary>
+        <p class="dtp-faq__answer">{{ section.settings.faq_3_answer }}</p>
+      </details>
+      <details class="dtp-faq__item">
+        <summary class="dtp-faq__question">{{ section.settings.faq_4_question }}</summary>
+        <p class="dtp-faq__answer">{{ section.settings.faq_4_answer }}</p>
+      </details>
+
+      {%- if section.settings.help_link_url != blank -%}
+        <div class="dtp-faq__help">
+          {%- if section.settings.help_text != blank -%}
+            <p class="dtp-faq__help-text">{{ section.settings.help_text }}</p>
+          {%- endif -%}
+          <a href="{{ section.settings.help_link_url }}" class="dtp-faq__help-link">
+            {{- section.settings.help_link_label -}}
+          </a>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Tracking — Página premium",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "SEGUIMIENTO DILMIO"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título principal",
+      "default": "Seguimiento de pedido"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Subtítulo",
+      "default": "Introduce tu número de seguimiento para consultar el estado de tu envío."
+    },
+
+    { "type": "header", "content": "Formulario" },
+    {
+      "type": "text",
+      "id": "input_label",
+      "label": "Label del input",
+      "default": "Número de seguimiento"
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Placeholder del input",
+      "default": "Ej: LP123456789ES"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Rastrear pedido"
+    },
+    {
+      "type": "text",
+      "id": "form_note",
+      "label": "Nota del formulario",
+      "default": "Lo encontrarás en tu email de confirmación de envío."
+    },
+
+    { "type": "header", "content": "Bloque editorial" },
+    {
+      "type": "text",
+      "id": "story_eyebrow",
+      "label": "Eyebrow del bloque",
+      "default": "DEL ALMACÉN A TU CASA"
+    },
+    {
+      "type": "text",
+      "id": "story_heading",
+      "label": "Título del bloque",
+      "default": "Cada pedido, preparado con cuidado"
+    },
+    {
+      "type": "textarea",
+      "id": "story_text",
+      "label": "Texto del bloque",
+      "default": "Preparamos cada pedido con seguimiento para que puedas consultar su estado en todo momento."
+    },
+    {
+      "type": "text",
+      "id": "step_1_label",
+      "label": "Paso 1",
+      "default": "Pedido preparado"
+    },
+    {
+      "type": "text",
+      "id": "step_2_label",
+      "label": "Paso 2",
+      "default": "Envío actualizado"
+    },
+    {
+      "type": "text",
+      "id": "step_3_label",
+      "label": "Paso 3",
+      "default": "Entrega en casa"
+    },
+
+    { "type": "header", "content": "Vídeo" },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "URL del vídeo (MP4 directo, opcional)",
+      "info": "Déjalo vacío para mostrar el placeholder premium. Rellénalo con una URL directa de MP4 para activar el vídeo."
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Poster del vídeo (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Texto del placeholder",
+      "default": "Vídeo próximamente"
+    },
+
+    { "type": "header", "content": "FAQ" },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "Título de la FAQ",
+      "default": "Preguntas frecuentes"
+    },
+    {
+      "type": "text",
+      "id": "faq_1_question",
+      "label": "Pregunta 1",
+      "default": "¿Dónde encuentro mi número de seguimiento?"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_1_answer",
+      "label": "Respuesta 1",
+      "default": "En el email de confirmación de envío que te enviamos cuando tu pedido sale del almacén."
+    },
+    {
+      "type": "text",
+      "id": "faq_2_question",
+      "label": "Pregunta 2",
+      "default": "¿Cuánto tarda en activarse el seguimiento?"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_2_answer",
+      "label": "Respuesta 2",
+      "default": "Puede tardar entre 24 y 72 horas en activarse. Es completamente normal durante los primeros días después de tu pedido."
+    },
+    {
+      "type": "text",
+      "id": "faq_3_question",
+      "label": "Pregunta 3",
+      "default": "¿Necesito una cuenta para consultar mi seguimiento?"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_3_answer",
+      "label": "Respuesta 3",
+      "default": "No. Solo necesitas tu número de seguimiento, sin crear ninguna cuenta."
+    },
+    {
+      "type": "text",
+      "id": "faq_4_question",
+      "label": "Pregunta 4",
+      "default": "¿Necesitas ayuda con tu pedido?"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_4_answer",
+      "label": "Respuesta 4",
+      "default": "Escríbenos y revisamos tu pedido en el menor tiempo posible."
+    },
+
+    { "type": "header", "content": "CTA de ayuda" },
+    {
+      "type": "text",
+      "id": "help_text",
+      "label": "Texto de ayuda",
+      "default": "¿Todavía tienes dudas?"
+    },
+    {
+      "type": "text",
+      "id": "help_link_label",
+      "label": "Texto del enlace",
+      "default": "Contactar con soporte →"
+    },
+    {
+      "type": "text",
+      "id": "help_link_url",
+      "label": "URL del enlace de ayuda",
+      "default": "/pages/contacto"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,401 @@
+/* ═══════════════════════════════════════════════════════════════════
+   dilmio-tracking.css — Tracking page premium
+   GOD 13.15 — /pages/order-tracking con formulario DILMIO propio
+   Redirige a /apps/17TRACK?nums=VALOR al submit.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Page wrapper ─────────────────────────────────────────────────── */
+.dtp-page {
+  background: var(--dilmio-bg);
+}
+
+/* ── Eyebrow compartido ───────────────────────────────────────────── */
+.dtp-eyebrow {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dilmio-text-muted);
+  margin: 0 0 1.4rem;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────── */
+.dtp-hero {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 5.6rem 2rem 4rem;
+}
+
+.dtp-title {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: clamp(2.6rem, 4vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: var(--dilmio-text);
+  margin: 0 0 1.4rem;
+}
+
+.dtp-subcopy {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--dilmio-text-body);
+  margin: 0;
+}
+
+/* ── Form card ────────────────────────────────────────────────────── */
+.dtp-form-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem 5.6rem;
+}
+
+.dtp-form-card {
+  background: var(--dilmio-surface);
+  border: 1px solid var(--dilmio-border-light);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(17, 17, 17, 0.06), 0 16px 40px rgba(17, 17, 17, 0.08);
+  padding: 3.2rem 3.6rem;
+  width: 100%;
+  max-width: 560px;
+}
+
+.dtp-form-label {
+  display: block;
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dilmio-text);
+  letter-spacing: -0.01em;
+  margin: 0 0 1.2rem;
+}
+
+.dtp-form__row {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.dtp-input {
+  flex: 1;
+  height: 5rem;
+  padding: 0 1.6rem;
+  border: 1.5px solid var(--dilmio-border);
+  border-radius: 10px;
+  background: #fff;
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.5rem;
+  color: var(--dilmio-text);
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  min-width: 0;
+}
+
+.dtp-input::placeholder {
+  color: var(--dilmio-text-faint);
+}
+
+.dtp-input:focus {
+  border-color: var(--dilmio-text);
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08);
+}
+
+.dtp-btn {
+  flex-shrink: 0;
+  height: 5rem;
+  padding: 0 2.4rem;
+  background: var(--dilmio-text);
+  color: var(--dilmio-bg);
+  border: none;
+  border-radius: 10px;
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.18s ease;
+  white-space: nowrap;
+}
+
+.dtp-btn:hover {
+  background: var(--dilmio-text-body);
+}
+
+.dtp-form-hint {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.2rem;
+  color: var(--dilmio-text-muted);
+  margin: 1.2rem 0 0;
+  line-height: 1.5;
+}
+
+/* ── Editorial story ──────────────────────────────────────────────── */
+.dtp-story {
+  background: var(--dilmio-surface-soft);
+  padding: 6.4rem 2rem;
+}
+
+.dtp-story__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 45fr 55fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.dtp-story__heading {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: clamp(2.4rem, 3vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--dilmio-text);
+  margin: 0 0 1.8rem;
+}
+
+.dtp-story__body {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.5rem;
+  line-height: 1.65;
+  color: var(--dilmio-text-body);
+  margin: 0 0 3.2rem;
+  max-width: 38ch;
+}
+
+/* Steps */
+.dtp-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dtp-steps__step {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--dilmio-border-faint);
+}
+
+.dtp-steps__step:last-child {
+  border-bottom: 1px solid var(--dilmio-border-faint);
+}
+
+.dtp-steps__num {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--dilmio-text-faint);
+  min-width: 2.4rem;
+  flex-shrink: 0;
+}
+
+.dtp-steps__label {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dilmio-text);
+}
+
+/* Video frame */
+.dtp-story__media {
+  display: flex;
+  align-items: stretch;
+}
+
+.dtp-story__video-frame {
+  position: relative;
+  width: 100%;
+  background: #0d0d0d;
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.14), 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+
+/* z-index 2: cuando el vídeo carga y reproduce, cubre el placeholder */
+.dtp-story__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+
+/* z-index 1: visible a través del vídeo transparente cuando el src da 404 */
+.dtp-story__video-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.dtp-story__placeholder-label {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* ── FAQ ──────────────────────────────────────────────────────────── */
+.dtp-faq {
+  background: var(--dilmio-bg);
+  padding: 6.4rem 2rem 8rem;
+}
+
+.dtp-faq__inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.dtp-faq__heading {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: clamp(2rem, 2.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--dilmio-text);
+  margin: 0 0 3.2rem;
+  text-align: center;
+}
+
+.dtp-faq__item {
+  border-top: 1px solid var(--dilmio-border-faint);
+}
+
+.dtp-faq__item:last-child {
+  border-bottom: 1px solid var(--dilmio-border-faint);
+}
+
+.dtp-faq__question {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dilmio-text);
+  padding: 1.8rem 3.2rem 1.8rem 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+}
+
+.dtp-faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.dtp-faq__question::after {
+  content: '+';
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--dilmio-text-muted);
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+  line-height: 1;
+}
+
+.dtp-faq__item[open] .dtp-faq__question::after {
+  transform: rotate(45deg);
+}
+
+.dtp-faq__answer {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.5rem;
+  line-height: 1.65;
+  color: var(--dilmio-text-body);
+  padding: 0 3.2rem 1.8rem 0;
+  margin: 0;
+}
+
+.dtp-faq__link {
+  color: var(--dilmio-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Help CTA (debajo del FAQ) ────────────────────────────────────── */
+.dtp-faq__help {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  padding: 2.4rem 0 0;
+  margin-top: 1.6rem;
+  border-top: 1px solid var(--dilmio-border-faint);
+  flex-wrap: wrap;
+}
+
+.dtp-faq__help-text {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.5rem;
+  color: var(--dilmio-text-body);
+  margin: 0;
+}
+
+.dtp-faq__help-link {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--dilmio-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 749px) {
+  .dtp-hero {
+    padding: 4rem 1.6rem 3.2rem;
+  }
+
+  .dtp-form-wrapper {
+    padding: 0 1.6rem 4.8rem;
+  }
+
+  .dtp-form-card {
+    padding: 2.4rem 2rem;
+    border-radius: 14px;
+  }
+
+  .dtp-form__row {
+    flex-direction: column;
+  }
+
+  .dtp-btn {
+    width: 100%;
+  }
+
+  .dtp-story {
+    padding: 4.8rem 1.6rem;
+  }
+
+  .dtp-story__inner {
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+  }
+
+  .dtp-story__body {
+    max-width: none;
+  }
+
+  .dtp-story__video-frame {
+    border-radius: 12px;
+  }
+
+  .dtp-faq {
+    padding: 4.8rem 1.6rem 6.4rem;
+  }
+}
