@@ -54,13 +54,22 @@
 }
 
 .dtp-form-card {
-  background: var(--dilmio-surface);
+  background: var(--dilmio-cream, #FDFBF7);
   border: 1px solid var(--dilmio-border-light);
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(17, 17, 17, 0.06), 0 16px 40px rgba(17, 17, 17, 0.08);
-  padding: 3.2rem 3.6rem;
+  box-shadow: 0 1px 4px rgba(17, 17, 17, 0.04), 0 6px 20px rgba(28, 36, 18, 0.06);
+  padding: 4rem 3.6rem;
   width: 100%;
   max-width: 560px;
+}
+
+.dtp-form-card__title {
+  font-family: var(--dilmio-font, "DM Sans", sans-serif);
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--dilmio-text);
+  margin: 0 0 1.8rem;
 }
 
 .dtp-form-label {
@@ -70,7 +79,7 @@
   font-weight: 700;
   color: var(--dilmio-text);
   letter-spacing: -0.01em;
-  margin: 0 0 1.2rem;
+  margin: 0 0 1.4rem;
 }
 
 .dtp-form__row {
@@ -81,10 +90,10 @@
 
 .dtp-input {
   flex: 1;
-  height: 5rem;
+  height: 5.4rem;
   padding: 0 1.6rem;
   border: 1.5px solid var(--dilmio-border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: #fff;
   font-family: var(--dilmio-font, "DM Sans", sans-serif);
   font-size: 1.5rem;
@@ -105,12 +114,12 @@
 
 .dtp-btn {
   flex-shrink: 0;
-  height: 5rem;
-  padding: 0 2.4rem;
+  height: 5.4rem;
+  padding: 0 2.8rem;
   background: var(--dilmio-text);
   color: var(--dilmio-bg);
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-family: var(--dilmio-font, "DM Sans", sans-serif);
   font-size: 1.4rem;
   font-weight: 700;
@@ -128,7 +137,7 @@
   font-family: var(--dilmio-font, "DM Sans", sans-serif);
   font-size: 1.2rem;
   color: var(--dilmio-text-muted);
-  margin: 1.2rem 0 0;
+  margin: 1.6rem 0 0;
   line-height: 1.5;
 }
 
@@ -431,7 +440,7 @@
 }
 
 .dilmio-tracking-hero__form-shell .dtp-form-card {
-  max-width: 620px;
+  max-width: 74rem;
 }
 
 /* ── Responsive ───────────────────────────────────────────────────── */
@@ -445,7 +454,7 @@
   }
 
   .dtp-form-card {
-    padding: 2.4rem 2rem;
+    padding: 3rem 2rem;
     border-radius: 14px;
   }
 
@@ -545,6 +554,11 @@ body:has(.dilmio-tracking-page--with-hero-image) {
     padding-right: 4%;
     padding-bottom: 3.6rem;
     box-sizing: border-box;
+  }
+
+  /* Card-lift: form overlaps image bottom — integrated hero feel */
+  body:has(.dilmio-tracking-page--with-hero-image) .dilmio-tracking-hero__form-shell {
+    margin-top: -2rem;
   }
 
   /* Image card stays centered and max-constrained within the ambient zone */
