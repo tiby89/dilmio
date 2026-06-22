@@ -479,17 +479,24 @@
     padding: 4.8rem 1.6rem 6.4rem;
   }
 
+  /* GOD 13.21b — mobile full-bleed: imagen de borde a borde, sin card */
   .dilmio-tracking-hero--with-image {
-    padding: 2rem 1.6rem 0;
+    padding: 0;
+    max-width: none;
   }
 
   .dilmio-tracking-hero__visual {
-    aspect-ratio: 4 / 3;
-    border-radius: 1.4rem;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    border-radius: 0;
+    box-shadow: none;
+    aspect-ratio: auto;
+    min-height: 58svh;
   }
 
   .dilmio-tracking-hero__content {
-    padding: 2rem 2rem;
+    padding: 2rem 2.4rem;
   }
 
   .dilmio-tracking-hero__content .dtp-eyebrow {
@@ -502,7 +509,7 @@
 
   .dilmio-tracking-hero__form-shell {
     padding: 0 1.6rem 4.8rem;
-    margin-top: 2rem;
+    margin-top: 2.4rem;
   }
 }
 
