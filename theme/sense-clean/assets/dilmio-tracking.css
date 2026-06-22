@@ -202,6 +202,11 @@
   color: var(--dilmio-text);
 }
 
+/* Single-column fallback when only story text or only video panel is active */
+.dtp-story__inner--single {
+  grid-template-columns: 1fr;
+}
+
 /* Story media block — GOD 13.18 (video › image › placeholder) */
 .dilmio-tracking-story__media {
   position: relative;
@@ -515,9 +520,9 @@ body:has(.dilmio-tracking-page--with-hero-image) {
     margin-top: calc(-1 * var(--header-height, 7.2rem));
   }
 
-  /* Ambient zone: taupe gradient same as HOME + collection — covers dtp-page bg, full-width */
+  /* Ambient zone: taupe→cream gradient — ends at page cream so there's no visible band below the form */
   body:has(.dilmio-tracking-page--with-hero-image) .dilmio-tracking-hero--with-image {
-    background: linear-gradient(180deg, #C9BDB0 0%, #D9D2C8 35%, #EDE9E3 100%);
+    background: linear-gradient(180deg, #C9BDB0 0%, #D9D2C8 35%, var(--dilmio-cream-bg) 100%);
     max-width: 100%;
     width: 100%;
     margin-left: 0;
