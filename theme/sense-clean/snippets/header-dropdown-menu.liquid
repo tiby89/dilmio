@@ -80,16 +80,25 @@
             </details>
           </header-menu>
         {%- else -%}
+          {%- liquid
+            assign is_current = link.current
+            unless is_current
+              assign _link_norm = link.url | remove: 'https://' | remove: 'http://' | remove: shop.domain | remove: shop.permanent_domain
+              if _link_norm == request.path
+                assign is_current = true
+              endif
+            endunless
+          -%}
           <a
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
             class="header__menu-item list-menu__item link link--text focus-inset"
-            {% if link.current %}
+            {% if is_current %}
               aria-current="page"
             {% endif %}
           >
             <span
-              {%- if link.current %}
+              {%- if is_current %}
                 class="header__active-menu-item"
               {% endif %}
             >

@@ -576,4 +576,5 @@ body:has(.dilmio-tracking-page--with-hero-image) {
   body:has(.dilmio-tracking-page--with-hero-image) .section-header.scrolled-past-header .header__heading {
     color: unset !important;
   }
+
 }
