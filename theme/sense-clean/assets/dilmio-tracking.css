@@ -54,7 +54,7 @@
 }
 
 .dtp-form-card {
-  background: var(--dilmio-cream, #FDFBF7);
+  background: var(--dilmio-form-card-bg);
   border: 1px solid var(--dilmio-border-light);
   border-radius: 16px;
   box-shadow: 0 1px 4px rgba(17, 17, 17, 0.04), 0 6px 20px rgba(28, 36, 18, 0.06);
@@ -77,7 +77,7 @@
   font-family: var(--dilmio-font, "DM Sans", sans-serif);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--dilmio-text);
+  color: var(--dilmio-label-text);
   letter-spacing: -0.01em;
   margin: 0 0 1.4rem;
 }
@@ -108,8 +108,8 @@
 }
 
 .dtp-input:focus {
-  border-color: var(--dilmio-text);
-  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08);
+  border-color: var(--dilmio-input-border-focus);
+  box-shadow: var(--dilmio-input-shadow-focus);
 }
 
 .dtp-btn {
@@ -136,7 +136,7 @@
 .dtp-form-hint {
   font-family: var(--dilmio-font, "DM Sans", sans-serif);
   font-size: 1.2rem;
-  color: var(--dilmio-text-muted);
+  color: var(--dilmio-label-muted);
   margin: 1.6rem 0 0;
   line-height: 1.5;
 }

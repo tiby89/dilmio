@@ -5,15 +5,15 @@
    ============================================= */
 
 .dilmio-brand-home {
-  --dbh-olive: var(--dilmio-green);
-  --dbh-olive-hover: var(--dilmio-green-hover);
+  --dbh-olive: var(--dilmio-button-primary-bg);
+  --dbh-olive-hover: var(--dilmio-button-primary-hover-bg);
   --dbh-cream: var(--dilmio-cream-bg);
-  --dbh-white: #FFFFFF;
+  --dbh-white: var(--dilmio-button-ghost-text);
   --dbh-text: var(--dilmio-text);
   --dbh-text-muted: var(--dilmio-text-muted);
   --dbh-border: var(--dilmio-primary-border, #E8E4DC);
   --dbh-bg-rgb: var(--dilmio-bg-rgb, 250, 249, 246);
-  --dbh-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  --dbh-shadow: var(--dilmio-shadow-xs);
   --dbh-shadow-hover: var(--dilmio-shadow-card-hover);
   --dbh-radius: var(--dilmio-radius-card);
   --dbh-radius-lg: var(--dilmio-radius-xl);

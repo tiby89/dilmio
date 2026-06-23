@@ -494,8 +494,8 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
     padding: 1.35rem 2.4rem !important;
     border-radius: 999px !important;
     border: 0 !important;
-    background: var(--dilmio-action-bg) !important;
-    color: #fff !important;
+    background: var(--dilmio-button-primary-bg) !important;
+    color: var(--dilmio-button-primary-text) !important;
     box-shadow: 0 1.2rem 3rem rgba(0,0,0,.28) !important;
     font-size: 1.4rem !important;
     font-weight: 700 !important;
@@ -509,14 +509,14 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
 
   .dilmio-floating-filter-button .svg-wrapper,
   .dilmio-floating-filter-button svg {
-    color: #fff !important;
+    color: var(--dilmio-button-primary-text) !important;
     flex-shrink: 0 !important;
     width: 2rem !important;
   }
 
   .dilmio-floating-filter-button svg line,
   .dilmio-floating-filter-button svg circle {
-    stroke: #fff !important;
+    stroke: var(--dilmio-button-primary-text) !important;
   }
 
   /* 5. Botón X propio DILMIO: fuera del details, siempre en DOM */
@@ -529,7 +529,7 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
     height: 4.8rem !important;
     border-radius: 999px !important;
     border: 0 !important;
-    background: #fff !important;
+    background: var(--dilmio-surface) !important;
     color: var(--dilmio-text) !important;
     z-index: 180 !important;
     display: none !important;
@@ -642,8 +642,8 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
     padding: 1.35rem 2.4rem !important;
     border-radius: 999px !important;
     border: 0 !important;
-    background: var(--dilmio-action-bg) !important;
-    color: #fff !important;
+    background: var(--dilmio-button-primary-bg) !important;
+    color: var(--dilmio-button-primary-text) !important;
     box-shadow: 0 1.2rem 3rem rgba(0,0,0,.28) !important;
     font-size: 1.4rem !important;
     font-weight: 700 !important;
@@ -666,14 +666,14 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
   /* SVG del botón DILMIO */
   .dilmio-floating-filter-button .svg-wrapper,
   .dilmio-floating-filter-button svg {
-    color: #fff !important;
+    color: var(--dilmio-button-primary-text) !important;
     flex-shrink: 0 !important;
     width: 2rem !important;
   }
 
   .dilmio-floating-filter-button svg line,
   .dilmio-floating-filter-button svg circle {
-    stroke: #fff !important;
+    stroke: var(--dilmio-button-primary-text) !important;
   }
 
   /* Botón X: estilos globales definitivos */
@@ -686,7 +686,7 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
     height: 4.8rem !important;
     border-radius: 999px !important;
     border: 0 !important;
-    background: #fff !important;
+    background: var(--dilmio-surface) !important;
     color: var(--dilmio-text) !important;
     z-index: 2147483001 !important;
     display: none !important;

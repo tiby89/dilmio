@@ -99,8 +99,8 @@
 
 /* ── Card formulario ──────────────────────────────── */
 .dilmio-contact__form-card {
-  background: var(--dilmio-surface-card);
-  border: 1.5px solid var(--dilmio-border-light);
+  background: var(--dilmio-form-card-bg);
+  border: 1.5px solid var(--dilmio-form-card-border);
   border-radius: var(--dilmio-radius-lg);
   box-shadow: var(--dilmio-shadow-sm);
   padding: 3.2rem 3.2rem 3.6rem;
@@ -150,8 +150,8 @@
 
 .dilmio-contact__form .field__input:focus,
 .dilmio-contact__form .text-area:focus {
-  border-color: var(--dilmio-text);
-  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
+  border-color: var(--dilmio-input-border-focus);
+  box-shadow: var(--dilmio-input-shadow-focus);
   background: var(--dilmio-surface-card);
 }
 
@@ -203,7 +203,7 @@
   width: 100%;
   padding: 1.5rem 2.4rem;
   background: var(--dilmio-green-ink);
-  color: #fff;
+  color: var(--dilmio-button-primary-text);
   border: none;
   border-radius: var(--dilmio-radius-btn);
   font-size: 1.5rem;

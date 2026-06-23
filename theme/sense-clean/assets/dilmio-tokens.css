@@ -219,4 +219,60 @@ input[type='submit'] {
   --dilmio-ambient-overlay-dark: rgba(0, 0, 0, 0.62);  /* overlay oscuro — zona de texto en hero */
   --dilmio-ambient-overlay-soft: rgba(0, 0, 0, 0.18);  /* overlay suave — fade-in superior */
 
+  /* ── Tokens semánticos de botones (GOD 14.2) ─────────────
+     Aliases sobre primitivos de acción. Skins pueden sobrescribir.
+     ──────────────────────────────────────────────────────── */
+  --dilmio-button-primary-bg:              var(--dilmio-action-bg);
+  --dilmio-button-primary-text:            #FFFFFF;
+  --dilmio-button-primary-border:          var(--dilmio-action-bg);
+  --dilmio-button-primary-hover-bg:        var(--dilmio-action-hover-bg);
+  --dilmio-button-primary-hover-text:      #FFFFFF;
+  --dilmio-button-primary-hover-border:    var(--dilmio-action-hover-bg);
+
+  --dilmio-button-secondary-bg:            transparent;
+  --dilmio-button-secondary-text:          var(--dilmio-text);
+  --dilmio-button-secondary-border:        var(--dilmio-border-strong);
+  --dilmio-button-secondary-hover-bg:      var(--dilmio-primary-tint);
+  --dilmio-button-secondary-hover-text:    var(--dilmio-text);
+  --dilmio-button-secondary-hover-border:  var(--dilmio-border-strong);
+
+  --dilmio-button-ghost-bg:                transparent;
+  --dilmio-button-ghost-text:              #FFFFFF;
+  --dilmio-button-ghost-border:            #FFFFFF;
+  --dilmio-button-ghost-hover-bg:          #FFFFFF;
+
+  --dilmio-button-success-bg:              var(--dilmio-after);
+  --dilmio-button-success-text:            #FFFFFF;
+  --dilmio-button-success-hover-bg:        var(--dilmio-after);
+
+  --dilmio-button-disabled-bg:             var(--dilmio-disabled);
+  --dilmio-button-disabled-text:           #FFFFFF;
+  --dilmio-button-disabled-border:         var(--dilmio-disabled);
+
+  --dilmio-button-focus-ring:              rgba(var(--dilmio-primary-ink-rgb), 0.18);
+  --dilmio-button-shadow:                  none;
+  --dilmio-button-shadow-hover:            0 2px 8px rgba(var(--dilmio-primary-ink-rgb), 0.14);
+
+  /* ── Tokens semánticos de inputs / formularios (GOD 14.2) ─
+     ──────────────────────────────────────────────────────── */
+  --dilmio-input-bg:                       var(--dilmio-surface);
+  --dilmio-input-text:                     var(--dilmio-text);
+  --dilmio-input-placeholder:              var(--dilmio-text-muted);
+  --dilmio-input-border:                   var(--dilmio-border);
+  --dilmio-input-border-hover:             var(--dilmio-border-strong);
+  --dilmio-input-border-focus:             var(--dilmio-primary);
+  --dilmio-input-focus-ring:               rgba(var(--dilmio-primary-ink-rgb), 0.18);
+  --dilmio-input-radius:                   8px;
+  --dilmio-input-shadow:                   none;
+  --dilmio-input-shadow-focus:             0 0 0 3px rgba(var(--dilmio-primary-ink-rgb), 0.10);
+
+  --dilmio-label-text:                     var(--dilmio-text);
+  --dilmio-label-muted:                    var(--dilmio-text-muted);
+
+  --dilmio-form-card-bg:                   var(--dilmio-surface-card);
+  --dilmio-form-card-border:               var(--dilmio-border-subtle);
+  --dilmio-form-card-radius:               var(--dilmio-radius-card);
+  --dilmio-form-card-shadow:               var(--dilmio-shadow-panel);
+  --dilmio-form-gap:                       1.6rem;
+
 }
