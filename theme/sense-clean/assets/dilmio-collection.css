@@ -494,7 +494,7 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
     padding: 1.35rem 2.4rem !important;
     border-radius: 999px !important;
     border: 0 !important;
-    background: #171717 !important;
+    background: var(--dilmio-action-bg) !important;
     color: #fff !important;
     box-shadow: 0 1.2rem 3rem rgba(0,0,0,.28) !important;
     font-size: 1.4rem !important;
@@ -530,7 +530,7 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
     border-radius: 999px !important;
     border: 0 !important;
     background: #fff !important;
-    color: #171717 !important;
+    color: var(--dilmio-text) !important;
     z-index: 180 !important;
     display: none !important;
     align-items: center !important;
@@ -642,7 +642,7 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
     padding: 1.35rem 2.4rem !important;
     border-radius: 999px !important;
     border: 0 !important;
-    background: #171717 !important;
+    background: var(--dilmio-action-bg) !important;
     color: #fff !important;
     box-shadow: 0 1.2rem 3rem rgba(0,0,0,.28) !important;
     font-size: 1.4rem !important;
@@ -687,7 +687,7 @@ body:has(#shopify-section-main-collection-product-grid) .product-grid-container 
     border-radius: 999px !important;
     border: 0 !important;
     background: #fff !important;
-    color: #171717 !important;
+    color: var(--dilmio-text) !important;
     z-index: 2147483001 !important;
     display: none !important;
     align-items: center !important;
@@ -955,14 +955,14 @@ body:has(#shopify-section-main-collection-product-grid) .dilmio-collection-hero_
 
 /* Fondo body: taupe cálido — evita flash durante carga, igual que HOME */
 body:has(.dilmio-collection-hero--has-image) {
-  background-color: #C9BDB0;
+  background-color: var(--dilmio-ambient-warm-top);
 }
 
 @media screen and (min-width: 750px) {
 
   /* Ambient wrapper: gradiente taupe→crema, mismo que .dbh-hero--has-image en HOME */
   body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
-    background: linear-gradient(180deg, #C9BDB0 0%, #D9D2C8 35%, #EDE9E3 100%) !important;
+    background: linear-gradient(180deg, var(--dilmio-ambient-warm-top) 0%, var(--dilmio-ambient-warm-mid) 35%, var(--dilmio-ambient-warm-end) 100%) !important;
     padding: calc(var(--header-height, 7.2rem) + 2rem) 4% 3.6rem;
     display: flex;
     flex-direction: column;
@@ -1088,7 +1088,7 @@ body:has(.dilmio-collection-hero--has-image) {
 
   /* Ambient gradient: termina en crema para transición limpia al grid */
   body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
-    background: linear-gradient(180deg, #C9BDB0 0%, #D9D2C8 28%, #EDE9E3 60%, var(--dilmio-cream-bg, #FAF9F6) 100%) !important;
+    background: linear-gradient(180deg, var(--dilmio-ambient-warm-top) 0%, var(--dilmio-ambient-warm-mid) 28%, var(--dilmio-ambient-warm-end) 60%, var(--dilmio-page-bg) 100%) !important;
     padding-bottom: 2.4rem;
   }
 
@@ -1256,7 +1256,7 @@ body:has(.dilmio-collection-hero--has-image) {
 /* 1. Restaurar degradado premium hero (anula el background-cream de 13.10r) */
 @media screen and (min-width: 750px) {
   body:has(.dilmio-collection-hero--has-image) .dilmio-collection-hero {
-    background: linear-gradient(180deg, #C9BDB0 0%, #D8CEC2 52%, var(--dilmio-cream-bg, #FAF9F6) 100%) !important;
+    background: linear-gradient(180deg, var(--dilmio-ambient-warm-top) 0%, var(--dilmio-ambient-warm-soft) 52%, var(--dilmio-page-bg) 100%) !important;
   }
 }
 
@@ -1375,58 +1375,67 @@ body:has(.dilmio-collection-hero--has-image) {
 }
 
 /* ═══════════════════════════════════════════════════
-   GOD 13.11 — Mobile: texto debajo de la imagen
-   Elimina el overlay oscuro/degradado en mobile.
-   La imagen ocupa la zona visual completa. Título y
-   subtítulo fluyen debajo sobre fondo crema, en negro.
+   GOD 13.22 — Mobile: overlay patrón HOME/Seguimiento
+   Revierte GOD 13.11 (texto debajo en crema).
+   Imagen hero de altura fija + texto blanco superpuesto
+   en la zona inferior, con gradiente oscuro para legibilidad.
    Desktop ≥750px: sin cambios.
    ═══════════════════════════════════════════════════ */
 
 @media screen and (max-width: 749px) {
 
-  /* Outer hero: crema limpio — anula ambient taupe de 13.10m */
+  /* Body: crema — sin ambient taupe en mobile */
+  body:has(.dilmio-collection-hero--has-image) {
+    background-color: var(--dilmio-cream-bg, #FAF9F6);
+  }
+
+  /* Outer hero: crema limpio */
   .dilmio-collection-hero--has-image {
     background: var(--dilmio-cream-bg, #FAF9F6) !important;
   }
 
-  /* Visual: altura auto sin suelo — la imagen dicta la altura */
+  /* Visual: altura fija como contenedor del overlay */
   .dilmio-collection-hero--has-image .dilmio-collection-hero__visual {
+    height: 62svh !important;
     min-height: 0 !important;
   }
 
-  /* Imagen: más alta que el min-height anterior (58svh) para compensar
-     el espacio que antes ocupaba el overlay oscuro superpuesto */
+  /* Imagen: position absolute fill del visual */
   .dilmio-collection-hero--has-image .dilmio-collection-hero__img {
-    height: 60svh;
+    position: absolute !important;
+    inset: 0 !important;
+    height: 100% !important;
   }
 
-  /* Content: sale del absolute overlay, fluye bajo la imagen */
+  /* Content: overlay absoluto, flex bottom, gradiente oscuro */
   .dilmio-collection-hero--has-image .dilmio-collection-hero__content {
-    position: relative !important;
-    inset: auto !important;
-    z-index: auto !important;
-    background: none !important;
-    background-color: var(--dilmio-cream-bg, #FAF9F6) !important;
-    padding: 1.2rem 2.4rem 2rem !important;
-    justify-content: flex-start !important;
-    border-bottom: 1px solid var(--dilmio-border-light, #E8E4DC) !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0) 22%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.38) 28%, rgba(0, 0, 0, 0) 58%) !important;
+    background-color: transparent !important;
+    padding: 2.4rem 2.8rem 3.6rem !important;
+    justify-content: flex-end !important;
+    border-bottom: none !important;
   }
 
-  /* H1: negro sobre crema, editorial, sin sombra */
+  /* H1: blanco sobre imagen */
   .dilmio-collection-hero--has-image .dilmio-collection-hero__heading {
-    color: var(--dilmio-text, #1A1A1A) !important;
-    font-size: clamp(2.4rem, 6.5vw, 3.2rem) !important;
+    color: #FFFFFF !important;
+    font-size: clamp(3.2rem, 8vw, 4.4rem) !important;
     font-weight: 800 !important;
     letter-spacing: -0.04em !important;
     line-height: 1.05 !important;
     text-shadow: none !important;
-    margin: 0 0 0.5rem !important;
+    margin: 0 0 0.6rem !important;
   }
 
-  /* Subtítulo: compacto y legible, sin sombra */
+  /* Subtítulo: blanco semitransparente */
   .dilmio-collection-hero--has-image .dilmio-collection-hero__subtext {
-    color: var(--dilmio-text-subtle, #666) !important;
-    font-size: 1.3rem !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+    font-size: 1.35rem !important;
     line-height: 1.55 !important;
     max-width: 32rem !important;
     text-shadow: none !important;

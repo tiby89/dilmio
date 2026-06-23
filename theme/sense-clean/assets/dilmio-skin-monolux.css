@@ -72,6 +72,15 @@
   --dilmio-radius-xl:     12px;
 
   --dilmio-section-spacing: 6rem;
+
+  /* ── Ambient tokens — GOD 14.1
+     Monolux hereda el taupe cálido del default (compatible con
+     monocromo grafito+crema). Declarados explícitamente aquí
+     para que otras skins puedan diferenciar su carácter ambient. */
+  --dilmio-ambient-warm-top:     #C9BDB0;
+  --dilmio-ambient-warm-mid:     #D9D2C8;
+  --dilmio-ambient-warm-soft:    #D8CEC2;
+  --dilmio-ambient-warm-end:     #EDE9E3;
 }
 
 /* ╔═══ [2] PUENTE SHOPIFY — 5 schemes con INTENCIÓN VISUAL ═══╗

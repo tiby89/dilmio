@@ -207,4 +207,16 @@ input[type='submit'] {
   --dilmio-transition-fast:        150ms ease;
   --dilmio-transition-normal:      200ms ease;
 
+  /* ── Tokens ambiente cálido (GOD 14.1) ──────────────────
+     Gradiente taupe→crema compartido por Home, Colección y
+     Tracking. Cambiar aquí afecta el flash de carga del body
+     y los gradientes ambientales de las tres páginas con hero.
+     ──────────────────────────────────────────────────────── */
+  --dilmio-ambient-warm-top:     #C9BDB0;  /* taupe cálido — flash body + stop 0% */
+  --dilmio-ambient-warm-mid:     #D9D2C8;  /* lino cálido — stop intermedio estándar */
+  --dilmio-ambient-warm-soft:    #D8CEC2;  /* mid alternativo — stop ~50% */
+  --dilmio-ambient-warm-end:     #EDE9E3;  /* casi-blanco cálido — stop final sin page-bg */
+  --dilmio-ambient-overlay-dark: rgba(0, 0, 0, 0.62);  /* overlay oscuro — zona de texto en hero */
+  --dilmio-ambient-overlay-soft: rgba(0, 0, 0, 0.18);  /* overlay suave — fade-in superior */
+
 }

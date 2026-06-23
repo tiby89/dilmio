@@ -129,7 +129,7 @@
 /* ── Variante ambient boxed (con imagen) ── */
 .dbh-hero--has-image {
   /* Fondo ambiental cálido: taupe → lino → crema — acompaña imagen y fluye hacia categorías */
-  background: linear-gradient(180deg, #C9BDB0 0%, #D9D2C8 35%, #EDE9E3 100%);
+  background: linear-gradient(180deg, var(--dilmio-ambient-warm-top) 0%, var(--dilmio-ambient-warm-mid) 35%, var(--dilmio-ambient-warm-end) 100%);
   padding: 2.4rem 4%;
   display: flex;
   align-items: stretch;
@@ -1404,7 +1404,7 @@
 
 /* Fondo body: taupe cálido durante carga de imagen — coincide con ambient superior */
 body:has(.dbh-hero--has-image) {
-  background-color: #C9BDB0;
+  background-color: var(--dilmio-ambient-warm-top);
 }
 
 /* Primera sección sube bajo el header */

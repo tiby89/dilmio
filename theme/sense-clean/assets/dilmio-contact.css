@@ -1,0 +1,348 @@
+/* ─────────────────────────────────────────────────────
+   DILMIO Contact — dilmio-contact.css
+   Cargado desde sections/dilmio-contact.liquid
+   ───────────────────────────────────────────────────── */
+
+/* ── Página wrapper ───────────────────────────────── */
+.dilmio-contact {
+  background: var(--dilmio-cream-bg);
+  min-height: 60vh;
+  padding-bottom: 6rem;
+}
+
+/* ── Hero editorial ───────────────────────────────── */
+.dilmio-contact__hero {
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.dilmio-contact__eyebrow {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dilmio-green);
+  margin-bottom: 1.2rem;
+}
+
+.dilmio-contact__title {
+  font-size: clamp(2.8rem, 6vw, 4.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--dilmio-green-ink);
+  margin: 0 0 1.4rem;
+}
+
+.dilmio-contact__subcopy {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: var(--dilmio-text-secondary);
+  max-width: 52rem;
+  margin: 0 auto 2rem;
+}
+
+/* ── WhatsApp CTA ─────────────────────────────────── */
+.dilmio-contact__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.1rem 2.2rem;
+  background: #25D366;
+  color: #fff;
+  border-radius: 10rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.18s, transform 0.15s;
+  margin-top: 0.4rem;
+}
+
+.dilmio-contact__whatsapp:hover {
+  background: #1ebe5a;
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.dilmio-contact__whatsapp-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dilmio-contact__whatsapp-icon svg {
+  fill: #fff;
+  display: block;
+}
+
+/* ── Grid principal ───────────────────────────────── */
+.dilmio-contact__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 0 2rem;
+  max-width: 108rem;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 900px) {
+  .dilmio-contact__body {
+    grid-template-columns: 1fr 36rem;
+    align-items: start;
+    gap: 3rem;
+    padding: 0 4rem;
+  }
+}
+
+/* ── Card formulario ──────────────────────────────── */
+.dilmio-contact__form-card {
+  background: var(--dilmio-surface-card);
+  border: 1.5px solid var(--dilmio-border-light);
+  border-radius: var(--dilmio-radius-lg);
+  box-shadow: var(--dilmio-shadow-sm);
+  padding: 3.2rem 3.2rem 3.6rem;
+}
+
+.dilmio-contact__form-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--dilmio-green-ink);
+  margin: 0 0 2.4rem;
+}
+
+/* Inputs refinados */
+.dilmio-contact__form .field {
+  margin-bottom: 1.6rem;
+  position: relative;
+}
+
+.dilmio-contact__form .contact__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 599px) {
+  .dilmio-contact__form .contact__fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dilmio-contact__form .field__input,
+.dilmio-contact__form .text-area {
+  width: 100%;
+  padding: 1.4rem 1.6rem;
+  border: 1.5px solid var(--dilmio-border-light);
+  border-radius: var(--dilmio-radius-md);
+  font-size: 1.5rem;
+  font-family: var(--dilmio-font);
+  color: var(--dilmio-text);
+  background: var(--dilmio-cream-bg);
+  transition: border-color 0.18s, box-shadow 0.18s;
+  outline: none;
+  appearance: none;
+}
+
+.dilmio-contact__form .field__input:focus,
+.dilmio-contact__form .text-area:focus {
+  border-color: var(--dilmio-text);
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
+  background: var(--dilmio-surface-card);
+}
+
+.dilmio-contact__form .field__input::placeholder,
+.dilmio-contact__form .text-area::placeholder {
+  color: var(--dilmio-text-muted);
+}
+
+.dilmio-contact__form .field__label {
+  position: absolute;
+  top: 50%;
+  left: 1.6rem;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--dilmio-text-muted);
+  pointer-events: none;
+  transition: all 0.15s;
+  background: transparent;
+}
+
+.dilmio-contact__form .field--textarea .field__label {
+  top: 1.6rem;
+  transform: none;
+}
+
+.dilmio-contact__form .field__input:focus + .field__label,
+.dilmio-contact__form .field__input:not(:placeholder-shown) + .field__label,
+.dilmio-contact__form .text-area:focus + .field__label,
+.dilmio-contact__form .text-area:not(:placeholder-shown) + .field__label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dilmio-text);
+  background: var(--dilmio-surface-card);
+  padding: 0 0.4rem;
+  left: 1.2rem;
+}
+
+.dilmio-contact__form .text-area {
+  resize: vertical;
+  min-height: 13rem;
+  padding-top: 1.4rem;
+}
+
+/* Botón premium */
+.dilmio-contact__submit {
+  display: block;
+  width: 100%;
+  padding: 1.5rem 2.4rem;
+  background: var(--dilmio-green-ink);
+  color: #fff;
+  border: none;
+  border-radius: var(--dilmio-radius-btn);
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: var(--dilmio-font);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.15s;
+  margin-top: 2rem;
+}
+
+.dilmio-contact__submit:hover {
+  background: var(--dilmio-green-dark);
+  transform: translateY(-1px);
+}
+
+.dilmio-contact__submit:active {
+  transform: translateY(0);
+}
+
+/* Mensaje de éxito */
+.dilmio-contact__form .form-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.4rem 1.8rem;
+  background: var(--dilmio-green-tint);
+  border: 1.5px solid var(--dilmio-green-border);
+  border-radius: var(--dilmio-radius-md);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dilmio-green);
+  margin-bottom: 2rem;
+}
+
+/* Error */
+.dilmio-contact__form .contact__field-error {
+  font-size: 1.2rem;
+  color: var(--dilmio-error);
+  margin-top: 0.4rem;
+  display: block;
+}
+
+/* ── Card de soporte ──────────────────────────────── */
+.dilmio-contact__support-card {
+  background: var(--dilmio-green-tint);
+  border: 1px solid var(--dilmio-green-border);
+  border-radius: var(--dilmio-radius-lg);
+  padding: 2.2rem 2.4rem 2.4rem;
+  position: sticky;
+  top: 10rem;
+}
+
+.dilmio-contact__support-icon {
+  width: 4.4rem;
+  height: 4.4rem;
+  background: var(--dilmio-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+}
+
+.dilmio-contact__support-icon svg {
+  width: 2rem;
+  height: 2rem;
+  fill: #fff;
+}
+
+.dilmio-contact__support-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--dilmio-green-ink);
+  margin: 0 0 0.8rem;
+}
+
+.dilmio-contact__support-text {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: var(--dilmio-text-secondary);
+  margin: 0 0 2rem;
+}
+
+.dilmio-contact__support-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.dilmio-contact__support-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--dilmio-text);
+}
+
+.dilmio-contact__support-check {
+  flex-shrink: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: var(--dilmio-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dilmio-contact__support-check svg {
+  width: 1rem;
+  height: 1rem;
+  fill: #fff;
+}
+
+/* ── Mobile tweaks ────────────────────────────────── */
+@media screen and (max-width: 749px) {
+  .dilmio-contact__hero {
+    padding: 3rem 2rem 2.4rem;
+  }
+
+  .dilmio-contact__title {
+    font-size: 2.8rem;
+  }
+
+  .dilmio-contact__subcopy {
+    font-size: 1.45rem;
+  }
+
+  .dilmio-contact__form-card {
+    padding: 2.4rem 2rem 2.8rem;
+  }
+
+  .dilmio-contact__support-card {
+    position: static;
+  }
+}

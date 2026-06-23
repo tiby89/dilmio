@@ -25,7 +25,7 @@
   max-width: 1200px;
   margin: 1rem;
   box-sizing: border-box;
-  background: #ffffff;
+  background: var(--dilmio-surface-card);
   border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 20px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.09);
@@ -40,7 +40,7 @@
     gap: 0 2rem;
     padding: 1.75rem 2rem 2rem 1.75rem;
     align-items: start;
-    background: #ffffff;
+    background: var(--dilmio-surface-card);
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 24px;
     box-shadow: 0 18px 50px rgba(26, 26, 26, 0.10);
@@ -146,7 +146,7 @@
 .dilmio-pack-btn {
   padding: 0.625rem 1.25rem;
   border: 1.5px solid var(--dilmio-border-strong);
-  background: #fff;
+  background: var(--dilmio-surface-card);
   color: var(--dilmio-text);
   cursor: pointer;
   font-size: 0.9375rem;
@@ -184,13 +184,13 @@
   border: 1.5px solid rgba(0, 0, 0, 0.10);
   min-width: 72px;
   max-width: 96px;
-  background: #fff;
+  background: var(--dilmio-surface-card);
   gap: 0;
 }
 
 .dilmio-option-btn--swatch.is-selected {
   border: 2px solid var(--dilmio-action-bg);
-  background: #fff;
+  background: var(--dilmio-surface-card);
   color: var(--dilmio-text);
 }
 
@@ -261,7 +261,7 @@
 }
 
 .dilmio-cta:hover:not(:disabled):not(.is-loading) {
-  background: #333333;
+  background: var(--dilmio-action-hover-bg);
 }
 
 .dilmio-cta:disabled {
@@ -289,7 +289,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #fff;
+  background: var(--dilmio-surface-card);
   border-top: 1px solid var(--dilmio-border);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.10), 0 -1px 0 rgba(0, 0, 0, 0.04);
   padding: 0.875rem 1rem;
