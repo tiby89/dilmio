@@ -168,6 +168,11 @@
   --dilmio-shadow-collection: var(--dilmio-shadow-card);
   --dilmio-shadow-card-hover: var(--dilmio-shadow-hover);
   --dilmio-disabled:          var(--dilmio-border-strong);
+
+  /* ── GOD 14.0 — Sombras semánticas con tinte ink de la paleta ── */
+  --dilmio-shadow-xs:         0 1px 4px rgba(17, 17, 17, 0.07);
+  --dilmio-shadow-panel:      0 4px 24px rgba(17, 17, 17, 0.08);
+  --dilmio-shadow-hero:       0 16px 56px rgba(17, 17, 17, 0.20);
 }
 
 

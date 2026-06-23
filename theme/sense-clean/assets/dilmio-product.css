@@ -168,8 +168,8 @@
 
 .dilmio-option-btn.is-selected,
 .dilmio-pack-btn.is-selected {
-  border-color: #1a1a1a;
-  background: #1a1a1a;
+  border-color: var(--dilmio-action-bg);
+  background: var(--dilmio-action-bg);
   color: #fff;
 }
 
@@ -189,7 +189,7 @@
 }
 
 .dilmio-option-btn--swatch.is-selected {
-  border: 2px solid #1a1a1a;
+  border: 2px solid var(--dilmio-action-bg);
   background: #fff;
   color: var(--dilmio-text);
 }
@@ -247,7 +247,7 @@
   width: 100%;
   padding: 1.15rem 2rem;
   min-height: 56px;
-  background: #1a1a1a;
+  background: var(--dilmio-action-bg);
   color: #fff;
   border: none;
   font-size: 1.0625rem;

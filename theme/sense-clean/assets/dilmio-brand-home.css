@@ -570,7 +570,7 @@
   background: var(--dbh-white);
   border-radius: 2.4rem;
   padding: 5.6rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  box-shadow: var(--dilmio-shadow-panel);
 }
 
 .dbh-brandstory__content {
@@ -819,7 +819,7 @@
   background: var(--dbh-white);
   border-radius: 2.4rem;
   padding: 5.6rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  box-shadow: var(--dilmio-shadow-panel);
 }
 
 .dbh-faq__heading {
@@ -950,7 +950,7 @@
     aspect-ratio: 2.55 / 1;
     min-height: 560px;
     max-height: 720px;
-    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.18);
+    box-shadow: var(--dilmio-shadow-hero);
   }
 
   /* Imagen: cubre card, punto focal centro-derecha */

@@ -129,3 +129,82 @@ input[type='submit'] {
 .caption-with-letter-spacing--large {
   letter-spacing: 0.12em;
 }
+
+/* =========================================================
+   DILMIO DESIGN SYSTEM TOKENS — GOD 14.0
+   Base primitives + capa semántica para portabilidad total.
+   Los valores aquí son los defaults del palette original.
+   Cada skin puede sobrescribir cualquiera de estas variables.
+   ========================================================= */
+
+:root {
+
+  /* ── Primitivos base (solo existen en skin activa, aquí van los defaults) ── */
+  --dilmio-primary:           #3E4A2D;
+  --dilmio-primary-hover:     #4F5E3A;
+  --dilmio-primary-dark:      #2C3520;
+  --dilmio-primary-ink:       #1C2412;
+  --dilmio-primary-ink-rgb:   28, 36, 18;
+  --dilmio-primary-tint:      #F0F4EC;
+  --dilmio-primary-border:    #E8EDE0;
+
+  --dilmio-bg:                var(--dilmio-cream-bg);
+  --dilmio-surface:           #FFFFFF;
+  --dilmio-surface-alt:       var(--dilmio-cream-section);
+  --dilmio-surface-soft:      #F3F1EC;
+
+  --dilmio-text-body:         var(--dilmio-text-secondary);
+  --dilmio-text-faint:        #AAAAAA;
+
+  --dilmio-border-faint:      var(--dilmio-border-light);
+
+  --dilmio-after-bg:          #EEF3EE;
+  --dilmio-after-border:      #CBDBCC;
+
+  --dilmio-shadow-card:       var(--dilmio-shadow-collection);
+
+  /* ── Tokens semánticos de superficie ───────────────────── */
+  --dilmio-page-bg:           var(--dilmio-bg);
+  --dilmio-surface-card:      var(--dilmio-surface);
+  --dilmio-surface-muted:     var(--dilmio-surface-alt);
+  --dilmio-border-subtle:     var(--dilmio-border-faint);
+
+  /* ── Tokens semánticos de acción (CTA, botones primarios) ─ */
+  --dilmio-action-bg:         var(--dilmio-primary);
+  --dilmio-action-text:       var(--dilmio-bg);
+  --dilmio-action-hover-bg:   var(--dilmio-primary-hover);
+
+  /* ── Tokens semánticos de éxito / feedback ─────────────── */
+  --dilmio-success-bg:        var(--dilmio-after-bg);
+  --dilmio-success-text:      var(--dilmio-after);
+  --dilmio-star-color:        var(--dilmio-star);
+
+  /* ── Radios extendidos ──────────────────────────────────── */
+  --dilmio-radius-xs:         2px;
+  --dilmio-radius-button:     var(--dilmio-radius-btn);
+  --dilmio-radius-pill:       999px;
+
+  /* ── Sombras extendidas ─────────────────────────────────── */
+  --dilmio-shadow-xs:         0 1px 4px rgba(0, 0, 0, 0.06);
+  --dilmio-shadow-panel:      0 4px 24px rgba(0, 0, 0, 0.07);
+  --dilmio-shadow-hero:       0 16px 56px rgba(0, 0, 0, 0.18);
+
+  /* ── Sistema de espaciado de secciones ─────────────────── */
+  --dilmio-section-y-mobile:             4.8rem;
+  --dilmio-section-y-desktop:            6.4rem;
+  --dilmio-container-max:                118rem;
+  --dilmio-container-padding-mobile:     2rem;
+  --dilmio-container-padding-desktop:    3.2rem;
+  --dilmio-grid-gap:                     2rem;
+  --dilmio-card-gap:                     1.6rem;
+
+  /* ── Dimensiones de componentes ─────────────────────────── */
+  --dilmio-button-height:          5.6rem;
+  --dilmio-button-height-mobile:   5.2rem;
+  --dilmio-input-height:           5.4rem;
+
+  /* ── Transiciones ───────────────────────────────────────── */
+  --dilmio-transition-fast:        150ms ease;
+  --dilmio-transition-normal:      200ms ease;
+
+}
