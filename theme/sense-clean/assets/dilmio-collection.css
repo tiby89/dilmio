@@ -1495,3 +1495,37 @@ body:has(.dilmio-collection-hero--has-image) {
     -webkit-backdrop-filter: none !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════
+   GOD 14.3i — Keep portaled collection filter below header hamburger drawer.
+   The portaled button lives directly in <body> with a very high z-index.
+   Capping it at 9000 keeps it above collection content but below the header
+   drawer/overlay stack (z-index > 9000), with no dependency on DOM state.
+   ═══════════════════════════════════════════════════ */
+@media screen and (max-width: 989px) {
+  .dilmio-floating-filter-button.dilmio-is-portaled {
+    z-index: 9000 !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GOD 14.3iii — Hide portaled floating filter while mobile navigation drawer is open.
+   The filter button is portaled and uses an extreme z-index, so it must be
+   explicitly removed from rendering while the nav drawer is active.
+   ═══════════════════════════════════════════════════ */
+@media screen and (max-width: 989px) {
+  html:has(.section-header.menu-open) .dilmio-floating-filter-button,
+  body:has(.section-header.menu-open) .dilmio-floating-filter-button,
+  html:has(.menu-drawer-container[open]) .dilmio-floating-filter-button,
+  body:has(.menu-drawer-container[open]) .dilmio-floating-filter-button,
+  html:has(details[open] > .menu-drawer) .dilmio-floating-filter-button,
+  body:has(details[open] > .menu-drawer) .dilmio-floating-filter-button,
+  html:has(details.menu-opening) .dilmio-floating-filter-button,
+  body:has(details.menu-opening) .dilmio-floating-filter-button {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+  }
+}
