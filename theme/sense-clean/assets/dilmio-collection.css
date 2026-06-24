@@ -1441,3 +1441,57 @@ body:has(.dilmio-collection-hero--has-image) {
     text-shadow: none !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════
+   GOD 14.3e — Functional fallback: readable mobile filters, no dim/blur overlay
+   Prioridad: funcionalidad sobre overlay estético.
+   El dim oscuro queda desactivado; el drawer se eleva a z-index máximo
+   para garantizar que nada del DOM lo tape en ningún browser mobile.
+   ═══════════════════════════════════════════════════ */
+
+@media screen and (max-width: 749px) {
+  .dilmio-mobile-facets-source form.mobile-facets {
+    z-index: 2147482998 !important;
+    background: transparent !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .dilmio-mobile-facets-source form.mobile-facets::before,
+  .dilmio-mobile-facets-source .disclosure-has-popup[open] > summary::before,
+  .dilmio-mobile-facets-source .mobile-facets__wrapper .disclosure-has-popup[open] > summary::before,
+  .dilmio-mobile-facets-source details[open] > summary::before {
+    content: none !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    background: transparent !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    pointer-events: none !important;
+  }
+
+  .dilmio-mobile-facets-source .mobile-facets__inner {
+    z-index: 2147482999 !important;
+    background: var(--dilmio-surface-card, #fff) !important;
+    opacity: 1 !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform-style: flat !important;
+    will-change: transform !important;
+    pointer-events: all !important;
+  }
+
+  .dilmio-mobile-facets-source .mobile-facets__inner *,
+  .dilmio-mobile-facets-source .mobile-facets__main,
+  .dilmio-mobile-facets-source .mobile-facets__footer,
+  .dilmio-mobile-facets-source .mobile-facets__submenu,
+  .dilmio-mobile-facets-source .mobile-facets__header {
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
